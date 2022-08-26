@@ -15,11 +15,13 @@ Với những chức năng giành cho Seller như:
 * Quản lý đơn hàng kinh doanh
 * Quản lý doanh thu của doanh nghiệp
 * Quản lý Thẻ E-Commerce-Name
+* Quản lý khuyến mãi
 
 Những chức năng giành cho Consumer:
 
 * Xem sản phẩm
 * Lọc sản phẩm
+* Thanh toán
 * Quản lý tài khoản cá nhân
 * Quản lý giỏ hàng
 * Quản lý Đơn hàng
@@ -27,7 +29,40 @@ Những chức năng giành cho Consumer:
 Và những chức năng cho Admin:
 
 * Quản lý Khách hàng
+* Quản lý cửa hàng kinh doanh
 * Quản lý mặt hành kinh doanh
 * Quản lý danh mục sản phẩm
 * Quản lý Đơn hàng
 * Quản lý Doanh thu
+
+Các Page chính như:
+
+* Trang chủ
+* Đăng ký / Đăng nhập
+* Danh sách sản phẩm
+* Chi tiết sản phẩm
+* Trang kết quả tìm kiếm sản phẩm
+* Thông tin tài khoản
+* Các trang nội dung: Contact, About Us, Policy…
+* Giỏ hàng
+* Thanh toán
+* Trang quản trị giành cho Seller
+* Trang quản trị giành cho Admin
+
+
+### Quy trình vận hành:
+
+1. ĐĂNG KÝ KINH DOANH CÙNG CHÚNG TÔI
+2. ĐĂNG SẢN PHẨM TRÊN SÀN THƯƠNG MẠI
+3. QUY TRÌNH HOẠT ĐỘNG CỦA THẺ E-Commerce-Name
+4. QUY TRÌNH KHUYẾN MÃI
+5. ĐĂNG NHẬP/ ĐĂNG KÝ
+6. THẾM SẢN PHẨM VÀO GIÕ HÀNG
+7. THANH TOÁN GIÕ HÀNG
+8. LỌC SẢN PHẨM
+9. QUY TRÌNH DUYỆT ĐƠN HÀNG
+
+
+### Ràng buộc toàn vẹn
+
+Đối với Seller:
