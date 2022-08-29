@@ -57,7 +57,7 @@ Các Page chính như:
 3. QUY TRÌNH HOẠT ĐỘNG CỦA THẺ E-Commerce-Name
 4. QUY TRÌNH KHUYẾN MÃI
 5. ĐĂNG NHẬP/ ĐĂNG KÝ
-6. THẾM SẢN PHẨM VÀO GIÕ HÀNG
+6. THÊM SẢN PHẨM VÀO GIÕ HÀNG
 7. THANH TOÁN GIÕ HÀNG
 8. LỌC SẢN PHẨM
 9. QUY TRÌNH DUYỆT ĐƠN HÀNG
