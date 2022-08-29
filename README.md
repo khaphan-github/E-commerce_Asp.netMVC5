@@ -63,6 +63,10 @@ Các Page chính như:
 9. QUY TRÌNH DUYỆT ĐƠN HÀNG
 
 
-### Ràng buộc toàn vẹn
+### Ràng buộc toàn vẹn - yêu cầu hệ thống
 
 Đối với Seller:
+  1. Khi Seller đăng ký kinh doanh phải điền đầy đủ thông tin [biểu mẩu]
+  2. Mỗi Seller có thể bán nhiều ngành hàng khác nhau nhưng phải thuộc vào những danh mục của hệ thống của hệ thống (Thiết bị điện tử, Quần áo);
+Đối với Consummer:
+Đối với Admin:
