@@ -4,11 +4,7 @@
 
 Thương mại điện tử (eCommerce) là một mô hình kinh doanh cho phép các công ty và cá nhân mua và bán hàng hóa và dịch vụ qua Internet.
 
-Cần xây dựng một hệ trang thương mại điện tử ( E-Commerce-Name) theo mô hình:
-
-C2C (consumer to consumer): người tiêu dùng với người tiêu dùng, cho phép các cá nhân bán hàng cho nhau, thường thông qua trang web của bên thứ ba.
-
-Với những chức năng giành cho Seller như:
+Với những chức năng giành cho Admin như:
 
 * Đăng ký kinh doanh với E-Commerce-Name
 * Quản lý sản phẩm đã đăng ký kinh doanh
@@ -16,6 +12,12 @@ Với những chức năng giành cho Seller như:
 * Quản lý doanh thu của doanh nghiệp
 * Quản lý Thẻ E-Commerce-Name
 * Quản lý khuyến mãi
+* Quản lý Khách hàng
+* Quản lý cửa hàng kinh doanh
+* Quản lý mặt hành kinh doanh
+* Quản lý danh mục sản phẩm
+* Quản lý Đơn hàng
+* Quản lý Doanh thu
 
 Những chức năng giành cho Consumer:
 
@@ -26,14 +28,6 @@ Những chức năng giành cho Consumer:
 * Quản lý giỏ hàng
 * Quản lý Đơn hàng
 
-Và những chức năng cho Admin:
-
-* Quản lý Khách hàng
-* Quản lý cửa hàng kinh doanh
-* Quản lý mặt hành kinh doanh
-* Quản lý danh mục sản phẩm
-* Quản lý Đơn hàng
-* Quản lý Doanh thu
 
 Các Page chính như:
 
@@ -46,7 +40,6 @@ Các Page chính như:
 * Các trang nội dung: Contact, About Us, Policy…
 * Giỏ hàng
 * Thanh toán
-* Trang quản trị giành cho Seller
 * Trang quản trị giành cho Admin
 
 
@@ -64,9 +57,13 @@ Các Page chính như:
 
 
 ### Ràng buộc toàn vẹn - yêu cầu hệ thống
-
-Đối với Seller:
-  1. Khi Seller đăng ký kinh doanh phải điền đầy đủ thông tin [biểu mẩu]
-  2. Mỗi Seller có thể bán nhiều ngành hàng khác nhau nhưng phải thuộc vào những danh mục của hệ thống của hệ thống (Thiết bị điện tử, Quần áo);
-Đối với Consummer:
-Đối với Admin:
+#### Đối với Consummer:
+  - Mỗi khách hàng có một tài khoản riêng để mua hàng và thực hiện các giao dịch
+  - Tài khoản của khách hàng chứa các thông tin như: Tên, số điện thoại, địa chỉ 1, địa chỉ 2, avatar
+  - Mỗi khách hàng có một giõ hàng riêng để lưu trữ những sản phẩm được chọn
+  - Sau khi thanh toán khách hàng có thể xem được đơn hàng của mình tại mục "Đơn hàng"
+  - Khách hàng có thể thanh toán bằng tiền mặt hoặc thanh toán online
+  - Khách hàng có thể bình luận hoặc gửi đánh giá về 1 sản phẩm bất kỳ
+  - Trang web có chức năng lọc và tìm kiếm để khách hàng tìm sản phẩm theo ý mình
+  
+#### Đối với Admin:
