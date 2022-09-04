@@ -66,4 +66,3 @@ Các Page chính như:
   - Khách hàng có thể bình luận hoặc gửi đánh giá về 1 sản phẩm bất kỳ
   - Trang web có chức năng lọc và tìm kiếm để khách hàng tìm sản phẩm theo ý mình
   
-#### Đối với Admin:
