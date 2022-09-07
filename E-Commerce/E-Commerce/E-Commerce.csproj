@@ -1255,11 +1255,14 @@
     <Content Include="assets\images\icons\favicon-16x16.png" />
     <Content Include="assets\images\icons\favicon-32x32.png" />
     <Content Include="assets\images\icons\favicon.ico" />
+    <Content Include="assets\images\icons\LOGO_UNIQUESHOP_ICO.ico" />
+    <Content Include="assets\images\icons\LOGO_UNIQUESHOP_ICO.png" />
     <Content Include="assets\images\icons\safari-pinned-tab.svg" />
     <Content Include="assets\images\icons\site.html" />
     <Content Include="assets\images\logo-footer.png" />
     <Content Include="assets\images\logo-icon.png" />
     <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\logo\LOGO_UNIQUESHOP_1000_462.png" />
     <Content Include="assets\images\menu\banner-1.jpg" />
     <Content Include="assets\images\menu\banner-2.jpg" />
     <Content Include="assets\images\menu\demos\1.jpg" />

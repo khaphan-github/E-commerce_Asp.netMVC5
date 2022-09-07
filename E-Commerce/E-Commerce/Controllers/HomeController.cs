@@ -14,6 +14,7 @@ namespace E_Commerce.Controllers
         {
             HomepageItemsView homepageItemsView = new HomepageItemsView();
             ViewData["Category"] = homepageItemsView.CategoryView();
+
             return View();
         }
 
