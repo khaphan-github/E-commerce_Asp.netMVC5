@@ -8,9 +8,10 @@ namespace E_Commerce.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
+            CategoryView();
             return View();
         }
 
