@@ -11600,9 +11600,9 @@
 										"$ref": "AAAAAAGDCDAGzjZCslw="
 									},
 									"font": "Arial;13;0",
-									"left": 1148,
+									"left": 1141,
 									"top": 498,
-									"width": 14.82177734375,
+									"width": 29.275390625,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -11610,7 +11610,7 @@
 										"$ref": "AAAAAAGDCDAGzzZF35E="
 									},
 									"edgePosition": 2,
-									"text": "+1"
+									"text": "+0..1"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -11664,9 +11664,9 @@
 										"$ref": "AAAAAAGDCDAGzjZDVf0="
 									},
 									"font": "Arial;13;0",
-									"left": 1063,
+									"left": 1056,
 									"top": 529,
-									"width": 14.82177734375,
+									"width": 29.275390625,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -19719,7 +19719,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGC+VikO/igtDU="
 							},
-							"name": "idDescribe"
+							"name": "idDescribe",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -20058,7 +20059,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGC+VstNvmBnn8="
 							},
-							"name": "price"
+							"name": "price",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -20066,7 +20068,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGC+VstNvmBnn8="
 							},
-							"name": "expirationDate"
+							"name": "expirationDate",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -20269,7 +20272,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGC+W5BXRgJxBA="
 							},
-							"name": "status"
+							"name": "status",
+							"type": ""
 						}
 					]
 				},
@@ -21752,7 +21756,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGDCDAGzjZB81I="
 								},
-								"name": "1",
+								"name": "0..1",
 								"reference": {
 									"$ref": "AAAAAAGDCCgR6zb4Xb0="
 								}
@@ -22425,7 +22429,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGDFcSewpRl8yw="
 							},
-							"name": "idDescribe"
+							"name": "idDescribe",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -22433,7 +22438,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGDFcSewpRl8yw="
 							},
-							"name": "generalDecription"
+							"name": "generalDecription",
+							"type": ""
 						}
 					],
 					"operations": [
