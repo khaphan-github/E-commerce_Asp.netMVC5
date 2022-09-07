@@ -487,3 +487,7 @@ E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\EntityFramework.SqlServer.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\EntityFramework.xml
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\EntityFramework.SqlServer.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Business-Logic.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Repository.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Business-Logic.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Repository.pdb

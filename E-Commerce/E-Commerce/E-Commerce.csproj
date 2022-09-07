@@ -1602,6 +1602,16 @@
     <Folder Include="Theme\js\" />
     <Folder Include="Views\Card\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\E-Commerce-Business-Logic\E-Commerce-Business-Logic.csproj">
+      <Project>{aeeeaea1-2355-45ef-81f8-4b79c6bbf0b5}</Project>
+      <Name>E-Commerce-Business-Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\E-Commerce-Repository\E-Commerce-Repository.csproj">
+      <Project>{f3cbd0de-1dde-4436-ac33-8f6f658d9d37}</Project>
+      <Name>E-Commerce-Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

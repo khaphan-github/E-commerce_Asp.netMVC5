@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Commerce_Business_Logic.HomepageItems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace E_Commerce.Controllers
         // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
-            CategoryView();
+            HomepageItemsView homepageItemsView = new HomepageItemsView();
+            ViewData["Category"] = homepageItemsView.CategoryView();
             return View();
         }
 
