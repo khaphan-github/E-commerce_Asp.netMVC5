@@ -1,0 +1,6 @@
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.AssemblyReference.cache
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CoreCompileInputs.cache
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.pdb
