@@ -1,11 +1,10 @@
-# E-commerce_Asp.netMVC5
+# E-commerce_Asp.netMVC5 
 
 ### Mô tả
 
 Thương mại điện tử (eCommerce) là một mô hình kinh doanh cho phép các công ty và cá nhân mua và bán hàng hóa và dịch vụ qua Internet.
 
 Cần tạo ra một trang web để vận hành được hệ thống eCommerce của doanh nghiệp cá nhân.
-
 
 Với những chức năng giành cho Admin như:
 
