@@ -1,4 +1,4 @@
-# E-commerce_Asp.netMVC5 - Quỳnh
+# E-commerce_Asp.netMVC5 
 
 ### Mô tả
 
