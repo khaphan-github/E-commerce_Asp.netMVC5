@@ -99,7 +99,7 @@
                         </button>
 
                         <a href="index.html" class="logo">
-                            
+
                             <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" alt="Molla Logo" width="130" height="25">
                         </a>
                     </div><!-- End .header-left -->
@@ -111,7 +111,7 @@
                                 <div class="header-search-wrapper search-wrapper-wide">
                                     <div class="select-custom">
 
-                                    <!-- LOAD ITEM FROM DATABASE-->
+                                        <!-- LOAD ITEM FROM DATABASE-->
 
                                         <select id="cat" name="cat">
                                             <option value="">All Departments</option>
@@ -572,7 +572,7 @@
                                                                 <ul>
                                                                     <li><a href="category-boxed.html"><span>Iphone<span class="tip tip-hot">Hot</span></span></a></li>
                                                                     <li><a href="category-fullwidth.html">Samsung</a></li>
-                                                                    
+
                                                                 </ul>
                                                             </div><!-- End .col-md-6 -->
 
@@ -1004,7 +1004,7 @@
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
                                     <!-- LOGIN FORM-->
-                                <form action="#">
+                                    <form action="#">
                                         <div class="form-group">
                                             <label for="singin-email">Phone or email address *</label>
                                             <input type="text" class="form-control" id="singin-email" name="singin-email" required>
@@ -1032,7 +1032,7 @@
                                     <div class="form-choice">
                                         <p class="text-center">or sign in with</p>
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6" id="btnGoogleLogin" onclick="GoogleLoginFunction()">
                                                 <a href="#" class="btn btn-login btn-g">
                                                     <i class="icon-google"></i>
                                                     Login With Google
@@ -1074,7 +1074,7 @@
                                     <div class="form-choice">
                                         <p class="text-center">or sign in with</p>
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6" id="btnGoogleLogin" onclick="GoogleLoginFunction()">
                                                 <a href="#" class="btn btn-login btn-g">
                                                     <i class="icon-google"></i>
                                                     Login With Google
@@ -1105,7 +1105,8 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-   @RenderSection("Js", required: false)
+    <script src="~/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+    @RenderSection("Js", required: false)
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
 </body>

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         // GET: Home Hiển thị trang chủ

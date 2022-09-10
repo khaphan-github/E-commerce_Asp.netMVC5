@@ -500,3 +500,14 @@ E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.xml
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Google.xml
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Newtonsoft.Json.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Core.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Cookies.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.OAuth.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Repository.dll.config
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Core.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Cookies.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.OAuth.xml
