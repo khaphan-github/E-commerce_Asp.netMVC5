@@ -491,3 +491,12 @@ E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Repository.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Business-Logic.pdb
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Repository.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Google.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Newtonsoft.Json.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Owin.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Google.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Newtonsoft.Json.xml

@@ -4,3 +4,13 @@ E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-L
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CoreCompileInputs.cache
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.Google.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Newtonsoft.Json.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Owin.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.Google.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Newtonsoft.Json.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CopyComplete
