@@ -1,7 +1,7 @@
 ﻿
 // Onclick GoogleLoginFunction when user click google button login
 function GoogleLoginFunction() {
-    alert("Call function oke")
+    alert("Chức năng này chưa hoàn thiện")
 }
 
 

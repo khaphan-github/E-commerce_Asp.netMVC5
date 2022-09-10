@@ -19,6 +19,11 @@ namespace E_Commerce.Controllers
             return View();
         }
 
+        public ActionResult SignIn()
+        {
+            
+            return View();
+        }
         public ActionResult About()
         {
             return View();

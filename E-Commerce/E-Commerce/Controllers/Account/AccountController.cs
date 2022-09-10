@@ -6,12 +6,15 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Controllers
 {
+   [RequireHttps]
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Index()
+        public ActionResult Signin()
         {
             return View();
         }
+        
+        
     }
 }
