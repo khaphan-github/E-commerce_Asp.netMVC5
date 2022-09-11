@@ -35,3 +35,8 @@ D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.dll
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.xml
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.dll.config
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.xml
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.xml
