@@ -520,3 +520,4 @@ D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.Google.xml
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.OAuth.xml
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Newtonsoft.Json.xml
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\E-Commerce-Business-Logic.dll.config

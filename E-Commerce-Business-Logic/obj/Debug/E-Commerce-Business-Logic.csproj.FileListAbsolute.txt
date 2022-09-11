@@ -30,3 +30,8 @@ D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CopyComplete
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.dll
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.pdb
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.dll.config
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.dll
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.dll
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.xml
+D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.xml
