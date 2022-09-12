@@ -1,6 +1,5 @@
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\bin\Debug\E-Commerce-Repository.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\bin\Debug\E-Commerce-Repository.pdb
-E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.AssemblyReference.cache
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.CoreCompileInputs.cache
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.pdb
@@ -96,3 +95,4 @@ D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.CopyComplete
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.dll
 D:\TAI LIEU HOC\BAI GIANG\CNPM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.AssemblyReference.cache
