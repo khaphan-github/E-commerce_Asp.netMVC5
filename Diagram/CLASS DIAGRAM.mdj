@@ -7035,7 +7035,7 @@
 											"top": 1684,
 											"width": 112.353515625,
 											"height": 13,
-											"text": "+address",
+											"text": "+addressID",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9107,7 +9107,7 @@
 											"top": 1628,
 											"width": 84.90625,
 											"height": 13,
-											"text": "+hardDsk",
+											"text": "+hardDisk",
 											"horizontalAlignment": 0
 										},
 										{
@@ -20156,7 +20156,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGC+VlXgfjSKzg="
 							},
-							"name": "idAccount"
+							"name": "idAccount",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -21272,8 +21273,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGDB7jViwQC4oY="
 							},
-							"name": "address",
-							"type": ""
+							"name": "addressID"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -21769,8 +21769,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGDB+ipP5QXT3k="
 							},
-							"name": "hardDsk",
-							"type": ""
+							"name": "hardDisk"
 						},
 						{
 							"_type": "UMLAttribute",
