@@ -11,7 +11,10 @@ namespace E_Commerce.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            // Hiển thị được tài dăng nhập vô 
+
             return View();
         }
+        
     }
 }
