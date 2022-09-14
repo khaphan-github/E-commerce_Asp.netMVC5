@@ -10,5 +10,7 @@ namespace E_Commerce_Repository.Models
     {
         public int DescribeId { get; set; }
         public string Description { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

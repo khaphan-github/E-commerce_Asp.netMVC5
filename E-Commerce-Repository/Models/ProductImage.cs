@@ -8,7 +8,9 @@ namespace E_Commerce_Repository.Models
 {
     internal class ProductImage
     {
-        public int ImageId { get; set; }
+        public int ProductImageId { get; set; }
         public string URL { get; set; }
+
+        public Product Product { get; set; }
     }
 }

@@ -8,8 +8,10 @@ namespace E_Commerce_Repository.Models
 {
     internal class AccountState
     {
-        internal int id { get; set; }
-        internal string name { get; set; }
-        internal Account account { get; set; }
+        public  int AccountStateId { get; set; }
+        public string AccountName { get; set; }
+        public virtual Account Account { get; set; }
+
+
     }
 }

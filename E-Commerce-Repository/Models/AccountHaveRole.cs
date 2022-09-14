@@ -8,5 +8,7 @@ namespace E_Commerce_Repository.Models
 {
     internal class AccountHaveRole
     {
+        public Account Account { get; set; }
+        public AccountRole AccountRole { get; set; }
     }
 }

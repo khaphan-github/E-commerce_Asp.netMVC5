@@ -9,5 +9,8 @@ namespace E_Commerce_Repository.Models
     internal class DetailShoppingCard
     {
         public int NumberOfProduct { get; set; }
+
+        public Product Product { get; set; }
+        public ShoppingCard ShoppingCard { get; set; }
     }
 }

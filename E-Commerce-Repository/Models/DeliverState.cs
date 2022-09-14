@@ -11,5 +11,7 @@ namespace E_Commerce_Repository.Models
         public int DeliverId { get; set; }
         public string DeliverName { get; set; }
         public int OrderNumber { get; set; }
+
+        public virtual Order Order { get; set; }
     }
 }

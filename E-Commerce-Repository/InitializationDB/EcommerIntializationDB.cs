@@ -13,12 +13,22 @@ namespace E_Commerce_Repository.InitializationDB
         internal EcommerIntializationDB()
                     : base("name=EcommerIntializationDB")
             {
+            var intialization = new DropCreateDatabaseAlways<EcommerIntializationDB>();
+            Database.SetInitializer(intialization);
             }
         internal DbSet<Product> Products { get; set; }
         internal DbSet<TypeProduct> TypeProducts { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        
+    }
+    class Program
+    {
+        static void Main(string[] args)
         {
+            using (var db = new EcommerIntializationDB())
+            {
+                db.Database.Initialize(force: false);
+            }
         }
     }
-    
+
 }

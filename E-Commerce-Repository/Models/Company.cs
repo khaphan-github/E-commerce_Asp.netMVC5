@@ -14,5 +14,6 @@ namespace E_Commerce_Repository.Models
         public string Email { get; set; }
         public string ActiveType { get; set; }
 
+        public ICollection <Product> Product { get; set; }
     }
 }

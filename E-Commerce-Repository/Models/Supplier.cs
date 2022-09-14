@@ -12,5 +12,7 @@ namespace E_Commerce_Repository.Models
         public string SupplierName { get; set; }
         public string Phone { get; set; }
         public int Email { get; set; }
+
+        public ICollection<Product> Product { get; set; }
     }
 }

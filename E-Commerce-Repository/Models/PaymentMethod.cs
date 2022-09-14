@@ -11,5 +11,8 @@ namespace E_Commerce_Repository.Models
         public int PaymentId { get; set; }
         public string PaymentName { get; set; }
         public string Desc { get; set; }
+
+        public ICollection  <Order> Order { get; set; }
+
     }
 }

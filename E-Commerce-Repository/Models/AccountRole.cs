@@ -8,11 +8,13 @@ namespace E_Commerce_Repository.Models
 {
     internal class AccountRole
     {
-        public string name { get; set; }
-        public int id { get; set; }
-        public string descibe { get; set; }
-        public bool isActive { get; set; }
+        public int AccountRoleId { get; set; }
+        public string AccountRoleName { get; set; }
+        public string Descibe { get; set; }
+        public bool IsActive { get; set; }
         
+        public virtual ICollection<AccountHaveRole> Accounts { get; set; }
+
         
     }
 }

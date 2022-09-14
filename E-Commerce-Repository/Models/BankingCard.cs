@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public class BankingCard
+    internal class BankingCard
     {
-        public int bankingCardId { get; set; }
-        public string bankingCardName { get; set; }
-        public string accountName { get; set; }
-        public string accountNumber { get; set; }
+        public int BankingCardId { get; set; }
+        public string BankingCardName { get; set; }
+        public string AccountName { get; set; }
+        public string AccountNumber { get; set; }
+
+        public virtual AccountConsumer AccountConsumer { get; set; }
 
     }
 }

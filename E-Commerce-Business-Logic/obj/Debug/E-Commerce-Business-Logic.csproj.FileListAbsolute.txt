@@ -39,3 +39,24 @@ E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-L
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.xml
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.dll.config
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Business-Logic.pdb
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.Google.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Newtonsoft.Json.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Owin.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\EntityFramework.SqlServer.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Microsoft.Owin.Security.Google.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\Newtonsoft.Json.xml
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.AssemblyReference.cache
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CoreCompileInputs.cache
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CopyComplete
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.dll
+E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.pdb
