@@ -8,5 +8,7 @@ namespace E_Commerce_Repository.Models
 {
     internal class AddressDetail
     {
+        public Address Address { get; set; }
+        public AccountConsumer AccountConsumer { get; set; }
     }
 }

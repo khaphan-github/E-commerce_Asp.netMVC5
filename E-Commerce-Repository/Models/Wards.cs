@@ -11,5 +11,8 @@ namespace E_Commerce_Repository.Models
         public int WardsId { get; set; }
         public string WardName { get; set; }
 
+        public Address Address { get; set; }
+        public ICollection <District> Districts { get; set; }
+
     }
 }

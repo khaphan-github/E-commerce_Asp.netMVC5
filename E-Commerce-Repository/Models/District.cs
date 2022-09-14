@@ -10,5 +10,8 @@ namespace E_Commerce_Repository.Models
     {
         public int DistrictId { get; set; }
         public string DistrictName { get; set; }
+
+        public Wards Wards { get; set; }
+        public ICollection<Province> Provinces { get; set; }
     }
 }

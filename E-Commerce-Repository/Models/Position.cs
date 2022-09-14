@@ -8,10 +8,10 @@ namespace E_Commerce_Repository.Models
 {
     internal class Position
     {
-        internal int id { get; set; }
-        internal string name { get; set; }
-        internal float baseSalary { get; set; }
+        public  int PositionId { get; set; }
+        public string PositionName { get; set; }
+        public float BaseSalary { get; set; }
 
-
+        public virtual AccountAdmin AccountAdmin { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace E_Commerce_Repository.Models
         public int ProvinceId { get; set; }
         public string ProvinceName { get; set; }
         public string Domain { get; set; }
+
+        public District District { get; set; }
     }
 }

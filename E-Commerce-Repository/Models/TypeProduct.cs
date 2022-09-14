@@ -8,8 +8,12 @@ namespace E_Commerce_Repository.Models
 {
     internal class TypeProduct
     {
-        internal string typeName { get; set; }
-        internal int typeID { get; set; }
+        public int TypeId { get; set; }
+        public string TypeName { get; set; }
+        
+        public ICollection<Product> Products { get; set; }
+        public Category Category { get; set; }
+
         
     }
 }

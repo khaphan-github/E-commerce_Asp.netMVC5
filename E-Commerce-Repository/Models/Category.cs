@@ -10,5 +10,7 @@ namespace E_Commerce_Repository.Models
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+
+        public ICollection<TypeProduct> TypeProduct { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace E_Commerce_Repository.Models
         public int ShippingMethodId { get; set; }
         public string ShippingMethodName { get; set; }
         public string Desc { get; set; }
+
+        public ICollection<Order> Order { get; set; }
     }
 }

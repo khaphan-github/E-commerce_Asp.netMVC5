@@ -8,12 +8,21 @@ namespace E_Commerce_Repository.Models
 {
     internal class Product
     {
-        internal int id { get; set; }
-        internal string name { get; set; }
-        internal int price { get; set; }
-        internal decimal quantity { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int price { get; set; }
+        public int quantity { get; set; }
 
-        internal TypeProduct productType { get; set; }
+        public TypeProduct productType { get; set; }
+        public virtual ICollection <Order> Orders { get; set; }
+        public virtual ICollection<ShoppingCard> ShoppingCards { get; set; }
+        public Supplier Supplier { get; set; }
+        public Company Company { get; set; }
+        public virtual ICollection <WareHouse> WareHouses { get; set; }
+        public ICollection <ProductImage> ProductImages { get; set; }
+        public virtual Describe Describe { get; set; }
+        public virtual ICollection<Promotion> Promotion { get; set; }
+        public ICollection <Review> Reviews { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class Phone
+    internal class Phone:Describe 
     {
         public string ModelName { get; set; }
         public int Pin { get; set; }

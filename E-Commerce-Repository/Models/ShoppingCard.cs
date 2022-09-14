@@ -12,5 +12,8 @@ namespace E_Commerce_Repository.Models
         public int NumberOfItems { get; set; }
         public int IsEmpty { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public virtual AccountConsumer AccountConsumer { get; set; }
+        public virtual ICollection < Product> Product { get; set; }
     }
 }
