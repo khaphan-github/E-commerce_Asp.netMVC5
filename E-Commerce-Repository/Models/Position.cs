@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class Position
+    public class Position
     {
-        internal int id { get; set; }
-        internal string name { get; set; }
-        internal float baseSalary { get; set; }
+        [ForeignKey("AccountAdmin")]
+        public int id { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string name { get; set; }
+        public float baseSalary { get; set; }
 
-
+        // Quan hệ 1 - 1 với bảng AccountAdmin
+        public virtual AccountAdmin AccountAdmin { get; set; }
     }
 }

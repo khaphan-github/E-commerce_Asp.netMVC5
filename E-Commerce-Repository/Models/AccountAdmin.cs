@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class AccountAdmin:Account
+    public class AccountAdmin : Account
     {
-        private float salary { get; set; }
-        
+        public float salary { get; set; }
 
+        // Quan hệ  1 - 1 với bảng Position
+        public virtual Position Position { get; set; }
+
+        // Quan hệ 1 nhiều với promotion
+        public virtual ICollection<Promotion> Promotions { get; set; }
     }
 }

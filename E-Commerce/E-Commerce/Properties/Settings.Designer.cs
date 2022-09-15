@@ -26,11 +26,11 @@ namespace E_Commerce.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-TLPAJCL\\SQLEXPRESS;Initial Catalog=BLOG;Integrated Security=T" +
-            "rue")]
-        public string ConnectorString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Anonymus;Initial Catalog=FashtionCShapWebApplication;User ID=sa;Passw" +
+            "ord=sa")]
+        public string EcommerIntializationDB {
             get {
-                return ((string)(this["ConnectorString"]));
+                return ((string)(this["EcommerIntializationDB"]));
             }
         }
     }

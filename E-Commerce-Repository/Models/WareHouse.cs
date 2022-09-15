@@ -1,15 +1,17 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class WareHouse
+    public class WareHouse
     {
+        [Key]
         public int WareHouseId { get; set; }
         public string WareHouseName { get; set; }
         public string Status { get; set; }
+
+        // QUan hệ nhiều nhiều với product
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

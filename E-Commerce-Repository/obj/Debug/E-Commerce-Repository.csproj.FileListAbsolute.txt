@@ -1,6 +1,5 @@
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\bin\Debug\E-Commerce-Repository.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\bin\Debug\E-Commerce-Repository.pdb
-E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.AssemblyReference.cache
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.CoreCompileInputs.cache
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.dll
 E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.pdb
@@ -145,3 +144,6 @@ E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Com
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.CopyComplete
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.dll
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E_Commerce_Repository.Migrations.E_Commerce_Web.resources
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E-Commerce-Repository.csproj.GenerateResource.cache
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Repository\obj\Debug\E_Commerce_Repository.Migrations.Initial.resources
