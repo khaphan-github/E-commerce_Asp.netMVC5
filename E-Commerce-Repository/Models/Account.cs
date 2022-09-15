@@ -46,7 +46,5 @@ namespace E_Commerce_Repository.Models
         // Kéo khóa đến bảng AccountRole
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
 
-        public virtual ICollection<AccountHaveRole> AccountRoles { get; set; }
-        public virtual AccountState AccountState { get; set; }
     }
 }

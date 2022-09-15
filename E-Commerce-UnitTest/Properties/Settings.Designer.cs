@@ -26,12 +26,8 @@ namespace E_Commerce_UnitTest.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-<<<<<<<< HEAD:E-Commerce-UnitTest/Properties/Settings.Designer.cs
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Anonymus;Initial Catalog=FashtionCShapWebApplication;User ID=sa;Passw" +
             "ord=sa")]
-========
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=EcommerIntializationDB;Integrated Security=True")]
->>>>>>>> main:E-Commerce-Repository/Properties/Settings.Designer.cs
         public string EcommerIntializationDB {
             get {
                 return ((string)(this["EcommerIntializationDB"]));

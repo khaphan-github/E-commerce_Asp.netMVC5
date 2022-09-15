@@ -17,8 +17,6 @@ namespace E_Commerce_Repository.Models
         // Một tỉnh thành phố có nhiều quận huyện Quan hệ 1 nhiều
         public virtual ICollection<District> Districts { get; set; }
 
-        public Address Address { get; set; }
-        public ICollection <District> Districts { get; set; }
-
+      
     }
 }
