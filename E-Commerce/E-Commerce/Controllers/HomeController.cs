@@ -13,9 +13,10 @@ namespace E_Commerce.Controllers
         // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
-            HomepageItemsView homepageItemsView = new HomepageItemsView();
-            ViewData["Category"] = homepageItemsView.CategoryView();
-
+               HomepageItemsView homepageItemsView = new HomepageItemsView();
+           
+                ViewData["Category"] = homepageItemsView.CategoryView();
+            
             return View();
         }
 

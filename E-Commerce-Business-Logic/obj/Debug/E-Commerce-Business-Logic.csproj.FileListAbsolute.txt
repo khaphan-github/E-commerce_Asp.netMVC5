@@ -60,3 +60,7 @@ E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.CopyComplete
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.dll
 E:\DO_AN_E-Commerce\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\obj\Debug\E-Commerce-Business-Logic.csproj.AssemblyReference.cache
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Repository.dll
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Repository.pdb
+E:\SCHOOL\CÔNG NGHỆ PHẦN MỀM\E-commerce_Asp.netMVC5\E-Commerce-Business-Logic\bin\Debug\E-Commerce-Repository.dll.config

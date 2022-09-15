@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Commerce_Repository.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,10 @@ namespace E_Commerce_Business_Logic.HomepageItems
     {
         public List<String> CategoryView()
         {
-            List<String> result = new List<string>();
-            result.Add("Phan Hồng Yến Quỳnh");
-            result.Add("Laptop");
-            return result;
-
+            ProductRepository repository = new ProductRepository();
+            List<String> product = new List<string>();
+            product.Add(repository.GetProducts().ToString());
+            return product;
         }
     }
 }

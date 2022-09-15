@@ -10,8 +10,7 @@ namespace E_Commerce.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Signin()
-        {
+        public ActionResult Signin() {
             return View();
         }
         

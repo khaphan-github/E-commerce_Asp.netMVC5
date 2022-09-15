@@ -85,6 +85,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce-Repository\E-Commerce-Repository.csproj">
+      <Project>{f3cbd0de-1dde-4436-ac33-8f6f658d9d37}</Project>
+      <Name>E-Commerce-Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

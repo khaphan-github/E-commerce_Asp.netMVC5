@@ -7,14 +7,25 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class AccountConsumer:Account
+    public class AccountConsumer : Account
     {
-        
-        public ICollection <Order> Order { get; set; }
-        public virtual  ICollection < Address> Address { get; set; }
-        public virtual  BankingCard BankingCard { get; set; }
+        // Quan hệ nhiều nhiều với địa chỉ
+        public AccountConsumer()
+        {
+            this.Addresses = new HashSet<Address>();
+        }
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        // Quan hệ 1 nhiều với Banking Card; 
+        public virtual ICollection<BankingCard> BankingCards { get; set; }
+
+      
+
+        // Quan hệ 1 - 1 với shopping card; 
         public virtual ShoppingCard ShoppingCard { get; set; }
-        public ICollection <Comment> Comment { get; set; }
+
+        // Quan hệ 1 nhiều với feedback
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
 
     }
 }

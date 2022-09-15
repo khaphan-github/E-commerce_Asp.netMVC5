@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class PaymentMethod
+    public class PaymentMethod
     {
+        [Key]
         public int PaymentId { get; set; }
         public string PaymentName { get; set; }
         public string Desc { get; set; }
 
-        public ICollection  <Order> Order { get; set; }
-
+        // Quan hệ 1 nhiều với order
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

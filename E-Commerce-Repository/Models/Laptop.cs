@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    internal class Laptop:Describe
+    public class Laptop : Describe
     {
         public string CPU { get; set; }
         public int Ram { get; set; }

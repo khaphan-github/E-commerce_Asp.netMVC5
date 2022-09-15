@@ -112,60 +112,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializationDB\EcommerIntializationDB.cs" />
+    <Compile Include="Migrations\202209151318020_E_Commerce_Web.cs" />
+    <Compile Include="Migrations\202209151318020_E_Commerce_Web.designer.cs">
+      <DependentUpon>202209151318020_E_Commerce_Web.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209151406508_Initial.cs" />
+    <Compile Include="Migrations\202209151406508_Initial.designer.cs">
+      <DependentUpon>202209151406508_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountAdmin.cs" />
     <Compile Include="Models\AccountConsumer.cs" />
-    <Compile Include="Models\AccountHaveRole.cs" />
     <Compile Include="Models\AccountRole.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\AddressDetail.cs" />
     <Compile Include="Models\BankingCard.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DeliverState.cs" />
     <Compile Include="Models\Describe.cs" />
+<<<<<<< HEAD
+=======
     <Compile Include="Models\DetailOrder.cs" />
     <Compile Include="Models\DetailShoppingCard.cs" />
+>>>>>>> main
     <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Laptop.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\Promotion.cs" />
-    <Compile Include="Models\PromotionDetail.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ShippingMethod.cs" />
     <Compile Include="Models\ShoppingCard.cs" />
+    <Compile Include="Models\ShoppingCardDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\TypeProduct.cs" />
     <Compile Include="Models\Wards.cs" />
     <Compile Include="Models\WareHouse.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\WarehouseHasProduct.cs" />
+=======
     <Compile Include="Models\WareHouseDetail.cs" />
+>>>>>>> main
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\" />
-    <Folder Include="Service\" />
+    <EmbeddedResource Include="Migrations\202209151318020_E_Commerce_Web.resx">
+      <DependentUpon>202209151318020_E_Commerce_Web.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209151406508_Initial.resx">
+      <DependentUpon>202209151406508_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\E-Commerce\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\E-Commerce\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\E-Commerce\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
