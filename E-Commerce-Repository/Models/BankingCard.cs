@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public class BankingCard
+    internal class BankingCard
     {
         [Key]
         public int bankingCardId { get; set; }

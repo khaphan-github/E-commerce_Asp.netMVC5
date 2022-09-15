@@ -129,9 +129,15 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BankingCard.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DeliverState.cs" />
     <Compile Include="Models\Describe.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Models\DetailOrder.cs" />
+    <Compile Include="Models\DetailShoppingCard.cs" />
+>>>>>>> main
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Laptop.cs" />
@@ -144,6 +150,7 @@
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ShippingMethod.cs" />
     <Compile Include="Models\ShoppingCard.cs" />
     <Compile Include="Models\ShoppingCardDetail.cs" />
@@ -151,7 +158,11 @@
     <Compile Include="Models\TypeProduct.cs" />
     <Compile Include="Models\Wards.cs" />
     <Compile Include="Models\WareHouse.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\WarehouseHasProduct.cs" />
+=======
+    <Compile Include="Models\WareHouseDetail.cs" />
+>>>>>>> main
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ProductRepository.cs" />

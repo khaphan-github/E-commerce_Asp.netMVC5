@@ -73,5 +73,5 @@ namespace E_Commerce_Repository.InitializationDB
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
         }
     }
-    
+
 }
