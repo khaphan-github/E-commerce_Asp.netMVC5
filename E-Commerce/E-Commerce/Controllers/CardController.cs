@@ -8,7 +8,7 @@ namespace E_Commerce.Controllers
 {
     public class CardController : Controller
     {
-        // GET: Card
+        // GET: Card hhhh
         public ActionResult Index()
         {
             return View();
