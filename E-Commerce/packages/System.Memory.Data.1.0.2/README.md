@@ -1,3 +1,9 @@
+---
+noteId: "2d9f12d1357c11ed97c94bf107ed2072"
+tags: []
+
+---
+
 #  System.Memory.Data library for .NET
 
 ## Binary Data

@@ -1,3 +1,9 @@
+---
+noteId: "2d806740357c11ed97c94bf107ed2072"
+tags: []
+
+---
+
 # Release History
 
 ## 1.6.0 (2022-04-05)

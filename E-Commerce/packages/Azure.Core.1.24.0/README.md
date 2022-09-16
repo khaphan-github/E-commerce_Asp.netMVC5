@@ -1,3 +1,9 @@
+---
+noteId: "2d826311357c11ed97c94bf107ed2072"
+tags: []
+
+---
+
 # Azure Core shared client library for .NET
 
 Azure.Core provides shared primitives, abstractions, and helpers for modern .NET Azure SDK client libraries. 
