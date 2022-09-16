@@ -6,8 +6,10 @@
     "\\E-Commerce\\E-Commerce\\Areas",
     "\\E-Commerce\\E-Commerce\\Areas\\Admin",
     "\\E-Commerce\\E-Commerce\\Areas\\Admin\\Views",
-    "\\E-Commerce\\E-Commerce\\Areas\\Admin\\Views\\Shared"
+    "\\E-Commerce\\E-Commerce\\Areas\\Admin\\Views\\Shared",
+    "\\E-Commerce\\E-Commerce\\Views",
+    "\\E-Commerce\\E-Commerce\\Views\\Shop"
   ],
-  "SelectedNode": "\\E-Commerce\\E-Commerce.sln",
+  "SelectedNode": "\\E-Commerce\\E-Commerce\\Views\\Shop\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
