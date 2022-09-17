@@ -88,7 +88,7 @@
                 				</div><!-- End .toolbox-right -->
                 			</div><!-- End .toolbox -->
 
-                            <div class="products mb-3">
+                            <div class="products mb-3", id="products">
                                 <div class="row justify-content-center">
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
@@ -638,74 +638,27 @@
 									        Category
 									    </a>
 									</h3><!-- End .widget-title -->
-
+                                <!--Category-->
 									<div class="collapse show" id="widget-1">
 										<div class="widget-body">
-											<div class="filter-items filter-items-count">
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-1">
-														<label class="custom-control-label" for="cat-1">Dresses</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">3</span>
-												</div><!-- End .filter-item -->
+                                            <div class="filter-items filter-items-count">
+                                                @{
+                                                    List<List<string>> categories = (List < List<string>>)ViewBag.Categories;
+                                                    foreach (var item in categories)
+                                                    {
+                                                        <div class="filter-item">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="@item[0]">
+                                                                <label class="custom-control-label" for="@item[0]">@item[1]</label>
+                                                            </div><!-- End .custom-checkbox -->
+                                                            <span class="item-count">@item[2]</span>
+                                                        </div>
 
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-2">
-														<label class="custom-control-label" for="cat-2">T-shirts</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">0</span>
-												</div><!-- End .filter-item -->
+                                                    }
 
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-3">
-														<label class="custom-control-label" for="cat-3">Bags</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">4</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-4">
-														<label class="custom-control-label" for="cat-4">Jackets</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">2</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-5">
-														<label class="custom-control-label" for="cat-5">Shoes</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">2</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-6">
-														<label class="custom-control-label" for="cat-6">Jumpers</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">1</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-7">
-														<label class="custom-control-label" for="cat-7">Jeans</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">1</span>
-												</div><!-- End .filter-item -->
-
-												<div class="filter-item">
-													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-8">
-														<label class="custom-control-label" for="cat-8">Sportwear</label>
-													</div><!-- End .custom-checkbox -->
-													<span class="item-count">0</span>
-												</div><!-- End .filter-item -->
-											</div><!-- End .filter-items -->
+                                                 }
+                                              
+                                            </div><!-- End .filter-items -->
 										</div><!-- End .widget-body -->
 									</div><!-- End .collapse -->
         						</div><!-- End .widget -->
@@ -886,4 +839,78 @@
             <script src="assets/js/wNumb.js"></script>
             <script src="/assets/js/nouislider.min.js"></script>
             <script src="/assets/js/bootstrap-input-spinner.js"></script>
-            }
+            <script>
+                $(function () {
+                    LoadProducts();
+                    function LoadProducts() {
+                        $.get("/Shop/Products",
+                            {
+                                Categories: [],
+                                Sizes: [],
+                                Color: [],
+                                Brand: [],
+                                PriceFrom: 0,
+                                PriceTo: 10,
+                                OrderBy: "Date",
+                                Page: 1
+                            },
+                            function (items) {
+                                console.log(items);
+                                $("#products").html("");
+                                items.forEach(function (element) 
+                                {
+
+                                    var picture = "";
+                                    var pic = element[5].split(',');
+                                    for (let i = 0; i < pic.length; i++) {
+                                        picture += '<a href="#" class="active">' +
+                                            '<img src="/assets/images/products/'+pic[i]+'" alt="product desc">' +
+                                            '</a>'
+                                    }
+                                    
+                                    var product = '<div class="col-6 col-md-4 col-lg-4 col-xl-3">' +
+                                        '<div class="product product-7 text-center" >'+
+                                        '<figure class="product-media">' +
+                                        '<span class="product-label label-new">New</span>' +
+                                        '<a href="/Shop/Details/'+element[0]+'">' +
+                                        '<img src="/assets/images/products/' + element[1] + '" alt="Product image" class="product-image">' +
+                                        '</a>' +
+
+                                        '<div class="product-action-vertical">' +
+                                        '<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>' +
+                                        '<a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>' +
+                                        '<a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>' +
+                                        '</div><!-- End .product-action-vertical -->' +
+
+                                        '<div class="product-action">' +
+                                        '<a href="#" class="btn-product btn-cart"><span>add to cart</span></a>' +
+                                        '</div><!-- End .product-action -->' +
+                                        '</figure><!--End.product - media-- >' +
+
+                                        '<div class="product-body">' +
+                                        '<div class="product-cat">' +
+                                        '<a href="#">' + element[2] + '</a>' +'</div><!-- End .product-cat -->' +
+                                        '<h3 class="product-title"><a href="/Shop/Details/' + element[0] +'">' + element[3] + '</a></h3><!-- End .product-title -->' +
+                                        '<div class="product-price">' + element[6] + 'đ</div><!-- End .product-price -->' +
+                                        '<div class="ratings-container">' +
+                                        '<div class="ratings">' +
+                                        '<div class="ratings-val" style="width: ' + Math.floor(element[8]*20) + '%;"></div><!-- End .ratings-val -->' +
+                                        '</div><!-- End .ratings -->' +
+                                        '<span class="ratings-text">( ' + element[7] + ' Reviews )</span>' +
+                                        '</div><!-- End .rating-container -->' +
+
+                                        '<div class="product-nav product-nav-thumbs">' +
+                                        picture+
+                                        '</div><!-- End .product-nav -->' +
+                                        '</div><!--End.product - body-- >' +
+                                        '</div >< !--End.product -->' +
+                                        '</div > ';
+                                    $("#products").append(product)
+                                        
+                                });
+                                
+                            });
+                    }
+                });
+            </script>
+           }
