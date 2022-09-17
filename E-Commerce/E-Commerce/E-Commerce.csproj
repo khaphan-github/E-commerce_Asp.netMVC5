@@ -3651,7 +3651,6 @@
     <Content Include="assets\js\AuthenticationJS\GoogleAuthentication.js" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Account\AccountController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -3916,6 +3915,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Controllers\Account\" />
     <Folder Include="Models\" />
     <Folder Include="popup\assets\images\demos\demo-6\products\" />
     <Folder Include="popup\assets\images\popup\quickView\" />
