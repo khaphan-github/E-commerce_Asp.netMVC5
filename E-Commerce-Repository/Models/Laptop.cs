@@ -12,6 +12,5 @@ namespace E_Commerce_Repository.Models
         public int Ram { get; set; }
         public string HardDisk { get; set; }
         public string GraphicsCard { get; set; }
-        public int Pin { get; set; }
     }
 }

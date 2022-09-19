@@ -7,8 +7,8 @@ namespace E_Commerce_Repository.Models
     public class Supplier
     {
         [Key]
-        public int SupplierId { get; set; }
-        public string SupplierName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string Phone { get; set; }
         public int Email { get; set; }
 

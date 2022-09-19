@@ -33,5 +33,14 @@ namespace E_Commerce.Properties {
                 return ((string)(this["EcommerIntializationDB"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string s {
+            get {
+                return ((string)(this["s"]));
+            }
+        }
     }
 }

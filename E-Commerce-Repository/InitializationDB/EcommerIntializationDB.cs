@@ -13,9 +13,10 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
+            /*
             var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
             Database.SetInitializer(intitializer);
-           
+           */
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
@@ -42,11 +43,6 @@ namespace E_Commerce_Repository.InitializationDB
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Account State is a FK or Account
-            modelBuilder.Entity<Account>()
-                .HasOptional(account => account.AccountState)
-                .WithRequired(state => state.Account);
-
             // Describe is a FK of Product
             modelBuilder.Entity<Product>()
                 .HasOptional(product => product.Describe)
@@ -71,6 +67,7 @@ namespace E_Commerce_Repository.InitializationDB
             modelBuilder.Entity<AccountConsumer>()
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+         
         }
     }
 
