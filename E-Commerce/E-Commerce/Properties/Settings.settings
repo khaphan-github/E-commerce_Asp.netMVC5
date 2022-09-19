@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=Anonymus;Initial Catalog=FashtionCShapWebApplication;User ID=sa;Password=sa</Value>
     </Setting>
+    <Setting Name="s" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

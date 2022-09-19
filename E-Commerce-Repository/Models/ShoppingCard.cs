@@ -10,12 +10,11 @@ namespace E_Commerce_Repository.Models
     public class ShoppingCard
     {
         [Key]
-        public int ShoppingId { get; set; }
-        public int NumberOfItems { get; set; }
-        public int IsEmpty { get; set; }
+        public int Id { get; set; }
+        public int Number { get; set; }
+        public int isEmpty { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        // Quan hệ 1 - 1 với AccountConsumer
         public virtual AccountConsumer AccountConsumer { get; set; }
 
         // QUan hệ nhiều nhiều với sản phẩm

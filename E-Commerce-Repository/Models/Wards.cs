@@ -7,7 +7,7 @@ namespace E_Commerce_Repository.Models
     public class Wards
     {
         [Key]
-        public int WardsId { get; set; }
+        public int Id { get; set; }
         public string WardName { get; set; }
         // Miền
         public string Domain { get; set; }

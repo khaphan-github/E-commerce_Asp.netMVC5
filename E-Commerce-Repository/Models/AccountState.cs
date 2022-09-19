@@ -1,17 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce_Repository.Models
 {
     public class AccountState
     {
-        // Khóa ngoại với bảng account
-        [ForeignKey("Account")]
-        public int id { get; set; }
-        public string name { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-        // Quan hệ 1 - 1 với account
-        public virtual Account Account { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
 
     }
 }

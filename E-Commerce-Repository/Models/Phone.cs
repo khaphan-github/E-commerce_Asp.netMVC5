@@ -9,7 +9,6 @@ namespace E_Commerce_Repository.Models
     public class Phone : Describe
     {
         public string ModelName { get; set; }
-        public int Pin { get; set; }
         public string CellularTechnolory { get; set; }
         public string MemoryStorageCapcity { get; set; }
         public string Color { get; set; }

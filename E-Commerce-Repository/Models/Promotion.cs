@@ -11,18 +11,13 @@ namespace E_Commerce_Repository.Models
     {
         [Key]
         public int Id { get; set; }
-        public string name { get; set; }
-        public string desc { get; set; }
-
-        public float percentPromotion { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public float PercentPromotion { get; set; }
         public DateTime createdDate = DateTime.Now;
 
-        // Quan hệ nhiều - 1 với product
         public virtual ICollection<Product> Products { get; set; }
-
-        // quan hệ 1 nhiều với account
-        public int AdminAccountId { get; set; }
-        public AccountAdmin accountAdmin { get; set; }
+        public AccountAdmin AccountAdmin { get; set; }
 
     }
 }

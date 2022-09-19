@@ -10,8 +10,8 @@ namespace E_Commerce_Repository.Models
     public class DeliverState
     {
         [Key]
-        public int DeliverId { get; set; }
-        public string DeliverName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public int OrderNumber { get; set; }
 
         // QUan hệ 1 nhiều với order

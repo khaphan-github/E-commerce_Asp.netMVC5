@@ -14,7 +14,7 @@ namespace E_Commerce.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var items = db.Categories.Where(c => c.Parentid.ToString() == "be76f7ca-adcf-47b5-8556-72c794facca9").OrderBy(c => c.Name).ToList();
+            /*var items = db.Categories.Where(c => c.Parentid.ToString() == "be76f7ca-adcf-47b5-8556-72c794facca9").OrderBy(c => c.Name).ToList();
             var categories = items.Select(i => new List<string>
             {
                 i.id.ToString(),
@@ -22,7 +22,7 @@ namespace E_Commerce.Controllers
                 db.Product_Category.Where(p=>p.Categoryld == i.id).Count().ToString()
             }).ToList();
             ViewBag.Categories = categories;
-            return View();
+            return View();*/
         }
         public ActionResult Products(List<Guid?> Categories, List<Guid?> Sizes, Guid? Color, List<Guid?> Brands,  decimal PriceFrom = 0, decimal PriceTo = 0, string OrderBy = "Date", int Page = 1)
         {
