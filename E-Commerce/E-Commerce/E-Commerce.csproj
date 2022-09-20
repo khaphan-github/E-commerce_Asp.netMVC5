@@ -3821,6 +3821,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4146,6 +4147,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Card\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4163,7 +4165,7 @@
     <Folder Include="Theme\imanges\" />
     <Folder Include="Theme\js\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Card\" />
+    <Folder Include="Views\Consumer\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\E-Commerce-Business-Logic\E-Commerce-Business-Logic.csproj">
