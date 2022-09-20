@@ -19,8 +19,6 @@ namespace E_Commerce_Repository.Models
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
-
-
         public virtual AccountState AccountState { get; set; }
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
 
