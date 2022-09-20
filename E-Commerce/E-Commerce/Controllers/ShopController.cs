@@ -21,8 +21,8 @@ namespace E_Commerce.Controllers
                 i.Name,
                 db.Product_Category.Where(p=>p.Categoryld == i.id).Count().ToString()
             }).ToList();
-            ViewBag.Categories = categories;
-            return View();*/
+            ViewBag.Categories = categories;*/
+            return View();
         }
         public ActionResult Products(List<Guid?> Categories, List<Guid?> Sizes, Guid? Color, List<Guid?> Brands,  decimal PriceFrom = 0, decimal PriceTo = 0, string OrderBy = "Date", int Page = 1)
         {

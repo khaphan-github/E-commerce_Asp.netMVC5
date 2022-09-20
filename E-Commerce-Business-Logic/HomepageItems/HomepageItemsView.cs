@@ -12,9 +12,9 @@ namespace E_Commerce_Business_Logic.HomepageItems
         public List<String> CategoryView()
         {
             ProductRepository repository = new ProductRepository();
-            List<String> product = new List<string>();
-            product.Add(repository.GetProducts().ToString());
-            return product;
+            List<String> cagetory = new List<string>();
+            cagetory.Add(repository.GetProducts().ToString());
+            return cagetory;
         }
     }
 }

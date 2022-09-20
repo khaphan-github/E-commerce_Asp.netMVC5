@@ -22,7 +22,7 @@ namespace E_Commerce_Repository.Models
 
 
         public virtual AccountState AccountState { get; set; }
-        public virtual ICollection<AccountRole> AccountRoles { get; set; }
+        public virtual AccountRole AccountRoles { get; set; }
 
     }
 }

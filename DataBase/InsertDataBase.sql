@@ -1,4 +1,47 @@
-﻿insert into Account(username,password,email,phone,address,dateOfBirth,sex,avatar,Discriminator)
+﻿use EcommerIntializationDB
+
+insert into Categories (Name)
+values (N'Thiết Bị Điện Tử'), 
+		(N'Điện Thoại & Phụ Kiện'),
+		(N'Máy Tính & Laptop');
+
+insert into TypeProducts(Name, Category_Id)
+values(N'Điện Thoại',5),(N'Laptop', 6), (N'Tai Nghe',5);
+
+insert into WareHouses(Name,Status)
+values(N'Nhà Kho Khu AB',N'Đang Hoạt Động'),
+		(N'Nhà Kho Khu R',N'Đang Hoạt Động'),
+		(N'Nhà Kho Khu E',N'Đang Hoạt Động');
+
+
+insert into Suppliers(Name,Phone,Email)
+values('Apple','0147258369','apple@gmail.com'),
+		('SamSung','0147258369','samsung@gmail.com');
+
+insert into Companies(Name,Phone,Email,ActiveType)
+values('ViTranSoftware','0355034864','vitrtan.0905202@gmail.com','');
+
+insert into Describes(Description, ModelName, CPU, Ram, HardDisk, GraphicsCard, Pin)
+values('', 'ASUS TUF F15','','','', '', ''  );
+insert into Describes(Description, ModelName, CellularTechnolory, MemoryStorageCapcity, Color, ScreenSize, Discriminator, Pin)
+values('', 'Iphone 14', '', '', '' ,'','',''  );
+
+insert into PaymentMethods(Name)
+values (N'Khi nhận hàng' );
+
+insert into ShoppingCards(Number,IsEmpty,CreatedDate)
+values('','Empty', 9/19/2022);
+
+insert into DeliverStates(Name,OrderNumber)
+values(N'Chờ',2);
+
+
+insert into Promotions(name,percentPromotion,AdminAccountId,accountAdmin_id)
+values('Khuyen mai 1',10,4,4);/* AdminAccountId với accountAdmin_id khác gì nhau??? */
+/* desc lỗi */ /* Nhập được mà chưa có desc */
+
+
+insert into Accounts(username,password,email,phone,address,dateOfBirth,sex,avatar,Discriminator)
 values('acc','28c8edde3d61a0411511d3b1866f0636','a@gmail.com','0123456789','tphcm','1/1/1999','Nam','https://kenh14cdn.com/2017/screen-shot-2017-10-14-at-41652-pm-1507972625700.png', 
 'NULL');/*thiếu ngày tạo tài khoản*/  /* pass: 1 */
 insert into Account(username,password,email,phone,address,dateOfBirth,sex,avatar,Discriminator)
@@ -32,21 +75,9 @@ values(1,'Tp Thu Duc',1,1)/*chú thích: WardID là sửa tên là tỉnh thành
 insert into Provinces(ProvinceId,ProvinceName,DistrictID)
 values(1,'TpHCM',1);
 
-insert into ShoppingCards(ShoppingId,NumberOfItems,IsEmpty,CreatedDate)/*0 rỗng 1 ngược lại*/
-values(3,4,1,'1/1/2021');/* ShoppingId phải trùng với id của Account mới nhập được!!! */
 
-insert into WareHouses(WareHouseName,Status)
-values('Nha Kho smartphone','1 nam');/* Status này là hợp tác với nhà kho được 1 năm :) */
 
-insert into Suppliers(SupplierName,Phone,Email)
-values('Apple','0147258369',31);/* Ủa ủa mail là kiểu INT hả??? *//* Đã nhập */
 
-insert into Companies(CompanyName,Phone,Email,ActiveType)
-values('ABC','19001080','ABC@gmail.com','2 nam');/* ActiviType??? *//* Đã nhập */
-
-insert into Promotions(name,percentPromotion,AdminAccountId,accountAdmin_id)
-values('Khuyen mai 1',10,4,4);/* AdminAccountId với accountAdmin_id khác gì nhau??? */
-/* desc lỗi */ /* Nhập được mà chưa có desc */
 
 insert into Products(name,price,quantity,TypeproductId,SupplierID,CompanyID,promotionid)
 values('iPhone 14 Pro',30990000,100,1,1,1,1);
@@ -79,8 +110,7 @@ values('Chat luong ok nha<3',5,3,1);/* ranking là 5 sao! *//* Đã nhập */
 insert into PaymentMethods(PaymentName)
 values('Thanh toan bang tien mat');/* Desc lỗi!!! Đã nhập trừ desc */
 
-insert into DeliverStates(DeliverName,OrderNumber)
-values('',0);/* Không biết nhập kiểu gì :) */
+
 
 insert into ShippingMethods(ShippingMethodName)
 values('Giao nhanh');/* Desc lỗi!!! Đã nhập trừ desc */
@@ -93,8 +123,4 @@ values('16-9-2022',25590000,1,1,1,0,3,0,0);
 insert into OrderProducts(Order_orderId,Product_id)
 values(0,1);/* Chưa có Order_orderId nên chưa nhập */
 
-insert into Categories(CategoryName)
-values('');/* Không biết điền!!! */
 
-insert into TypeProducts(typeName,CategogyId,category_CategoryId)
-values('',0,0);/* CategogyId,category_CategoryId khác gì nhau??? */

@@ -16,6 +16,6 @@ namespace E_Commerce_Repository.Models
         public string Descibe { get; set; }
         public bool isActive = true;
 
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
     }
 }

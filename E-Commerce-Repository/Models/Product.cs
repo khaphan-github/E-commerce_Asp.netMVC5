@@ -17,7 +17,7 @@ namespace E_Commerce_Repository.Models
         public Supplier Supplier { get; set; }
         public Company Pompany { get; set; }
         public virtual ICollection<WareHouse> WareHouses { get; set; }
-        public ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual Describe Describe { get; set; }
         public Promotion Promotion { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }

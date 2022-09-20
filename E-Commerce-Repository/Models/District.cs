@@ -18,7 +18,6 @@ namespace E_Commerce_Repository.Models
         public virtual Address Address { get; set; }
 
         // Quan hệ nhiều - 1 với tỉnh thành phố
-        public int WardID { get; set; }
         public Wards Wards { get; set;  }   
 
         // Quan hệ 1 nhiều với phường xã

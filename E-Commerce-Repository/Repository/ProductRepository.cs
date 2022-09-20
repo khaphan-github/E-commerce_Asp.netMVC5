@@ -15,7 +15,7 @@ namespace E_Commerce_Repository.Repository
 
         public int GetProducts()
         {
-            return repository.Products.Count();
+            return repository.Categorys.Count();
         }
     }
 }

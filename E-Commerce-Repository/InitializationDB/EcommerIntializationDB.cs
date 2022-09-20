@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,12 @@ namespace E_Commerce_Repository.InitializationDB
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
             /*
-            var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
-            Database.SetInitializer(intitializer);
-           */
+             var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+             Database.SetInitializer(intitializer);
+            */
+            var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+                Database.SetInitializer(initializer);
+            
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
@@ -43,6 +47,8 @@ namespace E_Commerce_Repository.InitializationDB
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            
+
             // Describe is a FK of Product
             modelBuilder.Entity<Product>()
                 .HasOptional(product => product.Describe)
@@ -67,6 +73,7 @@ namespace E_Commerce_Repository.InitializationDB
             modelBuilder.Entity<AccountConsumer>()
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+
          
         }
     }
