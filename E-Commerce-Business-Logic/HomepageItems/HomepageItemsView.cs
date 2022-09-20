@@ -30,6 +30,10 @@ namespace E_Commerce_Business_Logic.HomepageItems
 
             List<Product> products = new List<Product>();
 
+            AccountAdmin account = new AccountAdmin();
+            account.Id = 1;
+            account.Username = "admin";
+            account.Password = "123";
             //  products = accountConsumer.ShoppingCard.Products.ToList();
             Product product = new Product();
             product.Id = 1;
