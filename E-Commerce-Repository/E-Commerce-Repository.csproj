@@ -151,6 +151,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\OrderComponentService.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\ProductComponentService.cs" />
     <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>

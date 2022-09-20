@@ -1,11 +1,15 @@
 ﻿using E_Commerce_Repository.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Service {
     interface AccountService {
-        
+
         // CHỨC NĂNG QUẢN LÝ TÀI KHOẢN
-      
+
         Account getAccountById(int id);
 
         // Lấy toàn bộ account cả account admin và account user
@@ -41,5 +45,7 @@ namespace E_Commerce_Repository.Service {
         // Thu hồi quyền từ account
         void removeRoleFromAccount(int accountId, int roleId);
 
+        // Quản lý trạng thái tài khoản
+       
     }
 }

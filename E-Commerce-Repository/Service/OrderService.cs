@@ -21,6 +21,12 @@ namespace E_Commerce_Repository.Service {
         // Lấy đơn hàng theo trạng thái giao hàng
         List<Order> getOrders(string deliveryStatus);
 
+        void CreateOrder(Order order);
+
+        void UpdateOrder(Order order);
+
+        void DeteteOrderById(int Id);
+
 
 
     }

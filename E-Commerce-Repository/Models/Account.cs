@@ -15,12 +15,11 @@ namespace E_Commerce_Repository.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+
         public DateTime CreatedDate = DateTime.Now;
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
-
-
         public virtual AccountState AccountState { get; set; }
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
 
