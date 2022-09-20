@@ -21,6 +21,7 @@ namespace E_Commerce_Business_Logic.HomepageItems
             categories.Add(category);
             categories.Add(category); 
             categories.Add(category); categories.Add(category); categories.Add(category);
+
             return categories;
         }
 
