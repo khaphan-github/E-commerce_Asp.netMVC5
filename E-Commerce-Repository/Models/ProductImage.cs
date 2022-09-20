@@ -8,7 +8,6 @@ namespace E_Commerce_Repository.Models
         [Key]
         public int Id { get; set; }
         public string URL { get; set; }
-
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

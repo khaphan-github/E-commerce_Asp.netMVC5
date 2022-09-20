@@ -1,4 +1,5 @@
 ﻿using E_Commerce_Business_Logic.HomepageItems;
+using E_Commerce_Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,13 @@ namespace E_Commerce.Controllers
         // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
-               HomepageItemsView homepageItemsView = new HomepageItemsView();
-           
-                ViewData["Category"] = homepageItemsView.CategoryView();
-            
+            // Show category in search bar
+            HomepageItemsView homepageItemsView = new HomepageItemsView();
+            ViewData["CategorySearch"] = homepageItemsView.CategoryView();
+
+            // Show shopping card when account login 
+            ViewData["ShoppingCard"] = homepageItemsView.ShoppingCardsView(new AccountConsumer());
+
             return View();
         }
 

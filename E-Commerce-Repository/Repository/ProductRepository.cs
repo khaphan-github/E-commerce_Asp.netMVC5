@@ -9,13 +9,8 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Repository
 {
-    public class ProductRepository : ProductService
-    {
+    public class ProductRepository {
         public EcommerIntializationDB repository = new EcommerIntializationDB();
 
-        public int GetProducts()
-        {
-            return repository.Products.Count();
-        }
     }
 }

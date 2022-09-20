@@ -13,10 +13,10 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-            /*
+            
             var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
             Database.SetInitializer(intitializer);
-           */
+          
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
