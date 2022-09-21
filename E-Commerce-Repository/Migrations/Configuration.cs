@@ -10,7 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed=true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(E_Commerce_Repository.InitializationDB.EcommerIntializationDB context)

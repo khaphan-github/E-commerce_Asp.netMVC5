@@ -11,7 +11,6 @@ namespace E_Commerce_Repository.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string Street { get; set; }
 
         //  tỉnh
@@ -23,6 +22,7 @@ namespace E_Commerce_Repository.Models
 
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<AccountConsumer> AccountConsumers { get; set; }
+        public virtual ICollection<Warehouse> Warehouses { get; set; }
 
     }
 }

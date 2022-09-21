@@ -14,7 +14,7 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Descibe { get; set; }
-        public bool isActive = true;
+        public bool isActive { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }
     }

@@ -142,8 +142,8 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\TypeProduct.cs" />
     <Compile Include="Models\Wards.cs" />
-    <Compile Include="Models\WareHouse.cs" />
-    <Compile Include="Models\WarehouseHasProduct.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
