@@ -150,6 +150,8 @@
     <Compile Include="Models\WarehouseHasProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\ProductComponentRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\OrderComponentService.cs" />
