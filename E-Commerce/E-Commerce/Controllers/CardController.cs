@@ -13,5 +13,17 @@ namespace E_Commerce.Controllers
         {
             return View();
         }
+
+        //  Thêm sản phẩm vào giỏ hàng
+        public string addProductToCard(int productId, int cardId) {
+            // Use sesion
+            return "1";
+        }
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        public string removeProductFromCard(int productId, int cardId) {
+            return "1";
+        }
+
     }
 }

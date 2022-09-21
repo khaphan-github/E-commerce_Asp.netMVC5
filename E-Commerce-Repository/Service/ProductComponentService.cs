@@ -49,12 +49,12 @@ namespace E_Commerce_Repository.Service {
 
         void DeteleCompany(int Id);
         // QUẢN LÝ KHO
-        WareHouse GetWarehouse(int Id);
-        List<WareHouse> GetWareHouse();
+        Warehouse GetWarehouse(int Id);
+        List<Warehouse> GetWareHouse();
 
-        void CreateWareHouse(WareHouse warehouse);
+        void CreateWareHouse(Warehouse warehouse);
 
-        void UpdateWareHouse(WareHouse wareHouse);
+        void UpdateWareHouse(Warehouse wareHouse);
 
         void DeteleWareHouse(int Id);
 

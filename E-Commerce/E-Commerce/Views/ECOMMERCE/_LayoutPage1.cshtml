@@ -4,10 +4,18 @@
 @{
 
     HomepageItemsView LayoutView = new HomepageItemsView();
-    var Category = LayoutView.CategoryView();
-    var ShoppingcardProduct = LayoutView.ShoppingCardsView(new AccountConsumer());
-    var totalPrice = 0;
+
     var accountConsumer = Session["AccountLogin"] as AccountConsumer;
+
+    bool isLogin = accountConsumer != null;
+    List<Product> ShoppingcardProduct = new List<Product>();
+    if (isLogin) {
+        ShoppingcardProduct = LayoutView.ShoppingCardsView(accountConsumer);
+    }
+    var category = LayoutView.CategoryView();
+
+    var totalPrice = 0;
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -52,131 +60,127 @@
 
 </head>
 
-<body style="font-family:Tahoma">
+<body style="font-family:Arial">
     <div class="page-wrapper">
         <header class="header header-10">
-            <div class="header-top">
-                <div class="container">
-
-                </div><!-- End .container -->
-
-            </div><!-- End .header-top -->
 
             <div class="header-middle">
                 <div class="container">
-                    <div class="header-left">
-                        <button class="mobile-menu-toggler">
-                            <span class="sr-only">Toggle mobile menu</span>
-                            <i class="icon-bars"></i>
-                        </button>
-
-                        <a href="index.html" class="logo">
-
-                            <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" alt="Molla Logo" width="130" height="25">
+                    <div class="header-left" style="max-height:100px;">
+                        <a href="@Url.Action("Index", "Home")" class="logo" style="padding-right:100px;">
+                            <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" alt="Molla Logo" width="180" height="25">
                         </a>
-                    </div><!-- End .header-left -->
 
-                    <div class="header-right">
-                        <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
+                        <div class="header-search header-search-extended header-search-visible header-search-yes-radius d-none d-lg-block">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
 
+                            <!-- Tìm kiếm sản phẩm-->
                             <form action="#" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
-                                    <div class="select-custom">
-
-                                        <!-- Show category in search bar-->
-                                        <select id="cat" name="cat">
-                                            <option value="">Tất cả danh mục</option>
-                                            @{ if (Category != null) {
-                                                    foreach (var category in Category) {
-                                                        <option value="@category.Id">@category.Name</option>
-
-                                                    }
-                                                }
-                                            }
-
-                                        </select>
-                                        <!-- LOAD ITEM FROM DATABASE-->
-
-
-                                    </div><!-- End .select-custom -->
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                                    <input type="search" class="form-control " name="q" id="q" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
+
+
                         </div><!-- End .header-search -->
-
-
-                        <a href="#signin-modal" data-toggle="modal" class="wishlist-link">
-                            <i class="icon-user"></i>
+                    </div><!-- End .header-left -->
+                   
+                    <div class="header-right">
+                        <!--LOGIN BUTTON IN HEADER-->
                             @{
-                               
                                 if (accountConsumer != null) {
+                                    <div class="dropdown">             
+                                        <a class="btn dropdown-toggle header-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                                            <img src="https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg" alt="avatar" style="width: 25%; padding-right: 10px; float: left;"/>
+                                             
+                                            <div style="text-align: left;float:left; font-size: 13px">
+                                                <span>
+                                                    Tài khoản
+                                                    <br />
+                                                    @accountConsumer.Username
+                                                </span>
+                                            </div>
+                                        </a>
 
-                                   <span style="font-family:Tahoma; font-size:17px">@accountConsumer.Username</span>
+                                        <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                                            <a class="dropdown-item" style="font-size:13px" href="#">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" href="#">Đơn hàng của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" href="@Url.Action("Logout","Consumer")">Đăng suất</a>
+                                        </div>
+                                    </div>
                                 }
                                 else {
-                                    <span style="font-family:Tahoma; font-size:17px">Tài khoản</span>
+                                        <a class="btn dropdown-toggle header-left" href="#signin-modal" role="button" data-toggle="modal" style="font-size:15px">
+                                            Đăng nhập
+                                        </a>
                                 }
                             }
-
-
-                        </a>
+                        
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-
-                                <span class="cart-count">@ShoppingcardProduct.Count</span>
+                            @{ 
+                                string datatoggle = "dropdown";
+                                string hreflink = "";
+                            }
+                            @if (!isLogin) {
+                                 datatoggle = "modal";
+                                 hreflink = "#signin-modal";
+                            } 
+                            <a href="@hreflink" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
+                                @if (isLogin) {
+
+                                    <span class="cart-count">@ShoppingcardProduct.Count</span>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-cart-products">
+                                            @foreach (var product in ShoppingcardProduct) {
+                                                totalPrice += product.Price;
+                                                <div class="product">
+                                                    <div class="product-cart-details">
+                                                        <h4 class="product-title">
+                                                            <!--Url Action To product detail-->
+                                                            <a href="#">@product.Name</a>
+                                                        </h4>
+
+                                                        <span class="cart-product-info">
+                                                            <span class="cart-product   -qty"></span>
+                                                            @String.Format("{0:n0}", @product.Price) đ
+                                                        </span>
+                                                    </div><!-- End .product-cart-details -->
+
+                                                    <figure class="product-image-container">
+                                                        <!--Url Action To product detail-->
+                                                        <a href="#" class="product-image">
+                                                            @{
+                                                                var productThumb = @product.ProductImages.ToList();
+                                                            }
+                                                            <img src="@productThumb[0].URL" alt="product">
+                                                        </a>
+                                                    </figure>
+                                                    <!--Url Action Remove product from shopping card-->
+                                                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                                </div><!-- End .product -->
+                                            }
+
+
+                                        </div><!-- End .cart-product -->
+
+                                        <div class="dropdown-cart-total">
+                                            <span>Tổng cộng</span>
+                                            <span class="cart-total-price"> @String.Format("{0:n0}", @totalPrice) đ </span>
+                                        </div><!-- End .dropdown-cart-total -->
+
+                                        <div class="dropdown-cart-action">
+                                            <a href="@Url.Action("Index", "Card")" class="btn btn-primary">Giỏ hàng</a>
+                                            <a href="@Url.Action("Index","Checkout")" class="btn btn-outline-primary-2"><span style="font-family:Tahoma;">Thanh toán</span><i class="icon-long-arrow-right"></i></a>
+                                        </div><!-- End .dropdown-cart-total -->
+                                    </div><!-- End .dropdown-menu -->
+                                }
 
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-cart-products">
-                                    @foreach (var product in ShoppingcardProduct) {
-                                        totalPrice += product.Price;
-                                        <div class="product">
-                                            <div class="product-cart-details">
-                                                <h4 class="product-title">
-                                                    <!--Url Action To product detail-->
-                                                    <a href="#">@product.Name</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty"></span>
-                                                    @product.Price
-                                                </span>
-                                            </div><!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container">
-                                                <!--Url Action To product detail-->
-                                                <a href="#" class="product-image">
-                                                    @{
-                                                        var productThumb = @product.ProductImages.ToList();
-                                                    }
-                                                    <img src="@productThumb[0].URL" alt="product">
-                                                </a>
-                                            </figure>
-                                            <!--Url Action Remove product from shopping card-->
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        </div><!-- End .product -->
-                                    }
-
-
-                                </div><!-- End .cart-product -->
-
-                                <div class="dropdown-cart-total">
-                                    <span>Total</span>
-                                    <span class="cart-total-price">@totalPrice</span>
-                                </div><!-- End .dropdown-cart-total -->
-
-                                <div class="dropdown-cart-action">
-                                    <a href="@Url.Action("Index", "Card")" class="btn btn-primary">View Cart</a>
-                                    <a href="@Url.Action("Index","Checkout")" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
-                                </div><!-- End .dropdown-cart-total -->
-                            </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
@@ -198,9 +202,9 @@
                                         <ul class="menu-vertical sf-arrows">
 
                                             <!-- Show category navigation bar -->
-                                            @foreach (var category in Category) {
+                                            @foreach (var ca in category) {
                                                 // href is a action resource;
-                                                <li><a href="#">@category.Name</a></li>
+                                                <li><a href="#">@ca.Name</a></li>
                                             }
 
                                         </ul><!-- End .menu-vertical -->
@@ -774,13 +778,14 @@
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+
     @RenderSection("Js", required: false)
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
 
     <!-- AUTHENTICATION - WITH USERNAME PASSWORD -->
     <script language="javascript">
-
+        //accountDropdow
 
     </script>
 
