@@ -13,7 +13,7 @@ namespace E_Commerce_Repository.Models
         [Key]
         public int Id { get; set; }
         public string Description { get; set; }
-
+        public int Pin { get; set; }   
         public virtual Product Product { get; set; }
 
     }

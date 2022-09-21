@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +14,13 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
+            /*
+             var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+             Database.SetInitializer(intitializer);
+            */
+            var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+                Database.SetInitializer(initializer);
             
-            var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
-            Database.SetInitializer(intitializer);
-          
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
@@ -29,6 +33,7 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Describe> Describes { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<Feedback> Feedbacks  { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
@@ -39,15 +44,18 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<TypeProduct> TypeProducts { get; set; }
         public DbSet<Wards> Wards { get; set; }
-        public DbSet<WareHouse> WareHouses { get; set; }
+        public DbSet<AccountConsumer> AccountConsumers { get; set; }
+        public DbSet<AccountAdmin> AccountAdmins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            
+
             // Describe is a FK of Product
             modelBuilder.Entity<Product>()
                 .HasOptional(product => product.Describe)
                 .WithRequired(desc => desc.Product);
-
+/*
             // District is a FK of Address
             modelBuilder.Entity<Address>()
                 .HasOptional(address => address.District)
@@ -62,11 +70,12 @@ namespace E_Commerce_Repository.InitializationDB
             modelBuilder.Entity<Address>()
                 .HasOptional(address => address.Wards)
                 .WithRequired(wards => wards.Address);
-
+*/
             // ShoppingCard is a FK of AccountConsumer
             modelBuilder.Entity<AccountConsumer>()
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+
          
         }
     }

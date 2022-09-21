@@ -10,6 +10,7 @@ namespace E_Commerce_Repository.Models
     public class OrderDetail
     {
         [Key]
+        public int Id { get; set; } 
         public int NumberofItems { get; set; }
         public float Price { get; set; }
 
