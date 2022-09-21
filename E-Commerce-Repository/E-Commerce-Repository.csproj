@@ -153,6 +153,7 @@
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductComponentRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\OrderComponentService.cs" />
     <Compile Include="Service\OrderService.cs" />
