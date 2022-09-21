@@ -1,11 +1,13 @@
 ﻿@using E_Commerce_Repository.Models;
 @using E_Commerce_Business_Logic.HomepageItems;
+@using System.Web;
+@{
 
-@{ 
     HomepageItemsView LayoutView = new HomepageItemsView();
     var Category = LayoutView.CategoryView();
     var ShoppingcardProduct = LayoutView.ShoppingCardsView(new AccountConsumer());
     var totalPrice = 0;
+    var accountConsumer = Session["AccountLogin"] as AccountConsumer;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +49,7 @@
     <link rel="stylesheet" href="/assets/css/skins/skin-demo-13.css">
     <link rel="stylesheet" href="/assets/css/demos/demo-13.css">
     @RenderSection("CSS", required: false)
+
 </head>
 
 <body style="font-family:Tahoma">
@@ -105,14 +108,25 @@
                         </div><!-- End .header-search -->
 
 
-                        <a href="#signin-modal" data-toggle="modal"class="wishlist-link">
+                        <a href="#signin-modal" data-toggle="modal" class="wishlist-link">
                             <i class="icon-user"></i>
-                            <span style="font-family:Tahoma; font-size:17px">Tài khoản</span>
+                            @{
+                               
+                                if (accountConsumer != null) {
+
+                                   <span style="font-family:Tahoma; font-size:17px">@accountConsumer.Username</span>
+                                }
+                                else {
+                                    <span style="font-family:Tahoma; font-size:17px">Tài khoản</span>
+                                }
+                            }
+
+
                         </a>
 
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                               
+
                                 <span class="cart-count">@ShoppingcardProduct.Count</span>
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
@@ -173,7 +187,7 @@
                     <div class="row">
                         <div class="col-lg-3">
 
-                          
+
 
                             <div class="dropdown category-dropdown">
                                 <a style="font-family:Tahoma" href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
@@ -228,7 +242,7 @@
 
                                                                 </ul>
                                                             </div><!-- End .col-md-6 -->
-                                                        
+
                                                             <div class="col-md-6">
                                                                 <div class="menu-title">On Demand</div><!-- End .menu-title -->
                                                                 <ul>
@@ -635,8 +649,6 @@
             </div><!-- End .social-icons -->
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
-
-
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -658,21 +670,21 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-
                                     <!-- LOGIN FORM-->
-                                    <form action="@Url.Action("SignIn","Account")" method="post">
+                                    <form action="/Consumer/Login" method="post">
+                                        @Html.AntiForgeryToken()
                                         <div class="form-group">
                                             <label for="singin-email">Số điện thoại hoặc email *</label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                            <input type="text" class="form-control" id="singin-email" name="username" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
                                             <label for="singin-password">Mật khẩu *</label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                            <input type="password" class="form-control" id="singin-password" name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
+                                            <button type="submit" id="btnlogin" onclick="" class="btn btn-outline-primary-2">
                                                 <span>Đăng nhập</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
@@ -704,7 +716,7 @@
                                     </div><!-- End .form-choice -->
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <form action="#">
+                                    <form action="">
                                         <div class="form-group">
                                             <label for="register-email">Số điện thoại hoặc email *</label>
                                             <input type="email" class="form-control" id="register-email" name="register-email" required>
@@ -716,7 +728,7 @@
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
+                                            <button type="submit" onclick="" class="btn btn-outline-primary-2">
                                                 <span>Đăng ký</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
@@ -761,10 +773,17 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+    <script src="/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
     @RenderSection("Js", required: false)
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
+
+    <!-- AUTHENTICATION - WITH USERNAME PASSWORD -->
+    <script language="javascript">
+
+
+    </script>
+
 </body>
 
 

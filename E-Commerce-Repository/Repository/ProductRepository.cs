@@ -11,5 +11,6 @@ namespace E_Commerce_Repository.Repository
 {
     public class ProductRepository {
         public EcommerIntializationDB repository = new EcommerIntializationDB();
+
     }
 }
