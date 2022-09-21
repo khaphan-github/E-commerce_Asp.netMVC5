@@ -20,9 +20,12 @@ namespace E_Commerce_Business_Logic.HomepageItems
             category.Name = "Máy tính";
             categories.Add(category);
             categories.Add(category); 
-            categories.Add(category); categories.Add(category); categories.Add(category);
+            categories.Add(category); 
+            categories.Add(category); 
+            categories.Add(category);
 
             return categories;
+
         }
 
         // Return product in shopping card of Account

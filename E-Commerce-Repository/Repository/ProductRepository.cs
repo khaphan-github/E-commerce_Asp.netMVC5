@@ -11,6 +11,7 @@ namespace E_Commerce_Repository.Repository
 {
     public class ProductRepository : ProductService
     {
+        // Tạo kết nối và đối tượng đến db
         public EcommerIntializationDB repository = new EcommerIntializationDB();
         // Thêm mới sản phẩm
         public void CreateProduct(Product product)
@@ -92,13 +93,10 @@ namespace E_Commerce_Repository.Repository
             }
             return (Dictionary<Product, int>)result;
         }
-        // Lấy toàn bộ sản phẩm
+        // Lấy toàn bộ sản phẩm từ database á
         public List<Product> GetProducts()
         {
-            var products = new List<Product>();
-            var result = from product in products
-                         select product;
-            return (List<Product>)result;
+            return repository.Products.ToList();
         }
         // Lấy sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString
         public List<Product> SearchProducts(string searchString)

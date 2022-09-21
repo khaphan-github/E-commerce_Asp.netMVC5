@@ -14,7 +14,7 @@ namespace E_Commerce_Repository.InitializationDB
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
             
-            var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+            var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
             Database.SetInitializer(intitializer);
           
         }

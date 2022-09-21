@@ -3,7 +3,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
 }
-
+@using E_Commerce_Repository.Models;
+@{ 
+    var productList = ViewData["ShopProduct"] as List<Product>;
+}
 <main class="main">
         	<div class="page-header text-center" style="background-image: url('/assets/images/page-header-bg.jpg')">
         		<div class="container">
