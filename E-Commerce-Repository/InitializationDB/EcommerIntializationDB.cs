@@ -14,12 +14,12 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-            /*
-             var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
-             Database.SetInitializer(intitializer);
-            */
-            var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
-                Database.SetInitializer(initializer);
+            
+           //  var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+           //  Database.SetInitializer(intitializer);
+            
+             var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+             Database.SetInitializer(initializer);  
             
         }
         public DbSet<Account> Accounts { get; set; }
@@ -76,7 +76,7 @@ namespace E_Commerce_Repository.InitializationDB
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
 
-         
+            
         }
     }
 

@@ -16,21 +16,20 @@ namespace E_Commerce.Controllers
             return View();
         }
 
+
+        // Người dùng đăng nhập bằng username và password
        [HttpPost]
        [AllowAnonymous]
        [ValidateAntiForgeryToken]
-       public ActionResult Login(string username, string password) {
+       public void Login(string username, string password) {
+
             Login login = new Login();
 
-            AccountConsumer account = new AccountConsumer();
-            
-            account = login.ValidationAccount(username, password);
+            AccountConsumer account = login.ValidationAccount(username, password);
 
             if (account != null) {
                 Session["AccountLogin"] = account;
-                return RedirectToAction("Index","Home");
             }
-            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Logout() {

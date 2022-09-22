@@ -11,7 +11,13 @@ namespace E_Commerce_Repository.Repository
 {
     public class ProductRepository : ProductService
     {
+        // Tạo kết nối và đối tượng đến db
         public EcommerIntializationDB repository = new EcommerIntializationDB();
+
+        public void AddProductToCard(int productId, int cardId) {
+            throw new NotImplementedException();
+        }
+
         // Thêm mới sản phẩm
         public void CreateProduct(Product product)
         {
@@ -34,7 +40,7 @@ namespace E_Commerce_Repository.Repository
             }
         }
         // Lọc sản phẩm có giá từ under đến above
-        public List<Product> FilterPrduct(float under, float above)
+        public List<Product> FilterProduct(float under, float above)
         {
             var result = from product in repository.Products
                          where under < product.Price && product.Price < above
@@ -44,7 +50,7 @@ namespace E_Commerce_Repository.Repository
             return (List<Product>)result;
         }
         // lọc sản phẩm theo ngôi sao
-        public List<Product> FilterPrduct(int rank)
+        public List<Product> FilterProduct(int rank)
         {
             var result = from product in repository.Products
                          from feedback in repository.Feedbacks
@@ -86,6 +92,7 @@ namespace E_Commerce_Repository.Repository
                 Console.WriteLine("{Number}");
             }
             return (Dictionary<Product, int>)result;
+
         }  
         // Lấy toàn bộ sản phẩm
         public List<Product> GetProducts()
@@ -93,7 +100,12 @@ namespace E_Commerce_Repository.Repository
             var result = from product in repository.Products
                          select product;
             return (List<Product>)result;
+
+
+        public void RemoveProductFromCard(int productId, int cardId) {
+            throw new NotImplementedException();
         }
+
         // Lấy sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString
         public List<Product> SearchProducts(string searchString)
         {
@@ -116,8 +128,10 @@ namespace E_Commerce_Repository.Repository
         {
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
             repository.Products.Attach(product);/*----------------------------------------??????????????*/
-            return repository.Categorys.Count();
+            repository.Categorys.Count();
 
         }
+
+ 
     }
 }
