@@ -75,17 +75,17 @@ namespace E_Commerce_Repository.Repository
 
         public List<Category> GetCategories()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Category getCategory(int Id)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<Company> GetCompanies()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Company GetCompany(int Id)

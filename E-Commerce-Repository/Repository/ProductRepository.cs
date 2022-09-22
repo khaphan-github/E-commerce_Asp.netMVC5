@@ -3,6 +3,7 @@ using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Service;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,9 +100,15 @@ namespace E_Commerce_Repository.Repository
             return (Dictionary<Product, int>)result;
         }
         // Lấy toàn bộ sản phẩm từ database á
-        public List<Product> GetProducts()
-        {
-            return repository.Products.ToList(); 
+        public List<Product> GetProducts() {
+          
+            List<Product> productList = (
+                                from product in repository.Products
+                                where product.Id == 5
+                                select product
+                                
+                                ).ToList();
+            return productList;
 
         }
 

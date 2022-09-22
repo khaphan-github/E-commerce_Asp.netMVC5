@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -47,6 +48,7 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<AccountConsumer> AccountConsumers { get; set; }
         public DbSet<AccountAdmin> AccountAdmins { get; set; }
 
+      
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             
@@ -76,7 +78,7 @@ namespace E_Commerce_Repository.InitializationDB
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
 
-            
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 

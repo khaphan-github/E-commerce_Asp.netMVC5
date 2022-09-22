@@ -7,55 +7,67 @@ using System.Web.Mvc;
 using E_Commerce_Repository.Models;
 using E_Commerce_Business_Logic.Shop;
 using E_Commerce_Repository.Repository;
+using E_Commerce_Repository.InitializationDB;
 
 namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
+        // /Shop
         public ActionResult Index() {
-            // LOAD SẢN PHẨM LÊN TRANG SHOP
-                //  ShopComponent shopComponent = new ShopComponent();
-                    List<Product> products = new List<Product>();
+          
+            ShopComponent shopComponent = new ShopComponent();
 
-                    Product product = new Product();
-                    product.Id = 1;
-                    product.Name = "Iphone 14 ProMax";
-                    product.Price = 24000000;
+            List<Product> products = new List<Product>();
 
-                    ProductImage productImage1 = new ProductImage();
-                    productImage1.Id = 3;
-                    productImage1.URL = "/assets/images/products/iphone14_promax.jpg";
-                    product.ProductImages.Add(productImage1);
-                    ProductImage productImage2 = new ProductImage();
+            Product product = new Product();
+            product.Id = 1;
+            product.Name = "Iphone 14 ProMax";
+            product.Price = 24000000;
 
-                    productImage2.Id = 4;
-                    productImage2.URL = "/assets/images/products/iphone14_promaxblack.png";
-                    product.ProductImages.Add(productImage2);
+            ProductImage productImage1 = new ProductImage();
+            productImage1.Id = 3;
+            productImage1.URL = "/assets/images/products/iphone14_promax.jpg";
+            product.ProductImages.Add(productImage1);
+            ProductImage productImage2 = new ProductImage();
 
-                    products.Add(product);
-                    products.Add(product);
-                    products.Add(product);
-                    products.Add(product); products.Add(product);
-                    products.Add(product); products.Add(product);
-                    products.Add(product);
+            productImage2.Id = 4;
+            productImage2.URL = "/assets/images/products/iphone14_promaxblack.png";
+            product.ProductImages.Add(productImage2);
 
-            ProductRepository productRepository = new ProductRepository();
-           
-            // Hiển thị danh sách sản phẩm 
-            ViewData["ShopProduct"] = productRepository.GetProducts();
-
+            products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product);
+            products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product);
             // Hiển thị danh mục sản phẩm
             ViewData["Category"] = null;
 
             // Hiển thị Hảng sản suất;
-            ViewData["Company"] = null;
+            ViewData["Company"] = shopComponent.CompanyList;
 
             // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;
+            ViewData["Product"] = products;
 
             // Hiển thị từ 1 sao đến 5 sao
-            ViewData["Rank"] = null;
-
             return View();
         }
     }

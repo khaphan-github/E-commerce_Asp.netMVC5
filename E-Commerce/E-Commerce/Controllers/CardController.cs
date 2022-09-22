@@ -14,7 +14,7 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        //  Thêm sản phẩm vào giỏ hàng
+        //  Thêm sản phẩm vào giỏ hàng @Url.Action("addProductToCard", "Card", new {productId = , cardId =})
         public string addProductToCard(int productId, int cardId) {
             // Use sesion
             return "1";
