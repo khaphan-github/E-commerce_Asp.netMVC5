@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/Areas/Admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/Areas/Admin/plugins/summernote/summernote-bs4.min.css">
+    @RenderSection("Css", required:false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -207,165 +208,110 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
 
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Home", new { area ="Admin"})" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Trang chủ
+                                    Dashboard
                                 </p>
                             </a>
                         </li>
-                   
-                        <!--DANH MỤC-->
+
+                        <!--Quản lý Đơn Đặt Hàng-->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Order")" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Quản Lý Đơn Đặt Hàng
+                                </p>
+                            </a>
+                        </li>
+
+
+
+                        <!--Quản lý Sản Phẩm-->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    Danh mục
+                                    Quản Lý Sản Phẩm
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">5</span>
+                                    <!--<span class="badge badge-info right">5</span>-->
                                 </p>
                             </a>
-                        
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index", "Category")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Chuyên mục</p>
+                                        <p>Danh Sách Sản Phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index", "Size")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Kích thước</p>
+                                        <p>Thêm Sản Phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index", "Color")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Màu sắc</p>
+                                        <p>Quản lý Thương Hiệu</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Brand")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Thương hiệu</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Product")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sản phẩm</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Navbar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-footer.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Footer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Collapsed Sidebar</p>
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
-                        <!---NGHIỆP VỤ-->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Nghiệp vụ
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">2</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Order")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Xử lý đơn đặt hàng</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index", "Comment")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Xử lý bình luận</p>
-                                    </a>
-                                </li>
-                               
-                            </ul>
-                        </li>
+
                         <!--THỐNG KÊ-->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index", "Chart")" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
-                                    Thống kê báo cáo
-                                    <i class="right fas fa-angle-left"></i>
-
+                                    Thống Kê
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/charts/ChartJS.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>ChartJS</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Flot</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/inline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/uplot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>uPlot</p>
-                                    </a>
-                                </li>
-                            </ul>
+
                         </li>
+
+                       
+
                         <!--QUẢN TRỊ HỆ THỐNG-->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
+                                <i class="nav-icon fas fa-user-astronaut"></i>
                                 <p>
-                                    Quản trị hệ thống
+                                    Quản lý Tài Khoản
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Index", "Member")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-user-circle nav-icon"></i>
                                         <p>Thành viên</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Login")" class="nav-link">
+                                        <i class="far fa-user nav-icon"></i>
+                                        <p>Đăng Xuất</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+
                         </li>
-                        
-                     
-                     </ul>
+
+
+                    </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -379,12 +325,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Bảng điều khiển</h1>
+                            <!--<h1 class="m-0"></h1>-->
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Login & Logout</li>
+                                <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
+                                <!--<li class="breadcrumb-item active">Login & Logout</li>-->
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -401,11 +347,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
-            </div>
+            
         </footer>
 
         <!-- Control Sidebar -->
@@ -448,6 +390,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/Areas/Admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/Areas/Admin/dist/js/pages/dashboard.js"></script>
+    <!---<script src="/Areas/Admin/dist/js/pages/dashboard.js"></script>-->
+    @RenderSection("Js", required: false)
 </body>
 </html>

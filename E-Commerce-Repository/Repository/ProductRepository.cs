@@ -122,7 +122,7 @@ namespace E_Commerce_Repository.Repository
         {
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
             repository.Products.Attach(product);/*----------------------------------------??????????????*/
-            return repository.Categorys.Count();
+           repository.Categorys.Count();
 
         }
     }

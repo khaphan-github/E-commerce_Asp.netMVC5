@@ -3839,7 +3839,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\js\AuthenticationJS\GoogleAuthentication.js" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MemberController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ViewProfileController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
@@ -4155,6 +4159,10 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ViewProfile\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\ECOMMERCE\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
