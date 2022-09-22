@@ -8,12 +8,15 @@ namespace E_Commerce.Controllers
 {
     public class CheckoutController : Controller
     {
-        // GET: Checkout/Id
+        // Hiển thị trang thanh toán
         public ActionResult Index()
         {
-            
-
             return View();
         }
+
+        // Thanh toán qua momo;
+        // Thanh toán tiền mặt
+     
+
     }
 }

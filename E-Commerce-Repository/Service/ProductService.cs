@@ -20,10 +20,10 @@ namespace E_Commerce_Repository.Service
         List<Product> SearchProducts(string searchString);
 
         // Lọc sản phẩm có giá từ under đến above
-        List<Product> FilterPrduct(float under, float above);
+        List<Product> FilterProduct(float under, float above);
 
         // lọc sản phẩm theo ngôi sao
-        List<Product> FilterPrduct(int rank);
+        List<Product> FilterProduct(int rank);
 
         /*
          *  Lấy danh sách sản phẩm của giõ hàng khách hàng
@@ -41,5 +41,12 @@ namespace E_Commerce_Repository.Service
 
         // Xóa hàng hoạt sản phẩm theo id;
         void DeteteProduct(List<int> productId);
+
+        // Thêm sản phẩm vào giỏ hàng
+        void AddProductToCard(int productId, int cardId);
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        void RemoveProductFromCard(int productId, int cardId);
+
     }
 }

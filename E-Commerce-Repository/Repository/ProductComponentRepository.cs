@@ -38,7 +38,7 @@ namespace E_Commerce_Repository.Repository
             throw new NotImplementedException();
         }
 
-        public void CreateWareHouse(WareHouse warehouse)
+        public void CreateWareHouse(Warehouse warehouse)
         {
             throw new NotImplementedException();
         }
@@ -123,12 +123,12 @@ namespace E_Commerce_Repository.Repository
             throw new NotImplementedException();
         }
 
-        public WareHouse GetWarehouse(int Id)
+        public Warehouse GetWarehouse(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public List<WareHouse> GetWareHouse()
+        public List<Warehouse> GetWareHouse()
         {
             throw new NotImplementedException();
         }
@@ -158,7 +158,7 @@ namespace E_Commerce_Repository.Repository
             throw new NotImplementedException();
         }
 
-        public void UpdateWareHouse(WareHouse wareHouse)
+        public void UpdateWareHouse(Warehouse wareHouse)
         {
             throw new NotImplementedException();
         }
