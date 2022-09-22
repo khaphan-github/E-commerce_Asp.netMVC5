@@ -21,9 +21,8 @@ namespace E_Commerce_Repository.Repository
         // Xóa sản phẩm theo Id;
         public void DeleteProduct(int Id)
         {
-            Product p = new Product();
-            p.Id = Id;
-            repository.Products.Remove(repository.Products.Find(p));
+            var p = repository.Products.Find(Id);
+            repository.Products.Remove(p);
             repository.SaveChanges();
         }
         // Xóa hàng hoạt sản phẩm theo id;
@@ -37,8 +36,7 @@ namespace E_Commerce_Repository.Repository
         // Lọc sản phẩm có giá từ under đến above
         public List<Product> FilterPrduct(float under, float above)
         {
-            var products = new List<Product>();
-            var result = from product in products
+            var result = from product in repository.Products
                          where under < product.Price && product.Price < above
                          select product;
             foreach (var product in result)
@@ -48,10 +46,8 @@ namespace E_Commerce_Repository.Repository
         // lọc sản phẩm theo ngôi sao
         public List<Product> FilterPrduct(int rank)
         {
-            var products = new List<Product>();
-            var feedbacks = new List<Feedback>();
-            var result = from product in products
-                         from feedback in feedbacks
+            var result = from product in repository.Products
+                         from feedback in repository.Feedbacks
                          where feedback.Ranking == rank && feedback.Product == product.Feedbacks
                          select product;
             foreach (var product in result)
@@ -61,8 +57,7 @@ namespace E_Commerce_Repository.Repository
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
         {
-            var products = new List<Product>();
-            var result = from product in products
+            var result = from product in repository.Products
                          where product.Id==id
                          select product;
             foreach (var product in result)
@@ -76,7 +71,7 @@ namespace E_Commerce_Repository.Repository
             var products = new List<Product>();
             var shoppingcarddetails = new List<ShoppingCardDetail>();
             var shoppingcards = new List<ShoppingCard>();
-            var result = from product in products
+            var result = from product in repository.Products
                          from shoppingcarddetail in shoppingcarddetails
                          from shoppingcard in shoppingcards
                          let number= shoppingcard.Number
@@ -88,15 +83,14 @@ namespace E_Commerce_Repository.Repository
             foreach (var product in result)
             {
                 Console.WriteLine(product.ToString());
-                Console.WriteLine("{Number}");/*------------------??????????????*/
+                Console.WriteLine("{Number}");
             }
             return (Dictionary<Product, int>)result;
-        }
+        }  
         // Lấy toàn bộ sản phẩm
         public List<Product> GetProducts()
         {
-            var products = new List<Product>();
-            var result = from product in products
+            var result = from product in repository.Products
                          select product;
             return (List<Product>)result;
         }
