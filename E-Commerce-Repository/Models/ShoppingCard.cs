@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,12 @@ namespace E_Commerce_Repository.Models
 {
     public class ShoppingCard
     {
-        [Key]
-        public int ShoppingId { get; set; }
-        public int NumberOfItems { get; set; }
-        public int IsEmpty { get; set; }
-        public DateTime CreatedDate { get; set; }
+        [ForeignKey("AccountConsumer")]
+        public int Id { get; set; }
+        public int Number { get; set; }
+        public bool isEmpty { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        // Quan hệ 1 - 1 với AccountConsumer
         public virtual AccountConsumer AccountConsumer { get; set; }
 
         // QUan hệ nhiều nhiều với sản phẩm

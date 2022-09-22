@@ -6,5 +6,10 @@ function GoogleLoginFunction() {
 
 
 function UserLoginWithUsernameAndPassword() {
-    console.log("oke");
+
+    var userid = document.getElementById("singin-email");
+    var password = $("#singin-password").attr('value');
+    var url = "/Home/ValidateUser/";
+
+    alert(userid);
 }

@@ -1,17 +1,20 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public class WareHouse
+    public  class Warehouse
     {
         [Key]
-        public int WareHouseId { get; set; }
-        public string WareHouseName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string Status { get; set; }
 
-        // QUan hệ nhiều nhiều với product
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<WarehouseProduct> Products { get; set; }
     }
 }

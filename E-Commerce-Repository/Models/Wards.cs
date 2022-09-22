@@ -1,22 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    // Tỉnh thành phố
-    public class Wards
+    public  class Wards
     {
         [Key]
-        public int WardsId { get; set; }
-        public string WardName { get; set; }
-        // Miền
-        public string Domain { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        
         // QUan hệ 1 - 1 với Address
-        public virtual Address Address { get; set; }
-
-        // Một tỉnh thành phố có nhiều quận huyện Quan hệ 1 nhiều
-        public virtual ICollection<District> Districts { get; set; }
-
-      
+        public virtual ICollection<Address> Addresss { get; set; }
+        public virtual District District { get; set; }
     }
 }

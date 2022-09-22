@@ -6,10 +6,8 @@ namespace E_Commerce_Repository.Models
     {
 
         [Key]
-        public int ImageId { get; set; }
+        public int Id { get; set; }
         public string URL { get; set; }
-
-        public int productId { get; set;  }
-        public Product product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

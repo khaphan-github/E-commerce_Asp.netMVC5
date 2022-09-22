@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    // Phường xã
+    // Tỉnh
     public class Province
     {
         [Key]
-        public int ProvinceId { get; set; }
-        public string ProvinceName { get; set; }
-    
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Domain { get; set; }
 
-        // Quan hệ 1 - 1 với Địa chỉ
-        public virtual Address Address { get; set; }
+        public virtual ICollection<Address> Addresss { get; set; }
 
         // Quan hệ nhiều 1 với quận huyện
-        public int DistrictID { get; set; }
-        public District District { get; set; }
-
+        public virtual ICollection<District> Districts { get; set; }
     }
 }

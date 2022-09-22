@@ -112,14 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializationDB\EcommerIntializationDB.cs" />
-    <Compile Include="Migrations\202209151318020_E_Commerce_Web.cs" />
-    <Compile Include="Migrations\202209151318020_E_Commerce_Web.designer.cs">
-      <DependentUpon>202209151318020_E_Commerce_Web.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202209151406508_Initial.cs" />
-    <Compile Include="Migrations\202209151406508_Initial.designer.cs">
-      <DependentUpon>202209151406508_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountAdmin.cs" />
@@ -129,7 +121,6 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BankingCard.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DeliverState.cs" />
     <Compile Include="Models\Describe.cs" />
@@ -145,27 +136,25 @@
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\Province.cs" />
-    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ShippingMethod.cs" />
     <Compile Include="Models\ShoppingCard.cs" />
     <Compile Include="Models\ShoppingCardDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\TypeProduct.cs" />
     <Compile Include="Models\Wards.cs" />
-    <Compile Include="Models\WareHouse.cs" />
-    <Compile Include="Models\WarehouseHasProduct.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\ProductComponentRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\OrderComponentService.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\ProductComponentService.cs" />
     <Compile Include="Service\ProductService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209151318020_E_Commerce_Web.resx">
-      <DependentUpon>202209151318020_E_Commerce_Web.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202209151406508_Initial.resx">
-      <DependentUpon>202209151406508_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\E-Commerce\.editorconfig">

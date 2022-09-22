@@ -8,10 +8,22 @@ namespace E_Commerce.Controllers
 {
     public class CardController : Controller
     {
-        // GET: Card
+        // GET: Card hhhh
         public ActionResult Index()
         {
             return View();
         }
+
+        //  Thêm sản phẩm vào giỏ hàng
+        public string addProductToCard(int productId, int cardId) {
+            // Use sesion
+            return "1";
+        }
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        public string removeProductFromCard(int productId, int cardId) {
+            return "1";
+        }
+
     }
 }

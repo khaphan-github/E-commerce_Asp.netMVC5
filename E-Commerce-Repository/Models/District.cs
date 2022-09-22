@@ -11,17 +11,13 @@ namespace E_Commerce_Repository.Models
     public class District
     {
         [Key]
-        public int DistrictId { get; set; }
-        public string DistrictName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         // Quan hệ 1 - 1 với địa chỉ
-        public virtual Address Address { get; set; }
-
-        // Quan hệ nhiều - 1 với tỉnh thành phố
-        public int WardID { get; set; }
-        public Wards wards { get; set;  }   
-
+        public virtual ICollection<Address> Addresss { get; set; }
         // Quan hệ 1 nhiều với phường xã
-        public virtual ICollection<Province> Provinces { get; set; }
-     }
+        public virtual Province Province { get; set; }
+        public virtual ICollection<Wards> Wards { get; set; }
+    }
 }

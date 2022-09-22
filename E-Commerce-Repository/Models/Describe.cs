@@ -10,10 +10,10 @@ namespace E_Commerce_Repository.Models
 {
     public class Describe
     {
-        [ForeignKey("Product")]
-        public int DescribeId { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string Description { get; set; }
-
+        public int Pin { get; set; }   
         public virtual Product Product { get; set; }
 
     }

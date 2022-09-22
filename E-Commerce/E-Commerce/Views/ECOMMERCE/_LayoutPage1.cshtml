@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@using E_Commerce_Repository.Models;
+@using E_Commerce_Business_Logic.HomepageItems;
+@using System.Web;
+@{
+
+    HomepageItemsView LayoutView = new HomepageItemsView();
+
+    var accountConsumer = Session["AccountLogin"] as AccountConsumer;
+
+    bool isLogin = accountConsumer != null;
+    List<Product> ShoppingcardProduct = new List<Product>();
+    if (isLogin) {
+        ShoppingcardProduct = LayoutView.ShoppingCardsView(accountConsumer);
+    }
+    var category = LayoutView.CategoryView();
+
+    var totalPrice = 0;
+
+}
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -13,7 +32,7 @@
     <meta name="author" content="p-themes">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
-  
+
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/LOGO_UNIQUESHOP_ICO.ico">
 
 
@@ -38,195 +57,130 @@
     <link rel="stylesheet" href="/assets/css/skins/skin-demo-13.css">
     <link rel="stylesheet" href="/assets/css/demos/demo-13.css">
     @RenderSection("CSS", required: false)
+
 </head>
 
-<body>
+<body style="font-family:Arial">
     <div class="page-wrapper">
         <header class="header header-10">
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-left">
-                        <ul class="top-menu">
-                            <li>
-                                <a href="#">Links</a>
-                                <ul>
-                                    <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
-                                </ul>
-                            </li>
-                        </ul><!-- End .top-menu -->
-                    </div><!-- End .header-left -->
-
-                    <div class="header-right">
-                        <ul class="top-menu top-link-menu">
-                            <li>
-                                <a href="#">Links</a>
-                                <ul>
-                                    <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
-                                </ul>
-                            </li>
-                        </ul><!-- End .top-menu -->
-
-                        <div class="header-dropdown">
-                            <a href="#">USD</a>
-                            <div class="header-menu">
-                                <ul>
-                                    <li><a href="#">Eur</a></li>
-                                    <li><a href="#">Usd</a></li>
-                                </ul>
-                            </div><!-- End .header-menu -->
-                        </div><!-- End .header-dropdown -->
-
-                        <div class="header-dropdown">
-                            <a href="#">Eng</a>
-                            <div class="header-menu">
-                                <ul>
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">Spanish</a></li>
-                                </ul>
-                            </div><!-- End .header-menu -->
-                        </div><!-- End .header-dropdown -->
-                    </div><!-- End .header-right -->
-                </div><!-- End .container -->
-            </div><!-- End .header-top -->
 
             <div class="header-middle">
                 <div class="container">
-                    <div class="header-left">
-                        <button class="mobile-menu-toggler">
-                            <span class="sr-only">Toggle mobile menu</span>
-                            <i class="icon-bars"></i>
-                        </button>
-
-                        <a href="index.html" class="logo">
-
-                            <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" alt="Molla Logo" width="130" height="25">
+                    <div class="header-left" style="max-height:100px;">
+                        <a href="@Url.Action("Index", "Home")" class="logo" style="padding-right:100px;">
+                            <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" alt="Molla Logo" width="180" height="25">
                         </a>
-                    </div><!-- End .header-left -->
 
-                    <div class="header-right">
-                        <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
+                        <div class="header-search header-search-extended header-search-visible header-search-yes-radius d-none d-lg-block">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+
+                            <!-- Tìm kiếm sản phẩm-->
                             <form action="#" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
-                                    <div class="select-custom">
-
-                                        <!-- LOAD ITEM FROM DATABASE-->
-
-                                        <select id="cat" name="cat">
-                                            <option value="">All Departments</option>
-                                            <option value="1">Fashion</option>
-                                            <option value="2">- Women</option>
-                                            <option value="3">- Men</option>
-                                            <option value="4">- Jewellery</option>
-                                            <option value="5">- Kids Fashion</option>
-                                            <option value="6">Electronics</option>
-                                            <option value="7">- Smart TVs</option>
-                                            <option value="8">- Cameras</option>
-                                            <option value="9">- Games</option>
-                                            <option value="10">Home &amp; Garden</option>
-                                            <option value="11">Motors</option>
-                                            <option value="12">- Cars and Trucks</option>
-                                            <option value="15">- Boats</option>
-                                            <option value="16">- Auto Tools &amp; Supplies</option>
-                                        </select>
-                                    </div><!-- End .select-custom -->
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                                    <input type="search" class="form-control " name="q" id="q" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
+
+
                         </div><!-- End .header-search -->
+                    </div><!-- End .header-left -->
+                   
+                    <div class="header-right">
+                        <!--LOGIN BUTTON IN HEADER-->
+                            @{
+                                if (accountConsumer != null) {
+                                    <div class="dropdown">             
+                                        <a class="btn dropdown-toggle header-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                                            <img src="https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg" alt="avatar" style="width: 25%; padding-right: 10px; float: left;"/>
+                                             
+                                            <div style="text-align: left;float:left; font-size: 13px">
+                                                <span>
+                                                    Tài khoản
+                                                    <br />
+                                                    @accountConsumer.Username
+                                                </span>
+                                            </div>
+                                        </a>
 
-                        <div class="dropdown compare-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
-                                <i class="icon-random"></i>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="compare-products">
-                                    <li class="compare-product">
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
-                                    </li>
-                                    <li class="compare-product">
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
-                                    </li>
-                                </ul>
-
-                                <div class="compare-actions">
-                                    <a href="#" class="action-link">Clear All</a>
-                                    <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i class="icon-long-arrow-right"></i></a>
-                                </div>
-                            </div><!-- End .dropdown-menu -->
-                        </div><!-- End .compare-dropdown -->
-
-                        <a href="wishlist.html" class="wishlist-link">
-                            <i class="icon-heart-o"></i>
-                            <span class="wishlist-count">2</span>
-                        </a>
+                                        <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                                            <a class="dropdown-item" style="font-size:13px" href="#">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" href="#">Đơn hàng của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" href="@Url.Action("Logout","Consumer")">Đăng suất</a>
+                                        </div>
+                                    </div>
+                                }
+                                else {
+                                        <a class="btn dropdown-toggle header-left" href="#signin-modal" role="button" data-toggle="modal" style="font-size:15px">
+                                            Đăng nhập
+                                        </a>
+                                }
+                            }
+                        
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            @{ 
+                                string datatoggle = "dropdown";
+                                string hreflink = "";
+                            }
+                            @if (!isLogin) {
+                                 datatoggle = "modal";
+                                 hreflink = "#signin-modal";
+                            } 
+                            <a href="@hreflink" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
-                                <span class="cart-count">2</span>
+                                <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
+                                @if (isLogin) {
+
+                                    <span class="cart-count">@ShoppingcardProduct.Count</span>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-cart-products">
+                                            @foreach (var product in ShoppingcardProduct) {
+                                                totalPrice += product.Price;
+                                                <div class="product">
+                                                    <div class="product-cart-details">
+                                                        <h4 class="product-title">
+                                                            <!--Url Action To product detail-->
+                                                            <a href="#">@product.Name</a>
+                                                        </h4>
+
+                                                        <span class="cart-product-info">
+                                                            <span class="cart-product   -qty"></span>
+                                                            @String.Format("{0:n0}", @product.Price) đ
+                                                        </span>
+                                                    </div><!-- End .product-cart-details -->
+
+                                                    <figure class="product-image-container">
+                                                        <!--Url Action To product detail-->
+                                                        <a href="#" class="product-image">
+                                                            @{
+                                                                var productThumb = @product.ProductImages.ToList();
+                                                            }
+                                                            <img src="@productThumb[0].URL" alt="product">
+                                                        </a>
+                                                    </figure>
+                                                    <!--Url Action Remove product from shopping card-->
+                                                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                                </div><!-- End .product -->
+                                            }
+
+
+                                        </div><!-- End .cart-product -->
+
+                                        <div class="dropdown-cart-total">
+                                            <span>Tổng cộng</span>
+                                            <span class="cart-total-price"> @String.Format("{0:n0}", @totalPrice) đ </span>
+                                        </div><!-- End .dropdown-cart-total -->
+
+                                        <div class="dropdown-cart-action">
+                                            <a href="@Url.Action("Index", "Card")" class="btn btn-primary">Giỏ hàng</a>
+                                            <a href="@Url.Action("Index","Checkout")" class="btn btn-outline-primary-2"><span style="font-family:Tahoma;">Thanh toán</span><i class="icon-long-arrow-right"></i></a>
+                                        </div><!-- End .dropdown-cart-total -->
+                                    </div><!-- End .dropdown-menu -->
+                                }
+
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-cart-products">
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Beige knitted elastic runner shoes</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $84.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="/assets/images/products/cart/product-1.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    </div><!-- End .product -->
-
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Blue utility pinafore denim dress</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $76.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="/assets/images/products/cart/product-2.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    </div><!-- End .product -->
-                                </div><!-- End .cart-product -->
-
-                                <div class="dropdown-cart-total">
-                                    <span>Total</span>
-
-                                    <span class="cart-total-price">$160.00</span>
-                                </div><!-- End .dropdown-cart-total -->
-
-                                <div class="dropdown-cart-action">
-                                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                                    <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
-                                </div><!-- End .dropdown-cart-total -->
-                            </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
@@ -236,306 +190,23 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="dropdown category-dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
-                                    Browse Categories
-                                </a>
 
+
+
+                            <div class="dropdown category-dropdown">
+                                <a style="font-family:Tahoma" href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
+                                    Danh mục sản phẩm
+                                </a>
                                 <div class="dropdown-menu">
                                     <nav class="side-nav">
                                         <ul class="menu-vertical sf-arrows">
-                                            <li class="megamenu-container">
-                                                <a class="sf-with-ul" href="#">Electronics</a>
 
-                                                <div class="megamenu">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-8">
-                                                            <div class="menu-col">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Laptops & Computers</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Desktop Computers</a></li>
-                                                                            <li><a href="#">Monitors</a></li>
-                                                                            <li><a href="#">Laptops</a></li>
-                                                                            <li><a href="#">iPad & Tablets</a></li>
-                                                                            <li><a href="#">Hard Drives & Storage</a></li>
-                                                                            <li><a href="#">Printers & Supplies</a></li>
-                                                                            <li><a href="#">Computer Accessories</a></li>
-                                                                        </ul>
+                                            <!-- Show category navigation bar -->
+                                            @foreach (var ca in category) {
+                                                // href is a action resource;
+                                                <li><a href="#">@ca.Name</a></li>
+                                            }
 
-                                                                        <div class="menu-title">TV & Video</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">TVs</a></li>
-                                                                            <li><a href="#">Home Audio Speakers</a></li>
-                                                                            <li><a href="#">Projectors</a></li>
-                                                                            <li><a href="#">Media Streaming Devices</a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Cell Phones</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Carrier Phones</a></li>
-                                                                            <li><a href="#">Unlocked Phones</a></li>
-                                                                            <li><a href="#">Phone & Cellphone Cases</a></li>
-                                                                            <li><a href="#">Cellphone Chargers </a></li>
-                                                                        </ul>
-
-                                                                        <div class="menu-title">Digital Cameras</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Digital SLR Cameras</a></li>
-                                                                            <li><a href="#">Sports & Action Cameras</a></li>
-                                                                            <li><a href="#">Camcorders</a></li>
-                                                                            <li><a href="#">Camera Lenses</a></li>
-                                                                            <li><a href="#">Photo Printer</a></li>
-                                                                            <li><a href="#">Digital Memory Cards</a></li>
-                                                                            <li><a href="#">Camera Bags, Backpacks & Cases</a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-                                                                </div><!-- End .row -->
-                                                            </div><!-- End .menu-col -->
-                                                        </div><!-- End .col-md-8 -->
-
-                                                        <div class="col-md-4">
-                                                            <div class="banner banner-overlay">
-                                                                <a href="category.html" class="banner banner-menu">
-                                                                    <img src="/assets/images/demos/demo-13/menu/banner-1.jpg" alt="Banner">
-                                                                </a>
-                                                            </div><!-- End .banner banner-overlay -->
-                                                        </div><!-- End .col-md-4 -->
-                                                    </div><!-- End .row -->
-                                                </div><!-- End .megamenu -->
-                                            </li>
-                                            <li class="megamenu-container">
-                                                <a class="sf-with-ul" href="#">Furniture</a>
-
-                                                <div class="megamenu">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-8">
-                                                            <div class="menu-col">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Bedroom</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Beds, Frames & Bases</a></li>
-                                                                            <li><a href="#">Dressers</a></li>
-                                                                            <li><a href="#">Nightstands</a></li>
-                                                                            <li><a href="#">Kids' Beds & Headboards</a></li>
-                                                                            <li><a href="#">Armoires</a></li>
-                                                                        </ul>
-
-                                                                        <div class="menu-title">Living Room</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Coffee Tables</a></li>
-                                                                            <li><a href="#">Chairs</a></li>
-                                                                            <li><a href="#">Tables</a></li>
-                                                                            <li><a href="#">Futons & Sofa Beds</a></li>
-                                                                            <li><a href="#">Cabinets & Chests</a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Office</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Office Chairs</a></li>
-                                                                            <li><a href="#">Desks</a></li>
-                                                                            <li><a href="#">Bookcases</a></li>
-                                                                            <li><a href="#">File Cabinets</a></li>
-                                                                            <li><a href="#">Breakroom Tables</a></li>
-                                                                        </ul>
-
-                                                                        <div class="menu-title">Kitchen & Dining</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#">Dining Sets</a></li>
-                                                                            <li><a href="#">Kitchen Storage Cabinets</a></li>
-                                                                            <li><a href="#">Bakers Racks</a></li>
-                                                                            <li><a href="#">Dining Chairs</a></li>
-                                                                            <li><a href="#">Dining Room Tables</a></li>
-                                                                            <li><a href="#">Bar Stools</a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-                                                                </div><!-- End .row -->
-                                                            </div><!-- End .menu-col -->
-                                                        </div><!-- End .col-md-8 -->
-
-                                                        <div class="col-md-4">
-                                                            <div class="banner banner-overlay">
-                                                                <a href="category.html" class="banner banner-menu">
-                                                                    <img src="/assets/images/demos/demo-13/menu/banner-2.jpg" alt="Banner">
-                                                                </a>
-                                                            </div><!-- End .banner banner-overlay -->
-                                                        </div><!-- End .col-md-4 -->
-                                                    </div><!-- End .row -->
-                                                </div><!-- End .megamenu -->
-                                            </li>
-                                            <li class="megamenu-container">
-                                                <a class="sf-with-ul" href="#">Cooking</a>
-
-                                                <div class="megamenu">
-                                                    <div class="menu-col">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="menu-title">Cookware</div><!-- End .menu-title -->
-                                                                <ul>
-                                                                    <li><a href="#">Cookware Sets</a></li>
-                                                                    <li><a href="#">Pans, Griddles & Woks</a></li>
-                                                                    <li><a href="#">Pots</a></li>
-                                                                    <li><a href="#">Skillets & Grill Pans</a></li>
-                                                                    <li><a href="#">Kettles</a></li>
-                                                                    <li><a href="#">Soup & Stockpots</a></li>
-                                                                </ul>
-                                                            </div><!-- End .col-md-4 -->
-
-                                                            <div class="col-md-4">
-                                                                <div class="menu-title">Dinnerware & Tabletop</div><!-- End .menu-title -->
-                                                                <ul>
-                                                                    <li><a href="#">Plates</a></li>
-                                                                    <li><a href="#">Cups & Mugs</a></li>
-                                                                    <li><a href="#">Trays & Platters</a></li>
-                                                                    <li><a href="#">Coffee & Tea Serving</a></li>
-                                                                    <li><a href="#">Salt & Pepper Shaker</a></li>
-                                                                </ul>
-                                                            </div><!-- End .col-md-4 -->
-
-                                                            <div class="col-md-4">
-                                                                <div class="menu-title">Cooking Appliances</div><!-- End .menu-title -->
-                                                                <ul>
-                                                                    <li><a href="#">Microwaves</a></li>
-                                                                    <li><a href="#">Coffee Makers</a></li>
-                                                                    <li><a href="#">Mixers & Attachments</a></li>
-                                                                    <li><a href="#">Slow Cookers</a></li>
-                                                                    <li><a href="#">Air Fryers</a></li>
-                                                                    <li><a href="#">Toasters & Ovens</a></li>
-                                                                </ul>
-                                                            </div><!-- End .col-md-4 -->
-                                                        </div><!-- End .row -->
-
-                                                        <div class="row menu-banners">
-                                                            <div class="col-md-4">
-                                                                <div class="banner">
-                                                                    <a href="#">
-                                                                        <img src="/assets/images/demos/demo-13/menu/1.jpg" alt="image">
-                                                                    </a>
-                                                                </div><!-- End .banner -->
-                                                            </div><!-- End .col-md-4 -->
-
-                                                            <div class="col-md-4">
-                                                                <div class="banner">
-                                                                    <a href="#">
-                                                                        <img src="/assets/images/demos/demo-13/menu/2.jpg" alt="image">
-                                                                    </a>
-                                                                </div><!-- End .banner -->
-                                                            </div><!-- End .col-md-4 -->
-
-                                                            <div class="col-md-4">
-                                                                <div class="banner">
-                                                                    <a href="#">
-                                                                        <img src="/assets/images/demos/demo-13/menu/3.jpg" alt="image">
-                                                                    </a>
-                                                                </div><!-- End .banner -->
-                                                            </div><!-- End .col-md-4 -->
-                                                        </div><!-- End .row -->
-                                                    </div><!-- End .menu-col -->
-                                                </div><!-- End .megamenu -->
-                                            </li>
-                                            <li class="megamenu-container">
-                                                <a class="sf-with-ul" href="#">Clothing</a>
-
-                                                <div class="megamenu">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-8">
-                                                            <div class="menu-col">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Women</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#"><strong>New Arrivals</strong></a></li>
-                                                                            <li><a href="#"><strong>Best Sellers</strong></a></li>
-                                                                            <li><a href="#"><strong>Trending</strong></a></li>
-                                                                            <li><a href="#">Clothing</a></li>
-                                                                            <li><a href="#">Shoes</a></li>
-                                                                            <li><a href="#">Bags</a></li>
-                                                                            <li><a href="#">Accessories</a></li>
-                                                                            <li><a href="#">Jewlery & Watches</a></li>
-                                                                            <li><a href="#"><strong>Sale</strong></a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="menu-title">Men</div><!-- End .menu-title -->
-                                                                        <ul>
-                                                                            <li><a href="#"><strong>New Arrivals</strong></a></li>
-                                                                            <li><a href="#"><strong>Best Sellers</strong></a></li>
-                                                                            <li><a href="#"><strong>Trending</strong></a></li>
-                                                                            <li><a href="#">Clothing</a></li>
-                                                                            <li><a href="#">Shoes</a></li>
-                                                                            <li><a href="#">Bags</a></li>
-                                                                            <li><a href="#">Accessories</a></li>
-                                                                            <li><a href="#">Jewlery & Watches</a></li>
-                                                                        </ul>
-                                                                    </div><!-- End .col-md-6 -->
-                                                                </div><!-- End .row -->
-                                                            </div><!-- End .menu-col -->
-                                                        </div><!-- End .col-md-8 -->
-
-                                                        <div class="col-md-4">
-                                                            <div class="banner banner-overlay">
-                                                                <a href="category.html" class="banner banner-menu">
-                                                                    <img src="/assets/images/demos/demo-13/menu/banner-3.jpg" alt="Banner">
-                                                                </a>
-                                                            </div><!-- End .banner banner-overlay -->
-                                                        </div><!-- End .col-md-4 -->
-                                                    </div><!-- End .row -->
-
-                                                    <div class="menu-col menu-brands">
-                                                        <div class="row">
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/1.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/2.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/3.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/4.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/5.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-
-                                                            <div class="col-lg-2">
-                                                                <a href="#" class="brand">
-                                                                    <img src="/assets/images/brands/6.png" alt="Brand Name">
-                                                                </a>
-                                                            </div><!-- End .col-lg-2 -->
-                                                        </div><!-- End .row -->
-                                                    </div><!-- End .menu-brands -->
-                                                </div><!-- End .megamenu -->
-                                            </li>
-                                            <li><a href="#">Home Appliances</a></li>
-                                            <li><a href="#">Healthy & Beauty</a></li>
-                                            <li><a href="#">Shoes & Boots</a></li>
-                                            <li><a href="#">Travel & Outdoor</a></li>
-                                            <li><a href="#">Smart Phones</a></li>
-                                            <li><a href="#">TV & Audio</a></li>
-                                            <li><a href="#">Gift Ideas</a></li>
                                         </ul><!-- End .menu-vertical -->
                                     </nav><!-- End .side-nav -->
                                 </div><!-- End .dropdown-menu -->
@@ -995,96 +666,96 @@
                         <div class="form-tab">
                             <ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Đăng nhập</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Đăng ký</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    
-                            <!-- LOGIN FORM-->
-                                    <form action="#">
+                                    <!-- LOGIN FORM-->
+                                    <form action="/Consumer/Login" method="post">
+                                        @Html.AntiForgeryToken()
                                         <div class="form-group">
-                                            <label for="singin-email">Phone or email address *</label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                            <label for="singin-email">Số điện thoại hoặc email *</label>
+                                            <input type="text" class="form-control" id="singin-email" name="username" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                            <label for="singin-password">Mật khẩu *</label>
+                                            <input type="password" class="form-control" id="singin-password" name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>LOG IN</span>
+                                            <button type="submit" id="btnlogin" onclick="" class="btn btn-outline-primary-2">
+                                                <span>Đăng nhập</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
+                                                <label class="custom-control-label" for="signin-remember">Nhớ mật khẩu</label>
                                             </div><!-- End .custom-checkbox -->
 
-                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                            <a href="#" class="forgot-link">Quên mật khẩu?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
                                     <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
+                                        <p class="text-center">Hoặc đăng nhập bằng</p>
                                         <div class="row">
                                             <div class="col-sm-6" id="btnGoogleLogin" onclick="GoogleLoginFunction()">
                                                 <a href="#" class="btn btn-login btn-g">
                                                     <i class="icon-google"></i>
-                                                    Login With Google
+                                                    Google
                                                 </a>
                                             </div><!-- End .col-6 -->
                                             <div class="col-sm-6">
                                                 <a href="#" class="btn btn-login btn-f">
                                                     <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
+                                                    Facebook
                                                 </a>
                                             </div><!-- End .col-6 -->
                                         </div><!-- End .row -->
                                     </div><!-- End .form-choice -->
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <form action="#">
+                                    <form action="">
                                         <div class="form-group">
-                                            <label for="register-email">Your email address or phone number*</label>
+                                            <label for="register-email">Số điện thoại hoặc email *</label>
                                             <input type="email" class="form-control" id="register-email" name="register-email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="register-password">Password *</label>
+                                            <label for="register-password">Mật khẩu *</label>
                                             <input type="password" class="form-control" id="register-password" name="register-password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SIGN UP</span>
+                                            <button type="submit" onclick="" class="btn btn-outline-primary-2">
+                                                <span>Đăng ký</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
+                                                <label class="custom-control-label" for="register-policy">Đồng ý với <a href="#">Điều khoản</a> *</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-footer -->
                                     </form>
                                     <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
+                                        <p class="text-center">Hoặc đăng nhập với</p>
                                         <div class="row">
                                             <div class="col-sm-6" id="btnGoogleLogin" onclick="GoogleLoginFunction()">
                                                 <a href="#" class="btn btn-login btn-g">
                                                     <i class="icon-google"></i>
-                                                    Login With Google
+                                                    Google
                                                 </a>
                                             </div><!-- End .col-6 -->
                                             <div class="col-sm-6">
                                                 <a href="#" class="btn btn-login  btn-f">
                                                     <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
+                                                    Facebook
                                                 </a>
                                             </div><!-- End .col-6 -->
                                         </div><!-- End .row -->
@@ -1106,10 +777,18 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+    <script src="/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+
     @RenderSection("Js", required: false)
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
+
+    <!-- AUTHENTICATION - WITH USERNAME PASSWORD -->
+    <script language="javascript">
+        //accountDropdow
+
+    </script>
+
 </body>
 
 

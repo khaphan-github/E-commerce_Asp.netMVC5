@@ -9,9 +9,8 @@
     {
         public Configuration()
         {
-            // [MỖI LẦN THAY ĐỖI MODEL DÙNG LỆNH Add-Migration "Tên thay đỗi" -IgnoreChanges]
             AutomaticMigrationsEnabled = true;
-          
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(E_Commerce_Repository.InitializationDB.EcommerIntializationDB context)

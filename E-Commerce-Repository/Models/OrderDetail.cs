@@ -10,15 +10,12 @@ namespace E_Commerce_Repository.Models
     public class OrderDetail
     {
         [Key]
-        public int Id { get; set; }
-        public int numberofItems { get; set; }
-        public float price { get; set; }
+        public int Id { get; set; } 
+        public int NumberofItems { get; set; }
+        public float Price { get; set; }
 
-        // Khóa ngoại với sản phẩm
-        
-        // Quan hệ 1 nhiều với order
+
         public virtual Order Order { get; set; }
-        // QUan hệ 1 nhiều với product
         public virtual Product Product { get; set; }
 
         

@@ -8,26 +8,14 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    [Table("AccountRole")]
     public class AccountRole
     {
-        // Quan hệ nhiều nhiều với Account
-        public AccountRole()
-        {
-            this.Accounts = new HashSet<Account>();
-        }
-
         [Key]
-        public int id { get; set; }
-        [Required]
-        [MaxLength(30)]
-        public string name { get; set; }
-        [MaxLength(50)]
-        public string descibe { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Descibe { get; set; }
+        public bool isActive { get; set; }
 
-        public bool isActive = true;
-
-        // Khéo khóa đến bảng Account
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
     }
 }
