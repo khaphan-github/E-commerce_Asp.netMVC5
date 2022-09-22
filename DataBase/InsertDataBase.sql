@@ -1,100 +1,120 @@
-﻿insert into Account(username,password,email,phone,address,dateOfBirth,sex,avatar,Discriminator)
-values('acc','28c8edde3d61a0411511d3b1866f0636','a@gmail.com','0123456789','tphcm','1/1/1999','Nam','https://kenh14cdn.com/2017/screen-shot-2017-10-14-at-41652-pm-1507972625700.png', 
-'NULL');/*thiếu ngày tạo tài khoản*/  /* pass: 1 */
-insert into Account(username,password,email,phone,address,dateOfBirth,sex,avatar,Discriminator)
-values('admin','665f644e43731ff9db3d341da5c827e1','b@gmail.com','0987654321','Ha Noi','1/1/2000','Nu','https://nhakhoagiadinh.com.vn/hinh-anh-nguoi-cute/imager_6_77285_700.jpg', 
-'NULL');  /* pass: 2 */
-update Account
-set salary=5000000
-where id=4;
+﻿use EcommerIntializationDB
 
-insert into Role(name,descibe)
-values('Tim kiem san pham','Nhap ten san pham can tim');
+--------------------------------------------------------------------------------------------------------
+select * from AccountRoles
+select * from AccountStates
+select * from Positions
+select * from BankingCards
+select * from Accounts --con
 
-insert into BankingCards(bankingCardName,accountName,accountNumber,AccountConsumerID)
-values('Vietinbank','acc','0123456789',3);
+insert into AccountRoles([Name],descibe, isActive)
+	values(N'Người dùng',N'Đây là khách hàng', 1);
+insert into AccountStates([name])
+	values(N'Đang hoạt động');
+insert into Positions([name],baseSalary)
+	values(N'Trùm cuối',99999);
+insert into BankingCards(bankingCardName,accountName,accountNumber,AccountConsumer_Id)
+	values('Vietinbank','Tran Van Acc1','0123456789',3);
+insert into Accounts(username,[password],email,phone,dateOfBirth,sex,Discriminator, AccountState_Id, AccountRoles_Id, Position_Id, accounts.CreatedDate)
+	values('acc1','acc123','a@gmail.com','0123456789','1/1/1999','Nam', '',1,1,1 , '2008-11-11 13:23:44'),
+		('admin','admin123','b@gmail.com','0987654321','1/1/2000','Nu','',1,1,1, '2008-11-11 13:23:44');  
 
-insert into AccountAccountRoles(Account_id,AccountRole_id)
-values(3,1);
+---------------------------------------------------------------------------------------------------
+select * from ShoppingCards
+select * from ShoppingCardProducts
 
-insert into AccountStates(id,name)
-values(3,'Hoat dong 1 nam');
-
-insert into Addresses(Street,AccountConsumer_id)
-values('Le Van Viet',3);
-
-insert into Wards(WardsId,WardName,Domain)
-values(1,'phuong Hiep Phu','Nam');
-
-insert into Districts(DistrictId,DistrictName,WardID,wards_WardsId)
-values(1,'Tp Thu Duc',1,1)/*chú thích: WardID là sửa tên là tỉnh thành*/
-
-insert into Provinces(ProvinceId,ProvinceName,DistrictID)
-values(1,'TpHCM',1);
-
-insert into ShoppingCards(ShoppingId,NumberOfItems,IsEmpty,CreatedDate)/*0 rỗng 1 ngược lại*/
-values(3,4,1,'1/1/2021');/* ShoppingId phải trùng với id của Account mới nhập được!!! */
-
-insert into WareHouses(WareHouseName,Status)
-values('Nha Kho smartphone','1 nam');/* Status này là hợp tác với nhà kho được 1 năm :) */
-
-insert into Suppliers(SupplierName,Phone,Email)
-values('Apple','0147258369',31);/* Ủa ủa mail là kiểu INT hả??? *//* Đã nhập */
-
-insert into Companies(CompanyName,Phone,Email,ActiveType)
-values('ABC','19001080','ABC@gmail.com','2 nam');/* ActiviType??? *//* Đã nhập */
-
-insert into Promotions(name,percentPromotion,AdminAccountId,accountAdmin_id)
-values('Khuyen mai 1',10,4,4);/* AdminAccountId với accountAdmin_id khác gì nhau??? */
-/* desc lỗi */ /* Nhập được mà chưa có desc */
-
-insert into Products(name,price,quantity,TypeproductId,SupplierID,CompanyID,promotionid)
-values('iPhone 14 Pro',30990000,100,1,1,1,1);
-update Products
-set name='iPhone 12 Pro Max', price=25590000
-where id=1
-
-insert into Describes(DescribeId,CPU,Ram,HardDisk,GraphicsCard,Pin,MemoryStorageCapcity,Color,ScreenSize,Discriminator)
-values(1,'Hexa-core',6,'128 GB','1284 x 2778 pixels',3046,'128 GB','Màu Trắng','6.7 inches','');
-/* Cái DescribeId phải đổi tên thành DescribeId_productId mới đúng :) *//* Đã nhập */
-update Describes
-set Color='Mau Trang'
-where DescribeId=1
-
-insert into ProductImages(URL,productId)
-values('https://cdn.hoanghamobile.com/i/preview/Uploads/2020/11/06/iphone-12-pro-max-3.png',1);
-
-insert into WareHouseProducts(WareHouse_WareHouseId,Product_id)
+insert into ShoppingCards(Number, isEmpty, CreatedDate)
+values(1,0,'2/1/2011');
+insert into ShoppingCardProducts(ShoppingCard_Id, Product_Id)
 values(1,1);
+-------------------------------------------------------------------------------------------
 
-insert into ShoppingCardProducts(ShoppingCard_ShoppingId,Product_id)
-values(3,1);
+select * from DeliverStates
+select * from PaymentMethods
+select * from ShippingMethods
+select * from Orders
+select * from OrderDetails
 
-insert into Positions(id,name,baseSalary)
-values(0,'',0);/* Chịu!!! Vị trí gì??? Không biết nhập */
+insert into PaymentMethods(Name)
+	values (N'Thẻ ngân hàng' ),
+		('Thanh toan bang tien mat');
+insert into ShippingMethods(Name, [Desc])
+	values('Giao nhanh', '');
+insert into DeliverStates(Name,OrderNumber)
+	values(N'Chờ',2);
 
-insert into Feedbacks(comment,ranking,AccountConsumerId,productId)
-values('Chat luong ok nha<3',5,3,1);/* ranking là 5 sao! *//* Đã nhập */
+insert into Orders(Date,totalPrice,AccountConsumer_Id,Address_ID,DeliverState_ID,PaymentMethod_ID,ShippingMethod_Id)
+values('16-9-2022',25590000,3,1,1,1,3);
 
-insert into PaymentMethods(PaymentName)
-values('Thanh toan bang tien mat');/* Desc lỗi!!! Đã nhập trừ desc */
+insert into OrderDetails(NumberofItems, Price, Order_Id, Product_Id)
+values(2, 20000, 1, 1)
+----------------------------------------------------------------------------------------
 
-insert into DeliverStates(DeliverName,OrderNumber)
-values('',0);/* Không biết nhập kiểu gì :) */
+select * from Categories
+select * from TypeProducts --con
 
-insert into ShippingMethods(ShippingMethodName)
-values('Giao nhanh');/* Desc lỗi!!! Đã nhập trừ desc */
+insert into Categories (Name)
+values (N'Thiết Bị Điện Tử'), 
+		(N'Điện Thoại & Phụ Kiện'),
+		(N'Máy Tính & Laptop');
+insert into TypeProducts(Name, Category_Id)
+values(N'Điện Thoại',5),(N'Laptop', 6), (N'Tai Nghe',5);
+---------------------------------------------------------------------------------
 
-insert into Orders(orderedDate,totalPrice,shippingMethodId,PaymentMethodID,AddressID,DeliverStateID,AccountConsumer_id,DeliverState_DeliverId,PaymentMethod_PaymentId)
-values('16-9-2022',25590000,1,1,1,0,3,0,0);
-/* Chưa có DeliverStateID nên chưa nhập */
-/* DeliverState_DeliverId,PaymentMethod_PaymentId với DeliverStateID,PaymentMethodID khác gì nhau??? */
+select * from Provinces --1
+select * from Districts   --2
+select * from Wards  --3
+select * from Addresses  -- con
 
-insert into OrderProducts(Order_orderId,Product_id)
-values(0,1);/* Chưa có Order_orderId nên chưa nhập */
+insert into Provinces(Name, Domain)
+values('TpHCM',1);
+insert into Districts(Name,Province_Id)
+values('Tp Thu Duc',1)
+insert into Wards(Name)
+values('phuong Hiep Phu','Nam');
+insert into Addresses(Street)
+values('Le Van Viet');
 
-insert into Categories(CategoryName)
-values('');/* Không biết điền!!! */
+---------------------------------------------------------------------------------------
 
-insert into TypeProducts(typeName,CategogyId,category_CategoryId)
-values('',0,0);/* CategogyId,category_CategoryId khác gì nhau??? */
+select * from WarehouseAddresses
+select * from WarehouseProducts
+select * from Warehouses
+
+insert into WarehouseProducts(Number, Product_Id, Warehouse_Id)
+values(5, 1,1)
+insert into WarehouseAddresses(Warehouse_Id, Address_Id)
+values(1,1)
+insert into WareHouses(Name,Status)
+values(N'Nhà Kho Khu AB',N'Đang Hoạt Động'),
+		(N'Nhà Kho Khu R',N'Đang Hoạt Động'),
+		(N'Nhà Kho Khu E',N'Đang Hoạt Động');
+
+
+---------------------------------------------------------------------------------------
+
+select * from Promotions
+select * from Companies
+select * from Suppliers
+select * from ProductImages
+select * from Describes
+select * from Products--con
+select * from Feedbacks
+
+insert into ProductImages(URL,Product_Id)
+values('hinhnaokhongbiet.png',1);
+insert into Suppliers(Name,Phone,Email)
+values('Apple','0147258369','apple@gmail.com'),
+		('SamSung','0147258369','samsung@gmail.com');
+insert into Companies(Name,Phone,Email,ActiveType)
+values('ViTranSoftware','0355034864','vitrtan.0905202@gmail.com','');
+insert into Describes(Description, ModelName, CPU, Ram, HardDisk, GraphicsCard, Pin)
+values('', 'ASUS TUF F15','','','', '', ''  );
+insert into Describes(Description, ModelName, CellularTechnolory, MemoryStorageCapcity, Color, ScreenSize, Discriminator, Pin)
+values('', 'Iphone 14', '', '', '' ,'','',''  );
+insert into Promotions([name], [Desc],percentPromotion, accountAdmin_id)
+values('Khuyen mai 1',N'giảm giá',4,2);
+insert into Products(name,price,quantity,TypeProduct_Id,Supplier_Id,Company_Id,Promotion_Id)
+values('iPhone 14 Pro',30990000,100,1,1,1,1);
+insert into Feedbacks(comment,ranking,AccountConsumer_Id,Product_Id)
+values('Chat luong ok nha<3',5,3,1);

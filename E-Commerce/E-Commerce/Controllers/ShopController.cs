@@ -10,6 +10,8 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
-        
+        public ActionResult Index() {
+            return View();
+        }
     }
 }
