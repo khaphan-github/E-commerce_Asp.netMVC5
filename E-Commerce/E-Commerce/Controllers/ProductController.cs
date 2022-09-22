@@ -31,6 +31,10 @@ namespace E_Commerce.Controllers
             product.ProductImages.Add(productImage2);
 
             ViewData["Product"] = product;
+
+
+            // Hiển thị sản phẩm liên quan;
+            ViewData["RelatedProduct"] = null;
             return View();
         }
     }

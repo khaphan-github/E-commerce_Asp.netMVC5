@@ -101,7 +101,8 @@ namespace E_Commerce_Repository.Repository
         // Lấy toàn bộ sản phẩm từ database á
         public List<Product> GetProducts()
         {
-            return null;
+            return repository.Products.ToList(); 
+
         }
 
         public void RemoveProductFromCard(int productId, int cardId) {
