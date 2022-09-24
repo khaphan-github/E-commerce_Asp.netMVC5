@@ -26,10 +26,13 @@ namespace E_Commerce.Controllers
 
             AccountConsumer account = login.ValidationAccount(username, password);
 
+            System.Diagnostics.Debug.WriteLine(username);
+
             if (account != null) {
                 Session.Add(SessionConstaint.USERSESION, account);
-                
             }
+            // hàm luuw data vô db
+
         }
         public void Logout() {
             Session.Clear();

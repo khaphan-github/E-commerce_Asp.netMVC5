@@ -30,12 +30,12 @@ namespace E_Commerce.Controllers
 
             // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;
+
             System.Diagnostics.Debug.WriteLine("");
 
 
             ProductRepository productRepository = new ProductRepository();
             ViewBag.Product = productRepository.GetProducts();
-
 
             return View();
         }
