@@ -93,21 +93,27 @@ namespace E_Commerce_Repository.Repository
         //Lấy toàn bộ danh sách category
         public List<Category> GetCategories()
         {
+
             return (from category in repository.Categorys
                     select category).ToList();
+
         }
         //Lấy category theo id
         public Category getCategory(int Id)
         {
+
             return (from category in repository.Categorys
                     where category.Id == Id
                     select category).FirstOrDefault();
+
         }
         //Lấy toàn bộ danh sách company
         public List<Company> GetCompanies()
         {
+
             return (from company in repository.Companys
                     select company).ToList();
+
         }
         //Lấy company theo id
         public Company GetCompany(int Id)

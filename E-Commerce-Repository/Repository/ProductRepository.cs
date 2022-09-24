@@ -95,6 +95,7 @@ namespace E_Commerce_Repository.Repository
             return (Dictionary<Product, int>)result;
 
         }
+
         // Lấy toàn bộ sản phẩm
         public List<Product> GetProducts()
         {
@@ -112,6 +113,7 @@ namespace E_Commerce_Repository.Repository
                          select product;
             return (List<Product>)result;*/
             return (repository.Products.Where(p => p.Id == 4)).ToList();
+
         }
         // Xóa sản phẩm khỏi giỏ hàng
         public void RemoveProductFromCard(int productId, int cardId) 
@@ -143,7 +145,9 @@ namespace E_Commerce_Repository.Repository
         {
             repository.Products.Attach(product);
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
+
             repository.SaveChanges();
+
         }
 
  
