@@ -48,6 +48,7 @@
             context.DeliverStates.AddOrUpdate();
             context.Orders.AddOrUpdate();
             //context.OrderDetail.AddOrUpdate();
+            base.Seed(context);
         }
     }
 }

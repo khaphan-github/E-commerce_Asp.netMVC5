@@ -15,10 +15,10 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-            
-           //  var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
-           //  Database.SetInitializer(intitializer);
-            
+
+            //  var intitializer = new DropCreateDatabaseAlways<EcommerIntializationDB>();
+            //  Database.SetInitializer(intitializer);
+
              var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
              Database.SetInitializer(initializer);  
             

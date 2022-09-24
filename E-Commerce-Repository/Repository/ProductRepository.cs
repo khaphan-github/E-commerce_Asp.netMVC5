@@ -112,6 +112,7 @@ namespace E_Commerce_Repository.Repository
             /*var result = from product in repository.Products
                          select product;
             return (List<Product>)result;*/
+
             return (repository.Products.Where(p => p.Id == 4)).ToList();
 
         }
