@@ -26,8 +26,5 @@ namespace E_Commerce_Repository.Service {
         void UpdateOrder(Order order);
 
         void DeteteOrderById(int Id);
-
-
-
     }
 }

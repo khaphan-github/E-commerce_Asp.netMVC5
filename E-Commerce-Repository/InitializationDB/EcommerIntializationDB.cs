@@ -46,6 +46,7 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Wards> Wards { get; set; }
         public DbSet<AccountConsumer> AccountConsumers { get; set; }
         public DbSet<AccountAdmin> AccountAdmins { get; set; }
+        //public DbSet<ShoppingCardDetail> ShoppingCardDetails { get; set; }/*??????????????????????*/
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -3507,7 +3507,6 @@
     <Content Include="assets\images\elements.png" />
     <Content Include="assets\images\icons\apple-touch-icon.png" />
     <Content Include="assets\images\icons\browserconfig.xml" />
-    <Content Include="assets\images\icons\chevron-double-up.svg" />
     <Content Include="assets\images\icons\favicon-16x16.png" />
     <Content Include="assets\images\icons\favicon-32x32.png" />
     <Content Include="assets\images\icons\favicon.ico" />
@@ -3795,7 +3794,6 @@
     <Content Include="assets\main.js" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\css\line-awesome.min.css" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.svg" />
-    <Content Include="assets\video\Apple14Intro.mp4" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -3836,7 +3834,6 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4104,7 +4101,6 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Card\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
