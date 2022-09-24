@@ -14,21 +14,21 @@ namespace E_Commerce.Controllers
         // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
-            // Show category in search bar
-            HomepageItemsView homepageItemsView = new HomepageItemsView();
-            ViewData["CategorySearch"] = homepageItemsView.CategoryView();
-
-            // Show shopping card when account login 
-            ViewData["ShoppingCard"] = homepageItemsView.ShoppingCardsView(new AccountConsumer());
-
-            return View();
-        }
-
-        public ActionResult SignIn()
-        {
             
+            // HIển thị danh mục kèm hình ảnh dưới phần banner
+            ViewData["CategoryPicture"] = null;
+            // Danh mục sản phẩm
+            ViewData["Category"] = null;
+            // Hiển thị sản phẩm nổi bậc
+            ViewData["TopProduct"] = null;
+
+            // Hiển thị sản phẩm bán chạy
+            ViewData["BestSellerPeoduct"] = null;
+
             return View();
         }
+
+        
         public ActionResult About()
         {
             return View();

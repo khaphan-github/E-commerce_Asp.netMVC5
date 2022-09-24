@@ -8,6 +8,7 @@ namespace E_Commerce_Repository.Models
 {
     public class WarehouseProduct
     {
+     
         public int ID { get; set; }
         public int Number { get; set; }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -46,38 +47,42 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Wards> Wards { get; set; }
         public DbSet<AccountConsumer> AccountConsumers { get; set; }
         public DbSet<AccountAdmin> AccountAdmins { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
-
             // Describe is a FK of Product
             modelBuilder.Entity<Product>()
                 .HasOptional(product => product.Describe)
                 .WithRequired(desc => desc.Product);
-/*
-            // District is a FK of Address
-            modelBuilder.Entity<Address>()
-                .HasOptional(address => address.District)
-                .WithRequired(district => district.Address);
 
-            // Province is a FK of Address
-            modelBuilder.Entity<Address>()
-                .HasOptional(address => address.Province)
-                .WithRequired(province => province.Address);
+            /*
+                        // District is a FK of Address
+                        modelBuilder.Entity<Address>()
+                            .HasOptional(address => address.District)
+                            .WithRequired(district => district.Address);
 
-            // Wards is a FK of Address
-            modelBuilder.Entity<Address>()
-                .HasOptional(address => address.Wards)
-                .WithRequired(wards => wards.Address);
-*/
+                        // Province is a FK of Address
+                        modelBuilder.Entity<Address>()
+                            .HasOptional(address => address.Province)
+                            .WithRequired(province => province.Address);
+
+                        // Wards is a FK of Address
+                        modelBuilder.Entity<Address>()
+                            .HasOptional(address => address.Wards)
+                            .WithRequired(wards => wards.Address);
+            */
             // ShoppingCard is a FK of AccountConsumer
             modelBuilder.Entity<AccountConsumer>()
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
               .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+        }
 
             
-        }
     }
+   
 
+       
 }
