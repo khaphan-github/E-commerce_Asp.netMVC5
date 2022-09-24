@@ -14,11 +14,18 @@ namespace E_Commerce_Repository.Repository
     {
         // Tạo kết nối và đối tượng đến db
         public EcommerIntializationDB repository = new EcommerIntializationDB();
-
-        public void AddProductToCard(int productId, int cardId) {
-            throw new NotImplementedException();
+        // Thêm sản phẩm vào giỏ hàng
+        public void AddProductToCard(int productId, int cardId) 
+        {
+            var pc = from shoppingcards in repository.ShoppingCards
+                     from products in repository.Products
+                         //from shoppingcarddetail in repository.ShoppingCardsDetail
+                     where products.Id == productId && products.ShoppingCards == shoppingcards.Products
+                           && shoppingcards.Id == cardId
+                     select new { products, shoppingcards };
+            repository.ShoppingCards.Add((ShoppingCard)pc);
+            repository.SaveChanges();
         }
-
         // Thêm mới sản phẩm
         public void CreateProduct(Product product)
         {
@@ -28,9 +35,8 @@ namespace E_Commerce_Repository.Repository
         // Xóa sản phẩm theo Id;
         public void DeleteProduct(int Id)
         {
-            Product p = new Product();
-            p.Id = Id;
-            repository.Products.Remove(repository.Products.Find(p));
+            var p = repository.Products.Find(Id);
+            repository.Products.Remove(p);
             repository.SaveChanges();
         }
         // Xóa hàng hoạt sản phẩm theo id;
@@ -44,96 +50,103 @@ namespace E_Commerce_Repository.Repository
         // Lọc sản phẩm có giá từ under đến above
         public List<Product> FilterProduct(float under, float above)
         {
-            var products = new List<Product>();
-            var result = from product in products
+            var result = from product in repository.Products
                          where under < product.Price && product.Price < above
                          select product;
-            foreach (var product in result)
-                Console.WriteLine(product.ToString());
-            return (List<Product>)result;
+            /*foreach (var product in result)
+                Console.WriteLine(product.ToString());*/
+            return result.ToList();
         }
         // lọc sản phẩm theo ngôi sao
         public List<Product> FilterProduct(int rank)
         {
-            var products = new List<Product>();
-            var feedbacks = new List<Feedback>();
-            var result = from product in products
-                         from feedback in feedbacks
+            var result = from product in repository.Products
+                         from feedback in repository.Feedbacks
                          where feedback.Ranking == rank && feedback.Product == product.Feedbacks
                          select product;
-            foreach (var product in result)
-                Console.WriteLine(product.ToString());
-            return (List<Product>)result;
+            /*foreach (var product in result)
+                Console.WriteLine(product.ToString());*/
+            return result.ToList();
         }
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
         {
-            var products = new List<Product>();
-            var result = from product in products
+            /*var result = from product in repository.Products
                          where product.Id==id
-                         select product;
-            foreach (var product in result)
-                Console.WriteLine(product.ToString());
-            return (Product)result;
+                         select product;*/
+            return (from product in repository.Products
+                    where product.Id == id
+                    select product).FirstOrDefault();
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
         public Dictionary<Product, int> getProductInShoppingCard(AccountConsumer accountConsumer)
         {
-            var products = new List<Product>();
             var shoppingcarddetails = new List<ShoppingCardDetail>();
-            var shoppingcards = new List<ShoppingCard>();
-            var result = from product in products
-                         from shoppingcarddetail in shoppingcarddetails
-                         from shoppingcard in shoppingcards
+            var result = from product in repository.Products
+                         from shoppingcarddetail in shoppingcarddetails    /*?????????????*/
+                         from shoppingcard in repository.ShoppingCards
                          let number= shoppingcard.Number
                          where shoppingcard.Id==shoppingcarddetail.ShoppingCard.Id && shoppingcarddetail.Product.Id==product.Id
                          select new {
                                product,
                                Number=number
                          };
-            foreach (var product in result)
-            {
-                Console.WriteLine(product.ToString());
-                Console.WriteLine("{Number}");/*------------------??????????????*/
-            }
             return (Dictionary<Product, int>)result;
-        }
-        // Lấy toàn bộ sản phẩm từ database á
-        public List<Product> GetProducts() {
-            return repository.Products.OrderBy(p => p.Id).ToList();
+
         }
 
-        public void RemoveProductFromCard(int productId, int cardId) {
-            throw new NotImplementedException();
+        // Lấy toàn bộ sản phẩm
+        public List<Product> GetProducts()
+        {
+            /*return (from product in repository.Set<Product>()
+                    where product.Name != null
+                    orderby product.Id
+                    select new Product
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Price = product.Price,
+                        Quantity = product.Quantity
+                    }).AsNoTracking().ToList();*/
+            /*var result = from product in repository.Products
+                         select product;
+            return (List<Product>)result;*/
+            return (repository.Products.Where(p => p.Id == 4)).ToList();
+
+        }
+        // Xóa sản phẩm khỏi giỏ hàng
+        public void RemoveProductFromCard(int productId, int cardId) 
+        {
+            var pc = from shoppingcards in repository.ShoppingCards
+                     from products in repository.Products
+                     where shoppingcards.Id == cardId && shoppingcards.Products == products.ShoppingCards
+                           && products.Id == productId
+                     select shoppingcards;
+            repository.ShoppingCards.Remove((ShoppingCard)pc);
+            repository.SaveChanges();
         }
 
         // Lấy sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString
         public List<Product> SearchProducts(string searchString)
         {
-            var products = new List<Product>();
-            var categotys = new List<Category>();
-            var describes = new List<Describe>();
-            var typeproducts = new List<TypeProduct>();
-            var result = from product in products
-                         from categoty in categotys
-                         from typeproduct in typeproducts
-                         from describe in describes
-                         let search = searchString
-                         where (product.Name == @"search") || (categoty.Name == @"search" && categoty.Products==typeproduct.Category && typeproduct.Products==product.TypeProduct)
-                         || (describe.Description == @"search" && describe.Product==product.Describe.Product)
+            var result = from product in repository.Products
+                         from categoty in repository.Categorys
+                         from typeproduct in repository.TypeProducts
+                         from describe in repository.Describes
+                         where (product.Name == searchString) || 
+                         (categoty.Name == searchString && categoty.Products==typeproduct.Category && typeproduct.Products==product.TypeProduct)
+                         || (describe.Description == searchString && describe.Product==product.Describe.Product)
                          select product;
-            return (List<Product>)result;
+            return result.ToList();
         }
 
         public void UpdateProduct(Product product)
         {
+            repository.Products.Attach(product);
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
-            repository.Products.Attach(product);/*----------------------------------------??????????????*/
 
-            
-           repository.Categorys.Count();
-
+            repository.SaveChanges();
 
         }
 
