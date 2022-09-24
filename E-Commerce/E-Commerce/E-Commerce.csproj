@@ -4093,6 +4093,15 @@
     <Content Include="Areas\Admin\plugins\summernote\summernote.js.map" />
     <Content Include="Areas\Admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Admin\plugins\toastr\toastr.js.map" />
+    <Content Include="Areas\Admin\Views\AddProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ListProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ViewProfile\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -4109,9 +4118,6 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-
-    
-
     <None Include="packages.config" />
     <Content Include="Views\ECOMMERCE\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -4146,6 +4152,7 @@
     <Folder Include="Theme\js\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Consumer\" />
+    <Folder Include="Views\Shopbase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\E-Commerce-Business-Logic\E-Commerce-Business-Logic.csproj">
