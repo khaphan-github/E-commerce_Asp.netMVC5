@@ -9,7 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -19,7 +19,35 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            //context.
+            context.AccountRoles.AddOrUpdate();
+            context.AccountStates.AddOrUpdate();
+            context.Positions.AddOrUpdate();
+            context.Accounts.AddOrUpdate();
+            context.ShoppingCards.AddOrUpdate();
+            context.BankingCards.AddOrUpdate();
+            context.Categorys.AddOrUpdate();
+            context.TypeProducts.AddOrUpdate();
+            context.Suppliers.AddOrUpdate();
+            context.Companys.AddOrUpdate();
+            context.Promotions.AddOrUpdate();
+            context.Products.AddOrUpdate();
+            context.Describes.AddOrUpdate();
+            //context.ProductImages.AddOrUpdate();
+            context.Feedbacks.AddOrUpdate();
+            //context.shoppingCarsProduct.AddOrUpdate();
+            //context.Provinces.AddOrUpdate();
+            context.District.AddOrUpdate();
+            context.Wards.AddOrUpdate();
+            context.Addresses.AddOrUpdate();
+            //context.AddressAccountConsumer.AddOrUpdate(); /*--bảng này không có chèn mà vẫn có trong diagram!!!--*/
+            context.Warehouses.AddOrUpdate();
+            //context.WarehousesAddresses.AddOrUpdate();
+            //context.WarehouseProduct.AddOrUpdate();
+            context.PaymentMethods.AddOrUpdate();
+            context.ShippingMethods.AddOrUpdate();
+            context.DeliverStates.AddOrUpdate();
+            context.Orders.AddOrUpdate();
+            //context.OrderDetail.AddOrUpdate();
         }
     }
 }
