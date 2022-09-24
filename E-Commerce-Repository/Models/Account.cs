@@ -21,10 +21,16 @@ namespace E_Commerce_Repository.Models
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
-        public string Avata { get; set; }   
+        public string Avata { get; set; }
 
+        [ForeignKey("AccountRole")]   
+        public int AccountRole_ID { get; set; }
+        public virtual AccountRole AccountRole { get; set; }
+
+        [ForeignKey("AccountState")]
+        public int AccountState_ID { get; set; }
         public virtual AccountState AccountState { get; set; }
-        public virtual AccountRole AccountRoles { get; set; }
+        
 
     }
 }

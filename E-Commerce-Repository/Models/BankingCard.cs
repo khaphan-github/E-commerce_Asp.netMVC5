@@ -10,7 +10,7 @@ namespace E_Commerce_Repository.Models
 {
     public class BankingCard
     {
-        [Key]
+        [ForeignKey("AccountConsumer")]
         public int Id { get; set; }
         public string BankingCardName { get; set; }
         public string AccountName { get; set; }

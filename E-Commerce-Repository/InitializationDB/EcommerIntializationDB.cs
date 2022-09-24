@@ -27,7 +27,6 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<AccountRole> AccountRoles { get; set; }
         public DbSet<AccountState> AccountStates { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<BankingCard> BankingCards { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Company> Companys { get; set; }
         public DbSet<DeliverState> DeliverStates { get; set; }
@@ -57,23 +56,11 @@ namespace E_Commerce_Repository.InitializationDB
             modelBuilder.Entity<Product>()
                 .HasOptional(product => product.Describe)
                 .WithRequired(desc => desc.Product);
+            // banking card
+            modelBuilder.Entity<AccountConsumer>()
+              .HasOptional(accountConsumer => accountConsumer.BankingCard)
+              .WithRequired(bankingCard => bankingCard.AccountConsumer);
 
-            /*
-                        // District is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.District)
-                            .WithRequired(district => district.Address);
-
-                        // Province is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.Province)
-                            .WithRequired(province => province.Address);
-
-                        // Wards is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.Wards)
-                            .WithRequired(wards => wards.Address);
-            */
             // ShoppingCard is a FK of AccountConsumer
             modelBuilder.Entity<AccountConsumer>()
               .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
