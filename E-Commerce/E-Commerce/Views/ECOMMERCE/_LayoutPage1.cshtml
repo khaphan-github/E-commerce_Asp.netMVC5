@@ -2,11 +2,11 @@
 @using E_Commerce_Business_Logic.HomepageItems;
 @using E_Commerce_Repository.InitializationDB;
 @using System.Web;
+@using E_Commerce_Business_Logic.Session;
 @{
-
     HomepageItemsView LayoutView = new HomepageItemsView();
 
-    var accountConsumer = Session["AccountLogin"] as AccountConsumer;
+    var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
     List<Product> ShoppingcardProduct = new List<Product>();
@@ -16,7 +16,6 @@
    
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
-
     var totalPrice = 0;
 
 }
@@ -431,6 +430,7 @@
             </div><!-- End .social-icons -->
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
+
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

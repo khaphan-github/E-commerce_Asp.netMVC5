@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using E_Commerce_Business_Logic.Session;
 
 namespace E_Commerce.Controllers {
-    [Authorize]
-    public class CardController : Controller
+       public class CardController : Controller
     {
-        // GET: Card hhhh
+        // GET: Card
        
         public ActionResult Index() {
+            // Nếu chư login thì không cho vào trang card
+            bool NoUserSession = Session[SessionConstaint.USERSESION].Equals("");
+            if (NoUserSession) {
+                ViewBag.dataToggle = "modal";
+                ViewBag.hreLink = "#signin-modal";
+                Response.Redirect("/Home/Index/", false);
+            }
             return View();
         }
 

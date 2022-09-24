@@ -20,7 +20,7 @@ namespace E_Commerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public void Login(string username, string password) {
+        public string Login(string username, string password) {
 
             Login login = new Login();
 
@@ -30,12 +30,14 @@ namespace E_Commerce.Controllers
 
             if (account != null) {
                 Session.Add(SessionConstaint.USERSESION, account);
+                return "success";
             }
-            // hàm luuw data vô db
+            return "fail";
 
         }
-        public void Logout() {
+        public string Logout() {
             Session.Clear();
+            return "Logout Successfully";
         }
     }
 }
