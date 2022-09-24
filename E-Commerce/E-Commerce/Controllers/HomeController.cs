@@ -14,9 +14,11 @@ namespace E_Commerce.Controllers
         // GET: Home Hiển thị trang chủ
         public ActionResult Index()
         {
+            
             // HIển thị danh mục kèm hình ảnh dưới phần banner
             ViewData["CategoryPicture"] = null;
-
+            // Danh mục sản phẩm
+            ViewData["Category"] = null;
             // Hiển thị sản phẩm nổi bậc
             ViewData["TopProduct"] = null;
 

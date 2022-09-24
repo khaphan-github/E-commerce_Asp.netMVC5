@@ -101,14 +101,8 @@ namespace E_Commerce_Repository.Repository
         }
         // Lấy toàn bộ sản phẩm từ database á
         public List<Product> GetProducts() {
-          
-            List<Product> productList = (
-                                from product in repository.Products
-                                where product.Id == 5
-                                select product
-                                
-                                ).ToList();
-            return productList;
+                       
+            return repository.Products.OrderBy(p => p.Id).ToList();
 
         }
 

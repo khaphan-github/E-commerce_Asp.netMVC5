@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace E_Commerce.Controllers
-{
+namespace E_Commerce.Controllers {
+    [Authorize]
     public class CardController : Controller
     {
         // GET: Card hhhh
-        public ActionResult Index()
-        {
+       
+        public ActionResult Index() {
             return View();
         }
 

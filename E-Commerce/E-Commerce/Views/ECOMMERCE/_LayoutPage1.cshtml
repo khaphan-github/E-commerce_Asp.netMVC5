@@ -1,5 +1,6 @@
 ﻿@using E_Commerce_Repository.Models;
 @using E_Commerce_Business_Logic.HomepageItems;
+@using E_Commerce_Repository.InitializationDB;
 @using System.Web;
 @{
 
@@ -12,7 +13,9 @@
     if (isLogin) {
         ShoppingcardProduct = LayoutView.ShoppingCardsView(accountConsumer);
     }
-    var category = LayoutView.CategoryView();
+   
+    // Hiển thị danh mục sản phẩm
+    var category = ViewData["Category"] as List<Category>;
 
     var totalPrice = 0;
 
@@ -57,13 +60,11 @@
     <link rel="stylesheet" href="/assets/css/skins/skin-demo-13.css">
     <link rel="stylesheet" href="/assets/css/demos/demo-13.css">
     @RenderSection("CSS", required: false)
-
 </head>
 
 <body style="font-family:Arial">
     <div class="page-wrapper">
         <header class="header header-10">
-
             <div class="header-middle">
                 <div class="container">
                     <div class="header-left" style="max-height:100px;">
@@ -199,12 +200,14 @@
                                 <div class="dropdown-menu">
                                     <nav class="side-nav">
                                         <ul class="menu-vertical sf-arrows">
+                                            @if (category != null) {
+                                                foreach (var ca in category) {
+                                                    // href is a action resource;
+                                                    <li><a href="#">@ca.Name</a></li>
+                                                }
+                                            }
 
                                             <!-- Show category navigation bar -->
-                                            @foreach (var ca in category) {
-                                                // href is a action resource;
-                                                <li><a href="#">@ca.Name</a></li>
-                                            }
 
                                         </ul><!-- End .menu-vertical -->
                                     </nav><!-- End .side-nav -->

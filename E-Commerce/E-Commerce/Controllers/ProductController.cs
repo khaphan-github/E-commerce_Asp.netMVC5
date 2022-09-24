@@ -35,7 +35,6 @@ namespace E_Commerce.Controllers
 
 
             List<Product> products = new List<Product>();
-
           
             products.Add(product);
             products.Add(product); products.Add(product);
