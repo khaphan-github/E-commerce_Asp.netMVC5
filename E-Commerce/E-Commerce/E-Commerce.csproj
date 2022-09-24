@@ -308,6 +308,9 @@
     <Content Include="Areas\Admin\dist\img\credit\visa.png" />
     <Content Include="Areas\Admin\dist\img\default-150x150.png" />
     <Content Include="Areas\Admin\dist\img\icons.png" />
+    <Content Include="Areas\Admin\dist\img\LOGO_UNIQUESHOP_1000_462.png" />
+    <Content Include="Areas\Admin\dist\img\LOGO_UNIQUESHOP_ICO.ico" />
+    <Content Include="Areas\Admin\dist\img\LOGO_UNIQUESHOP_ICO.png" />
     <Content Include="Areas\Admin\dist\img\photo1.png" />
     <Content Include="Areas\Admin\dist\img\photo2.png" />
     <Content Include="Areas\Admin\dist\img\photo3.jpg" />
@@ -3839,8 +3842,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\js\AuthenticationJS\GoogleAuthentication.js" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AddProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ListProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemberController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewProfileController.cs" />
@@ -4163,6 +4169,9 @@
     <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ViewProfile\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ListProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AddProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\ECOMMERCE\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

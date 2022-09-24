@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\BrandView.cs" />
+    <Compile Include="Admin\CategoryView.cs" />
     <Compile Include="Algorithm\Algorithm.cs" />
     <Compile Include="HomepageItems\HomepageItemsView.cs" />
     <Compile Include="HomepageItems\Login.cs" />

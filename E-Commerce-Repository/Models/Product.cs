@@ -17,6 +17,10 @@ namespace E_Commerce_Repository.Models
         public TypeProduct TypeProduct { get; set; }
         public Supplier Supplier { get; set; }
         public Company Company { get; set; }
+        public Product()
+        {
+            this.ProductImages = new HashSet<ProductImage>();
+        }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual Describe Describe { get; set; }
         public Promotion Promotion { get; set; }
