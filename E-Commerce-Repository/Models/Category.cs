@@ -15,6 +15,9 @@ namespace E_Commerce_Repository.Models
             this.Products = new HashSet<TypeProduct>();
         }
         // QUan hệ 1 nhiều với loại sản phẩm
+        public Category() {
+            this.Products = new HashSet<TypeProduct>();
+        }
         public virtual ICollection<TypeProduct> Products { get; set; }
     }
 }

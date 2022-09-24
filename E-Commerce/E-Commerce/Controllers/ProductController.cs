@@ -30,11 +30,20 @@ namespace E_Commerce.Controllers
             product.ProductImages.Add(productImage2); 
             product.ProductImages.Add(productImage2);
 
+            // Sản phẩm ID
             ViewData["Product"] = product;
 
 
+            List<Product> products = new List<Product>();
+          
+            products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product); products.Add(product);
+            products.Add(product);
+
+
             // Hiển thị sản phẩm liên quan;
-            ViewData["RelatedProduct"] = null;
+            ViewData["RelatedProduct"] = products;
             return View();
         }
     }

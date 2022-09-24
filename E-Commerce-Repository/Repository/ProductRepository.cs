@@ -55,17 +55,15 @@ namespace E_Commerce_Repository.Repository
         // lọc sản phẩm theo ngôi sao
         public List<Product> FilterProduct(int rank)
         {
-            /*           var products = new List<Product>();
-                       var feedbacks = new List<Feedback>();
-                       var result = from product in products
-                                    from feedback in feedbacks
-                                    where feedback.Ranking == rank && feedback.Product == product.Feedbacks
-                                    select product;
-                       foreach (var product in result)
-                           Console.WriteLine(product.ToString());
-                       return (List<Product>)result;
-            */
-            throw new NotImplementedException();
+            var products = new List<Product>();
+            var feedbacks = new List<Feedback>();
+            var result = from product in products
+                         from feedback in feedbacks
+                         where feedback.Ranking == rank && feedback.Product == product.Feedbacks
+                         select product;
+            foreach (var product in result)
+                Console.WriteLine(product.ToString());
+            return (List<Product>)result;
         }
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
@@ -102,19 +100,9 @@ namespace E_Commerce_Repository.Repository
             return (Dictionary<Product, int>)result;
         }
         // Lấy toàn bộ sản phẩm từ database á
-        public List<Product> GetProducts()
-        {
-           /* var Product = (from Products in repository.Products
-                          join TypeProducts in repository.TypeProducts
-                          on Products.Id equals TypeProducts.Id
-                          where Products.Id == TypeProducts.Id
-                          select Products);
-            List<Product> products = new List<Product>();
-           */
-          //  int item = repository.Products.Count();
-         //   System.Diagnostics.Debug.WriteLine("");
-            return repository.Products.ToList();
-           // return repository.Products.Where(p=>p.Id==1).ToList();
+        public List<Product> GetProducts() {
+                       
+            return repository.Products.OrderBy(p => p.Id).ToList();
 
         }
 
