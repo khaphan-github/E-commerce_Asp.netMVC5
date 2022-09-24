@@ -18,7 +18,9 @@ namespace E_Commerce_Repository.Models
         public Supplier Supplier { get; set; }
         public Company Company { get; set; }
 
-        public Product() {
+        public Product()
+        {
+
             this.ProductImages = new HashSet<ProductImage>();
         }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
