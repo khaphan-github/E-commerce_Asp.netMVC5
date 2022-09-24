@@ -14,6 +14,11 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public District()
+        {
+            this.Addresss = new HashSet<Address>();
+            this.Wards = new HashSet<Wards>();
+        }
         // Quan hệ 1 - 1 với địa chỉ
         public virtual ICollection<Address> Addresss { get; set; }
         // Quan hệ 1 nhiều với phường xã

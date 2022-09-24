@@ -14,6 +14,11 @@ namespace E_Commerce_Repository.Models
         public string Name { get; set; }
         public int OrderNumber { get; set; }
 
+        public DeliverState()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+
         // QUan hệ 1 nhiều với order
         public virtual ICollection<Order> Orders { get; set; }
     }

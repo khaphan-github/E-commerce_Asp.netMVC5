@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace E_Commerce_Business_Logic.Shop {
-    public class ShopComponent {
+    public class ShopComponent 
+    {
         public static ProductRepository productRepository = new ProductRepository();
 
         public List<Product> ProductList = productRepository.GetProducts();

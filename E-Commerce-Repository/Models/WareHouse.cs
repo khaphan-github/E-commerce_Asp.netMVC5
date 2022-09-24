@@ -14,7 +14,12 @@ namespace E_Commerce_Repository.Models
         public string Name { get; set; }
         public string Status { get; set; }
 
-        public virtual ICollection<Address> Addresses { get; set; }
+        public Warehouse()
+        {
+            this.Products = new HashSet<WarehouseProduct>();
+ //           this.Addresses = new HashSet<Address>();
+        }
+//        public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<WarehouseProduct> Products { get; set; }
     }
 }

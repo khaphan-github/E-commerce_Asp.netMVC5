@@ -15,6 +15,12 @@ namespace E_Commerce_Repository.Models
         public string Name { get; set; }
         public string Domain { get; set; }
 
+        public Province()
+        {
+            this.Addresss = new HashSet<Address>();
+            this.Districts = new HashSet<District>();
+
+        }
         public virtual ICollection<Address> Addresss { get; set; }
 
         // Quan hệ nhiều 1 với quận huyện

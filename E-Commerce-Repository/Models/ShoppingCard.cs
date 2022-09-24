@@ -16,6 +16,12 @@ namespace E_Commerce_Repository.Models
         public bool isEmpty { get; set; }
         public DateTime? CreatedDate { get; set; }
 
+
+        public ShoppingCard()
+        {
+            this.Products = new HashSet<Product>();
+
+        }
         public virtual AccountConsumer AccountConsumer { get; set; }
 
         // QUan hệ nhiều nhiều với sản phẩm

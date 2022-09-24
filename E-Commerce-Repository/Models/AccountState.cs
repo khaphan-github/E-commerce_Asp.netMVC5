@@ -10,6 +10,10 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public AccountState()
+        {
+            this.Accounts = new HashSet<Account>();
+        }
         public virtual ICollection<Account> Accounts { get; set; }
 
     }

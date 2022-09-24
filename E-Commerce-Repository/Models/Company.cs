@@ -15,7 +15,10 @@ namespace E_Commerce_Repository.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string ActiveType { get; set; }
-
+        public Company()
+        {
+            this.Products = new HashSet<Product>();
+        }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

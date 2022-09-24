@@ -15,6 +15,12 @@ namespace E_Commerce_Repository.Models
         public string Desc { get; set; }
 
         // Quan hệ nhiều 1 với order
+
+        public ShippingMethod()
+        {
+            this.Orders = new HashSet<Order>();
+
+        }
         public virtual ICollection<Order> Orders { get; set; }
         
     }

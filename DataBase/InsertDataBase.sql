@@ -58,7 +58,7 @@ values (N'Thiết Bị Điện Tử'),
 		(N'Điện Thoại & Phụ Kiện'),
 		(N'Máy Tính & Laptop');
 insert into TypeProducts(Name, Category_Id)
-values(N'Điện Thoại',5),(N'Laptop', 6), (N'Tai Nghe',5);
+values(N'Điện Thoại',2),(N'Laptop', 3), (N'Tai Nghe',2);
 ---------------------------------------------------------------------------------
 
 select * from Provinces --1
@@ -102,19 +102,27 @@ select * from Products--con
 select * from Feedbacks
 
 insert into ProductImages(URL,Product_Id)
-values('hinhnaokhongbiet.png',1);
+values('assets/images/iphone_14promaxwhite.png',2);
 insert into Suppliers(Name,Phone,Email)
 values('Apple','0147258369','apple@gmail.com'),
 		('SamSung','0147258369','samsung@gmail.com');
 insert into Companies(Name,Phone,Email,ActiveType)
 values('ViTranSoftware','0355034864','vitrtan.0905202@gmail.com','');
-insert into Describes(Description, ModelName, CPU, Ram, HardDisk, GraphicsCard, Pin)
+insert into Describes(id,Description, ModelName, CPU, Ram, HardDisk, GraphicsCard, Pin)
 values('', 'ASUS TUF F15','','','', '', ''  );
-insert into Describes(Description, ModelName, CellularTechnolory, MemoryStorageCapcity, Color, ScreenSize, Discriminator, Pin)
-values('', 'Iphone 14', '', '', '' ,'','',''  );
-insert into Promotions([name], [Desc],percentPromotion, accountAdmin_id)
-values('Khuyen mai 1',N'giảm giá',4,2);
+insert into Describes(id,Description, ModelName, CellularTechnolory, MemoryStorageCapcity, Color, ScreenSize, Discriminator, Pin)
+values(1,'', 'Iphone 14', '', '', '' ,'','',''  );
+insert into Promotions([name], [Desc],percentPromotion, CreatedDate)
+values('Khuyen mai 1',N'giảm giá',4, '1/2/2021');
+--insert into Promotions([name], [Desc],percentPromotion, accountAdmin_id)
+--values('Khuyen mai 1',N'giảm giá',4,2);
 insert into Products(name,price,quantity,TypeProduct_Id,Supplier_Id,Company_Id,Promotion_Id)
 values('iPhone 14 Pro',30990000,100,1,1,1,1);
+insert into Products(name,price,quantity,TypeProduct_Id)
+values('Laptop TUF F15',30990000,100,1);
 insert into Feedbacks(comment,ranking,AccountConsumer_Id,Product_Id)
 values('Chat luong ok nha<3',5,3,1);
+insert into Feedbacks(comment,ranking,CreadtedDate,Product_Id)
+values('Chat luong ok nha<3',5,'1/2/2021',2);
+insert into Feedbacks(comment,ranking,CreadtedDate,Product_Id)
+values('Chat luong ok nha<3',5,'1/2/2021',1);

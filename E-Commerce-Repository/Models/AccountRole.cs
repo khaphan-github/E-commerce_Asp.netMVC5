@@ -16,6 +16,10 @@ namespace E_Commerce_Repository.Models
         public string Descibe { get; set; }
         public bool isActive { get; set; }
 
+        public AccountRole()
+        {
+            this.Account = new HashSet<Account>();
+        }
         public virtual ICollection<Account> Account { get; set; }
     }
 }

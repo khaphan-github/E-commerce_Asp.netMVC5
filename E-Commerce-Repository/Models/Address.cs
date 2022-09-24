@@ -20,6 +20,12 @@ namespace E_Commerce_Repository.Models
         //  phường
         public virtual Wards Wards { get; set; }
 
+        public Address()
+        {
+            this.Orders = new HashSet<Order>();
+            this.AccountConsumers = new HashSet<AccountConsumer>();
+            this.Warehouses = new HashSet<Warehouse>();
+        }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<AccountConsumer> AccountConsumers { get; set; }
         public virtual ICollection<Warehouse> Warehouses { get; set; }

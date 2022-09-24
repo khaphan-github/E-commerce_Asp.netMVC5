@@ -12,6 +12,12 @@ namespace E_Commerce_Repository.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        public Supplier()
+        {
+            this.Products = new HashSet<Product>();
+
+        }
+
         // Nhà cung cấp quan hệ 1 nhiều với sản phẩm
         public virtual ICollection<Product> Products { get; set; }
     }

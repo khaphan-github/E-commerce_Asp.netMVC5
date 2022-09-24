@@ -12,7 +12,13 @@ namespace E_Commerce_Repository.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        
+
+
+        public Wards()
+        {
+            this.Addresss = new HashSet<Address>();
+
+        }
         // QUan hệ 1 - 1 với Address
         public virtual ICollection<Address> Addresss { get; set; }
         public virtual District District { get; set; }
