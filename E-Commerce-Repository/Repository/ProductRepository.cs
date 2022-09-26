@@ -21,7 +21,7 @@ namespace E_Commerce_Repository.Repository
             var pc = from shoppingcards in repository.ShoppingCards
                      from products in repository.Products
                          //from shoppingcarddetail in repository.ShoppingCardsDetail
-                     where products.Id == productId && products.ShoppingCards == shoppingcards.Products
+                     where products.Id == productId && products.ShoppingCardDetails == shoppingcards.ShoppingCardDetails
                            && shoppingcards.Id == cardId
                      select new { products, shoppingcards };
             repository.ShoppingCards.Add((ShoppingCard)pc);
@@ -108,7 +108,7 @@ namespace E_Commerce_Repository.Repository
         {
             var pc = from shoppingcards in repository.ShoppingCards
                      from products in repository.Products
-                     where shoppingcards.Id == cardId && shoppingcards.Products == products.ShoppingCards
+                     where shoppingcards.Id == cardId && shoppingcards.ShoppingCardDetails == products.ShoppingCardDetails
                            && products.Id == productId
                      select shoppingcards;
             repository.ShoppingCards.Remove((ShoppingCard)pc);

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace E_Commerce.Controllers
+namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class UserContactController : Controller
+    public class LoginController : BaseController
     {
-        // GET: UserContact
+        // GET: Admin/Login
         public ActionResult Index()
         {
             return View();

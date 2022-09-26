@@ -8,7 +8,6 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-
         public virtual Category Category { get; set; }
     }
 }

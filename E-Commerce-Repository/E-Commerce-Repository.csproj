@@ -133,10 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializationDB\EcommerIntializationDB.cs" />
-    <Compile Include="Migrations\202209231654002_UpdateDB.cs" />
-    <Compile Include="Migrations\202209231654002_UpdateDB.designer.cs">
-      <DependentUpon>202209231654002_UpdateDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountAdmin.cs" />
@@ -193,11 +189,6 @@
       <Project>{502dbe3a-76af-43f1-832d-6a1600480721}</Project>
       <Name>E-Commerce-UnitTest</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209231654002_UpdateDB.resx">
-      <DependentUpon>202209231654002_UpdateDB.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

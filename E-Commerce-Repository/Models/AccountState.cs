@@ -6,6 +6,7 @@ namespace E_Commerce_Repository.Models
 {
     public class AccountState
     {
+        [Key]
         public int Id { get; set; }
 
         [Index(IsUnique = true)]

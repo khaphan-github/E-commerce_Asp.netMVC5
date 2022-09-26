@@ -10,6 +10,7 @@ namespace E_Commerce_Repository.Models
 {
     public class AccountRole
     {
+        [Key]
         public int Id { get; set; }
 
         [Index(IsUnique = true)]

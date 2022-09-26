@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public  class Wards
+    public class Wards
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public virtual ICollection<Address> Addresss { get; set; }
-        public virtual District District { get; set; }
+        public virtual Address Address { get; set; }
 
     }
 }
