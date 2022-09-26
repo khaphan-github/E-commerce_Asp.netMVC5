@@ -43,7 +43,7 @@
                                                 <figure class="product-media">
 
                                                     <a href="@Url.Action("Index", "Product", new { id = product.Id })">
-                                                        <img src="@product.ProductImages.FirstOrDefault().URL" alt="Product image" class="product-image">
+                                                        <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image">
                                                     </a>
 
                                                     <div class="product-action-vertical">

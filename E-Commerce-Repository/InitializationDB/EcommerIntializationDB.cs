@@ -15,19 +15,31 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
+<<<<<<< Updated upstream
+            /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED*/
+            bool isUpdateDB = true;
+            if (isUpdateDB) {
+                var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+                Database.SetInitializer(initializer);
+            }
+            else {
+                var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+                Database.SetInitializer(intitializer);
+            }
+=======
+
+          //  var intitializer = new DropCreateDatabaseAlways<EcommerIntializationDB>();
+            // Database.SetInitializer(intitializer);
+
+           var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+            Database.SetInitializer(initializer);  
             
-           //  var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
-           //  Database.SetInitializer(intitializer);
-            
-             var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
-             Database.SetInitializer(initializer);  
-            
+>>>>>>> Stashed changes
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
         public DbSet<AccountState> AccountStates { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<BankingCard> BankingCards { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Company> Companys { get; set; }
         public DbSet<DeliverState> DeliverStates { get; set; }
@@ -45,20 +57,28 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<TypeProduct> TypeProducts { get; set; }
         public DbSet<Wards> Wards { get; set; }
-        public DbSet<AccountConsumer> AccountConsumers { get; set; }
         public DbSet<AccountAdmin> AccountAdmins { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Province> Provinces { get; set; }
 
-
-
+<<<<<<< Updated upstream
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Describe is a FK of Product
-            modelBuilder.Entity<Product>()
-                .HasOptional(product => product.Describe)
-                .WithRequired(desc => desc.Product);
 
-            /*
+            //  modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Properties<DateTime>()
+            .Configure(c => c.HasColumnType("datetime2"));
+
+            modelBuilder.Entity<Product>()
+              .HasOptional(product => product.Describe)
+              .WithRequired(desc => desc.Product);
+
+            modelBuilder.Entity<AccountConsumer>()
+             .HasOptional(accountConsumer => accountConsumer.ShoppingCards)
+             .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+            /*  // Describe is a FK of Product
+          
+
                         // District is a FK of Address
                         modelBuilder.Entity<Address>()
                             .HasOptional(address => address.District)
@@ -73,16 +93,47 @@ namespace E_Commerce_Repository.InitializationDB
                         modelBuilder.Entity<Address>()
                             .HasOptional(address => address.Wards)
                             .WithRequired(wards => wards.Address);
-            */
+            
             // ShoppingCard is a FK of AccountConsumer
-            modelBuilder.Entity<AccountConsumer>()
-              .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
-              .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+           */
         }
 
-            
+
     }
    
+=======
 
-       
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+
+            /* ACCOUNT 1..1 ---- 1..* ACCOUNTSTATE
+             * Quan hệ 1 nhiều: Mỗi account chỉ có 1 trạng thái duy nhất, Và nhiều account khác nhau 
+             * có nhiều trạng thái khác nhau 
+             * Mỗi khi tạo mới account - HasRequired một AccountState
+             * WithMany nhiều account
+             * HasForeignKey Account có khóa ngoại là AccountStateID (id của state)
+             */
+            modelBuilder.Entity<Account>()
+                .HasRequired<AccountState>(state => state.AccountState)
+                .WithMany(account => account.Accounts)
+                .HasForeignKey<int>(key => key.AccountStateID);
+
+            /* ACCOUNT 1..* ---- 1..* ACCOUNTROLE --> ACCOUNTHASROLE
+             * MỘT ACCOUNT CÓ NHIỀU QUYỀN VÀ MỘT QUYỀN THUỘC NHIỀU ACCOUNT
+             */
+            modelBuilder.Entity<Account>()
+                .HasMany<AccountRole>(account => account.AccountRoles)
+                .WithMany(role => role.Account)
+                .Map(accountHasRole => {
+                    accountHasRole.MapLeftKey("AccountRefID");
+                    accountHasRole.MapRightKey("RoleRefID");
+                    accountHasRole.ToTable("AccountHasRole");
+                });
+>>>>>>> Stashed changes
+
+          /* ACCOUNTADMIN 1..1 ---- 1..1 POSITION 
+           */
+           
+        }      
+    }   
 }

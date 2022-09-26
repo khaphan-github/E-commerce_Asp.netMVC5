@@ -3822,6 +3822,7 @@
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="popup\quickView.html" />
     <Content Include="Resources\ProductImage\iphone14_promax.jpg" />
+    <Content Include="Resources\ProductImage\iphone14_promaxblack.png" />
     <Content Include="Resources\UserImage\product-5.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -3853,6 +3854,8 @@
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserContactController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4128,11 +4131,10 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Card\Index.cshtml" />
-
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-
+    <Content Include="Views\UserContact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4150,7 +4152,7 @@
     <Folder Include="Theme\imanges\" />
     <Folder Include="Theme\js\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Consumer\" />
+    <Folder Include="Views\Repository\" />
     <Folder Include="Views\Shopbase\" />
   </ItemGroup>
   <ItemGroup>

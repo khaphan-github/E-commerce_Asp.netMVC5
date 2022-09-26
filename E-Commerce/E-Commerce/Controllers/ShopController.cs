@@ -13,11 +13,7 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
-        // Shop
-        private readonly EcommerIntializationDB ecommerIntialization;
-        public ShopController() {
-            ecommerIntialization = new EcommerIntializationDB();
-        }
+       
         public ActionResult Index() {
           
             ShopComponent shopComponent = new ShopComponent();
@@ -36,7 +32,6 @@ namespace E_Commerce.Controllers
 
             ProductRepository productRepository = new ProductRepository();
             ViewBag.Product = productRepository.GetProducts();
-
             return View();
         }
     }

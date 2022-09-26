@@ -9,11 +9,9 @@ namespace E_Commerce_Repository.Models
 {
     public class ShoppingCardDetail
     {
-        [Key]
         public int Id { get; set; }
         public int Number { get; set; }
 
-        public virtual ShoppingCard ShoppingCard { get; set; }
-        public virtual Product Product { get; set; }
+        public float price { get; set; }
     }
 }
