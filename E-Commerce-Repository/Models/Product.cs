@@ -14,11 +14,11 @@ namespace E_Commerce_Repository.Models
         public virtual ICollection<WarehouseProduct> Warehouses { get; set; }
         public virtual ICollection<ShoppingCard> ShoppingCards { get; set; }
         public virtual TypeProduct TypeProduct { get; set; }
-        public  Supplier Supplier { get; set; }
-        public  Company Company { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual Company Company { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
-        public  Describe Describe { get; set; }
-        public  Promotion Promotion { get; set; }
+        public virtual Describe Describe { get; set; }
+        public virtual Promotion Promotion { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

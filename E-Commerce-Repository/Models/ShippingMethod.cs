@@ -15,6 +15,5 @@ namespace E_Commerce_Repository.Models
 
         // Quan hệ nhiều 1 với order
         public virtual ICollection<Order> Orders { get; set; }
-
     }
 }
