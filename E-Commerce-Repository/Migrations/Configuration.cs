@@ -120,8 +120,6 @@
                      new Product {Id = 3, Name = "Apple IPhone 15 Pro", Price = 23990000 }
                 );
                
-
-
                 // ADD COMPANY FOR PRODUCT
                 var product1 = context.Products.Find(1);
                 var product2 = context.Products.Find(2);

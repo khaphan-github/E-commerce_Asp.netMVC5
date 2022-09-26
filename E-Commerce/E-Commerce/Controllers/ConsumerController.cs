@@ -26,6 +26,8 @@ namespace E_Commerce.Controllers
         [ValidateAntiForgeryToken]
         public string Login(string username, string password) {
 
+            // nHI SỬA LÝ LÀM GÌ
+            
             Login BussinessLogin = new Login();
 
             AccountConsumer account = BussinessLogin.ValidationAccount(username, password) as AccountConsumer;
@@ -71,6 +73,5 @@ namespace E_Commerce.Controllers
         public ActionResult Payment() {
             return View();
         }
-
     }
 }
