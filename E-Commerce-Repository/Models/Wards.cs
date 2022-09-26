@@ -9,12 +9,8 @@ namespace E_Commerce_Repository.Models
 {
     public  class Wards
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         
-        // QUan hệ 1 - 1 với Address
-        public virtual ICollection<Address> Addresss { get; set; }
-        public virtual District District { get; set; }
     }
 }

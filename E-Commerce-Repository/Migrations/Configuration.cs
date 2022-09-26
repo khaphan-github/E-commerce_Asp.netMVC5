@@ -16,6 +16,7 @@
             AutomaticMigrationDataLossAllowed = true;
         }
 
+<<<<<<< Updated upstream
         protected override void Seed(E_Commerce_Repository.InitializationDB.EcommerIntializationDB context) {
             try {
                 // INIT ROLE TO DB [ACCOUNTROLE]
@@ -215,6 +216,150 @@
                 
             }
           
+=======
+        protected override void Seed(E_Commerce_Repository.InitializationDB.EcommerIntializationDB context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
+            IList<AccountRole> roleList = new List<AccountRole>();
+            roleList.Add(new AccountRole { Name = "User", Descibe = "Tài khoản khách hàng", isActive = true});
+            roleList.Add(new AccountRole { Name = "Admin", Descibe = "Tài khoản quản trị trang web", isActive = true });
+            roleList.Add(new AccountRole { Name = "SystemAdmin", Descibe = "Tài khoản quản trị hệ thống", isActive = true });
+            context.AccountRoles.AddRange(roleList);
+
+            IList<AccountState> accountStates = new List<AccountState>();
+            accountStates.Add(new AccountState { Name = "Đang hoạt động" });
+            accountStates.Add(new AccountState { Name = "Tạm khóa" });
+            accountStates.Add(new AccountState { Name = "Mới" });
+            context.AccountStates.AddRange(accountStates);
+
+            IList<Position> positions = new List<Position>();
+            positions.Add(new Position { Name = "Content", BaseSalary = 3400000 });
+            positions.Add(new Position { Name = "Management", BaseSalary = 5400000 });
+            positions.Add(new Position { Name = "Design", BaseSalary = 2400000 });
+            context.Positions.AddRange(positions);
+
+            IList<Account> accounts = new List<Account>();
+            accounts.Add(new AccountConsumer {
+                Username = "khaphan",
+                Password = "123",
+                Email = "phanhoangkha01@gmail.com",
+                Phone = "0329199948",
+                AccountRoles = new AccountRole { Name = "User", Descibe = "Tài khoản khách hàng", isActive = true },
+                AccountState = new AccountState { Name = "Mới" },
+                ShoppingCard = new ShoppingCard { }
+            });
+            accounts.Add(new AccountAdmin{ 
+                Username = "yennhi",
+                Password = "123", 
+                Email = "phanhoangkha01@gmail.com",
+                Phone = "0329199948", 
+                AccountRoles = new AccountRole { Name = "User", Descibe = "Tài khoản khách hàng", isActive = true }, 
+                AccountState = new AccountState { Name = "Mới" },
+                Position = new Position { Name = "Management", BaseSalary = 5400000 },
+            });
+            context.Accounts.AddRange(accounts);
+            
+            IList<ShoppingCard> shoppingCards = new List<ShoppingCard>();
+            context.ShoppingCards.AddRange(shoppingCards);
+
+            IList<BankingCard> bankingCards = new List<BankingCard>();
+            context.BankingCards.AddRange(bankingCards);
+
+            IList<Category> categorys = new List<Category>();
+            categorys.Add(new Category { Name = "Thiết bị di động"});
+            categorys.Add(new Category { Name = "Máy tính" });
+            context.Categorys.AddRange(categorys);
+
+            IList<TypeProduct> typeProducts = new List<TypeProduct>();
+            typeProducts.Add(new TypeProduct { Name = "Điện thoại"});
+            typeProducts.Add(new TypeProduct { Name = "Máy tính bảng" });
+            typeProducts.Add(new TypeProduct { Name = "Laptop" });
+            typeProducts.Add(new TypeProduct { Name = "PC" });
+            context.TypeProducts.AddRange(typeProducts);
+
+            IList<Supplier> suppliers = new List<Supplier>();
+            suppliers.Add(new Supplier { Name = "Phong Vũ", Email = "phongvu@gmail.com"});
+            suppliers.Add(new Supplier { Name = "Thế giới di động", Email = "tgdd@gmail.com" });
+            suppliers.Add(new Supplier { Name = "CellphoneS", Email = "CellphoneS@gmail.com" });
+            context.Suppliers.AddRange(suppliers);
+
+            IList<Company> companys = new List<Company>();
+            companys.Add(new Company { Name = "APPLE"});
+            companys.Add(new Company { Name = "SAMSUNG" });
+            companys.Add(new Company { Name = "HUAWEI" });
+            companys.Add(new Company { Name = "LENOVO" });
+            companys.Add(new Company { Name = "MACBOOK" });
+            context.Companys.AddRange(companys);
+
+            IList<Promotion> promotions = new List<Promotion>();
+            promotions.Add(new Promotion { Name = "Khuyến mãi 12/12", PercentPromotion = 0.3F, });
+            context.Promotions.AddRange(promotions);
+
+
+            IList<ProductImage> productImages = new List<ProductImage>();
+            context.ProductImages.AddRange(productImages);
+           
+
+            IList<Product> products = new List<Product>();
+            products.Add(new Product {
+                Id = 9199,
+                Name = "Apple iPhone 13 Pro Max",
+                Company = new Company { Name = "APPLE" },
+                Price = 26490000,
+                Quantity = 931,
+                TypeProduct = new TypeProduct { Name = "Điện thoại" },
+                Supplier = new Supplier { Name = "CellphoneS", Email = "CellphoneS@gmail.com" },  
+
+            }); 
+            context.Products.AddRange(products);
+
+            IList<Describe> describes = new List<Describe>();
+            context.Describes.AddRange(describes);
+
+        
+            
+            IList<Feedback> feedbacks = new List<Feedback>();
+            context.Feedbacks.AddRange(feedbacks);
+
+            //context.shoppingCarsProduct.AddRange();
+
+            IList<Province> provinces = new List<Province>();
+            context.Provinces.AddRange(provinces);
+
+            IList<District> district = new List<District>();
+            context.District.AddRange(district);
+
+            IList<Wards> wards = new List<Wards>();
+            context.Wards.AddRange(wards);
+
+            IList<Address> addresses = new List<Address>();
+            context.Addresses.AddRange(addresses);
+
+            //context.AddressAccountConsumer.AddRange(); /*--bảng này không có chèn mà vẫn có trong diagram!!!--*/
+
+            IList<Warehouse> warehouses = new List<Warehouse>();
+            context.Warehouses.AddRange(warehouses);
+
+            //context.WarehousesAddresses.AddRange();
+            //context.WarehouseProduct.AddRange();
+
+            IList<PaymentMethod> paymentMethods = new List<PaymentMethod>();
+            context.PaymentMethods.AddRange(paymentMethods);
+
+            IList<ShippingMethod> shippingMethods = new List<ShippingMethod>();
+            context.ShippingMethods.AddRange(shippingMethods);
+
+            IList<DeliverState> deliverStates = new List<DeliverState>();
+            context.DeliverStates.AddRange(deliverStates);
+
+            IList<Order> orders = new List<Order>();
+            context.Orders.AddRange(orders);
+
+            //context.OrderDetail.AddRange();
+>>>>>>> Stashed changes
             base.Seed(context);
         }
     }
