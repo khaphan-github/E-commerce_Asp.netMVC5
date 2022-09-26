@@ -15,9 +15,6 @@ namespace E_Commerce_Repository.Models
         [Index(IsUnique = true)]
         [StringLength(50)]
         public string Name { get; set; }
-
-      
-
         public int level { get; set; }
         [MaxLength(50)]
         public string Descibe { get; set; }

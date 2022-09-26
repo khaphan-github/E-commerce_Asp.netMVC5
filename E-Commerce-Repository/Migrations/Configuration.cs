@@ -48,7 +48,7 @@
                 /* ACCOUNT */
 
                 context.Accounts.AddOrUpdate(prop => prop.Id, 
-                    new AccountConsumer {Id = 1, Username = "khaphan",Avata = "https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg", DisplayName = "Kha Phan", CreatedDate = DateTime.Now, Email = "phanhoangkha01@gmail.com", Password = MD5Hash.Hash.Content("123") },
+                    new AccountConsumer {Id = 1, Username = "khaphan", Avatar = "https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg", DisplayName = "Kha Phan", CreatedDate = DateTime.Now, Email = "phanhoangkha01@gmail.com", Password = MD5Hash.Hash.Content("123") },
                     new AccountConsumer {Id = 2, Username = "quangvi", DisplayName = "Quang Vỉ", CreatedDate = DateTime.Now, Password = MD5Hash.Hash.Content("123") },
                     new AccountConsumer {Id = 3, Username = "yenquynh", DisplayName = "Yến Quỳnh", CreatedDate = DateTime.Now, Email = "yenquynh@gmail.com", Password = MD5Hash.Hash.Content("123") },
                     new AccountConsumer {Id = 4 ,Username = "yennhi", DisplayName = "Yến Nhi", CreatedDate = DateTime.Now, Email = "yennhi@gmail.com", Password = MD5Hash.Hash.Content("123") },

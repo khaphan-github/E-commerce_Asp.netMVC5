@@ -11,12 +11,9 @@ namespace E_Commerce_Repository.Models
         // Khóa ngoại đến product và warehouse
         public int ID { get; set; }
         public int numerItems { get; set; }
-
         public string status { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Product Products { get; set; }
 
-        public virtual ICollection<Warehouse> Warehouses { get; set; }
-
-
+        public virtual Warehouse Warehouses { get; set; }
     }
 }
