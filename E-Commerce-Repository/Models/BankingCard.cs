@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public class DeliverState
+    public class BankingCard
     {
-        [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int OrderNumber { get; set; }
+        public string BankingCardName { get; set; }
+        public string AccountName { get; set; }
+        public string AccountNumber { get; set; }
+        public AccountConsumer AccountConsumer { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

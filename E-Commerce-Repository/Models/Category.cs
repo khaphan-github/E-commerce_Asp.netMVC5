@@ -9,5 +9,6 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string thumbImage { get; set; }
+        public virtual ICollection<TypeProduct> TypeProducts { get; set; }
     }
 }

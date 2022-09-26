@@ -10,5 +10,7 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public float BaseSalary { get; set; }
+
+        public virtual ICollection<AccountAdmin> AccountAdmins { get; set; }
     }
 }

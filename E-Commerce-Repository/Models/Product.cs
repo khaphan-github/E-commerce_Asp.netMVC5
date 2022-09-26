@@ -8,7 +8,6 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
-<<<<<<< Updated upstream
         public int Quantity { get; set; }
         
         public virtual ICollection<OrderDetail> Orders { get; set; }
@@ -17,16 +16,9 @@ namespace E_Commerce_Repository.Models
         public virtual TypeProduct TypeProduct { get; set; }
         public  Supplier Supplier { get; set; }
         public  Company Company { get; set; }
-
         public virtual ICollection<ProductImage> ProductImages { get; set; }
-
         public  Describe Describe { get; set; }
-
         public  Promotion Promotion { get; set; }
-
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-=======
-        public int Quantity { get; set; }  
->>>>>>> Stashed changes
     }
 }

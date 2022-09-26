@@ -94,12 +94,9 @@ namespace E_Commerce_Repository.Repository
         public List<Category> GetCategories()
         {
             return (from category in repository.Categorys
-<<<<<<< Updated upstream
-                    select category).ToList();
-=======
-                    select category).ToList<Category>();
 
->>>>>>> Stashed changes
+                    select category).ToList();
+
         }
         //Lấy category theo id
         public Category getCategory(int Id)
@@ -128,13 +125,15 @@ namespace E_Commerce_Repository.Repository
         //Lấy feedback từ accountconsumerId
         public List<Feedback> GetFeedbackOfAccountConsumer(int AccountConsumerId)
         {
-            return (from feedback in repository.Feedbacks
-                    from account in repository.Accounts
-                    from accountconsumer in repository.AccountConsumers
-                    from accountrole in repository.AccountRoles
-                    where account.Id == AccountConsumerId && account.AccountRoles == accountrole.Account
-                          && accountrole.isActive == true && feedback.AccountConsumer == accountconsumer.Feedbacks
-                    select feedback).ToList();
+            /*  return (from feedback in repository.Feedbacks
+                      from account in repository.Accounts
+                      from accountconsumer in repository.Accounts
+                      from accountrole in repository.AccountRoles
+                      where account.Id == AccountConsumerId && account.AccountRoles == accountrole.Account
+                            && accountrole.isActive == true && feedback.AccountConsumer == accountconsumer.Feedbacks
+                      select feedback).ToList();
+            */
+            return null;
         }
         //Lấy feedback từ productId
         public List<Feedback> GetFeedbacks(int productId)

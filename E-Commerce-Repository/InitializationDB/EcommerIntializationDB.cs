@@ -15,7 +15,6 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-<<<<<<< Updated upstream
             /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED*/
             bool isUpdateDB = true;
             if (isUpdateDB) {
@@ -26,19 +25,13 @@ namespace E_Commerce_Repository.InitializationDB
                 var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
                 Database.SetInitializer(intitializer);
             }
-=======
 
-          //  var intitializer = new DropCreateDatabaseAlways<EcommerIntializationDB>();
-            // Database.SetInitializer(intitializer);
-
-           var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
-            Database.SetInitializer(initializer);  
-            
->>>>>>> Stashed changes
         }
+
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
         public DbSet<AccountState> AccountStates { get; set; }
+        public DbSet<BankingCard> BankingCards { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Company> Companys { get; set; }
@@ -61,7 +54,6 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Province> Provinces { get; set; }
 
-<<<<<<< Updated upstream
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -97,43 +89,5 @@ namespace E_Commerce_Repository.InitializationDB
             // ShoppingCard is a FK of AccountConsumer
            */
         }
-
-
-    }
-   
-=======
-
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
-
-            /* ACCOUNT 1..1 ---- 1..* ACCOUNTSTATE
-             * Quan hệ 1 nhiều: Mỗi account chỉ có 1 trạng thái duy nhất, Và nhiều account khác nhau 
-             * có nhiều trạng thái khác nhau 
-             * Mỗi khi tạo mới account - HasRequired một AccountState
-             * WithMany nhiều account
-             * HasForeignKey Account có khóa ngoại là AccountStateID (id của state)
-             */
-            modelBuilder.Entity<Account>()
-                .HasRequired<AccountState>(state => state.AccountState)
-                .WithMany(account => account.Accounts)
-                .HasForeignKey<int>(key => key.AccountStateID);
-
-            /* ACCOUNT 1..* ---- 1..* ACCOUNTROLE --> ACCOUNTHASROLE
-             * MỘT ACCOUNT CÓ NHIỀU QUYỀN VÀ MỘT QUYỀN THUỘC NHIỀU ACCOUNT
-             */
-            modelBuilder.Entity<Account>()
-                .HasMany<AccountRole>(account => account.AccountRoles)
-                .WithMany(role => role.Account)
-                .Map(accountHasRole => {
-                    accountHasRole.MapLeftKey("AccountRefID");
-                    accountHasRole.MapRightKey("RoleRefID");
-                    accountHasRole.ToTable("AccountHasRole");
-                });
->>>>>>> Stashed changes
-
-          /* ACCOUNTADMIN 1..1 ---- 1..1 POSITION 
-           */
-           
-        }      
-    }   
+    }  
 }
