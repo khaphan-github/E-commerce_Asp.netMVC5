@@ -1,4 +1,6 @@
-﻿using System;
+﻿using E_Commerce_Repository.Models;
+using E_Commerce_Repository.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +15,6 @@ namespace E_Commerce.Areas.Admin.Controllers
         {
             return View();
         }
+
     }
 }
