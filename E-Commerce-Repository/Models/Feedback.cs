@@ -10,5 +10,7 @@ namespace E_Commerce_Repository.Models
         public DateTime CreadtedDate = DateTime.Now;
         public string Comment { get; set; }
         public int Ranking { get; set; }
+        public AccountConsumer AccountConsumer { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

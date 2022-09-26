@@ -15,5 +15,7 @@ namespace E_Commerce_Repository.Models
         public float PercentPromotion { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public virtual ICollection<Product> Products { get; set; }
+        public AccountAdmin AccountAdmin { get; set; }
     }
 }

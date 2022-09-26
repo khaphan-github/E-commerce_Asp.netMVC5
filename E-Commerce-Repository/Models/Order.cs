@@ -10,5 +10,12 @@ namespace E_Commerce_Repository.Models
         public DateTime Date { get; set; }
         public float TotalPrice { get; set; }
 
+        public virtual ShippingMethod ShippingMethod { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual DeliverState DeliverState { get; set; }
+        public virtual AccountConsumer AccountConsumer { get; set; }
+        public virtual ICollection<OrderDetail> Products { get; set; }
+
     }
 }

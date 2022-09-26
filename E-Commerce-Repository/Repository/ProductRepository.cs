@@ -98,29 +98,9 @@ namespace E_Commerce_Repository.Repository
         }
 
         // Lấy toàn bộ sản phẩm
-<<<<<<< Updated upstream
         public List<Product> GetProducts() {
             return repository.Products.ToList();
-=======
-        public List<Product> GetProducts()
-        {
-            /*return (from product in repository.Set<Product>()
-                    where product.Name != null
-                    orderby product.Id
-                    select new Product
-                    {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Price = product.Price,
-                        Quantity = product.Quantity
-                    }).AsNoTracking().ToList();*/
-            /*var result = from product in repository.Products
-                         select product;
-            return (List<Product>)result;*/
 
-            return repository.Products.ToList();
-
->>>>>>> Stashed changes
         }
 
         // Xóa sản phẩm khỏi giỏ hàng
@@ -144,7 +124,7 @@ namespace E_Commerce_Repository.Repository
                          from describe in repository.Describes
                          where 
                             (product.Name == searchString) 
-                         || (categoty.Name == searchString && categoty.Products==typeproduct.Category && typeproduct.Products==product.TypeProduct)
+                         || (categoty.Name == searchString && categoty.TypeProducts==typeproduct.Category && typeproduct.Products==product.TypeProduct)
                          || (describe.Description == searchString && describe.Product==product.Describe.Product)
                          select product;
             return result.ToList();

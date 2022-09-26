@@ -14,9 +14,6 @@ namespace E_Commerce_Repository.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string ActiveType { get; set; }
-<<<<<<< Updated upstream
         public virtual ICollection<Product> Products { get; set; }
-=======
->>>>>>> Stashed changes
     }
 }
