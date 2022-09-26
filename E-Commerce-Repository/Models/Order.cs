@@ -15,7 +15,7 @@ namespace E_Commerce_Repository.Models
         public virtual Address Address { get; set; }
         public virtual DeliverState DeliverState { get; set; }
         public virtual AccountConsumer AccountConsumer { get; set; }
-        public virtual ICollection<OrderDetail> Products { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
 
     }
 }

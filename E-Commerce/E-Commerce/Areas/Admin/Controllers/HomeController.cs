@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using E_Commerce_Business_Logic.Session;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
@@ -14,9 +15,9 @@ namespace E_Commerce.Areas.Admin.Controllers
         public ActionResult Index()
         {
             // Hiển thị được tài dăng nhập vô 
-
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -30,13 +31,13 @@ namespace E_Commerce.Areas.Admin.Controllers
 
             if (account != null) {
 
-                Session["AccountLogin"] = account;
+                Session[SessionConstaint.USERSESION] = account;
 
                 return RedirectToAction("Index", "Home");
 
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

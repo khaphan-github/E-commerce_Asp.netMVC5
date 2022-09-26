@@ -94,9 +94,7 @@ namespace E_Commerce_Repository.Repository
         public List<Category> GetCategories()
         {
             return (from category in repository.Categorys
-
                     select category).ToList();
-
         }
         //Lấy category theo id
         public Category getCategory(int Id)

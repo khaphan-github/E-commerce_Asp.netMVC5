@@ -22,7 +22,7 @@ namespace E_Commerce_Repository.Models
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Phone { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string Sex { get; set; }
         public string Avatar { get; set; }   
         public virtual AccountState AccountState { get; set; }

@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Business_Logic.Session {
     public class SessionConstaint {
-        public const string USERSESION = "USERSESION";
+        public static string USERSESION = "USERSESION";
     }
 }

@@ -11,8 +11,7 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual Address Addresses { get; set; }
         public virtual ICollection<WarehouseProduct> Products { get; set; }
-
     }
 }

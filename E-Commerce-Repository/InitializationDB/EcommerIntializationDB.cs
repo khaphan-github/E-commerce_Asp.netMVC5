@@ -16,16 +16,15 @@ namespace E_Commerce_Repository.InitializationDB
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
             /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED*/
-            bool isUpdateDB = true;
+            bool isUpdateDB = false;
             if (isUpdateDB) {
                 var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
                 Database.SetInitializer(initializer);
             }
             else {
-                var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+                var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
                 Database.SetInitializer(intitializer);
             }
-
         }
 
         public DbSet<Account> Accounts { get; set; }
@@ -37,57 +36,43 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Company> Companys { get; set; }
         public DbSet<DeliverState> DeliverStates { get; set; }
         public DbSet<Describe> Describes { get; set; }
-        public DbSet<District> District { get; set; }
+        public DbSet<District> Districts { get; set; }
         public DbSet<Feedback> Feedbacks  { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<WarehouseProduct> WarehouseProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<ShippingMethod> ShippingMethods { get; set; }
         public DbSet<ShoppingCard> ShoppingCards { get; set; }
+        public DbSet<ShoppingCardDetail> ShoppingCardDetails { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<TypeProduct> TypeProducts { get; set; }
         public DbSet<Wards> Wards { get; set; }
-        public DbSet<AccountAdmin> AccountAdmins { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Province> Provinces { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            //  modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Properties<DateTime>()
-            .Configure(c => c.HasColumnType("datetime2"));
+            // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+           
+            modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
 
-            modelBuilder.Entity<Product>()
-              .HasOptional(product => product.Describe)
-              .WithRequired(desc => desc.Product);
+            modelBuilder.Entity<Product>().HasOptional(product => product.Describe).WithRequired(desc => desc.Product);
+         
+            modelBuilder.Entity<Address>().HasOptional(address => address.Province).WithRequired(province => province.Addresss);
+            modelBuilder.Entity<Address>().HasOptional(address => address.Wards).WithRequired(ward => ward.Address);
+            modelBuilder.Entity<Address>().HasOptional(address => address.District).WithRequired(dis => dis.Address);
 
-            modelBuilder.Entity<AccountConsumer>()
-             .HasOptional(accountConsumer => accountConsumer.ShoppingCards)
-             .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
-            /*  // Describe is a FK of Product
-          
 
-                        // District is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.District)
-                            .WithRequired(district => district.Address);
 
-                        // Province is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.Province)
-                            .WithRequired(province => province.Address);
+            modelBuilder.Entity<Warehouse>().HasOptional(wh => wh.Addresses).WithRequired(add => add.Warehouses);
 
-                        // Wards is a FK of Address
-                        modelBuilder.Entity<Address>()
-                            .HasOptional(address => address.Wards)
-                            .WithRequired(wards => wards.Address);
-            
-            // ShoppingCard is a FK of AccountConsumer
-           */
+            modelBuilder.Entity<AccountConsumer>().HasOptional(ac => ac.BankingCards).WithRequired(bk => bk.AccountConsumer);
+         
         }
     }  
 }

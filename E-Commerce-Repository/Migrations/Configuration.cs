@@ -53,32 +53,32 @@
                     new AccountConsumer {Id = 3, Username = "yenquynh", DisplayName = "Yến Quỳnh", CreatedDate = DateTime.Now, Email = "yenquynh@gmail.com", Password = MD5Hash.Hash.Content("123") },
                     new AccountConsumer {Id = 4 ,Username = "yennhi", DisplayName = "Yến Nhi", CreatedDate = DateTime.Now, Email = "yennhi@gmail.com", Password = MD5Hash.Hash.Content("123") },
 
-                    new AccountAdmin { Id = 11, Username = "admin", DisplayName = "Administration", CreatedDate = DateTime.Now, Password = MD5Hash.Hash.Content("123") },
-                    new AccountAdmin { Id = 12, Username = "system", DisplayName = "SystemAaministration", CreatedDate = DateTime.Now, Password = MD5Hash.Hash.Content("123") }
+                    new AccountAdmin { Id = 5, Username = "admin", DisplayName = "Administration", CreatedDate = DateTime.Now, Password = MD5Hash.Hash.Content("123") },
+                    new AccountAdmin { Id = 6, Username = "system", DisplayName = "SystemAaministration", CreatedDate = DateTime.Now, Password = MD5Hash.Hash.Content("123") }
                    
                  );
-
+        
                 /* ---------------------------------------------------------------------------------------------------------------*/
                 // ADD ROLE TO ACCOUNT
                 context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(1));
                 context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(2));
                 context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(3));
                 context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(4));
-                context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(11));
-                context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(12));
+                context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(5));
+                context.AccountRoles.Find(1).Account.Add(context.Accounts.Find(6));
 
-                context.AccountRoles.Find(2).Account.Add(context.Accounts.Find(11));
-                context.AccountRoles.Find(2).Account.Add(context.Accounts.Find(12));
+                context.AccountRoles.Find(2).Account.Add(context.Accounts.Find(5));
+                context.AccountRoles.Find(2).Account.Add(context.Accounts.Find(6));
 
-                context.AccountRoles.Find(3).Account.Add(context.Accounts.Find(12));
+                context.AccountRoles.Find(3).Account.Add(context.Accounts.Find(6));
 
                 // ADD STATE TO ACCOUNT
                 context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(1));
                 context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(2));
                 context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(3));
                 context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(4));
-                context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(11));
-                context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(12));
+                context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(5));
+                context.AccountStates.Find(1).Accounts.Add(context.Accounts.Find(6));
 
 
 
@@ -98,7 +98,7 @@
                     new TypeProduct {Id = 4, Name = "Laptop" }
                );
 
-                
+            
                 // SUPPLIER
                 context.Suppliers.AddOrUpdate(prop => prop.Id,
                     new Supplier {Id = 1, Name = "Thế giới di động" }
@@ -110,7 +110,8 @@
                      new Company {Id = 2, Name = "NOKIA" },
                      new Company {Id = 3, Name = "SAMSUNG" }
                 );
-               
+  
+
                 context.Promotions.AddOrUpdate(prop => prop.Id);
 
                 // PRODUCT
@@ -119,12 +120,15 @@
                      new Product {Id = 2, Name = "Apple IPhone 14 Pro", Price = 23990000 },
                      new Product {Id = 3, Name = "Apple IPhone 15 Pro", Price = 23990000 }
                 );
-               
+
+     
                 // ADD COMPANY FOR PRODUCT
                 var product1 = context.Products.Find(1);
                 var product2 = context.Products.Find(2);
                 var product3 = context.Products.Find(3);
+
                 var company1 = context.Companys.Find(1);
+
                 company1.Products.Add(product1);
                 company1.Products.Add(product2);
                 company1.Products.Add(product3);
@@ -142,7 +146,7 @@
                 typeProduct.Products.Add(product3);
 
                 // ADD IMAGE TO PRODUCT
-
+     
                 // context.Describes.AddOrUpdate();
                 context.ProductImages.AddOrUpdate(prop => prop.Id,
                     new ProductImage {Id = 1, URL = "/Resources/ProductImage/iphone14_promax.jpg" },
@@ -152,7 +156,7 @@
                     new ProductImage { Id = 5, URL = "/Resources/ProductImage/iphone14_promax.jpg" },
                     new ProductImage { Id = 6, URL = "/Resources/ProductImage/iphone14_promaxblack.png" }
                 );
-
+          
                 var image1 = context.ProductImages.Find(1);
                 var image2 = context.ProductImages.Find(2);
                 var image3 = context.ProductImages.Find(3);
@@ -166,8 +170,7 @@
                 product2.ProductImages.Add(image4);
                 product3.ProductImages.Add(image5);
                 product3.ProductImages.Add(image6);
-
-
+          
                 // FEEDBACK
                 context.Feedbacks.AddOrUpdate(prop => prop.Id,
                     new Feedback {
@@ -186,13 +189,13 @@
                         Ranking = 5,
                     }
                 );
+
                 // ADD FEEDBACK TO PRODUCT;
                 product1.Feedbacks.Add(context.Feedbacks.Find(1));
                 product1.Feedbacks.Add(context.Feedbacks.Find(2));
 
                 // ADDPRODUCT TO SHOPPING CARD
-                context.ShoppingCards.Find(1).Products.Add(product1);
-                context.ShoppingCards.Find(1).Products.Add(product2);
+                
 
                 // context.Provinces.AddOrUpdate();
                 // context.District.AddOrUpdate();

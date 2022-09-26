@@ -13,7 +13,6 @@ namespace E_Commerce_Repository.Models
         public int numerItems { get; set; }
         public string status { get; set; }
         public virtual Product Products { get; set; }
-
         public virtual Warehouse Warehouses { get; set; }
     }
 }

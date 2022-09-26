@@ -13,12 +13,11 @@ namespace E_Commerce_Repository.Models
         public string Street { get; set; }
 
         public virtual Province Province { get; set; }
-        //  huyện
         public virtual District District { get; set; }
-        //  phường
         public virtual Wards Wards { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<AccountConsumer> AccountConsumers { get; set; }
-        public virtual ICollection<Warehouse> Warehouses { get; set; }
+        public virtual Warehouse Warehouses { get; set; }
     }
 }

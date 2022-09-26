@@ -14,7 +14,6 @@ namespace E_Commerce_Repository.Models
         public string Desc { get; set; }
         public float PercentPromotion { get; set; }
         public DateTime CreatedDate { get; set; }
-
         public virtual ICollection<Product> Products { get; set; }
         public virtual AccountAdmin AccountAdmin { get; set; }
     }
