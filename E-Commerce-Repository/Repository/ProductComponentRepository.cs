@@ -93,10 +93,8 @@ namespace E_Commerce_Repository.Repository
         //Lấy toàn bộ danh sách category
         public List<Category> GetCategories()
         {
-
             return (from category in repository.Categorys
                     select category).ToList();
-
         }
         //Lấy category theo id
         public Category getCategory(int Id)

@@ -11,7 +11,6 @@ namespace E_Commerce_Repository.Models
     {
 
         public float Salary { get; set; }
-
         public virtual Position Position { get; set; }
     }
 }

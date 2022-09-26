@@ -1,5 +1,5 @@
-﻿using E_Commerce_Business_Logic.HomepageItems;
-using E_Commerce_Repository.Models;
+﻿using E_Commerce_Repository.Models;
+using E_Commerce_Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +12,16 @@ namespace E_Commerce.Controllers
     public class HomeController : Controller
     {
         // GET: Home Hiển thị trang chủ
+        private ProductComponentRepository productComponent = new ProductComponentRepository();
         public ActionResult Index()
         {
             
             // HIển thị danh mục kèm hình ảnh dưới phần banner
             ViewData["CategoryPicture"] = null;
             // Danh mục sản phẩm
-            ViewData["Category"] = null;
+            ViewData["Category"] = productComponent.GetCategories();
             // Hiển thị sản phẩm nổi bậc
             ViewData["TopProduct"] = null;
-
             // Hiển thị sản phẩm bán chạy
             ViewData["BestSellerPeoduct"] = null;
 

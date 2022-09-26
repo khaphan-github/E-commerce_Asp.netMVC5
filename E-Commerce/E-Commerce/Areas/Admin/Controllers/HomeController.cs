@@ -1,4 +1,4 @@
-﻿using E_Commerce_Business_Logic.HomepageItems;
+﻿using E_Commerce_Business_Logic.Logic;
 using E_Commerce_Repository.Models;
 using System;
 using System.Collections.Generic;
@@ -21,9 +21,10 @@ namespace E_Commerce.Areas.Admin.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password) {
+
             Login login = new Login();
 
-            AccountConsumer account = new AccountConsumer();
+            Account account = new AccountConsumer();
 
             account = login.ValidationAccount(username, password);
 

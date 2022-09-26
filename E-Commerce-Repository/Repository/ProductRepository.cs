@@ -14,6 +14,7 @@ namespace E_Commerce_Repository.Repository
     {
         // Tạo kết nối và đối tượng đến db
         public EcommerIntializationDB repository = new EcommerIntializationDB();
+
         // Thêm sản phẩm vào giỏ hàng
         public void AddProductToCard(int productId, int cardId) 
         {
@@ -97,25 +98,10 @@ namespace E_Commerce_Repository.Repository
         }
 
         // Lấy toàn bộ sản phẩm
-        public List<Product> GetProducts()
-        {
-            /*return (from product in repository.Set<Product>()
-                    where product.Name != null
-                    orderby product.Id
-                    select new Product
-                    {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Price = product.Price,
-                        Quantity = product.Quantity
-                    }).AsNoTracking().ToList();*/
-            /*var result = from product in repository.Products
-                         select product;
-            return (List<Product>)result;*/
-
-            return (repository.Products.Where(p => p.Id == 4)).ToList();
-
+        public List<Product> GetProducts() {
+            return repository.Products.ToList();
         }
+
         // Xóa sản phẩm khỏi giỏ hàng
         public void RemoveProductFromCard(int productId, int cardId) 
         {
@@ -135,8 +121,9 @@ namespace E_Commerce_Repository.Repository
                          from categoty in repository.Categorys
                          from typeproduct in repository.TypeProducts
                          from describe in repository.Describes
-                         where (product.Name == searchString) || 
-                         (categoty.Name == searchString && categoty.Products==typeproduct.Category && typeproduct.Products==product.TypeProduct)
+                         where 
+                            (product.Name == searchString) 
+                         || (categoty.Name == searchString && categoty.Products==typeproduct.Category && typeproduct.Products==product.TypeProduct)
                          || (describe.Description == searchString && describe.Product==product.Describe.Product)
                          select product;
             return result.ToList();

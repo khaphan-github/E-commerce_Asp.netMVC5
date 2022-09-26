@@ -13,6 +13,9 @@ namespace E_Commerce_Repository.Models
 
         [Key]
         public int Id { get; set; }
+
+        [Index(IsUnique = true)]
+        [StringLength(130)]
         public string Username { get; set; }
         public string DisplayName { get; set; }
         public string Password { get; set; }
@@ -22,9 +25,8 @@ namespace E_Commerce_Repository.Models
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
         public string Avata { get; set; }   
-
         public virtual AccountState AccountState { get; set; }
-        public virtual AccountRole AccountRoles { get; set; }
+        public virtual ICollection<AccountRole> AccountRoles { get; set; }
 
     }
 }

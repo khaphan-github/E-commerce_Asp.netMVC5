@@ -1,23 +1,25 @@
 ﻿@using E_Commerce_Repository.Models;
-@using E_Commerce_Business_Logic.HomepageItems;
 @using E_Commerce_Repository.InitializationDB;
 @using System.Web;
 @using E_Commerce_Business_Logic.Session;
 @{
-    HomepageItemsView LayoutView = new HomepageItemsView();
-
     var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
-    List<Product> ShoppingcardProduct = new List<Product>();
+
+    var ShoppingcardProduct = new List<Product>();
+
+
+
     if (isLogin) {
-        ShoppingcardProduct = LayoutView.ShoppingCardsView(accountConsumer);
+        if (accountConsumer.ShoppingCards != null) {
+            ShoppingcardProduct = accountConsumer.ShoppingCards.Products.ToList();
+        }
     }
-   
+
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
     var totalPrice = 0;
-
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -92,13 +94,13 @@
                                 if (accountConsumer != null) {
                                     <div class="dropdown">             
                                         <a class="btn dropdown-toggle header-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                            <img src="https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg" alt="avatar" style="width: 25%; padding-right: 10px; float: left;"/>
+                                            <img src="@accountConsumer.Avata" alt="av" style="width: 25%; padding-right: 10px; float: left;"/>
                                              
                                             <div style="text-align: left;float:left; font-size: 13px">
                                                 <span>
                                                     Tài khoản
                                                     <br />
-                                                    @accountConsumer.Username
+                                                    @accountConsumer.DisplayName
                                                 </span>
                                             </div>
                                         </a>

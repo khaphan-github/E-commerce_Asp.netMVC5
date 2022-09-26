@@ -15,13 +15,16 @@ namespace E_Commerce_Repository.InitializationDB
        
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-
-            //  var intitializer = new DropCreateDatabaseAlways<EcommerIntializationDB>();
-            //  Database.SetInitializer(intitializer);
-
-             var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
-             Database.SetInitializer(initializer);  
-            
+            /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED*/
+            bool isUpdateDB = true;
+            if (isUpdateDB) {
+                var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+                Database.SetInitializer(initializer);
+            }
+            else {
+                var intitializer = new DropCreateDatabaseIfModelChanges<EcommerIntializationDB>();
+                Database.SetInitializer(intitializer);
+            }
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }
@@ -49,16 +52,23 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<AccountAdmin> AccountAdmins { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
 
-
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Describe is a FK of Product
-            modelBuilder.Entity<Product>()
-                .HasOptional(product => product.Describe)
-                .WithRequired(desc => desc.Product);
 
-            /*
+            //  modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Properties<DateTime>()
+            .Configure(c => c.HasColumnType("datetime2"));
+
+            modelBuilder.Entity<Product>()
+              .HasOptional(product => product.Describe)
+              .WithRequired(desc => desc.Product);
+
+            modelBuilder.Entity<AccountConsumer>()
+             .HasOptional(accountConsumer => accountConsumer.ShoppingCards)
+             .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+            /*  // Describe is a FK of Product
+          
+
                         // District is a FK of Address
                         modelBuilder.Entity<Address>()
                             .HasOptional(address => address.District)
@@ -73,14 +83,12 @@ namespace E_Commerce_Repository.InitializationDB
                         modelBuilder.Entity<Address>()
                             .HasOptional(address => address.Wards)
                             .WithRequired(wards => wards.Address);
-            */
+            
             // ShoppingCard is a FK of AccountConsumer
-            modelBuilder.Entity<AccountConsumer>()
-              .HasOptional(accountConsumer => accountConsumer.ShoppingCard)
-              .WithRequired(shoppingCard => shoppingCard.AccountConsumer);
+           */
         }
 
-            
+
     }
    
 

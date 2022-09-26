@@ -8,9 +8,10 @@ namespace E_Commerce_Repository.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Index(IsUnique = true)]
+        [StringLength(100)]
         public string Name { get; set; }
-
         public virtual ICollection<Account> Accounts { get; set; }
-
     }
 }

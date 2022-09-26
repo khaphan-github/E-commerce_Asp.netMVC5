@@ -12,10 +12,14 @@ namespace E_Commerce_Repository.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Index(IsUnique = true)]
+        [StringLength(50)]
         public string Name { get; set; }
+
+        [MaxLength(50)]
         public string Descibe { get; set; }
         public bool isActive { get; set; }
-
         public virtual ICollection<Account> Account { get; set; }
     }
 }
