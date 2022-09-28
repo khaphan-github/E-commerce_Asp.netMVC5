@@ -156,7 +156,7 @@
                     new ProductImage { Id = 5, URL = "/Resources/ProductImage/iphone14_promax.jpg" },
                     new ProductImage { Id = 6, URL = "/Resources/ProductImage/iphone14_promaxblack.png" }
                 );
-          
+                context.SaveChanges();
                 var image1 = context.ProductImages.Find(1);
                 var image2 = context.ProductImages.Find(2);
                 var image3 = context.ProductImages.Find(3);
@@ -189,7 +189,6 @@
                         Ranking = 5,
                     }
                 );
-
                 // ADD FEEDBACK TO PRODUCT;
                 product1.Feedbacks.Add(context.Feedbacks.Find(1));
                 product1.Feedbacks.Add(context.Feedbacks.Find(2));
