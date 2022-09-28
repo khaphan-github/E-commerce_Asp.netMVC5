@@ -100,7 +100,6 @@ namespace E_Commerce_Repository.Repository
         // Lấy toàn bộ sản phẩm
         public List<Product> GetProducts() {
             return repository.Products.ToList();
-
         }
 
         // Xóa sản phẩm khỏi giỏ hàng

@@ -13,25 +13,25 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
-       
+        private ProductRepository productRep = new ProductRepository();
+
+        private ProductComponentRepository productRepository = new ProductComponentRepository();
         public ActionResult Index() {
-          
-            ShopComponent shopComponent = new ShopComponent();
+
             
             // Hiển thị danh mục sản phẩm
-            ViewData["Category"] = null;
+            ViewData["Category"] = productRepository.GetCategories();
 
             // Hiển thị Hảng sản suất;
-            ViewData["Company"] = shopComponent.CompanyList;
+            ViewData["Company"] = productRepository.GetCompanies();
 
             // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;
 
             System.Diagnostics.Debug.WriteLine("");
 
+            ViewBag.Product = productRep.GetProducts();
 
-            ProductRepository productRepository = new ProductRepository();
-            ViewBag.Product = productRepository.GetProducts();
             return View();
         }
     }

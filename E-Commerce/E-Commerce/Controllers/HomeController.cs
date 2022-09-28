@@ -13,6 +13,7 @@ namespace E_Commerce.Controllers
     {
         // GET: Home Hiển thị trang chủ
         private ProductComponentRepository productComponent = new ProductComponentRepository();
+
         public ActionResult Index()
         {
             

@@ -20,17 +20,12 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // Người dùng đăng nhập bằng username và password
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public string Login(string username, string password) {
-
-            // nHI SỬA LÝ LÀM GÌ
+        // Người dùng đăng nhập bằng username và password 
+        public string Login(string usernames, string passwords) {
             
             Login BussinessLogin = new Login();
 
-            AccountConsumer account = BussinessLogin.ValidationAccount(username, password) as AccountConsumer;
+            AccountConsumer account = BussinessLogin.ValidationAccount(usernames, passwords) as AccountConsumer;
 
             if (account != null) {
 
@@ -42,20 +37,20 @@ namespace E_Commerce.Controllers
             }
             System.Diagnostics.Debug.WriteLine("ACCOUNT NOT ESIST IN DB");
             return "fail";
-
         }
+
         public string Logout() {
             Session.Clear();
             return "Logout Successfully";
         }
 
-   
-
+        
         // THANH TOÁN QUAMOMO
-        public ActionResult PaymentMomo() {
+        public ActionResult PaymentMomo(string amout) {
+
             // https://test-payment.momo.vn/download/.
             string responeFromMomo =
-                PaymentRequest.sendPaymentRequest("20000","testpayment");
+                PaymentRequest.sendPaymentRequest("20000","Thanh toán mua hàng Unique Shop");
             
             JObject jmessage = JObject.Parse(responeFromMomo);
             bool successPayment = jmessage.GetValue("payUrl").ToString() != null;
@@ -71,6 +66,10 @@ namespace E_Commerce.Controllers
 
         // Thanh toán tiền mặt
         public ActionResult Payment() {
+            return View();
+        }
+
+        public ActionResult AccountDetail() {
             return View();
         }
     }

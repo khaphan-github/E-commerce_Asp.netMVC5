@@ -3841,7 +3841,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\js\AuthenticationJS\GoogleAuthentication.js" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
@@ -3856,6 +3855,7 @@
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShopBaseController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserContactController.cs" />
@@ -4138,6 +4138,7 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\UserContact\Index.cshtml" />
+    <Content Include="Views\Consumer\AccountDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
