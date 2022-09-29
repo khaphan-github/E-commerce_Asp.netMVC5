@@ -61,9 +61,11 @@
   <ItemGroup>
     <Compile Include="Admin\BrandView.cs" />
     <Compile Include="Admin\CategoryView.cs" />
+    <Compile Include="CartHandler\CartHandlder.cs" />
     <Compile Include="Logic\CardLogic.cs" />
     <Compile Include="Logic\Login.cs" />
     <Compile Include="Logic\UploadImage.cs" />
+    <Compile Include="PaymentMomo\HandleMomoResponse.cs" />
     <Compile Include="PaymentMomo\MomoSecurity.cs" />
     <Compile Include="PaymentMomo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

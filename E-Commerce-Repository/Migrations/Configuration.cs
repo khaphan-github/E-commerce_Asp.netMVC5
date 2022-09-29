@@ -179,7 +179,6 @@
 
                 var account = context.Accounts.Find(1) as AccountConsumer;
 
-
                 context.ShoppingCardDetails.Add(new ShoppingCardDetail { ShoppingCard = account.ShoppingCards, Product = product1 });
                 // context.BankingCards.AddOrUpdate();
                 // FEEDBACK
@@ -206,14 +205,9 @@
                 product1.Feedbacks.Add(context.Feedbacks.Find(2));
 
                 // ADDPRODUCT TO SHOPPING CARD
-                
 
-                // context.Provinces.AddOrUpdate();
-                // context.District.AddOrUpdate();
-                // context.Wards.AddOrUpdate();
-                // context.Addresses.AddOrUpdate();
-                //context.AddressAccountConsumer.AddOrUpdate(); /*--bảng này không có chèn mà vẫn có trong diagram!!!--*/
-                // context.Warehouses.AddOrUpdate();
+                /*--bảng này không có chèn mà vẫn có trong diagram!!!--*/
+               
                 //context.WarehousesAddresses.AddOrUpdate();
                 //context.WarehouseProduct.AddOrUpdate();
                 // context.PaymentMethods.AddOrUpdate();
