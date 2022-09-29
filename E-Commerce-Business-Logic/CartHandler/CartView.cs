@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace E_Commerce.Models {
+namespace E_Commerce_Business_Logic.CartHandler {
     public class CartView {
         public int cardId { get; set; }
         public List<ProductView> Products { get; set; }
+
+        public float totalprice { get; set; }
         public CartView() {
             Products = new List<ProductView>();
         }
@@ -19,6 +19,7 @@ namespace E_Commerce.Models {
             else {
                 Products.Add(product);
             }
+            totalprice += product.Price;
         }
 
         public void RemoveProductFromCard(int productId) {

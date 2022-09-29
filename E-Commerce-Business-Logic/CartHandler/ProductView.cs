@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace E_Commerce.Models {
+namespace E_Commerce_Business_Logic.CartHandler {
     public class ProductView {
         public int productId { get; set; }
         public string productName { get; set; }

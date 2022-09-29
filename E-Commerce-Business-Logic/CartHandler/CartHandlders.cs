@@ -1,5 +1,4 @@
-﻿using E_Commerce.Models;
-using E_Commerce_Repository.Models;
+﻿using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Business_Logic.CartHandler {
     public class CartHandlders {
-
         public static CartView getCardViewSession(AccountConsumer account) {
             if (account != null) {
                 ProductRepository repository = new ProductRepository();

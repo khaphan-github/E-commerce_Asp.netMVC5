@@ -1,20 +1,19 @@
 ﻿@using E_Commerce_Repository.Models;
 @using E_Commerce_Business_Logic.Session;
+@using E_Commerce_Business_Logic.CartHandler;
 
 @{
     var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
 
+    var ShoppingcardProduct = Session[SessionConstaint.SHOPPINGCART] as CartView;
 
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
-    var totalPrice = 0;
 }
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- molla/category-market.html  22 Nov 2019 10:02:55 GMT -->
 <head>
     <meta charset="UTF-8">
@@ -124,17 +123,17 @@
                             <a href="@hreflink" onclick="ShowShoppingCard()" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
-                                <span class="cart-count">@ShoppingcardProduct</span>
-                                @if (isLogin && ShoppingcardProduct.Count() != 0) {
+                                @if (isLogin && ShoppingcardProduct != null) {
+                                    <span class="cart-count">@ShoppingcardProduct.Products.ToList().Count()</span>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <div class="dropdown-cart-products">
-                                            @foreach (var product in ShoppingcardProduct) {
-                                                totalPrice += product.Price;
+                                            @foreach (var product in ShoppingcardProduct.Products) {
+
                                                 <div class="product">
                                                     <div class="product-cart-details">
                                                         <h4 class="product-title">
                                                             <!--Url Action To product detail-->
-                                                            <a href="#">@product.Name</a>
+                                                            <a href="#">@product.productName</a>
                                                         </h4>
 
                                                         <span class="cart-product-info">
@@ -146,10 +145,7 @@
                                                     <figure class="product-image-container">
                                                         <!--Url Action To product detail-->
                                                         <a href="#" class="product-image">
-                                                            @{
-                                                                var productThumb = @product.ProductImages.ToList();
-                                                            }
-                                                            <img src="@productThumb[0].URL" alt="product">
+                                                            <img src="@product.productImages.ToList().ElementAt(0).URL" alt="product">
                                                         </a>
                                                     </figure>
                                                     <!--Url Action Remove product from shopping card-->
@@ -160,7 +156,7 @@
                                         </div><!-- End .cart-product -->
                                         <div class="dropdown-cart-total">
                                             <span>Tổng cộng</span>
-                                            <span class="cart-total-price"> @String.Format("{0:n0}", @totalPrice) đ </span>
+                                            <span class="cart-total-price"> @String.Format("{0:n0}", @ShoppingcardProduct.totalprice) đ </span>
                                         </div><!-- End .dropdown-cart-total -->
 
                                         <div class="dropdown-cart-action">

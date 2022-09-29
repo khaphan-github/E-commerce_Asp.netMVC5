@@ -4139,6 +4139,7 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\UserContact\Index.cshtml" />
     <Content Include="Views\Consumer\AccountDetail.cshtml" />
+    <Content Include="Views\Consumer\PaymentMomoSuccessfull.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

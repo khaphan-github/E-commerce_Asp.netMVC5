@@ -17,13 +17,13 @@ namespace E_Commerce_Business_Logic.PaymentMomo {
         private const string API_ENDPOINT = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
 
         // HIỂN THỊ TRANG THANH TOÁN THÀNH CÔNG
-        private const string RETURN_URL = "https://localhost:44302/";
+        private const string RETURN_URL = "https://localhost:44302/Consumer/ConfirmPaymentMomo";
 
         // DÙNG NGROK https://dashboard.ngrok.com/events/subscriptions
-        private const string NOTIFICATION_URL = "https://4c8d-2001-ee0-5045-50-58c1-b2ec-3123-740d.ap.ngrok.io/Home/SavePayment";
+        private const string NOTIFICATION_URL = "https://dashboard.ngrok.com/events/subscriptions";
 
-        private static string orderId = DateTime.Now.Ticks.ToString();
-        private static string requestId = DateTime.Now.Ticks.ToString();
+        private static string orderId = DateTime.Now.Ticks.ToString()+"03";
+        private static string requestId = DateTime.Now.Ticks.ToString()+ "03";
         private static string extraData = "";
 
         public PaymentRequest() {

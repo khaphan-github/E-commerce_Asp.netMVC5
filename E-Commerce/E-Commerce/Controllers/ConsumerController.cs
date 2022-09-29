@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using E_Commerce_Repository.Models;
 using E_Commerce_Business_Logic.Logic;
@@ -13,10 +11,8 @@ using E_Commerce_Business_Logic.CartHandler;
 using Newtonsoft.Json.Linq;
 using E_Commerce.Models;
 
-namespace E_Commerce.Controllers
-{
-    public class ConsumerController : Controller
-    {
+namespace E_Commerce.Controllers {
+    public class ConsumerController : Controller {
         public ProductRepository productRepository = new ProductRepository();
         // GET: Consumer
         public ActionResult Index() {
@@ -24,13 +20,13 @@ namespace E_Commerce.Controllers
         }
 
         // Người dùng đăng nhập bằng username và password 
-        
+
         public string Login(string usernames, string passwords) {
-            
+
             Login BussinessLogin = new Login();
 
             AccountConsumer account = BussinessLogin.ValidationAccount(usernames, passwords) as AccountConsumer;
-          
+
             if (account != null) {
                 CartView cart = CartHandlders.getCardViewSession(account);
                 System.Diagnostics.Debug.WriteLine(cart.Products.ElementAt(0).productName);
@@ -49,26 +45,27 @@ namespace E_Commerce.Controllers
             return "Logout Successfully";
         }
 
-        
+
         // THANH TOÁN QUAMOMO
         public ActionResult PaymentMomo(string amout) {
-            
-            // https://test-payment.momo.vn/download/.
-            string responeFromMomo =
-                PaymentRequest.sendPaymentRequest("20000","Thanh toán mua hàng Unique Shop");
-            
-            JObject jmessage = JObject.Parse(responeFromMomo);
-            bool successPayment = jmessage.GetValue("payUrl").ToString() != null;
-            // Update thanh toán cập nhật hóa đơn
+            if (amout != null) {
+                // https://test-payment.momo.vn/download/ 
+                string responeFromMomo = PaymentRequest.sendPaymentRequest(amout, "Thanh toán mua hàng Unique Shop");
 
-            try { 
-                return Redirect(jmessage.GetValue("payUrl").ToString());
-            } catch (Exception e) {
-                
+                JObject jmessage = JObject.Parse(responeFromMomo);
+
+                System.Diagnostics.Debug.WriteLine(jmessage.ToString());
+
+                try {
+                    bool successPayment = jmessage.GetValue("payUrl").ToString() != null;
+                    return Redirect(jmessage.GetValue("payUrl").ToString());
+                    // Update thanh toán cập nhật hóa đơn                  
+                } catch (Exception e) {
+
+                }
+               
             }
-
             // Hiển thị trang thông báo thành công
-
             return Redirect("/Card/Index");
         }
 
@@ -80,5 +77,20 @@ namespace E_Commerce.Controllers
         public ActionResult AccountDetail() {
             return View();
         }
+
+        public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
+            // Handle response
+            if (response.errorCode.Equals("0")) {
+                // thanh toans thanfh coong
+                // Thêm sản phẩm vào order
+                // Xóa sản phẩm khỏi card
+
+            }
+            else {
+                // Thanh toan that bai
+            }
+            return View();
+        }
+
     }
 }
