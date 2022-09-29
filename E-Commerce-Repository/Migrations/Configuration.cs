@@ -12,7 +12,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -111,22 +111,26 @@
                      new Company { Id = 3, Name = "SAMSUNG" }
                 );
 
-
-                context.Promotions.AddOrUpdate(prop => prop.Id);
-
+                context.Promotions.AddOrUpdate(prop => prop.Id, new Promotion {
+                    Id = 1,
+                    Name = "Khuyến Mãi 9/9"
+                });
+                context.SaveChanges();
                 // PRODUCT
                 context.Products.AddOrUpdate(prop => prop.Id,
-                     new Product { Id = 1, Name = "Apple IPhone 13 Pro", Price = 23990000 },
-                     new Product { Id = 2, Name = "Apple IPhone 14 Pro", Price = 23990000 },
-                     new Product { Id = 3, Name = "Apple IPhone 15 Pro", Price = 43990000 }
+                     new Product { Id = 1, Name = "Apple IPhone 13 Pro", Price = 23990000, PromotionID =1},
+                     new Product { Id = 2, Name = "Apple IPhone 14 Pro", Price = 23990000, PromotionID = 1 },
+                     new Product { Id = 3, Name = "Apple IPhone 15 Pro", Price = 43990000, PromotionID = 1 }
                 );
-
-
                 // ADD COMPANY FOR PRODUCT
                 var product1 = context.Products.Find(1);
                 var product2 = context.Products.Find(2);
                 var product3 = context.Products.Find(3);
 
+                context.Promotions.Find(1).Products.Add(product1);
+                context.Promotions.Find(1).Products.Add(product2);
+                context.Promotions.Find(1).Products.Add(product3);
+                                context.SaveChanges();
                 var company1 = context.Companys.Find(1);
 
                 company1.Products.Add(product1);
@@ -146,7 +150,7 @@
                 typeProduct.Products.Add(product3);
 
                 // ADD IMAGE TO PRODUCT
-
+                
                 // context.Describes.AddOrUpdate();
                 context.ProductImages.AddOrUpdate(prop => prop.Id,
                     new ProductImage { Id = 1, URL = "/Resources/ProductImage/iphone14_promax.jpg" },

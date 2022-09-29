@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="Admin\BrandView.cs" />
     <Compile Include="Admin\CategoryView.cs" />
-    <Compile Include="CartHandler\CartHandlder.cs" />
+    <Compile Include="CartHandler\CartHandlders.cs" />
+    <Compile Include="CartHandler\CartView.cs" />
+    <Compile Include="CartHandler\ProductView.cs" />
     <Compile Include="Logic\CardLogic.cs" />
     <Compile Include="Logic\Login.cs" />
     <Compile Include="Logic\UploadImage.cs" />

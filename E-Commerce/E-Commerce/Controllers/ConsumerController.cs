@@ -8,6 +8,8 @@ using E_Commerce_Business_Logic.Logic;
 using E_Commerce_Business_Logic.Session;
 using E_Commerce_Repository.Repository;
 using E_Commerce_Business_Logic.PaymentMomo;
+using E_Commerce_Business_Logic.CartHandler;
+
 using Newtonsoft.Json.Linq;
 using E_Commerce.Models;
 
@@ -28,18 +30,14 @@ namespace E_Commerce.Controllers
             Login BussinessLogin = new Login();
 
             AccountConsumer account = BussinessLogin.ValidationAccount(usernames, passwords) as AccountConsumer;
-           //  Product productInshoppingCard = productRepository.getProductInShoppingCard(account);
-            CartView card = new CartView() {
-                cardId = account.Id,
-
-            };
-
+          
             if (account != null) {
-
-                System.Diagnostics.Debug.WriteLine(account.Username);
+                CartView cart = CartHandlders.getCardViewSession(account);
+                System.Diagnostics.Debug.WriteLine(cart.Products.ElementAt(0).productName);
 
                 Session.Add(SessionConstaint.USERSESION, account);
-                Session.Add(SessionConstaint.SHOPPINGCART, card);
+                Session.Add(SessionConstaint.SHOPPINGCART, cart);
+
                 return "success";
             }
             System.Diagnostics.Debug.WriteLine("ACCOUNT NOT ESIST IN DB");

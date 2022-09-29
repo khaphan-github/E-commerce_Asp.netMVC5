@@ -3863,8 +3863,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ProductView.cs" />
-    <Compile Include="Models\CartView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

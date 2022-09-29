@@ -84,11 +84,10 @@ namespace E_Commerce_Repository.Repository
         public List<Product> getProductInShoppingCard(AccountConsumer accountConsumer)
         {
             List<Product> result = 
-                        (from details in repository.ShoppingCardDetails
+                        ( from details in repository.ShoppingCardDetails
                           where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
                           select details.Product).ToList();
             return result;
-
         }
 
         // Lấy toàn bộ sản phẩm

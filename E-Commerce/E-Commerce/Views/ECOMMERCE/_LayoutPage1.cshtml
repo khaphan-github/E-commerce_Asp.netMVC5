@@ -1,16 +1,11 @@
 ﻿@using E_Commerce_Repository.Models;
 @using E_Commerce_Business_Logic.Session;
 
-
 @{
     var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
 
-    var ShoppingcardProduct = new List<Product>();
-    if (isLogin && accountConsumer.ShoppingCards.isEmpty.ToString().Equals("0")) {
-
-    }
 
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
@@ -86,7 +81,7 @@
 
                         @{
                             if (accountConsumer != null) {
-                                <div id="userlogin" >
+                                <div id="userlogin">
                                     <div class="dropdown">
                                         <a class="btn dropdown-toggle header-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
                                             <img src="@accountConsumer.Avatar" alt="av" style="width: 25%; padding-right: 10px; float: left;" />
@@ -129,7 +124,7 @@
                             <a href="@hreflink" onclick="ShowShoppingCard()" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
-                                <span class="cart-count">@ShoppingcardProduct.Count</span>
+                                <span class="cart-count">@ShoppingcardProduct</span>
                                 @if (isLogin && ShoppingcardProduct.Count() != 0) {
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <div class="dropdown-cart-products">
@@ -643,7 +638,7 @@
 
         function Logout() {
             fetch('https://localhost:44302/Consumer/Logout');
-             window.location.replace("https://localhost:44302/");
+            window.location.replace("https://localhost:44302/");
         }
 
     </script>
