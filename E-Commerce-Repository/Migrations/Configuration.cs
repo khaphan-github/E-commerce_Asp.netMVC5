@@ -228,15 +228,85 @@ new AccountConsumer { Id = 2, Username = "quangvi", DisplayName = "Quang Vỉ", 
                 // context.Provinces.AddOrUpdate();
                 // context.District.AddOrUpdate();
                 // context.Wards.AddOrUpdate();
-                // context.Addresses.AddOrUpdate();
                 //context.AddressAccountConsumer.AddOrUpdate(); /*--bảng này không có chèn mà vẫn có trong diagram!!!--*/
-                // context.Warehouses.AddOrUpdate();
+                // Add Warehouses
+                context.Warehouses.AddOrUpdate(
+                    wh=>wh.Id,
+                    new Warehouse { Id = 1, Name = "Nhà kho khu AB", Status = "Đang hoạt động" },
+                    new Warehouse { Id = 2, Name = "Nhà kho khu R", Status = "Đang hoạt động" },
+                    new Warehouse { Id = 3, Name = "Nhà kho khu E", Status = "Đang hoạt động" },
+                    new Warehouse { Id = 4, Name = "Nhà kho khu U", Status = "Đang hoạt động" }
+                    );
+                // Add Addresses
+                context.Addresses.AddOrUpdate(
+                    ad => ad.Id,
+                    new Address { Id = 1, Street = "Lê Văn Việt" },
+                    new Address { Id = 2, Street = "Đỗ Xuân Hợp" },
+                    new Address { Id = 3, Street = "Quang Trung" },
+                    new Address { Id = 4, Street = "Đinh Củng Viên" }
+                    );
+                //context.Warehouses.Find(1).Addresses.Add(context.Addresses.Find(1));
+                context.SaveChanges();
                 //context.WarehousesAddresses.AddOrUpdate();
                 //context.WarehouseProduct.AddOrUpdate();
-                // context.PaymentMethods.AddOrUpdate();
-                //context.ShippingMethods.AddOrUpdate();
-                // context.DeliverStates.AddOrUpdate();
-                // context.Orders.AddOrUpdate();
+                // Add PaymentMethods
+                context.PaymentMethods.AddOrUpdate(
+                    pay=>pay.Id,
+                    new PaymentMethod { Id = 1, Name = "Tiền mặt", Desc = "" },
+                    new PaymentMethod { Id = 1, Name = "Thẻ ngân hàng", Desc = "" }
+                    );
+                // Add ShippingMethods
+                context.ShippingMethods.AddOrUpdate(
+                    shi=>shi.Id,
+                    new ShippingMethod() { Id = 1, Name = "Giao hàng tiết kiệm", Desc = "" },
+                    new ShippingMethod() { Id = 2, Name = "Giao hàng nhanh", Desc = "" },
+                    new ShippingMethod() { Id = 3, Name = "Giao hỏa tốc", Desc = "" }
+                    );
+                // Add DeliverStates
+                context.DeliverStates.AddOrUpdate(
+                    del=>del.Id,
+                    new DeliverState { Id = 1, Name = "Chờ xác nhận", OrderNumber = 2 },
+                    new DeliverState { Id = 2, Name = "Chờ lấy hàng", OrderNumber = 3 },
+                    new DeliverState { Id = 3, Name = "Đang giao", OrderNumber = 3 },
+                    new DeliverState { Id = 4, Name = "Đã giao", OrderNumber = 2 }
+                    );
+                // Add Orders
+                context.Orders.AddOrUpdate(o=>o.Id,
+                    new Order() { Id = 1, Date = DateTime.Now, TotalPrice = 23990000 },
+                    new Order() { Id = 2, Date = DateTime.Now, TotalPrice = 23990000 },
+                    new Order() { Id = 3, Date = DateTime.Now, TotalPrice = 23990000 },
+                    new Order() { Id = 4, Date = DateTime.Now, TotalPrice = 23990000 }
+                );
+                // Add ShippingMethod to Order
+                context.ShippingMethods.Find(1).Orders.Add(context.Orders.Find(1));
+                context.ShippingMethods.Find(2).Orders.Add(context.Orders.Find(2));
+                context.ShippingMethods.Find(3).Orders.Add(context.Orders.Find(3));
+                context.ShippingMethods.Find(1).Orders.Add(context.Orders.Find(4));
+                // Add PaymentMethod to Order
+                context.PaymentMethods.Find(1).Orders.Add(context.Orders.Find(1));
+                context.PaymentMethods.Find(2).Orders.Add(context.Orders.Find(2));
+                context.PaymentMethods.Find(2).Orders.Add(context.Orders.Find(3));
+                context.PaymentMethods.Find(1).Orders.Add(context.Orders.Find(4));
+                // Add Address to Order
+                context.Addresses.Find(4).Orders.Add(context.Orders.Find(1));
+                context.Addresses.Find(1).Orders.Add(context.Orders.Find(2));
+                context.Addresses.Find(3).Orders.Add(context.Orders.Find(3));
+                context.Addresses.Find(1).Orders.Add(context.Orders.Find(4));
+                // Add DeliverState to Order
+                context.DeliverStates.Find(1).Orders.Add(context.Orders.Find(1));
+                context.DeliverStates.Find(2).Orders.Add(context.Orders.Find(2));
+                context.DeliverStates.Find(1).Orders.Add(context.Orders.Find(3));
+                context.DeliverStates.Find(4).Orders.Add(context.Orders.Find(4));
+                // Add AccountConsumer to Order
+                //context.Accounts.Find(1).or
+
+                context.SaveChanges();
+                /*var product1 = context.Products.Find(1);
+                var supplier1 = context.Suppliers.Find(1);
+                supplier1.Products.Add(product1);
+                supplier1.Products.Add(product2);
+                supplier1.Products.Add(product3);*/
+
                 //context.OrderDetail.AddOrUpdate();
 
                 context.SaveChanges();

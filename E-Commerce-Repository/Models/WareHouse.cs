@@ -13,5 +13,10 @@ namespace E_Commerce_Repository.Models
         public string Status { get; set; }
         public virtual Address Addresses { get; set; }
         public virtual ICollection<WarehouseProduct> Products { get; set; }
+
+        internal void Add(Account account)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
