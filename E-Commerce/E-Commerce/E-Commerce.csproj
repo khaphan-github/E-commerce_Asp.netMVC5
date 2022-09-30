@@ -3847,6 +3847,7 @@
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShopBaseController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserContactController.cs" />
@@ -4126,6 +4127,8 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\UserContact\Index.cshtml" />
+    <Content Include="Views\Consumer\AccountDetail.cshtml" />
+    <Content Include="Views\Consumer\ConfirmPaymentMomo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

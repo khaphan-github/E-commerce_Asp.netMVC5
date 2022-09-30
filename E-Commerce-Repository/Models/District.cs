@@ -16,6 +16,7 @@ namespace E_Commerce_Repository.Models
         // Quan hệ 1 - 1 với địa chỉ
        
         // Quan hệ 1 nhiều với phường xã
+        public int? AddressID { get; set; }
         public virtual Address Address { get; set; }
       
     }

@@ -12,10 +12,15 @@ namespace E_Commerce_Repository.InitializationDB
 {
     public class EcommerIntializationDB : DbContext
     {
-       
         public EcommerIntializationDB() : base("EcommerIntializationDB")
         {
-            /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED*/
+            /* CHUYỂN THÀNH FALSE ĐỂ KHÔNG UDATE DỬ LIỆU TRONG SEED
+                 1. PULL CODE VỀ XONG XÓA DB TRÊN MÁY
+                 2. isUpdateDB = false;
+                 3. Run project (Nó sẽ bị lổi) -> tắt project
+                 4. Mở PACKAGE MANAGER CONSOLE > gõ "Update-Database -Verbose"
+                 5. Run;
+            */
             bool isUpdateDB = false;
             if (isUpdateDB) {
                 var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
@@ -56,23 +61,19 @@ namespace E_Commerce_Repository.InitializationDB
         public DbSet<Province> Provinces { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
-            // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-           
             modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
-
+           
             modelBuilder.Entity<Product>().HasOptional(product => product.Describe).WithRequired(desc => desc.Product);
-         
+           
             modelBuilder.Entity<Address>().HasOptional(address => address.Province).WithRequired(province => province.Addresss);
+            
             modelBuilder.Entity<Address>().HasOptional(address => address.Wards).WithRequired(ward => ward.Address);
+            
             modelBuilder.Entity<Address>().HasOptional(address => address.District).WithRequired(dis => dis.Address);
-
-
-
+           
             modelBuilder.Entity<Warehouse>().HasOptional(wh => wh.Addresses).WithRequired(add => add.Warehouses);
-
+            
             modelBuilder.Entity<AccountConsumer>().HasOptional(ac => ac.BankingCards).WithRequired(bk => bk.AccountConsumer);
-         
         }
     }  
 }

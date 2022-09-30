@@ -13,7 +13,7 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Domain { get; set; }
-        
+        public int? AddressID { get; set; }
         public virtual Address Addresss { get; set; }
         // Quan hệ nhiều 1 với quận huyện
     }

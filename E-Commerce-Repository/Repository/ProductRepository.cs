@@ -81,26 +81,18 @@ namespace E_Commerce_Repository.Repository
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
-        public Dictionary<Product, int> getProductInShoppingCard(AccountConsumer accountConsumer)
+        public List<Product> getProductInShoppingCard(AccountConsumer accountConsumer)
         {
-            var shoppingcarddetails = new List<ShoppingCardDetail>();
-            var result = from product in repository.Products
-                         from shoppingcarddetail in shoppingcarddetails    /*?????????????*/
-                         from shoppingcard in repository.ShoppingCards
-                         let number= shoppingcard.Number
-                         where shoppingcard.Id==shoppingcarddetail.ShoppingCard.Id && shoppingcarddetail.Product.Id==product.Id
-                         select new {
-                               product,
-                               Number=number
-                         };
-            return (Dictionary<Product, int>)result;
-
+            List<Product> result = 
+                        ( from details in repository.ShoppingCardDetails
+                          where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
+                          select details.Product).ToList();
+            return result;
         }
 
         // Lấy toàn bộ sản phẩm
-        public List<Product> GetProducts() 
-        {
-            return repository.Products.OrderBy(p=>p.Id).ToList();
+        public List<Product> GetProducts() {
+            return repository.Products.ToList();
         }
 
         // Xóa sản phẩm khỏi giỏ hàng

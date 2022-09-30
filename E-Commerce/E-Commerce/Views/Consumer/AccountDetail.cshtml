@@ -1,0 +1,89 @@
+﻿@using E_Commerce_Repository.Models;
+@using E_Commerce_Business_Logic.Session;
+@{
+    ViewBag.Title = "AccountDetail";
+    Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
+
+}
+@{
+    var accountConsumer = HttpContext.Current.Session[SessionConstaint.USERSESION] as AccountConsumer;
+}
+    <main>
+        <div class="page-content" style="font-family:Arial">
+            <div class="container">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+                    <div class="container">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Account</li>
+                        </ol>
+                    </div><!-- End .container -->
+                </nav><!-- End .breadcrumb-nav -->
+                <div class="row">
+                    <aside class="col-lg-3 ">
+                        <div class="sidebar sidebar-shop">
+
+                            <div class="widget">
+                                <h3 class="widget-title">
+                                    <a href="" style="font-family:Arial">Thông tin tài khoản</a>
+                                </h3><!-- End .widget-title -->
+                                <!--Category-->
+                                <h3 class="widget-title">
+                                    <a href="" style="font-family:Arial">Quản lý đơn hàng</a>
+                                </h3><!-- End .widget-title -->
+                            </div><!-- End .widget -->
+
+                            <div class="widget">
+                                <button type="submit" class="btn btn-outline" style="width:100px">Đăng suất</button>
+                            </div><!-- End .widget -->
+
+                        </div><!-- End .sidebar sidebar-shop -->
+                    </aside><!-- End .col-lg-3 -->
+
+                    <div class="col-lg-9">
+                        <h2 class="title mb-1">Thông tin tài khoản</h2><!-- End .title mb-2 -->
+                        <form action="#" class="contact-form mb-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span></span>
+                                    <img class="rounded" style="width: 170px; padding-top:20px" src="https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg" />
+                                    <button class="btn btn-primary">Thay đổi</button>
+                                </div>
+
+                                <div class="col-sm-9 ">
+                                    <div class="row">
+                                        <span>Họ Và Tên</span>
+                                        <label for="cname" class="sr-only"></label>
+                                        <input type="text" value="@accountConsumer.DisplayName" class="form-control" id="cname" required>
+
+                                        <span>Số điện thoại</span>
+                                        <label for="cemail" class="sr-only"></label>
+                                        <input type="tel" value="@accountConsumer.Phone" class="form-control" id="cemail" required>
+                                        <span>Email</span>
+                                        <label for="cphone" class="sr-only"></label>
+                                        <input type="email" value="@accountConsumer.Email" class="form-control" id="cphone">
+
+                                        <span>Địa chỉ giao hàng</span>
+                                        <label for="csubject" class="sr-only"></label>
+                                        <input type="text" value="@accountConsumer.Addresses.FirstOrDefault()" class="form-control" id="csubject">
+
+                                        <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
+                                            <span>Lưu Thay Đổi</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div>
+
+
+
+                                </div><!-- End .col-sm-6 -->
+                            </div>
+
+
+                        </form><!-- End .contact-form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+

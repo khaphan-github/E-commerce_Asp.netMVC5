@@ -19,10 +19,10 @@ namespace E_Commerce.Controllers
             ShopComponent shopComponent = new ShopComponent();
             
             // Hiển thị danh mục sản phẩm
-            ViewData["Category"] = null;
+            ViewData["Category"] = productRepository.GetCategories();
 
             // Hiển thị Hảng sản suất;
-            ViewData["Company"] = shopComponent.CompanyList;
+            ViewData["Company"] = productRepository.GetCompanies();
 
             // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;

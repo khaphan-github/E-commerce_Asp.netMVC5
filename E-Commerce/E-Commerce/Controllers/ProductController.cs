@@ -14,12 +14,12 @@ namespace E_Commerce.Controllers
         private ProductRepository productRepository = new ProductRepository();
         public ActionResult Index(int id)
         {
-           
             Product product = productRepository.getProductById(id);
             ViewData["Product"] = product;
-
             ViewData["RelatedProduct"] = product;
             return View();
         }
+
+        
     }
 }

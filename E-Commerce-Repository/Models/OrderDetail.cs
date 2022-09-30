@@ -13,7 +13,10 @@ namespace E_Commerce_Repository.Models
         public int NumberofItems { get; set; }
         public float Price { get; set; }
 
+        public int OrderID { get; set; }
         public virtual Order Order { get; set; }
+
+        public int? ProductID { get; set; }
         public virtual Product Product { get; set; }
 
     }

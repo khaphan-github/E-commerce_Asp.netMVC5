@@ -13,6 +13,7 @@ namespace E_Commerce_Repository.Models
         public string BankingCardName { get; set; }
         public string AccountName { get; set; }
         public string AccountNumber { get; set; }
+        public int? AccountConsumerID { get; set; }
         public virtual AccountConsumer AccountConsumer { get; set; }
 
     }

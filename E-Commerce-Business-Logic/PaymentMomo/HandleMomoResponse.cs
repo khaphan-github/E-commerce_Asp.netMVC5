@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace E_Commerce_Business_Logic.PaymentMomo {
+    public class HandleMomoResponse {
+        
+    }
+}

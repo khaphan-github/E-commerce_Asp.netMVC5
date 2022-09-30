@@ -142,6 +142,10 @@ new AccountConsumer { Id = 2, Username = "quangvi", DisplayName = "Quang Vỉ", 
                 var product2 = context.Products.Find(2);
                 var product3 = context.Products.Find(3);
 
+                context.Promotions.Find(1).Products.Add(product1);
+                context.Promotions.Find(1).Products.Add(product2);
+                context.Promotions.Find(1).Products.Add(product3);
+                                context.SaveChanges();
                 var company1 = context.Companys.Find(1);
 
                 company1.Products.Add(product1);

@@ -29,7 +29,7 @@ namespace E_Commerce_Repository.Service
          *  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int)
          */
-        Dictionary<Product, int> getProductInShoppingCard(AccountConsumer accountConsumer);
+         List<Product> getProductInShoppingCard(AccountConsumer accountConsumer);
 
         // Thêm mới sản phẩm
         void CreateProduct(Product product);
