@@ -26,12 +26,6 @@ namespace E_Commerce.Controllers {
         //  Thêm sản phẩm vào giỏ hàng @Url.Action("addProductToCard", "Card", new {productId = , cardId =})
        [AllowAnonymous]
         public string addProductToCard(int productId, int cardId) {
-            // Use sesion when session time out
-           //  productRepository.AddProductToCard(productId, cardId);
-             
-            AccountConsumer account = HttpContext.Session[SessionConstaint.USERSESION] as AccountConsumer;
-            Product product= productRepository.getProductById(productId);
-            // account.ShoppingCards.ShoppingCardDetails.Add(product);
             return "success";
         }
 

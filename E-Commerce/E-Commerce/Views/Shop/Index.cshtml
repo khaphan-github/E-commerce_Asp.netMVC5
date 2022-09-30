@@ -222,10 +222,10 @@
             }).then(response => response.text()).then((response) => {
                 console.log(response)
                 if (response == 'success') {
-                    window.location.replace("https://localhost:44302/");
+                    window.location.replace("https://localhost:44302/Shop");
                 }
                 else {
-                    showWrongUsernameOrPassword();
+                    alert("Vui lòng đăng nhập để thêm vào giỏ hàng");
                 }
             });
         }

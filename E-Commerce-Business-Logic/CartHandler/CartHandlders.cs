@@ -1,10 +1,10 @@
 ﻿using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using E_Commerce_Business_Logic.Session;
+using System.Web.Mvc;
+using System.Web;
 
 namespace E_Commerce_Business_Logic.CartHandler {
     public class CartHandlders {
@@ -33,6 +33,13 @@ namespace E_Commerce_Business_Logic.CartHandler {
             }
 
             return null;
+        }
+
+        public static string addProductToCart(string productId, string cardId) {
+            CartView cartView = HttpContext.Current.Session[SessionConstaint.SHOPPINGCART] as CartView;
+            // Lấy sản phẩm theoID
+           //  cartView.AddproductToCard();
+            return "success";
         }
     }
 }
