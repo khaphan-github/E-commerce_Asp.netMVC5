@@ -119,13 +119,17 @@ namespace E_Commerce_Repository.Repository
         public List<Product> SearchProducts(string searchString)
         {
             var result = from product in repository.Products
-                         from categoty in repository.Categorys
+                      //   from categoty in repository.Categorys
                          from typeproduct in repository.TypeProducts
-                         from describe in repository.Describes
+                    //     from describe in repository.Describes
                          where 
-                            (product.Name == searchString) 
-                         || (categoty.Name == searchString && categoty.TypeProducts==typeproduct.Category && typeproduct.Products==product.TypeProduct)
-                         || (describe.Description == searchString && describe.Product==product.Describe.Product)
+                            (product.Name.Contains(searchString) || typeproduct.Name.Contains(searchString)) 
+                            && typeproduct.Id==product.Id
+                         //     || (categoty.Name.Contains(searchString) )
+                         //     && categoty.TypeProducts==typeproduct.Category 
+                         //      && typeproduct.Products==product.TypeProduct)
+                         //      || (describe.Description.Contains(searchString) && describe.Product==product.Describe.Product)
+
                          select product;
             return result.ToList();
         }

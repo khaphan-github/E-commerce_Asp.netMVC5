@@ -40,8 +40,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\E-Commerce\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MD5, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\E-Commerce\packages\MD5.2.0.2\lib\netstandard2.0\MD5.dll</HintPath>
+    <Reference Include="MD5, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\E-Commerce\packages\MD5.2.0.1\lib\netstandard2.0\MD5.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\E-Commerce\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\E-Commerce\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>

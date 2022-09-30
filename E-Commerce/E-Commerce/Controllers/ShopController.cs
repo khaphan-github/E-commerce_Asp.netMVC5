@@ -13,8 +13,8 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
-       
-        public ActionResult Index() {
+        ProductRepository productRepository = new ProductRepository();
+        public ActionResult Index(string searchString) {
           
             ShopComponent shopComponent = new ShopComponent();
             
@@ -28,11 +28,15 @@ namespace E_Commerce.Controllers
             ViewData["SalePlance"] = null;
 
             System.Diagnostics.Debug.WriteLine("");
-
-
-            ProductRepository productRepository = new ProductRepository();
             ViewBag.Product = productRepository.GetProducts();
-            return View();
+            if (searchString!=null)
+            {
+                ViewBag.Product = productRepository.SearchProducts(searchString);
+                return View();
+            }
+            return View( );
         }
+
+
     }
 }
