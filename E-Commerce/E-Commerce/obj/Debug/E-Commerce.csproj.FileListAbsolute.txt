@@ -100,7 +100,6 @@ D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\EntityFramew
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\EntityFramework.SqlServer.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Core.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNet.Identity.Owin.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.AspNetCore.WebUtilities.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -119,7 +118,6 @@ D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Id
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.IdentityModel.Tokens.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Net.Http.Headers.xml
-D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\Newtonsoft.Json.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\System.Buffers.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce\E-Commerce\bin\System.Configuration.ConfigurationManager.xml

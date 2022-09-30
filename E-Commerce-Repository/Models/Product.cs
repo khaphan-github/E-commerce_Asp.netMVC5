@@ -13,6 +13,7 @@ namespace E_Commerce_Repository.Models
         public virtual ICollection<WarehouseProduct> Warehouses { get; set; }
         public virtual ICollection<ShoppingCardDetail> ShoppingCardDetails { get; set; }
         public virtual TypeProduct TypeProduct { get; set; }
+        
         public virtual Supplier Supplier { get; set; }
         public virtual Company Company { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }

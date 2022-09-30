@@ -3842,7 +3842,6 @@
     <Compile Include="Areas\Admin\Controllers\ListProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemberController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewProfileController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
@@ -4087,12 +4086,10 @@
     <Content Include="Areas\Admin\plugins\summernote\summernote.js.map" />
     <Content Include="Areas\Admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Admin\plugins\toastr\toastr.js.map" />
-    <Content Include="Areas\Admin\Views\AddProduct\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ViewProfile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />

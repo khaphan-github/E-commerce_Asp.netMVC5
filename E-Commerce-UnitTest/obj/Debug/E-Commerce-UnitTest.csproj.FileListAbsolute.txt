@@ -12,7 +12,6 @@ D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\bin\Debug\EntityFr
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\bin\Debug\EntityFramework.SqlServer.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\obj\Debug\E-Commerce-UnitTest.csproj.AssemblyReference.cache
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\obj\Debug\E-Commerce-UnitTest.csproj.CoreCompileInputs.cache
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\obj\Debug\E-Commerce-UnitTest.csproj.CopyComplete
 D:\Congnghephanmem\E-commerce_Asp.netMVC5\E-Commerce-UnitTest\obj\Debug\E-Commerce-UnitTest.dll
