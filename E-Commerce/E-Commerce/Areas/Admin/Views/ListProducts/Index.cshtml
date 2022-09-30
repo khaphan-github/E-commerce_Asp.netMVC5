@@ -9,9 +9,9 @@
     <div class="card-header border-0">
         <h3 class="card-title">Danh Sách Sản Phẩm</h3>
         <div class="text-right">
-            <a href="/Admin/AddProduct/" class="btn btn-success">
+            <a href="/Admin/ListProducts/Create" class="btn btn-success">
                 <i class="fas fa-plus-circle"></i>
-                Thêm Sản Phẩm
+                Tạo Sản Phẩm
             </a>
         </div>
     </div>
@@ -28,9 +28,7 @@
                     <th>Tên nhà cung cấp</th>
                     <th>Tên loại sản phẩm</th>
                     <th>Chi tiết</th>
-
                 </tr>
-
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -44,33 +42,20 @@
                         <td>@Html.DisplayFor(modelItem => item.TypeProduct.Name)</td>
                         <td>
                             <div class="btn-group">
-                               
-                                
-                                    <a href="/Admin/ListProducts/Edit/1" class="btn btn-info">
-                                        <i class="fas fa-plus-circle"></i>   
-                                        
-                                    </a>
-                                
-                                    <a href="/Admin/ListProducts/Details/1" class="btn btn-info">
-                                        <i class="fas fa-edit"></i>
-                                       
-                                    </a>
-                                    
-                                    <a href="/Admin/ListProducts/Delete/1" class="btn btn-info">
-                                        <i class="fas fa-trash"></i>
-                                      
-                                    </a>
+                                <a href="/Admin/ListProducts/Edit/1" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>   
+                                </a>
+                                <a href="/Admin/ListProducts/Details/1" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="/Admin/ListProducts/Delete/1" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </div>
                         </td>
-
-
-
                     </tr>
                 }
+            </thead>
         </table>
-
     </div>
-        
-
 </div>
-

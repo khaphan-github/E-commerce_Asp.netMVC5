@@ -65,6 +65,7 @@ namespace E_Commerce.Areas.Admin.Controllers
         // GET: Admin/ListProducts/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -83,7 +84,7 @@ namespace E_Commerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Quantity")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +92,7 @@ namespace E_Commerce.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
             ViewBag.Id = new SelectList(db.Describes, "Id", "Description", product.Id);
             return View(product);
         }
