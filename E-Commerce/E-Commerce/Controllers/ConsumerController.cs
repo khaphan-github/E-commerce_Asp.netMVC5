@@ -50,18 +50,18 @@ namespace E_Commerce.Controllers {
         public ActionResult PaymentMomo(string amout) {
             if (amout != null) {
                 // https://test-payment.momo.vn/download/ 
+                
                 string responeFromMomo = PaymentRequest.sendPaymentRequest(amout, "Thanh toán mua hàng Unique Shop");
 
-                JObject jmessage = JObject.Parse(responeFromMomo);
-
-                System.Diagnostics.Debug.WriteLine(jmessage.ToString());
-
                 try {
+                    JObject jmessage = JObject.Parse(responeFromMomo);
+
+                    System.Diagnostics.Debug.WriteLine(jmessage.ToString());
                     bool successPayment = jmessage.GetValue("payUrl").ToString() != null;
                     return Redirect(jmessage.GetValue("payUrl").ToString());
                     // Update thanh toán cập nhật hóa đơn                  
                 } catch (Exception e) {
-
+                    System.Diagnostics.Debug.WriteLine(e.Message);
                 }
                
             }

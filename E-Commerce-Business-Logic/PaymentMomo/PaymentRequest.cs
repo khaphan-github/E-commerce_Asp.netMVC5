@@ -22,8 +22,8 @@ namespace E_Commerce_Business_Logic.PaymentMomo {
         // DÙNG NGROK https://dashboard.ngrok.com/events/subscriptions
         private const string NOTIFICATION_URL = "https://dashboard.ngrok.com/events/subscriptions";
 
-        private static string orderId = DateTime.Now.Ticks.ToString()+"03";
-        private static string requestId = DateTime.Now.Ticks.ToString()+ "03";
+        private static string orderId = DateTime.Now.Ticks.ToString();
+        private static string requestId = DateTime.Now.Ticks.ToString();
         private static string extraData = "";
 
         public PaymentRequest() {
