@@ -1,0 +1,86 @@
+﻿@model E_Commerce_Repository.Models.Product
+
+@{
+    ViewBag.Title = "Xóa Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<div class="card card-danger">
+    <div class="card-header">
+        <h4>Bạn muốn "XÓA" sản phẩm này? Are you sure!!!</h4>
+    </div>
+    <dl class="dl-horizontal">
+        <div class="col-md-10">
+            <label for="Name">Tên Sản Phẩm</label>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Giá</label>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Số Lượng</label>
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Khuyến Mãi</label>
+            <dd>
+                @Html.DisplayFor(model => model.Promotion)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Công Ty</label>
+            <dd>
+                @Html.DisplayFor(model => model.Company.Name)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Nhà Cung Cấp</label>
+            <dd>
+                @Html.DisplayFor(model => model.Supplier.Name)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Loại Sản Phẩm</label>
+            <dd>
+                @Html.DisplayFor(model => model.TypeProduct.Name)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Mô Tả</label>
+            <dd>
+                @Html.DisplayFor(model => model.Describe.Description)
+            </dd>
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Hình Ảnh</label>
+            <dd>
+                <img src="@Html.DisplayFor(modelItem => modelItem.ProductImages.ElementAt(0).URL)" style="width:80px;" />
+            </dd>
+        </div>
+    </dl>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("Về Danh Sách", "Index")
+    </div>
+}
+</div>

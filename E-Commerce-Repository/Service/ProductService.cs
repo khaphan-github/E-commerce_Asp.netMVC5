@@ -13,7 +13,7 @@ namespace E_Commerce_Repository.Service
 
         // Lấy sản phẩm theo Id
         Product getProductById(int id);
-        // Lấy toàn bộ sản phẩm
+        // Lấy toàn bộ sản phẩmư
         List<Product> GetProducts();
 
         // Lây sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString

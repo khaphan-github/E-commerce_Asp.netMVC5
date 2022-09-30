@@ -13,11 +13,10 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
-        private ProductRepository productRep = new ProductRepository();
-
-        private ProductComponentRepository productRepository = new ProductComponentRepository();
-        public ActionResult Index() {
-
+        ProductRepository productRepository = new ProductRepository();
+        public ActionResult Index(string searchString) {
+          
+            ShopComponent shopComponent = new ShopComponent();
             
             // Hiển thị danh mục sản phẩm
             ViewData["Category"] = productRepository.GetCategories();
@@ -29,10 +28,15 @@ namespace E_Commerce.Controllers
             ViewData["SalePlance"] = null;
 
             System.Diagnostics.Debug.WriteLine("");
-
-            ViewBag.Product = productRep.GetProducts();
-
-            return View();
+            ViewBag.Product = productRepository.GetProducts();
+            if (searchString!=null)
+            {
+                ViewBag.Product = productRepository.SearchProducts(searchString);
+                return View();
+            }
+            return View( );
         }
+
+
     }
 }

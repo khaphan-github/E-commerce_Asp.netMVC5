@@ -108,9 +108,9 @@ namespace E_Commerce_Repository.Repository
         public List<Company> GetCompanies()
         {
 
-            return (from company in repository.Companys
-                    select company).ToList();
-
+            //  return (from company in repository.Companys
+            //         select company).ToList();
+            return repository.Companys.ToList();
         }
         //Lấy company theo id
         public Company GetCompany(int Id)
