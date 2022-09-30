@@ -11,11 +11,7 @@
 
 
 
-    if (isLogin) {
-        if (accountConsumer.ShoppingCards != null) {
-            ShoppingcardProduct = accountConsumer.ShoppingCards.Products.ToList();
-        }
-    }
+    
 
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
@@ -76,14 +72,15 @@
                         <div class="header-search header-search-extended header-search-visible header-search-yes-radius d-none d-lg-block">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
 
+
                             <!-- Tìm kiếm sản phẩm-->
                             <form action="#" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
-                                    <input type="search" class="form-control " name="q" id="q" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
+                                    <input type="search" class="form-control "  name="searchString" id="searchString" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
-
+                            
 
                         </div><!-- End .header-search -->
                     </div><!-- End .header-left -->
@@ -293,6 +290,7 @@
 
 
                                     </li>
+                                   
                                 </ul><!-- End .menu -->
                             </nav><!-- End .main-nav -->
                         </div><!-- End .col-lg-9 -->
