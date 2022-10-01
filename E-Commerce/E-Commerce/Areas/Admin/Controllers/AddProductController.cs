@@ -8,8 +8,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class AddProductController : Controller
-    {
+    public class AddProductController : BaseController {
         // GET: Admin/AddProduct
         public ActionResult Index()
         {

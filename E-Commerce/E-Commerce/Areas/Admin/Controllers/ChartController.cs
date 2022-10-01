@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class ChartController : Controller
-    {
+    public class ChartController : BaseController {
         // GET: Admin/Chart
         public ActionResult Index()
         {

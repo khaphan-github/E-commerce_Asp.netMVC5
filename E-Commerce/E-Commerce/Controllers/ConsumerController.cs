@@ -10,17 +10,14 @@ using E_Commerce_Business_Logic.CartHandler;
 
 using Newtonsoft.Json.Linq;
 using E_Commerce.Models;
+using E_Commerce_Business_Logic.RequestFilter;
 
 namespace E_Commerce.Controllers {
+
     public class ConsumerController : Controller {
         public ProductRepository productRepository = new ProductRepository();
-        // GET: Consumer
-        public ActionResult Index() {
-            return View();
-        }
 
         // Người dùng đăng nhập bằng username và password 
-
         public string Login(string usernames, string passwords) {
 
             Login BussinessLogin = new Login();
@@ -29,11 +26,13 @@ namespace E_Commerce.Controllers {
 
             if (account != null) {
                 CartView cart = CartHandlders.getCardViewSession(account);
-                System.Diagnostics.Debug.WriteLine(cart.Products.ElementAt(0).productName);
+                if (cart != null) {
+                    System.Diagnostics.Debug.WriteLine(cart.Products.ElementAt(0).productName);
+                    Session.Add(SessionConstaint.SHOPPINGCART, cart);
 
+                }
                 Session.Add(SessionConstaint.USERSESION, account);
-                Session.Add(SessionConstaint.SHOPPINGCART, cart);
-
+              
                 return "success";
             }
             System.Diagnostics.Debug.WriteLine("ACCOUNT NOT ESIST IN DB");
@@ -47,6 +46,8 @@ namespace E_Commerce.Controllers {
 
 
         // THANH TOÁN QUAMOMO
+
+        [AuthorizationFilter("User")]
         public ActionResult PaymentMomo(string amout) {
             if (amout != null) {
                 // https://test-payment.momo.vn/download/ 
@@ -70,19 +71,26 @@ namespace E_Commerce.Controllers {
         }
 
         // Thanh toán tiền mặt
+
+        [AuthorizationFilter("User")]
         public ActionResult Payment() {
             return View();
         }
 
+
+        [AuthorizationFilter("User")]
         public ActionResult AccountDetail() {
             return View();
         }
 
+        [AuthorizationFilter("User")]
         public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
             // Handle response
             if (response.errorCode.Equals("0")) {
                 // thanh toans thanfh coong
+
                 // Thêm sản phẩm vào order
+
                 // Xóa sản phẩm khỏi card
 
             }

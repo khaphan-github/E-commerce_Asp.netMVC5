@@ -158,7 +158,7 @@
 
                                             <tr class="summary-total">
                                                 <td>Tổng cộng</td>
-                                                <td id="totalPrice">@String.Format("{0:n0}",(Session[SessionConstaint.SHOPPINGCART] as CartView).totalprice)</td>
+                                                <td id="totalPrice">@String.Format("{0:n0}", (Session[SessionConstaint.SHOPPINGCART] as CartView).totalprice)</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
@@ -185,31 +185,9 @@
     <script src="assets/js/superfish.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/bootstrap-input-spinner.js"></script>
+    <script src="assets/js/CardHandlerJS/PaymentHandler.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-        function getPaymentMethod() {
-            var paymentmomo = document.getElementById("paymentmomo").checked;
-
-            if (paymentmomo) {
-                var amout = document.getElementById('totalPrice').innerText;
-                amout = amout.replaceAll(",", "");
-                if (amout > 50000000) {
-                    alert("Chỉ có thể thanh toán Momo đơn hàng nhỏ hơn 50 triệu");
-                }
-                else {
-                    var urlPayment = "/Consumer/PaymentMomo?amout=" + amout;
-                    alert(urlPayment);
-                    window.location.replace(urlPayment);
-                } 
-            }
-
-            else {
-                window.location.replace("/Consumer/Payment/");
-            }
-        }
-
-    </script>
 </body>
 </html>
 

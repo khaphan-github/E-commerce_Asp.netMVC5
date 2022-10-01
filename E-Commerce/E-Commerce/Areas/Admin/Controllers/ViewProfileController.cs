@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class ViewProfileController : Controller
-    {
+    public class ViewProfileController : BaseController {
         // GET: Admin/ViewProfile
         public ActionResult Index()
         {

@@ -13,5 +13,15 @@ namespace E_Commerce_Business_Logic.CartHandler {
         public int numberItems { get; set; }
         public string Company { get; set; }
         public string typeProduct { get; set; }
+
+        public ProductView(Product product) {
+            productId = product.Id;
+            productName = product.Name;
+            Price = product.Price;
+            typeProduct = product.TypeProduct.Name;
+            Company = product.Company.Name;
+            productImages = product.ProductImages.ToList();
+            numberItems = 1;
+        }
     }
 }
