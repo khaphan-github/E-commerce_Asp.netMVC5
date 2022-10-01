@@ -115,7 +115,6 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
-
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
@@ -3784,9 +3783,9 @@
     <Content Include="assets\js\superfish.min.js" />
     <Content Include="assets\js\wNumb.js" />
     <Content Include="assets\main.js" />
-<Content Include="assets\js\CardHandlerJS\PaymentHandler.js" />
-<Content Include="assets\js\CardHandlerJS\CartHandler.js" />
-<Content Include="assets\js\AuthenticationJS\Authentication.js" />
+    <Content Include="assets\js\CardHandlerJS\PaymentHandler.js" />
+    <Content Include="assets\js\CardHandlerJS\CartHandler.js" />
+    <Content Include="assets\js\AuthenticationJS\Authentication.js" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\css\line-awesome.min.css" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.svg" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -3852,7 +3851,6 @@
     <Compile Include="Controllers\ShopBaseController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\UserContactController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

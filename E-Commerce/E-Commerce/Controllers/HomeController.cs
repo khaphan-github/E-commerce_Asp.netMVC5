@@ -9,8 +9,7 @@ using System.Web.Mvc;
 namespace E_Commerce.Controllers
 {
    
-    public class HomeController : Controller
-    {
+    public class HomeController : Controller {
         // GET: Home Hiển thị trang chủ
         private ProductRepository productRepository = new ProductRepository();
         private ProductComponentRepository productComponent = new ProductComponentRepository();

@@ -32,7 +32,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
-                                <table class="table table-cart table-mobile">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Sản phẩm</th>
@@ -62,13 +62,14 @@
                                                     </td>
                                                     <td class="price-col"> @String.Format("{0:n0}", product.Price) đ</td>
 
-                                                    <td class="quantity-col">
-                                                        <h4>@product.numberItems</h4>
+                                                    <td class="product-title">
+                                                        <span id="numberItems">@product.numberItems</span>
+
                                                     </td>
 
-                                                    <td class="total-col" id="totalproductPrice"></td>
+                                                    <td class="total-col" id="totalproductPrice"> @String.Format("{0:n0}", product.Price * product.numberItems) đ</td>
 
-                                                    <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                                    <td class="remove-col"><button onclick="RemoveProductFromCard(@product.productId)" class="btn-remove"><i class="icon-close"></i></button></td>
                                                 </tr>
                                             }
                                         }
@@ -186,6 +187,8 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/bootstrap-input-spinner.js"></script>
     <script src="assets/js/CardHandlerJS/PaymentHandler.js"></script>
+    <script src="~/assets/js/CardHandlerJS/PaymentHandler.js"></script>
+    <script src="~/assets/js/CardHandlerJS/CartHandler.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
 </body>

@@ -27,10 +27,13 @@ namespace E_Commerce_Business_Logic.CartHandler {
             
             if (productView != null && productView.numberItems > 1) {
                 productView.numberItems -= 1;
+                totalprice -= productView.Price;
             }
             else {
+                totalprice -= productView.Price;
                 Products.Remove(productView);
             }
+            
         }
     }
 }

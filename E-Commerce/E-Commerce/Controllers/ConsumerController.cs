@@ -27,12 +27,11 @@ namespace E_Commerce.Controllers {
             if (account != null) {
                 CartView cart = CartHandlders.getCardViewSession(account);
                 if (cart != null) {
-                    System.Diagnostics.Debug.WriteLine(cart.Products.ElementAt(0).productName);
+                    
                     Session.Add(SessionConstaint.SHOPPINGCART, cart);
 
                 }
                 Session.Add(SessionConstaint.USERSESION, account);
-              
                 return "success";
             }
             System.Diagnostics.Debug.WriteLine("ACCOUNT NOT ESIST IN DB");
