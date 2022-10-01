@@ -10,7 +10,9 @@
         else {
             var urlPayment = "/Consumer/PaymentMomo?amout=" + amout;
             alert(urlPayment);
-            window.location.replace(urlPayment);
+            if (CheckOrder()) {
+                window.location.replace(urlPayment);
+            }
         }
     }
 
@@ -18,11 +20,16 @@
         window.location.replace("/Consumer/Payment/");
     }
 }
+var checkboxShippingMethod = document.querySelector('input[name="shipping"]:checked');
+var TotakPrice = document.getElementById('totalPrice');
 
+checkboxShippingMethod.addEventListener('change', CheckOrder);
 
-function UpdateCartClick() {
-
+function CheckOrder() {
+    var flag = false;
+    alert(checkboxShippingMethod);
+    TotakPrice.innerText = parseInt(checkboxShippingMethod.value) + parseInt(TotakPrice.innerText);
+    return flag;
 }
-
 
 

@@ -6,12 +6,20 @@
     var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
+    CartView ShoppingcardProduct = null;
+    if (isLogin) {
+        ShoppingcardProduct = CartHandlders.getCardView(accountConsumer);
+    }
 
-    var ShoppingcardProduct = Session[SessionConstaint.SHOPPINGCART] as CartView;
+    if (ShoppingcardProduct != null) {
+        System.Diagnostics.Debug.WriteLine("Get Cart successFully");
+    }
 
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- molla/category-market.html  22 Nov 2019 10:02:55 GMT -->
@@ -69,7 +77,7 @@
                             <!-- Tìm kiếm sản phẩm-->
                             <form action="#" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
-                                    <input type="search" class="form-control "  name="searchString" id="searchString" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
+                                    <input type="search" class="form-control " name="searchString" id="searchString" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
@@ -125,7 +133,7 @@
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
                                 @if (isLogin && ShoppingcardProduct != null) {
-                                    <span class="cart-count">@ShoppingcardProduct.Products.ToList().Count()</span>
+                                    <span class="cart-count">@ShoppingcardProduct.Products.Sum(prop => prop.numberItems).ToString()</span>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <div class="dropdown-cart-products">
                                             @foreach (var product in ShoppingcardProduct.Products) {
@@ -139,12 +147,12 @@
 
                                                         <span class="cart-product-info">
                                                             <span class="cart-product-qty"></span>
-                                                            @String.Format("{0:n0}", @product.Price) đ
+                                                            @String.Format("{0:n0}", @product.TotalPrice) đ
                                                         </span>
                                                         <br />
                                                         <span class="cart-product-info">
                                                             <span class="cart-product-qty"></span>
-                                                           Số lượng: @product.numberItems
+                                                            Số lượng: @product.numberItems
                                                         </span>
                                                     </div><!-- End .product-cart-details -->
 
@@ -155,7 +163,7 @@
                                                         </a>
                                                     </figure>
                                                     <!--Url Action Remove product from shopping card-->
-                                                    
+
                                                 </div><!-- End .product -->
                                             }
 
@@ -285,7 +293,7 @@
 
 
                                     </li>
-                                   
+
                                 </ul><!-- End .menu -->
                             </nav><!-- End .main-nav -->
                         </div><!-- End .col-lg-9 -->
@@ -308,7 +316,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
                             <div class="wid                                                                                                                                    et widget-about">
-                                <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png"  class="footer-logo" alt="Footer Logo" width="450" height="25">
+                                <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" class="footer-logo" alt="Footer Logo" width="450" height="25">
                                 <div class="widget-about-info">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-4">

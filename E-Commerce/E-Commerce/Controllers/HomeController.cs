@@ -17,11 +17,14 @@ namespace E_Commerce.Controllers
         {
             // HIển thị danh mục kèm hình ảnh dưới phần banner
             ViewData["CategoryPicture"] = null;
+
             // Danh mục sản phẩm
             ViewData["Category"] = productComponent.GetCategories();
+
             // Hiển thị sản phẩm nổi bậc
             ViewBag.TopProduct = productRepository.GetProducts();
             ViewData["TopProduct"] = productRepository.GetProducts();
+
             // Hiển thị sản phẩm bán chạy
             ViewData["BestSellerPeoduct"] = productRepository.GetProducts();
 
@@ -32,8 +35,8 @@ namespace E_Commerce.Controllers
             if(searchString != null)
             {
                 return RedirectToAction("Index", "Shop", new { searchString = searchString });
-
             }
+            
             return View();
 
         }

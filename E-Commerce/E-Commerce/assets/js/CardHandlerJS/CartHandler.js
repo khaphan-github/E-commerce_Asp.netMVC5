@@ -25,6 +25,7 @@
 }
 
 function RemoveProductFromCard(productId) {
+    var updateButton = document.getElementById('RefreshCart');
 
     fetch('https://localhost:44302/Card/removeProductFromCard?', {
         method: 'POST',
@@ -36,7 +37,7 @@ function RemoveProductFromCard(productId) {
     }).then(response => response.text()).then((response) => {
         console.log(response)
         if (response == 'success') {
-           
+            updateButton.style.display = "block";
         }
         else {
            

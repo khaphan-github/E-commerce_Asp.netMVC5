@@ -19,7 +19,7 @@ namespace E_Commerce_Business_Logic.RequestFilter {
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext) {
             if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult) {
-                //Redirecting the user to the Login View of Account Controller  
+ 
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {

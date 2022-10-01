@@ -25,12 +25,6 @@ namespace E_Commerce.Controllers {
             AccountConsumer account = BussinessLogin.ValidationAccount(usernames, passwords) as AccountConsumer;
 
             if (account != null) {
-                CartView cart = CartHandlders.getCardViewSession(account);
-                if (cart != null) {
-                    
-                    Session.Add(SessionConstaint.SHOPPINGCART, cart);
-
-                }
                 Session.Add(SessionConstaint.USERSESION, account);
                 return "success";
             }

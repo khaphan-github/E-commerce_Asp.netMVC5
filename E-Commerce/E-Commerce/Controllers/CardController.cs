@@ -29,14 +29,12 @@ namespace E_Commerce.Controllers {
 
         //  Thêm sản phẩm vào giỏ hàng @Url.Action("addProductToCard", "Card", new {productId = , cardId =})
         public string addProductToCard(int productId) {
-            CartHandlders.addProductToCart(productId);
-            return "success";
+            return CartHandlders.addProductToCart(productId);
         }
 
         // Xóa sản phẩm khỏi giỏ hàng
         public string removeProductFromCard(int productId) {
-            CartHandlders.RemoveProductFromCart(productId);
-            return "success";
+            return CartHandlders.RemoveProductFromCart(productId);
         }
     }
 }

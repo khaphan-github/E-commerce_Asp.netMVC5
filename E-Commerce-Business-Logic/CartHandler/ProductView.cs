@@ -9,19 +9,21 @@ namespace E_Commerce_Business_Logic.CartHandler {
         public int productId { get; set; }
         public string productName { get; set; }
         public List<ProductImage> productImages { get; set; }
-        public float Price { get; set; }
+        public float TotalPrice { get; set; }
+        public float perItemsPrice { get; set; }
         public int numberItems { get; set; }
         public string Company { get; set; }
         public string typeProduct { get; set; }
 
-        public ProductView(Product product) {
-            productId = product.Id;
-            productName = product.Name;
-            Price = product.Price;
-            typeProduct = product.TypeProduct.Name;
-            Company = product.Company.Name;
-            productImages = product.ProductImages.ToList();
-            numberItems = 1;
+        public ProductView(ShoppingCardDetail detail) {
+            productId = detail.Product.Id;
+            productName = detail.Product.Name;
+            TotalPrice = detail.price;
+            perItemsPrice = detail.Product.Price;
+            typeProduct = detail.Product.TypeProduct.Name;
+            Company = detail.Product.Company.Name;
+            productImages = detail.Product.ProductImages.ToList();
+            numberItems = detail.Number;
         }
     }
 }
