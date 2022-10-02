@@ -44,7 +44,7 @@ namespace E_Commerce.Controllers {
         public ActionResult PaymentMomo(string amout) {
             if (amout != null) {
                 // https://test-payment.momo.vn/download/ 
-                
+
                 string responeFromMomo = PaymentRequest.sendPaymentRequest(amout, "Thanh toán mua hàng Unique Shop");
 
                 try {
@@ -57,7 +57,7 @@ namespace E_Commerce.Controllers {
                 } catch (Exception e) {
                     System.Diagnostics.Debug.WriteLine(e.Message);
                 }
-               
+
             }
             // Hiển thị trang thông báo thành công
             return Redirect("/Card/Index");
@@ -80,18 +80,30 @@ namespace E_Commerce.Controllers {
         public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
             // Handle response
             if (response.errorCode.Equals("0")) {
-                // thanh toans thanfh coong
-
-                // Thêm sản phẩm vào order
-
-                // Xóa sản phẩm khỏi card
-
+                HandleMomoResponse.saveOrder();
+                System.Diagnostics.Debug.WriteLine("THÊM ORDER THANH CÔNG");
+                return RedirectToAction("ShowSuccessPayment", "Consumer", new { status  = "success"});
             }
-            else {
-                // Thanh toan that bai
-            }
-            return View();
+            return RedirectToAction("ShowSuccessPayment", "Consumer", new { status = "fail" });
         }
 
+        [AuthorizationFilter("User")]
+        public ActionResult ShowSuccessPayment(string status) {
+            // Thanh toán thành công
+            if (status == "success") {
+                ViewBag.imageURL = "/assets/images/logo/thanhtoanthanhcong.png";
+            }
+            else {
+                ViewBag.paymentMessage = "Thanh toán Momo thất bại, vui lòng thực hiện lại!";
+                return RedirectToAction("Index","Card");
+            }
+            // Thanh toán thất bại
+            return View();
+        }
+        // Quản lý đơn hàng
+        [AuthorizationFilter("User")]
+        public ActionResult ConsumerOrder() {
+            return View();
+        }
     }
 }

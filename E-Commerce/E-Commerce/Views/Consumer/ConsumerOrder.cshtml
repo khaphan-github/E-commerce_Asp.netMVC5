@@ -1,0 +1,102 @@
+﻿@using E_Commerce_Repository.Models;
+@using E_Commerce_Business_Logic.Session;
+@using E_Commerce_Repository.Repository;
+@{
+    ViewBag.Title = "ConsumerOrder";
+    Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
+
+    // get order of current user
+    var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
+
+    OrderRepository orderRepository = new OrderRepository();
+    bool isLogin = accountConsumer != null;
+    List<Order> OrderView = null;
+    if (isLogin) {
+        OrderView = orderRepository.getOrders(accountConsumer);
+    }
+
+}
+
+<main>
+    <div class="page-content" style="font-family:Arial">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Account</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+            <div class="row">
+                <aside class="col-lg-3 ">
+                    <div class="sidebar sidebar-shop">
+
+                        <div class="widget">
+                            <h3 class="widget-title">
+                                <a href="/Consumer/AccountDetail" style="font-family:Arial">Thông tin tài khoản</a>
+                            </h3><!-- End .widget-title -->
+                            <!--Category-->
+                            <h3 class="widget-title">
+                                <a href="" style="font-family:Arial">Quản lý đơn hàng</a>
+                            </h3><!-- End .widget-title -->
+                        </div><!-- End .widget -->
+
+                        <div class="widget">
+                            <button type="submit" class="btn btn-outline" style="width:100px">Đăng suất</button>
+                        </div><!-- End .widget -->
+
+                    </div><!-- End .sidebar sidebar-shop -->
+                </aside><!-- End .col-lg-3 -->
+
+                <div class="col-lg-9">
+                    <h2 class="title mb-1">Thông tin Đơn hàng</h2><!-- End .title mb-2 -->
+                    <table class="table table-striped-columns">
+                        <thead class="accent-gray-dark">
+                            <tr style="background-color: dodgerblue; text-align: center ">
+                                <th style="color:white; " scope="col">Mã</th>
+                                <th style="color:white" scope="col">Ngày</th>
+                                <th style="color:white" scope="col">Sản phẩm</th>
+                                <th style="color:white" scope="col">Trạng thái</th>
+                                <th style="color:white" scope="col">Địa chỉ</th>
+                                <th style="color:white" scope="col">Thành tiền</th>
+                                <th style="color:white" scope="col"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+
+                                foreach (Order order in OrderView) {
+                                    <tr style="text-align: center">
+                                        <td>@order.Id</td>
+                                        <td>@order.Date.ToString("MM/dd/yyyy")</td>
+                                        <td>San phaarm</td>
+
+
+                                        <td>Đang giao hàng</td>
+                                        <td>@order.Address.Street</td>
+                                        <td>@order.TotalPrice</td>
+                                        <td>
+                                            <a href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                                </svg>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+

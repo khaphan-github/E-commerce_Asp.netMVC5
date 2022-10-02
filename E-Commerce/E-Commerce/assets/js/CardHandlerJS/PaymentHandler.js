@@ -26,7 +26,7 @@ var TotakPrice = document.getElementById('totalPrice');
 checkboxShippingMethod.addEventListener('change', CheckOrder);
 
 function CheckOrder() {
-    var flag = false;
+    var flag = true;
     alert(checkboxShippingMethod);
     TotakPrice.innerText = parseInt(checkboxShippingMethod.value) + parseInt(TotakPrice.innerText);
     return flag;

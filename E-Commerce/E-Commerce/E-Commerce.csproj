@@ -3505,6 +3505,7 @@
     <Content Include="assets\images\icons\momo_icon_rectangle.png" />
     <Content Include="assets\images\icons\safari-pinned-tab.svg" />
     <Content Include="assets\images\icons\site.html" />
+    <Content Include="assets\images\logo\thanhtoanthanhcong.png" />
     <Content Include="assets\images\products\iphone14_promax.jpg" />
     <Content Include="assets\images\products\iphone14_promaxblack.png" />
     <Content Include="assets\images\iphone_14promaxwhite.png" />
@@ -4128,7 +4129,9 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\UserContact\Index.cshtml" />
     <Content Include="Views\Consumer\AccountDetail.cshtml" />
-    <Content Include="Views\Consumer\ConfirmPaymentMomo.cshtml" />
+    <Content Include="Views\Consumer\Payment.cshtml" />
+    <Content Include="Views\Consumer\ConsumerOrder.cshtml" />
+    <Content Include="Views\Consumer\ShowSuccessPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

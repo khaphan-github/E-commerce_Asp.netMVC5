@@ -48,5 +48,7 @@ namespace E_Commerce_Repository.Service
         // Xóa sản phẩm khỏi giỏ hàng
         void RemoveProductFromCard(int productId, int cardId);
 
+        void DeleteCartDetailById(int id); 
+
     }
 }

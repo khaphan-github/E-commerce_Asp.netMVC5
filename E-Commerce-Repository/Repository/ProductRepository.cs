@@ -163,6 +163,16 @@ namespace E_Commerce_Repository.Repository
 
         }
 
- 
+        // delete by Shopping cart id
+        public void DeleteCartDetailById(int id) {
+            var ShoppingCartDetails = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ShoppingCardID == id);
+
+            if (ShoppingCartDetails != null) {
+                repository.ShoppingCardDetails.Remove(ShoppingCartDetails);
+                repository.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("XÓA CHI TIẾT THÀNH CÔNG");
+
+            }
+        }
     }
 }

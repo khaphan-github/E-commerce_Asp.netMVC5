@@ -92,7 +92,6 @@
     <Compile Include="Logic\CardLogic.cs" />
     <Compile Include="Logic\Login.cs" />
     <Compile Include="Logic\UploadImage.cs" />
-    <Compile Include="Order\OrderView.cs" />
     <Compile Include="PaymentMomo\HandleMomoResponse.cs" />
     <Compile Include="PaymentMomo\MomoSecurity.cs" />
     <Compile Include="PaymentMomo\PaymentRequest.cs" />

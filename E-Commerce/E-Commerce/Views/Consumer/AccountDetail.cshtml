@@ -26,11 +26,11 @@
 
                             <div class="widget">
                                 <h3 class="widget-title">
-                                    <a href="" style="font-family:Arial">Thông tin tài khoản</a>
+                                    <a href="/Consumer/AccountDetail" style="font-family:Arial">Thông tin tài khoản</a>
                                 </h3><!-- End .widget-title -->
                                 <!--Category-->
                                 <h3 class="widget-title">
-                                    <a href="" style="font-family:Arial">Quản lý đơn hàng</a>
+                                    <a href="/Consumer/ConsumerOrder" style="font-family:Arial">Quản lý đơn hàng</a>
                                 </h3><!-- End .widget-title -->
                             </div><!-- End .widget -->
 
@@ -66,7 +66,7 @@
 
                                         <span>Địa chỉ giao hàng</span>
                                         <label for="csubject" class="sr-only"></label>
-                                        <input type="text" value="@accountConsumer.Addresses.FirstOrDefault()" class="form-control" id="csubject">
+                                        <input type="text" value="@accountConsumer.Addresses.FirstOrDefault().Street" class="form-control" id="csubject">
 
                                         <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                                             <span>Lưu Thay Đổi</span>
