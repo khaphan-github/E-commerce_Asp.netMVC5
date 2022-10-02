@@ -26,9 +26,9 @@
                 @using (Html.BeginForm()) {
                     @Html.ValidationSummary(true)
                     <p style="font-size:20px" class="login-box-msg">Chào mừng vào trang admin</p>
-                    <form action="@Url.Action("Login", "Home", new { area = "Admin" })" method="post">
+                    <form action="@Url.Action("Login", "Login", new { username = "03291999248", password = "03291999248" })" method="post">
                         <div class="input-group mb-3">
-                            <input type="text" name="Username" class="form-control" placeholder="Tên đăng nhập" , id="form-username">
+                            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" , id="form-username">
                             @ViewData["Loi1"]
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" name="Password" class="form-control" placeholder="Mật khẩu" , id="form-password">
+                            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" , id="form-password">
                             @ViewData["Loi2"]
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -68,3 +68,4 @@
     <script src="/Areas/Admin/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+

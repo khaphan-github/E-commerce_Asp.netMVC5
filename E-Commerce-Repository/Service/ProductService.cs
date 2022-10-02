@@ -29,7 +29,7 @@ namespace E_Commerce_Repository.Service
          *  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int)
          */
-         List<Product> getProductInShoppingCard(AccountConsumer accountConsumer);
+         List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer);
 
         // Thêm mới sản phẩm
         void CreateProduct(Product product);
@@ -47,6 +47,8 @@ namespace E_Commerce_Repository.Service
 
         // Xóa sản phẩm khỏi giỏ hàng
         void RemoveProductFromCard(int productId, int cardId);
+
+        void DeleteCartDetailById(int id); 
 
     }
 }

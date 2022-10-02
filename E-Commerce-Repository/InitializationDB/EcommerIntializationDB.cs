@@ -70,9 +70,7 @@ namespace E_Commerce_Repository.InitializationDB
             modelBuilder.Entity<Address>().HasOptional(address => address.Wards).WithRequired(ward => ward.Address);
             
             modelBuilder.Entity<Address>().HasOptional(address => address.District).WithRequired(dis => dis.Address);
-           
-            modelBuilder.Entity<Warehouse>().HasOptional(wh => wh.Addresses).WithRequired(add => add.Warehouses);
-            
+                       
             modelBuilder.Entity<AccountConsumer>().HasOptional(ac => ac.BankingCards).WithRequired(bk => bk.AccountConsumer);
         }
     }  

@@ -97,6 +97,9 @@
     <Compile Include="PaymentMomo\PaymentRequest.cs" />
     <Compile Include="PaymentMomo\PaymentResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestFilter\Actionfilter.cs" />
+    <Compile Include="RequestFilter\AuthenticationFilter.cs" />
+    <Compile Include="RequestFilter\AuthorizationFilter.cs" />
     <Compile Include="Session\SessionConstaint.cs" />
     <Compile Include="Shop\ShopComponent.cs" />
   </ItemGroup>

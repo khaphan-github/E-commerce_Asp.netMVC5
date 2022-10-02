@@ -43,7 +43,7 @@ namespace E_Commerce_Repository.Repository {
         }
 
         public Account getAccountById(int id) {
-            throw new System.NotImplementedException();
+            return repository.Accounts.Where(prop => prop.Id == id).FirstOrDefault();
         }
 
         public List<Account> getAccountByStatus(string status) {

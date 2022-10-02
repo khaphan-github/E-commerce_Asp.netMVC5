@@ -9,7 +9,7 @@ using E_Commerce_Business_Logic.Session;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Admin/Home
         public ActionResult Index()
@@ -18,26 +18,6 @@ namespace E_Commerce.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(string username, string password) {
-
-            Login login = new Login();
-
-            Account account = new AccountConsumer();
-
-            account = login.ValidationAccount(username, password);
-
-            if (account != null) {
-
-                Session[SessionConstaint.USERSESION] = account;
-
-                return RedirectToAction("Index", "Home");
-
-            }
-
-            return RedirectToAction("Index", "Login");
-        }
+       
     }
 }

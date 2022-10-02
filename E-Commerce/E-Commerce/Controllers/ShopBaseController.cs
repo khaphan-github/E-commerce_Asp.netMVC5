@@ -1,4 +1,7 @@
-﻿using System;
+﻿using E_Commerce_Business_Logic.CartHandler;
+using E_Commerce_Business_Logic.Session;
+using E_Commerce_Repository.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +11,10 @@ namespace E_Commerce.Controllers
 {
     public class ShopBaseController : Controller
     {
-        // GET: ShopBase
-        public ActionResult Index()
-        {
-            return View();
+        protected override void OnActionExecuting(ActionExecutingContext filtercontext) {
+            // Check session user
+            
+            base.OnActionExecuting(filtercontext);
         }
     }
 }

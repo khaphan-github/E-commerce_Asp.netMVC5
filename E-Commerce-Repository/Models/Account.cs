@@ -25,7 +25,7 @@ namespace E_Commerce_Repository.Models
         public DateTime? DateOfBirth { get; set; }
         public string Sex { get; set; }
         public string Avatar { get; set; }   
-        public int? AccountStateId { get; set; }
+        public int AccountStateId { get; set; }
         public virtual AccountState AccountState { get; set; }
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
     }

@@ -11,8 +11,7 @@ using E_Commerce_Repository.Models;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class ListProductsController : Controller
-    {
+    public class ListProductsController : BaseController {
         private EcommerIntializationDB db = new EcommerIntializationDB();
 
         // GET: Admin/ListProducts

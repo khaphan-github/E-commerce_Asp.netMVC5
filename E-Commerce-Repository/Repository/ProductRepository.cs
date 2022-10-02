@@ -18,16 +18,54 @@ namespace E_Commerce_Repository.Repository
         // Thêm sản phẩm vào giỏ hàng
         public void AddProductToCard(int productId, int cardId) 
         {
-            var pc = from shoppingcards in repository.ShoppingCards
-                     from products in repository.Products
-                         //from shoppingcarddetail in repository.ShoppingCardsDetail
-                     where products.Id == productId && products.ShoppingCardDetails == shoppingcards.ShoppingCardDetails
-                           && shoppingcards.Id == cardId
-                     select new { products, shoppingcards };
-            repository.ShoppingCards.Add((ShoppingCard)pc);
+            var product = repository.Products.FirstOrDefault(prop => prop.Id == productId);
+
+            var cart = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == cardId);
+
+            var productInDetail = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ProductID == productId);
+
+            bool isExistProduct = productInDetail != null; 
+            // nếu giỏ đã có sản phẩm thì thêm 1
+            // nếu giỏ chưa có mới tạo
+            if (isExistProduct) {
+                productInDetail.price = (productInDetail.Number + 1) * product.Price;
+                productInDetail.Number += 1;
+            }
+            else {
+                System.Diagnostics.Debug.WriteLine("Found Product and cart -> Add Product to cart");
+                repository.ShoppingCardDetails.Add(new ShoppingCardDetail {
+                    ShoppingCard = cart,
+                    Product = product,
+                    ProductID = productId,
+                    ShoppingCardID = cardId,
+                    Number = 1,
+                    price = product.Price
+                });
+            }
+            System.Diagnostics.Debug.WriteLine("Add product to cart success");
             repository.SaveChanges();
         }
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        public void RemoveProductFromCard(int productId, int cardId) {
+            var Detail = repository.ShoppingCardDetails
+                                               .FirstOrDefault(prop => prop.ShoppingCardID == cardId && prop.ProductID == productId);
+            var product = repository.Products.FirstOrDefault(prop => prop.Id == productId);
+            if (Detail != null) {
+                if (Detail.Number > 1) {
+                    Detail.Number -= 1;
+                    Detail.price = product.Price + Detail.Number;
+                }
+                else {
+                    repository.ShoppingCardDetails.Remove(Detail);
+                }
+            }
+            repository.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("REMOVE PRODUCT SUCCESSFULL");
+        }
+
         // Thêm mới sản phẩm
+
         public void CreateProduct(Product product)
         {
             repository.Products.Add(product);
@@ -81,12 +119,12 @@ namespace E_Commerce_Repository.Repository
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
-        public List<Product> getProductInShoppingCard(AccountConsumer accountConsumer)
+        public List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer)
         {
-            List<Product> result = 
+            List<ShoppingCardDetail> result = 
                         ( from details in repository.ShoppingCardDetails
                           where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
-                          select details.Product).ToList();
+                          select details).ToList();
             return result;
         }
 
@@ -95,17 +133,7 @@ namespace E_Commerce_Repository.Repository
             return repository.Products.ToList();
         }
 
-        // Xóa sản phẩm khỏi giỏ hàng
-        public void RemoveProductFromCard(int productId, int cardId) 
-        {
-            var pc = from shoppingcards in repository.ShoppingCards
-                     from products in repository.Products
-                     where shoppingcards.Id == cardId && shoppingcards.ShoppingCardDetails == products.ShoppingCardDetails
-                           && products.Id == productId
-                     select shoppingcards;
-            repository.ShoppingCards.Remove((ShoppingCard)pc);
-            repository.SaveChanges();
-        }
+
 
         // Lấy sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString
         public List<Product> SearchProducts(string searchString)
@@ -135,6 +163,16 @@ namespace E_Commerce_Repository.Repository
 
         }
 
- 
+        // delete by Shopping cart id
+        public void DeleteCartDetailById(int id) {
+            var ShoppingCartDetails = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ShoppingCardID == id);
+
+            if (ShoppingCartDetails != null) {
+                repository.ShoppingCardDetails.Remove(ShoppingCartDetails);
+                repository.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("XÓA CHI TIẾT THÀNH CÔNG");
+
+            }
+        }
     }
 }

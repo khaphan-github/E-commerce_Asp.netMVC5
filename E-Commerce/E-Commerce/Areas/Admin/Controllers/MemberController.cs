@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class MemberController : Controller
-    {
+    public class MemberController : BaseController {
         // GET: Admin/Member/Index
         public ActionResult Index()
         {
