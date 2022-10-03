@@ -37,6 +37,13 @@ namespace E_Commerce.Controllers {
             return "Logout Successfully";
         }
 
+        // Đăng ký tài khoản
+        public string Register(string username, string password) {
+            string result = "fail";
+            // Tìm account by tên nếu có thì 
+
+            return result;
+        }
 
         // THANH TOÁN QUAMOMO
 
