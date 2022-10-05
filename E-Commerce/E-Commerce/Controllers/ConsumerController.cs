@@ -38,11 +38,8 @@ namespace E_Commerce.Controllers {
         }
 
         // Đăng ký tài khoản
-        public string Register(string username, string password) {
-            string result = "fail";
-            // Tìm account by tên nếu có thì 
-
-            return result;
+        public ActionResult Register() {
+            return View();           
         }
 
         // THANH TOÁN QUAMOMO
@@ -64,7 +61,6 @@ namespace E_Commerce.Controllers {
                 } catch (Exception e) {
                     System.Diagnostics.Debug.WriteLine(e.Message);
                 }
-
             }
             // Hiển thị trang thông báo thành công
             return Redirect("/Card/Index");

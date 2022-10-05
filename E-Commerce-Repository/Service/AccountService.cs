@@ -27,6 +27,8 @@ namespace E_Commerce_Repository.Service {
         // Tạo mới account Consumer
         void CreateAccount(AccountConsumer account);
 
+        void CreateAccount(Account account);
+
         void UpdateAccount(AccountAdmin account);
         void UpdateAccount(AccountConsumer account);
 

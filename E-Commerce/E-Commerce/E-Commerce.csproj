@@ -4132,6 +4132,7 @@
     <Content Include="Views\Consumer\Payment.cshtml" />
     <Content Include="Views\Consumer\ConsumerOrder.cshtml" />
     <Content Include="Views\Consumer\ShowSuccessPayment.cshtml" />
+    <Content Include="Views\Consumer\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
