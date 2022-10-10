@@ -28,7 +28,7 @@ namespace E_Commerce.Controllers {
                 Session.Add(SessionConstaint.USERSESION, account);
                 return "success";
             }
-            System.Diagnostics.Debug.WriteLine("ACCOUNT NOT ESIST IN DB");
+            
             return "fail";
         }
 
@@ -45,7 +45,7 @@ namespace E_Commerce.Controllers {
         // THANH TOÁN QUAMOMO
 
         [AuthorizationFilter("User")]
-        public ActionResult PaymentMomo(string amout) {
+        public ActionResult PaymentMomo(string amout, int paymentMethod, int shippingMethod) {
             if (amout != null) {
                 // https://test-payment.momo.vn/download/ 
 
@@ -55,7 +55,13 @@ namespace E_Commerce.Controllers {
                     JObject jmessage = JObject.Parse(responeFromMomo);
 
                     System.Diagnostics.Debug.WriteLine(jmessage.ToString());
+
                     bool successPayment = jmessage.GetValue("payUrl").ToString() != null;
+                    if (successPayment) {
+                        // Lưu đơn hàng
+                        HandleMomoResponse.saveOrder();
+
+                    }
                     return Redirect(jmessage.GetValue("payUrl").ToString());
                     // Update thanh toán cập nhật hóa đơn                  
                 } catch (Exception e) {
@@ -83,7 +89,6 @@ namespace E_Commerce.Controllers {
         public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
             // Handle response
             if (response.errorCode.Equals("0")) {
-                HandleMomoResponse.saveOrder();
                 System.Diagnostics.Debug.WriteLine("THÊM ORDER THANH CÔNG");
                 return RedirectToAction("ShowSuccessPayment", "Consumer", new { status  = "success"});
             }

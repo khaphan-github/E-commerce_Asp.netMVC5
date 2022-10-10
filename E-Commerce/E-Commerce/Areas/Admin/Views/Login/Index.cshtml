@@ -1,4 +1,5 @@
-﻿<!
+﻿
+<!
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,16 +21,14 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="@Url.Action("Index", "Home", new { area = " "})" class="h1"><img src="~/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" style="max-width:320px" /></a>
+                <a href="@Url.Action("Index", "Home", new { area = ""})" class="h1"><img src="~/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" style="max-width:320px" /></a>
             </div>
             <div class="card-body">
-                @using (Html.BeginForm()) {
-                    @Html.ValidationSummary(true)
                     <p style="font-size:20px" class="login-box-msg">Chào mừng vào trang admin</p>
-                    <form action="@Url.Action("Login", "Login", new { username = "03291999248", password = "03291999248" })" method="post">
+                    <form action="" method="post">
                         <div class="input-group mb-3">
                             <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" , id="form-username">
-                            @ViewData["Loi1"]
+                           
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -38,7 +37,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="password" name="password" class="form-control" placeholder="Mật khẩu" , id="form-password">
-                            @ViewData["Loi2"]
+                         
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -53,7 +52,7 @@
                             <!-- /.col -->
                         </div>
                     </form>
-                }
+                
             </div>
             <!-- /.card-body -->
         </div>
@@ -68,4 +67,6 @@
     <script src="/Areas/Admin/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
+
 

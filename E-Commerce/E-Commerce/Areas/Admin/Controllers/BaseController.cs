@@ -17,9 +17,13 @@ namespace E_Commerce.Areas.Admin.Controllers
             bool noAuth = filtercontext.RouteData.Values["controller"].ToString() != "Login";
 
             System.Diagnostics.Debug.WriteLine(filtercontext.RouteData.Values["controller"].ToString());
+            /* Nếu chưa login và controler không phải login -> Chuyển hướng đến trang login
+               Nếu Chưa session và controller Login thì chuyển qua else
+             */
             if (noLogin && noAuth) {
                 filtercontext.Result = new RedirectResult("/Admin/Login/Index");
-                System.Diagnostics.Debug.WriteLine("/Admin/Login/Index");
+            }
+            else {
             }
             base.OnActionExecuting(filtercontext);
         } 

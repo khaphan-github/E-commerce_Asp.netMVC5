@@ -30,6 +30,7 @@ namespace E_Commerce_Business_Logic.PaymentMomo {
                 PaymentMethodId = 1,
                 TotalPrice = totalPrice,
                 Address = currentUser.Addresses.FirstOrDefault(),
+                
             };
 
             orderRepository.CreateOrder(order);
