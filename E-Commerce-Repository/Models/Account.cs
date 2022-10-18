@@ -28,5 +28,7 @@ namespace E_Commerce_Repository.Models
         public int AccountStateId { get; set; }
         public virtual AccountState AccountState { get; set; }
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
+        //public int PositionId { get; set; }/**/
+        //public virtual Position Position { get; set; }/**/
     }
 }

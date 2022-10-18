@@ -18,12 +18,14 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
+        <a href="~/Areas/Admin/Views/Chart/Index.cshtml">~/Areas/Admin/Views/Chart/Index.cshtml</a>
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <a href="@Url.Action("Index", "Home", new { area = " "})" class="h1"><img src="~/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" style="max-width:320px" /></a>
             </div>
             <div class="card-body">
-                @using (Html.BeginForm()) {
+                @using (Html.BeginForm())
+                {
                     @Html.ValidationSummary(true)
                     <p style="font-size:20px" class="login-box-msg">Chào mừng vào trang admin</p>
                     <form action="@Url.Action("Login", "Login", new { username = "03291999248", password = "03291999248" })" method="post">

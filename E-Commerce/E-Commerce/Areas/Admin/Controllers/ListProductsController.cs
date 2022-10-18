@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,8 +18,9 @@ namespace E_Commerce.Areas.Admin.Controllers
         // GET: Admin/ListProducts
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Describe);
-            return View(products.ToList());
+            //var products = db.Products.Include(p => p.Describe);
+            //return View(products.ToList());
+            return View(db.Products.ToList());
         }
 
         // GET: Admin/ListProducts/Details/5
@@ -29,6 +31,7 @@ namespace E_Commerce.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
+
             if (product == null)
             {
                 return HttpNotFound();
@@ -37,44 +40,104 @@ namespace E_Commerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/ListProducts/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
+            //ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
+            /*ViewBag.DescribeID = new SelectList(db.Describes.ToList().OrderBy(x=>x.Description), "Id", "Description");*/
+            ViewBag.PromotionID = new SelectList(db.Promotions.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.CompanyID = new SelectList(db.Companys.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.SupplierID = new SelectList(db.Suppliers.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.TypeProductID = new SelectList(db.TypeProducts.ToList().OrderBy(x => x.Name), "Id", "Name");
             return View();
         }
 
         // POST: Admin/ListProducts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Quantity")] Product product)
+        [ValidateInput(false)]
+        public ActionResult Create(Product product, HttpPostedFileBase fileupload)
         {
-            if (ModelState.IsValid)
+            /*ViewBag.DescribeID = new SelectList(db.Describes.ToList().OrderBy(x => x.Description), "Id", "Description");*/
+            ViewBag.PromotionID = new SelectList(db.Promotions.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.CompanyID = new SelectList(db.Companys.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.SupplierID = new SelectList(db.Suppliers.ToList().OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.TypeProductID = new SelectList(db.TypeProducts.ToList().OrderBy(x => x.Name), "Id", "Name");
+            if(fileupload == null)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                ViewBag.Thongbao = "Vui lòng chọn ảnh";
+                return View();
+            }
+            else
+            {
+                if(ModelState.IsValid)
+                {
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Resources/ProductImage/"), fileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    }
+                    else
+                    {
+                        fileupload.SaveAs(path);
+                    }
+                   
+                    // TẠO SẢN PHẨM TRƯỚC - VÌ EM NÓ LÀ CHA
+                    db.Products.Add(product);
+                    db.SaveChanges();
+                    // GỌI SẢN PHẨM ĐÃ LƯU RA
+                    var productStoreInDb = db.Products.FirstOrDefault(prop => prop.Name == product.Name);
+
+                    // Tạo mới cái hình 
+                    ProductImage image = new ProductImage() { URL = "/Resources/ProductImage/" + fileName , ProductID = productStoreInDb.Id};
+
+                    // thêm cái hình vào db
+                    db.ProductImages.Add(image);
+                    db.SaveChanges();
+
+                    // gọi sản phẩm trong db ra và thêm hình cho nó
+                    productStoreInDb.ProductImages.Add(image);
+                    db.SaveChanges();
+                    // luuư hình xong ròi
+
+                    /*Describe describe = new Describe() { ProductID = productStoreInDb.Id };
+                    db.Describes.Add(describe);
+                    db.SaveChanges();*/
+                  
+                }
                 return RedirectToAction("Index");
             }
-
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description", product.Id);
-            return View(product);
         }
 
         // GET: Admin/ListProducts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
+            /*ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
+            }*/
+            Product product = db.Products.FirstOrDefault(x=>x.Id==id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description", product.Id);
+            ViewBag.PromotionID = new SelectList(db.Promotions.ToList().OrderBy(x => x.Name), "Id", "Name", product.PromotionID);
+            ViewBag.CompanyID = new SelectList(db.Companys.ToList().OrderBy(x => x.Name), "Id", "Name", product.CompanyID);
+            ViewBag.SupplierID = new SelectList(db.Suppliers.ToList().OrderBy(x => x.Name), "Id", "Name", product.SupplierID);
+            ViewBag.TypeProductID = new SelectList(db.TypeProducts.ToList().OrderBy(x => x.Name), "Id", "Name", product.TypeProductID);
+            var mota = db.Describes.ToList();
+
+
+            if (mota != null)
+            {
+               // ViewBag.MOTA = mota.Description;
+            }
+           
             return View(product);
         }
 
@@ -82,28 +145,67 @@ namespace E_Commerce.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        [ValidateInput(false)]
+        public ActionResult Edit(Product product, HttpPostedFileBase fileupload)
         {
-            if (ModelState.IsValid)
+            //Đưa dữ liệu vào dropdownload
+            ViewBag.PromotionID = new SelectList(db.Promotions.ToList().OrderBy(x => x.Name), "Id", "Name", product.PromotionID);
+            ViewBag.CompanyID = new SelectList(db.Companys.ToList().OrderBy(x => x.Name), "Id", "Name", product.CompanyID);
+            ViewBag.SupplierID = new SelectList(db.Suppliers.ToList().OrderBy(x => x.Name), "Id", "Name", product.SupplierID);
+            ViewBag.TypeProductID = new SelectList(db.TypeProducts.ToList().OrderBy(x => x.Name), "Id", "Name", product.TypeProductID);
+            //Kiểm tra đường dẫn file
+            if(fileupload == null)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                ViewBag.Thongbao = "Vui lòng chọn ảnh";
+                return View();
+            }
+            //Thêm vào CSDL
+            else
+            {
+                if(ModelState.IsValid)
+                {
+                    //Lưu tên file
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    //Lưu đường dẫn file
+                    var path = Path.Combine(Server.MapPath("~/Resources/ProductImage/"), fileName);
+                    //Kiểm tra hình ảnh tồn tạo chưa?
+                    if(System.IO.File.Exists(path))
+                    {
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    }
+                    else
+                    {
+                        fileupload.SaveAs(path);
+                    }
+                    UpdateModel(product);
+                    db.SaveChanges();
+                    // GỌI SẢN PHẨM ĐÃ LƯU RA
+                    var productStoreInDb = db.Products.FirstOrDefault(prop => prop.Name == product.Name);
+
+                    // Tạo mới cái hình 
+                    ProductImage image = new ProductImage() { URL = "/Resources/ProductImage/" + fileName, ProductID = productStoreInDb.Id };
+
+                    // thêm cái hình vào db
+                    UpdateModel(image);
+                    db.SaveChanges();
+
+                    Describe describe = db.Describes.FirstOrDefault(x => x.ProductID == product.Id);
+                    UpdateModel(describe);
+                    db.SaveChanges();
+                    //gọi sản phẩm trong db ra và thêm hình cho nó
+                    //productStoreInDb.ProductImages.Add(image);
+                    //db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description");
-            ViewBag.Id = new SelectList(db.Describes, "Id", "Description", product.Id);
-            return View(product);
         }
 
+        [HttpGet]
         // GET: Admin/ListProducts/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Product product = db.Products.Find(id);
+            ViewBag.IDProduct = product.Id;
             if (product == null)
             {
                 return HttpNotFound();
@@ -113,13 +215,47 @@ namespace E_Commerce.Areas.Admin.Controllers
 
         // POST: Admin/ListProducts/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            // Phải có try catch
+            /*
+
+             */
+            try
+            {
+                // Tìm sản phẩm trong db
+                Product product = db.Products.Find(id);
+                ViewBag.IDProduct = product.Id;
+
+                // Lấy danh sách hình ảnh có id bằng product.id
+                // Foreach() -> xóa hình trong db
+                List<ProductImage> imageNeedToDelete = db.ProductImages.Where(x => x.ProductID == product.Id).ToList();
+                foreach (ProductImage img in imageNeedToDelete) {
+                    db.ProductImages.Remove(img);
+                    db.SaveChanges();
+                }
+                
+                // Lấy bản mô tả trong db
+                Describe describeStoreInDB = db.Describes.FirstOrDefault(prop => prop.ProductID == id);
+                if (describeStoreInDB != null)
+                {
+                    // Xóa nó
+                    db.Describes.Remove(describeStoreInDB);
+                    db.SaveChanges();
+                }
+               
+                // Xóa product
+                db.Products.Remove(product);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
