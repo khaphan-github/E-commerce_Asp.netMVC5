@@ -1,4 +1,5 @@
-﻿using E_Commerce_Repository.InitializationDB;
+﻿using E_Commerce_Business_Logic.RequestFilter;
+using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Repository;
 using System;
@@ -10,7 +11,8 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class ViewProfileController : BaseController {
+    [AuthorizationFilter(allowedRoles: Role.SystemAdmin)]
+    public class ViewProfileController : Controller {
         // GET: Admin/ViewProfile
         private EcommerIntializationDB db = new EcommerIntializationDB();
         

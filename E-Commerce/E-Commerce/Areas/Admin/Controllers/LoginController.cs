@@ -1,4 +1,5 @@
 ﻿using E_Commerce_Business_Logic.Logic;
+using E_Commerce_Business_Logic.RequestFilter;
 using E_Commerce_Business_Logic.Session;
 using E_Commerce_Repository.Models;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class LoginController : BaseController {
+    public class LoginController : Controller {
         // GET: Admin/Login
         public ActionResult Index()
         {

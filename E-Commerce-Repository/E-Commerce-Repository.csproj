@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202209301216283_InitWareHouseTable.Designer.cs">
       <DependentUpon>202209301216283_InitWareHouseTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210201247487_IngonreChange.cs" />
+    <Compile Include="Migrations\202210201247487_IngonreChange.Designer.cs">
+      <DependentUpon>202210201247487_IngonreChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountAdmin.cs" />
@@ -217,6 +221,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202209301216283_InitWareHouseTable.resx">
       <DependentUpon>202209301216283_InitWareHouseTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210201247487_IngonreChange.resx">
+      <DependentUpon>202210201247487_IngonreChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

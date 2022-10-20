@@ -7,12 +7,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using E_Commerce_Business_Logic.RequestFilter;
 using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class ListProductsController : BaseController {
+    [AuthorizationFilter(allowedRoles: new string[2] { Role.SystemAdmin, Role.Admin })]
+
+    public class ListProductsController : Controller {
         private EcommerIntializationDB db = new EcommerIntializationDB();
 
         // GET: Admin/ListProducts
