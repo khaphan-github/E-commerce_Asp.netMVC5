@@ -26,8 +26,9 @@
 <html lang="en">
 <body>
     <div class="page-wrapper">
-
-
+        @if (ViewBag.ErrorMessage != null) {
+            <h3>@ViewBag.ErrorMessage</h3>
+        }
         <div class="header-middle sticky-header">
             <div class="container">
             </div><!-- End .container -->
@@ -47,6 +48,7 @@
                 <div class="cart">
                     <div class="container">
                         <div class="row">
+
                             <div class="col-lg-8">
 
                                 <table class="table">
@@ -83,13 +85,13 @@
                                                             </h3><!-- End .product-title -->
                                                         </div><!-- End .product -->
                                                     </td>
-                                                    <td class="price-col">@String.Format("{0:n0}", @product.perItemsPrice) đ</td>
+                                                    <td class="price-col">@String.Format("{0:n0}", product.perItemsPrice) đ</td>
 
                                                     <td class="product-title">
                                                         <span id="numberItems">@product.numberItems</span>
                                                     </td>
 
-                                                    <td class="total-col" id="totalproductPrice"> @String.Format("{0:n0}", product.TotalPrice) đ</td>
+                                                    <td class="total-col" id="totalproductPrice"> @String.Format("{0:n0}", product.TotalPrice * product.numberItems) đ</td>
 
                                                     <td class="remove-col"><button onclick="RemoveProductFromCard(@product.productId)" class="btn-remove"><i class="icon-close"></i></button></td>
                                                 </tr>
@@ -117,7 +119,7 @@
                                             <tr class="summary-shipping-row">
                                                 <td>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="free-shipping" value="0" name="shipping" checked class="custom-control-input">
+                                                        <input type="radio" id="free-shipping" value="0" name="shipping" onclick="CheckOrder(this);" checked class="custom-control-input">
                                                         <label class="custom-control-label" for="free-shipping">Miễn phí vận chuyển</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
@@ -127,7 +129,7 @@
                                             <tr class="summary-shipping-row">
                                                 <td>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="standart-shipping" value="28000" name="shipping" class="custom-control-input">
+                                                        <input type="radio" id="standart-shipping" value="28000" onclick="CheckOrder(this);" name="shipping" class="custom-control-input">
                                                         <label class="custom-control-label" for="standart-shipping">Giao hàng tiết kiệm</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
@@ -137,7 +139,7 @@
                                             <tr class="summary-shipping-row">
                                                 <td>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="express-shipping" value="43000"  name="shipping" class="custom-control-input">
+                                                        <input type="radio" id="express-shipping" value="43000" onclick="CheckOrder(this);" name="shipping" class="custom-control-input">
                                                         <label class="custom-control-label" for="express-shipping">Giao hàng siêu tốc</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>
@@ -147,8 +149,8 @@
                                             <tr class="summary-shipping-estimate">
                                                 <td>
                                                     Thay đổi địa chỉ giao hàng<br>
-                                                    địa chỉ giao hàng <br>
-                                                    <a href="dashboard.html">Thay đổi</a>
+                                                    @accountConsumer.Addresses.ElementAt(0).Street<br>
+                                                    <a href="/Consumer/AccountDetail">Thay đổi</a>
                                                 </td>
                                                 <td>&nbsp;</td>
                                             </tr><!-- End .summary-shipping-estimate -->
@@ -170,7 +172,7 @@
                                             <tr class="summary-shipping-row">
                                                 <td>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="paymentmomo" name="payment"  checked class="custom-control-input">
+                                                        <input type="radio" id="paymentmomo" name="payment" checked class="custom-control-input">
                                                         <label class="custom-control-label" for="paymentmomo">Thanh toán qua Momo</label>
                                                     </div><!-- End .custom-control -->
                                                 </td>

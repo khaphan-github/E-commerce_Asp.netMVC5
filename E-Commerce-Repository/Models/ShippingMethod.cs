@@ -12,6 +12,8 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
+        public int Price { get; set; }
+
 
         // Quan hệ nhiều 1 với order
         public virtual ICollection<Order> Orders { get; set; }

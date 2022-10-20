@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
+}
+
+<main>
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Register with Unique Shop</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="container" style="font-family:Arial">
+        <form class="custom-control-input-teal">
+            <div class="row">
+                <div class="col-md-7">
+                    <iframe width="650" height="455" style="margin-top:10px; border-radius:10px; border:none"
+                            src="https://www.youtube.com/embed/WuEH265pUy4?autoplay=1&mute=1&controls=0&loop=1">
+                    </iframe>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="singin-email">Họ và tên * </label>
+                        <input type="text" class="form-control" id="singin-name" name="fullname" required>
+                    </div><!-- End .form-group -->
+                    <div class="form-group">
+                        <label for="singin-email">Số điện thoại hoặc email * </label>
+                        <input type="text" class="form-control" id="singin-username" name="username" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="form-group">
+                        <label for="singin-email">Mật khẩu * </label>
+                        <input type="text" class="form-control" id="singin-password" name="password" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="form-group">
+                        <label for="singin-email">Nhập lại mật khẩu * </label>
+                        <input type="text" class="form-control" id="singin-confirmpass" name="confirmpassword" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="form-group">
+                        <label for="singin-email">Địa chỉ giao hàng * </label>
+                        <input type="text" class="form-control" id="singin-address" name="Address" placeholder="Đường/ Phường, Xã/ Quận, Huyện/ Tỉnh, Thành Phố" required>
+                    </div><!-- End .form-group -->
+
+                    <div class="form-group">
+                        <input type="checkbox" required />
+                        <a href="#" style="font-family:Arial">Đồng ý với điều khoản sử dụng</a>
+                    </div><!-- End .form-group -->
+                    <div class="form-group">
+                        <button class="btn btn-secondary">Đăng ký ngay</button>
+                    </div><!-- End .form-group -->
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

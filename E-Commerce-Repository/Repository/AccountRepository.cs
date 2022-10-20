@@ -26,6 +26,11 @@ namespace E_Commerce_Repository.Repository {
             throw new System.NotImplementedException();
         }
 
+        public void CreateAccount(Account account) {
+            repository.Accounts.Add(account);
+            repository.SaveChanges();
+        }
+
         public void DeleteAccount(int id) {
             throw new System.NotImplementedException();
         }

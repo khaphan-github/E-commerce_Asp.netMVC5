@@ -32,5 +32,12 @@ namespace E_Commerce_Repository.Service {
 
         List<Order> getOrders(AccountConsumer accountConsumer);
 
+        ShippingMethod getShippingMethodById(int id);
+
+        PaymentMethod getPaymentMethodById(int id);
+
+        List<ShippingMethod> GetShippingMethods();
+
+        ShippingMethod getShippingMethodByDesc(string desc);
     }
 }
