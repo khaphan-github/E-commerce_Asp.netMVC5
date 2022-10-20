@@ -40,30 +40,30 @@ namespace E_Commerce.Controllers {
             return View();
         }
         // Thanh toán tiền mặt
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult Payment(string amout, int paymentMethod, string shippingMethod) {
             // Thực hiện thanh toán băng tiền mặt
             HandleCashPayment.SaveOrderByCashPayment(amout, paymentMethod, shippingMethod);
             return RedirectToAction("CashPayment", "Consumer");
         }
 
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult CashPayment() {
             return View();
         }
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult AccountDetail() {
             return View();
         }
 
         // Quản lý đơn hàng
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult ConsumerOrder() {
             return View();
         }
 
         // THANH TOÁN QUAMOMO
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult PaymentMomo(string amout, int paymentMethod, string shippingMethod) {
             string errorMessage = "";
             if (amout != null) {
@@ -94,7 +94,7 @@ namespace E_Commerce.Controllers {
             return RedirectToAction("Index", "Card", new { ErrorMessage = errorMessage });
         }
 
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
 
             if (response.errorCode.Equals("0")) {
@@ -108,7 +108,7 @@ namespace E_Commerce.Controllers {
             return RedirectToAction("ShowSuccessPayment", "Consumer", new { status = "fail" });
         }
 
-        [AuthorizationFilter("User")]
+        [AuthenticationFilter]
         public ActionResult ShowSuccessPayment(string status) {
             if (status == "success") {
                 ViewBag.imageURL = "/assets/images/logo/thanhtoanthanhcong.png";

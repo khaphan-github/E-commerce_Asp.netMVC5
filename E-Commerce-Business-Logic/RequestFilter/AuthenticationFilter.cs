@@ -12,20 +12,25 @@ namespace E_Commerce_Business_Logic.RequestFilter {
     public class AuthenticationFilter : ActionFilterAttribute, IAuthenticationFilter {
         public void OnAuthentication(AuthenticationContext filterContext) {
 
-            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session[SessionConstaint.USERSESION]))) {
+            string getCurrentSession = Convert.ToString(filterContext.HttpContext.Session[SessionConstaint.USERSESION]);
+
+            bool isNoAuthenticated = string.IsNullOrEmpty(getCurrentSession);
+
+            if (isNoAuthenticated) {
                 filterContext.Result = new HttpUnauthorizedResult();
             }
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext) {
-            if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult) {
- 
-                filterContext.Result = new RedirectToRouteResult(
-                new RouteValueDictionary
-                {
-                     { "controller", "Home" },
-                     { "action", "NoAuthLogin" }
-                });
+            RouteValueDictionary routerValue = new RouteValueDictionary { 
+                    { "controller", "Home" },
+                    { "action", "Index" }
+            };
+            bool isUnauth = filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult;
+
+            if (isUnauth) {
+
+                filterContext.Result = new RedirectToRouteResult(routerValue);
             }
         }
     }

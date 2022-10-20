@@ -12,34 +12,37 @@ using E_Commerce_Repository.Repository;
 
 namespace E_Commerce_Business_Logic.RequestFilter {
     public class AuthorizationFilter : AuthorizeAttribute {
-        private readonly string[] allowedroles;
-        public AuthorizationFilter(params string[] roles) {
-            this.allowedroles = roles;
+        private readonly string[] allowedRoles;
+        public AuthorizationFilter(params string[] allowedRoles) {
+            this.allowedRoles = allowedRoles;
         }
         protected override bool AuthorizeCore(HttpContextBase httpContext) {
             // Phân quyền
             bool authorize = false;
-            var user = httpContext.Session[SessionConstaint.USERSESION] as AccountConsumer;
+            var user = httpContext.Session[SessionConstaint.USERSESION] as Account;
 
             if (user != null) {
                 var userRole = user.AccountRoles;
+
                 int maxLevelRole = userRole.Max(lv => lv.level);
+
                 string roleName = userRole.FirstOrDefault(prop => prop.level == maxLevelRole).Name;
-                System.Diagnostics.Debug.WriteLine(roleName);
-                foreach (var role in allowedroles) {
+
+                foreach (var role in allowedRoles) {
                     if (role == roleName) return true;
                 }
             }
             return authorize;
         }
 
-    protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
-        filterContext.Result = new RedirectToRouteResult(
-           new RouteValueDictionary
-           {
-                    { "controller", "Home" },
-                    { "action", "UnAuthorized" }
-           });
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
+
+            RouteValueDictionary rauteValue = new RouteValueDictionary {
+                { "controller", "Login" },
+                { "action", "Index" }
+            };
+
+            filterContext.Result = new RedirectToRouteResult(rauteValue);
+        }
     }
-}
 }

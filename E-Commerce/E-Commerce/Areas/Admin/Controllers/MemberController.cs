@@ -1,4 +1,5 @@
-﻿using E_Commerce_Repository.InitializationDB;
+﻿using E_Commerce_Business_Logic.RequestFilter;
+using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
-    public class MemberController : BaseController {
+    [AuthorizationFilter(allowedRoles: Role.SystemAdmin)]
+    public class MemberController : Controller {
         // GET: Admin/Member/Index
         EcommerIntializationDB db = new EcommerIntializationDB();
         public ActionResult Index(string roleName)
