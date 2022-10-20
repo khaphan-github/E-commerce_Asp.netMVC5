@@ -1,4 +1,6 @@
-﻿using System;
+﻿using E_Commerce_Repository.InitializationDB;
+using E_Commerce_Repository.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,33 @@ namespace E_Commerce.Areas.Admin.Controllers
 {
     public class MemberController : BaseController {
         // GET: Admin/Member/Index
-        public ActionResult Index()
+        EcommerIntializationDB db = new EcommerIntializationDB();
+        public ActionResult Index(string roleName)
         {
-            return View();
+            // Lọc theo quyền user
+            if (roleName == null)
+                roleName = "User";
+            var AccountRole = db.AccountRoles.FirstOrDefault(x => x.Name.Equals(roleName));
+            ViewBag.AccountList = AccountRole.Account.ToList();
+            // Lọc theo quyền Admin
+            // Lọc theo quyền systemadmin
+            return View(ViewBag.AccountList);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var acc = db.Accounts.FirstOrDefault(x => x.Id == id);
+                acc.AccountRoles.Clear();
+                db.Accounts.Remove(acc);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Member");
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
     }
 }

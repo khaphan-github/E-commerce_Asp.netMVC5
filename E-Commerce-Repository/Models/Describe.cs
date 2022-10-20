@@ -15,5 +15,6 @@ namespace E_Commerce_Repository.Models
         public int Pin { get; set; }   
         public int? ProductID { get; set; }
         public virtual Product Product { get; set; }
+        //public virtual ICollection<Product> Products { get; set; }/*------------------------*/
     }
 }

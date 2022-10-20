@@ -24,7 +24,7 @@ namespace E_Commerce.Controllers
 
             // Hiển thị sản phẩm nổi bậc
             ViewBag.TopProduct = productRepository.GetProducts();
-            ViewData["TopProduct"] = productRepository.GetProducts();
+            //ViewData["TopProduct"] = productRepository.GetProducts();
 
             // Hiển thị sản phẩm bán chạy
             ViewData["BestSellerPeoduct"] = productRepository.GetProducts();

@@ -12,7 +12,7 @@
         <div class="card-header">
             <h4 class="card-title">Chi Tiết Sản Phẩm</h4>
         </div>
-        <dl class="dl-horizontal">
+        <div class="dl-horizontal">
             <div class="col-md-10">
                 <label for="Name">Tên Sản Phẩm</label>
                 <dd>
@@ -37,7 +37,7 @@
             <div class="col-md-10">
                 <label for="Name">Khuyến Mãi</label>
                 <dd>
-                    @Html.DisplayFor(model => model.Promotion)
+                    @Html.DisplayFor(model => model.Promotion.Name)
                 </dd>
             </div>
             
@@ -64,7 +64,7 @@
             
             <div class="col-md-10">
                 <label for="Name">Mô Tả</label>
-                <dd>
+                <dd style="width:600px; text-align:justify">
                     @Html.DisplayFor(model => model.Describe.Description)
                 </dd>
             </div>
@@ -75,7 +75,7 @@
                     <img src="@Html.DisplayFor(modelItem => modelItem.ProductImages.ElementAt(0).URL)" style="width:80px;" />
                 </dd>
             </div>
-        </dl>
+        </div>
      </div>
 }
 <p>

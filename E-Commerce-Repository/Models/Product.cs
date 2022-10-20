@@ -22,6 +22,7 @@ namespace E_Commerce_Repository.Models
         public virtual Company Company { get; set; }
         public int? DescribeID { get; set; }
         public virtual Describe Describe { get; set; }
+        //public virtual ICollection<Describe> Describes { get; set; }/*---------------------*/
         public int? PromotionID { get; set; }
         public virtual Promotion Promotion { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
