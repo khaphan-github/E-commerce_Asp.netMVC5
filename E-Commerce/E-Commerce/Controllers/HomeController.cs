@@ -1,5 +1,5 @@
-﻿using E_Commerce_Business_Logic.HomepageItems;
-using E_Commerce_Repository.Models;
+﻿using E_Commerce_Repository.Models;
+using E_Commerce_Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +8,40 @@ using System.Web.Mvc;
 
 namespace E_Commerce.Controllers
 {
-    [RequireHttps]
-    public class HomeController : Controller
-    {
+   
+    public class HomeController : Controller {
         // GET: Home Hiển thị trang chủ
-        public ActionResult Index()
+        private ProductRepository productRepository = new ProductRepository();
+        private ProductComponentRepository productComponent = new ProductComponentRepository();
+        public ActionResult Index(string searchString)
         {
-            // Show category in search bar
-            HomepageItemsView homepageItemsView = new HomepageItemsView();
-            ViewData["CategorySearch"] = homepageItemsView.CategoryView();
+            // HIển thị danh mục kèm hình ảnh dưới phần banner
+            ViewData["CategoryPicture"] = null;
 
-            // Show shopping card when account login 
-            ViewData["ShoppingCard"] = homepageItemsView.ShoppingCardsView(new AccountConsumer());
+            // Danh mục sản phẩm
+            ViewData["Category"] = productComponent.GetCategories();
 
-            return View();
-        }
+            // Hiển thị sản phẩm nổi bậc
+            ViewBag.TopProduct = productRepository.GetProducts();
+            ViewData["TopProduct"] = productRepository.GetProducts();
 
-        public ActionResult SignIn()
-        {
+            // Hiển thị sản phẩm bán chạy
+            ViewData["BestSellerPeoduct"] = productRepository.GetProducts();
+
+            ViewBag.SlideBarCategory = productComponent.GetCategories();
+            ViewData["TypeProduct"] = productComponent.GetProductTypes();
+
+            ViewBag.Brands = productComponent.GetCompanies();
+            if(searchString != null)
+            {
+                return RedirectToAction("Index", "Shop", new { searchString = searchString });
+            }
             
             return View();
+
         }
+
+
         public ActionResult About()
         {
             return View();
@@ -39,5 +52,19 @@ namespace E_Commerce.Controllers
             return View();
         }
 
+
+        /*      public ActionResult Index(int id)
+     {
+
+         Product product = productRepository.getProductById(id);
+         ViewData["Product"] = product;
+
+         ViewData["RelatedProduct"] = product;
+         return View();
+     }
+*/
+        public ActionResult NoAuthLogin() {
+            return View();
+        }
     }
 }

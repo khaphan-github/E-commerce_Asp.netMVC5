@@ -9,9 +9,9 @@ namespace E_Commerce_Repository.Models
 {
     public class AccountAdmin : Account
     {
-
         public float Salary { get; set; }
-
+        public int? PositionId { get; set; }
         public virtual Position Position { get; set; }
+        public virtual ICollection<Promotion> Promotions { get; set; }
     }
 }

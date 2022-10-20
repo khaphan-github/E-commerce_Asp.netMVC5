@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ShowSuccessPayment";
+    Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
+}
+
+<main>
+    <div class="container ">
+        <img src="@ViewBag.imageURL" />
+        <div class="row align-center  col d-flex justify-content-center">
+            <a href="@Url.Action("Index", "Shop")" class="btn btn-secondary" style="padding-right: 10px">Tiếp tục mua sắm</a>
+            <a href="@Url.Action("ConsumerOrder", "Consumer")" class="btn btn-secondary">Xem đơn hàng</a>
+        </div>
+    </div>
+</main>
+

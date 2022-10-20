@@ -14,12 +14,11 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public int Number { get; set; }
         public bool isEmpty { get; set; }
-        public DateTime? CreatedDate { get; set; }
-
-        public virtual AccountConsumer AccountConsumer { get; set; }
-
+        public DateTime CreatedDate { get; set; }
+        public float totalPrice { get; set; }
+        public int? AccountConsumerID { get; set; }
+        public  virtual AccountConsumer AccountConsumer { get; set; }
         // QUan hệ nhiều nhiều với sản phẩm
-        public virtual ICollection<Product> Products { get; set; }
-        
+        public virtual ICollection<ShoppingCardDetail> ShoppingCardDetails { get; set; }
     }
 }

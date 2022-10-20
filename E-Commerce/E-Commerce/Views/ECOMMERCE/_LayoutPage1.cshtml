@@ -1,26 +1,27 @@
 ﻿@using E_Commerce_Repository.Models;
-@using E_Commerce_Business_Logic.HomepageItems;
-@using System.Web;
+@using E_Commerce_Business_Logic.Session;
+@using E_Commerce_Business_Logic.CartHandler;
+
 @{
-
-    HomepageItemsView LayoutView = new HomepageItemsView();
-
-    var accountConsumer = Session["AccountLogin"] as AccountConsumer;
+    var accountConsumer = Session[SessionConstaint.USERSESION] as AccountConsumer;
 
     bool isLogin = accountConsumer != null;
-    List<Product> ShoppingcardProduct = new List<Product>();
+    CartView ShoppingcardProduct = null;
     if (isLogin) {
-        ShoppingcardProduct = LayoutView.ShoppingCardsView(accountConsumer);
+        ShoppingcardProduct = CartHandlders.getCardView(accountConsumer);
     }
-    var category = LayoutView.CategoryView();
 
-    var totalPrice = 0;
+    if (ShoppingcardProduct != null) {
+        System.Diagnostics.Debug.WriteLine("Get Cart successFully");
+    }
 
+    // Hiển thị danh mục sản phẩm
+    var category = ViewData["Category"] as List<Category>;
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- molla/category-market.html  22 Nov 2019 10:02:55 GMT -->
 <head>
     <meta charset="UTF-8">
@@ -57,13 +58,11 @@
     <link rel="stylesheet" href="/assets/css/skins/skin-demo-13.css">
     <link rel="stylesheet" href="/assets/css/demos/demo-13.css">
     @RenderSection("CSS", required: false)
-
 </head>
 
 <body style="font-family:Arial">
     <div class="page-wrapper">
         <header class="header header-10">
-
             <div class="header-middle">
                 <div class="container">
                     <div class="header-left" style="max-height:100px;">
@@ -74,111 +73,113 @@
                         <div class="header-search header-search-extended header-search-visible header-search-yes-radius d-none d-lg-block">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
 
+
                             <!-- Tìm kiếm sản phẩm-->
                             <form action="#" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
-                                    <input type="search" class="form-control " name="q" id="q" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
+                                    <input type="search" class="form-control " name="searchString" id="searchString" placeholder="Tìm sản phẩm danh mục hay thương hiệu mong muốn..." required>
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
-
-
                         </div><!-- End .header-search -->
                     </div><!-- End .header-left -->
-                   
+
                     <div class="header-right">
                         <!--LOGIN BUTTON IN HEADER-->
-                            @{
-                                if (accountConsumer != null) {
-                                    <div class="dropdown">             
+
+                        @{
+                            if (accountConsumer != null) {
+                                <div id="userlogin">
+                                    <div class="dropdown">
                                         <a class="btn dropdown-toggle header-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                            <img src="https://s120.avatar.talk.zdn.vn/5/f/e/e/12/120/903f984bfa9e8d5d3ce38605a6c722f9.jpg" alt="avatar" style="width: 25%; padding-right: 10px; float: left;"/>
-                                             
+                                            <img src="@accountConsumer.Avatar" alt="av" style="width: 25%; padding-right: 10px; float: left;" />
+
                                             <div style="text-align: left;float:left; font-size: 13px">
                                                 <span>
                                                     Tài khoản
                                                     <br />
-                                                    @accountConsumer.Username
+                                                    @accountConsumer.DisplayName
                                                 </span>
                                             </div>
                                         </a>
-
-                                        <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-                                            <a class="dropdown-item" style="font-size:13px" href="#">Tài khoản của tôi</a>
-                                            <a class="dropdown-item" style="font-size:13px" href="#">Đơn hàng của tôi</a>
-                                            <a class="dropdown-item" style="font-size:13px" href="@Url.Action("Logout","Consumer")">Đăng suất</a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" style="font-size:13px" href="@Url.Action("AccountDetail","Consumer")">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" href="@Url.Action("ConsumerOrder", "Consumer")">Đơn hàng của tôi</a>
+                                            <a class="dropdown-item" style="font-size:13px" onclick="Logout()">Đăng suất</a>
                                         </div>
                                     </div>
-                                }
-                                else {
-                                        <a class="btn dropdown-toggle header-left" href="#signin-modal" role="button" data-toggle="modal" style="font-size:15px">
-                                            Đăng nhập
-                                        </a>
-                                }
+                                </div>
                             }
-                        
-
+                            else {
+                                <div id="nouserlogin">
+                                    <a class="btn dropdown-toggle header-left" href="#signin-modal" role="button" data-toggle="modal" style="font-size:15px">
+                                        Đăng nhập
+                                    </a>
+                                </div>
+                            }
+                        }
                         <div class="dropdown cart-dropdown">
-                            @{ 
+                            @{
                                 string datatoggle = "dropdown";
                                 string hreflink = "";
                             }
                             @if (!isLogin) {
-                                 datatoggle = "modal";
-                                 hreflink = "#signin-modal";
-                            } 
-                            <a href="@hreflink" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                datatoggle = "modal";
+                                hreflink = "#signin-modal";
+                            }
+
+
+                            <a href="@hreflink" onclick="ShowShoppingCard()" class="dropdown-toggle" role="button" data-toggle="@datatoggle" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
                                 <span style="font-family:Tahoma; font-size:17px">Giỏ hàng</span>
-                                @if (isLogin) {
-
-                                    <span class="cart-count">@ShoppingcardProduct.Count</span>
+                                @if (isLogin && ShoppingcardProduct != null) {
+                                    <span class="cart-count">@ShoppingcardProduct.Products.Sum(prop => prop.numberItems).ToString()</span>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <div class="dropdown-cart-products">
-                                            @foreach (var product in ShoppingcardProduct) {
-                                                totalPrice += product.Price;
+                                            @foreach (var product in ShoppingcardProduct.Products) {
+
                                                 <div class="product">
                                                     <div class="product-cart-details">
                                                         <h4 class="product-title">
                                                             <!--Url Action To product detail-->
-                                                            <a href="#">@product.Name</a>
+                                                            <a href="#">@product.productName</a>
                                                         </h4>
 
                                                         <span class="cart-product-info">
-                                                            <span class="cart-product   -qty"></span>
-                                                            @String.Format("{0:n0}", @product.Price) đ
+                                                            <span class="cart-product-qty"></span>
+                                                            @String.Format("{0:n0}", @product.TotalPrice) đ
+                                                        </span>
+                                                        <br />
+                                                        <span class="cart-product-info">
+                                                            <span class="cart-product-qty"></span>
+                                                            Số lượng: @product.numberItems
                                                         </span>
                                                     </div><!-- End .product-cart-details -->
 
                                                     <figure class="product-image-container">
                                                         <!--Url Action To product detail-->
                                                         <a href="#" class="product-image">
-                                                            @{
-                                                                var productThumb = @product.ProductImages.ToList();
-                                                            }
-                                                            <img src="@productThumb[0].URL" alt="product">
+                                                            <img src="@product.productImages.ToList().ElementAt(0).URL" alt="product">
                                                         </a>
                                                     </figure>
                                                     <!--Url Action Remove product from shopping card-->
-                                                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+
                                                 </div><!-- End .product -->
                                             }
 
-
                                         </div><!-- End .cart-product -->
-
                                         <div class="dropdown-cart-total">
                                             <span>Tổng cộng</span>
-                                            <span class="cart-total-price"> @String.Format("{0:n0}", @totalPrice) đ </span>
+                                            <span class="cart-total-price"> @String.Format("{0:n0}", @ShoppingcardProduct.totalprice) đ </span>
+
                                         </div><!-- End .dropdown-cart-total -->
 
                                         <div class="dropdown-cart-action">
                                             <a href="@Url.Action("Index", "Card")" class="btn btn-primary">Giỏ hàng</a>
-                                            <a href="@Url.Action("Index","Checkout")" class="btn btn-outline-primary-2"><span style="font-family:Tahoma;">Thanh toán</span><i class="icon-long-arrow-right"></i></a>
+                                            <a href="@Url.Action("Index", "Card")" class="btn btn-outline-primary-2"><span style="font-family:Tahoma;">Thanh toán</span><i class="icon-long-arrow-right"></i></a>
                                         </div><!-- End .dropdown-cart-total -->
                                     </div><!-- End .dropdown-menu -->
                                 }
-
                             </a>
 
                         </div><!-- End .cart-dropdown -->
@@ -200,12 +201,14 @@
                                 <div class="dropdown-menu">
                                     <nav class="side-nav">
                                         <ul class="menu-vertical sf-arrows">
+                                            @if (category != null) {
+                                                foreach (var ca in category) {
+                                                    // href is a action resource;
+                                                    <li><a href="#">@ca.Name</a></li>
+                                                }
+                                            }
 
                                             <!-- Show category navigation bar -->
-                                            @foreach (var ca in category) {
-                                                // href is a action resource;
-                                                <li><a href="#">@ca.Name</a></li>
-                                            }
 
                                         </ul><!-- End .menu-vertical -->
                                     </nav><!-- End .side-nav -->
@@ -290,6 +293,7 @@
 
 
                                     </li>
+
                                 </ul><!-- End .menu -->
                             </nav><!-- End .main-nav -->
                         </div><!-- End .col-lg-9 -->
@@ -303,59 +307,7 @@
         <footer class="footer footer-2">
             <div class="icon-boxes-container">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="icon-box icon-box-side">
-                                <span class="icon-box-icon">
-                                    <i class="icon-rocket"></i>
-                                </span>
 
-                                <div class="icon-box-content">
-                                    <h3 class="icon-box-title">Free Shipping</h3><!-- End .icon-box-title -->
-                                    <p>Orders $50 or more</p>
-                                </div><!-- End .icon-box-content -->
-                            </div><!-- End .icon-box -->
-                        </div><!-- End .col-sm-6 col-lg-3 -->
-
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="icon-box icon-box-side">
-                                <span class="icon-box-icon">
-                                    <i class="icon-rotate-left"></i>
-                                </span>
-
-                                <div class="icon-box-content">
-                                    <h3 class="icon-box-title">Free Returns</h3><!-- End .icon-box-title -->
-                                    <p>Within 30 days</p>
-                                </div><!-- End .icon-box-content -->
-                            </div><!-- End .icon-box -->
-                        </div><!-- End .col-sm-6 col-lg-3 -->
-
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="icon-box icon-box-side">
-                                <span class="icon-box-icon">
-                                    <i class="icon-info-circle"></i>
-                                </span>
-
-                                <div class="icon-box-content">
-                                    <h3 class="icon-box-title">Get 20% Off 1 Item</h3><!-- End .icon-box-title -->
-                                    <p>When you sign up</p>
-                                </div><!-- End .icon-box-content -->
-                            </div><!-- End .icon-box -->
-                        </div><!-- End .col-sm-6 col-lg-3 -->
-
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="icon-box icon-box-side">
-                                <span class="icon-box-icon">
-                                    <i class="icon-life-ring"></i>
-                                </span>
-
-                                <div class="icon-box-content">
-                                    <h3 class="icon-box-title">We Support</h3><!-- End .icon-box-title -->
-                                    <p>24/7 amazing services</p>
-                                </div><!-- End .icon-box-content -->
-                            </div><!-- End .icon-box -->
-                        </div><!-- End .col-sm-6 col-lg-3 -->
-                    </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .icon-boxes-container -->
 
@@ -363,20 +315,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
-                            <div class="widget widget-about">
-                                <img src="/assets/images/demos/demo-13/logo.png" class="footer-logo" alt="Footer Logo" width="110" height="25">
-                                <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. </p>
-
+                            <div class="wid                                                                                                                                    et widget-about">
+                                <img src="/assets/images/logo/LOGO_UNIQUESHOP_1000_462.png" class="footer-logo" alt="Footer Logo" width="450" height="25">
                                 <div class="widget-about-info">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-4">
-                                            <span class="widget-about-title">Got Question? Call us 24/7</span>
-                                            <a href="tel:123456789">+0123 456 789</a>
+                                            <span class="widget-about-title">Liên hệ với chúng tôi</span>
+                                            <a href="tel:123456789">0329199948</a>
                                         </div><!-- End .col-sm-6 -->
                                         <div class="col-sm-6 col-md-8">
-                                            <span class="widget-about-title">Payment Method</span>
+                                            <span class="widget-about-title">Phương thức thanh toán</span>
                                             <figure class="footer-payments">
-                                                <img src="/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                                                <img src="/assets/images/icons/momo_icon_rectangle.png" alt="Payment methods" width="60" height="20">
                                             </figure><!-- End .footer-payments -->
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
@@ -386,14 +336,13 @@
 
                         <div class="col-sm-4 col-lg-2">
                             <div class="widget">
-                                <h4 class="widget-title">Information</h4><!-- End .widget-title -->
+                                <h4 class="widget-title">Thông tin lên hệ</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="about.html">About Molla</a></li>
-                                    <li><a href="#">How to shop on Molla</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="login.html">Log in</a></li>
+                                    <li><a href="about.html">Về Unique Shop</a></li>
+                                    <li><a href="faq.html"></a></li>
+                                    <li><a href="contact.html">Thông tin liên lạc</a></li>
+                                    <li><a href="#signin-modal" data-toggle="modal">Đăng nhập</a></li>
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-4 col-lg-3 -->
@@ -474,176 +423,7 @@
                 </li>
             </ul>
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li class="active">
-                                <a href="index.html">Home</a>
 
-                                <ul>
-                                    <li><a href="index-1.html">01 - furniture store</a></li>
-                                    <li><a href="index-2.html">02 - furniture store</a></li>
-                                    <li><a href="index-3.html">03 - electronic store</a></li>
-                                    <li><a href="index-4.html">04 - electronic store</a></li>
-                                    <li><a href="index-5.html">05 - fashion store</a></li>
-                                    <li><a href="index-6.html">06 - fashion store</a></li>
-                                    <li><a href="index-7.html">07 - fashion store</a></li>
-                                    <li><a href="index-8.html">08 - fashion store</a></li>
-                                    <li><a href="index-9.html">09 - fashion store</a></li>
-                                    <li><a href="index-10.html">10 - shoes store</a></li>
-                                    <li><a href="index-11.html">11 - furniture simple store</a></li>
-                                    <li><a href="index-12.html">12 - fashion simple store</a></li>
-                                    <li><a href="index-13.html">13 - market</a></li>
-                                    <li><a href="index-14.html">14 - market fullwidth</a></li>
-                                    <li><a href="index-15.html">15 - lookbook 1</a></li>
-                                    <li><a href="index-16.html">16 - lookbook 2</a></li>
-                                    <li><a href="index-17.html">17 - fashion store</a></li>
-                                    <li><a href="index-18.html">18 - fashion store (with sidebar)</a></li>
-                                    <li><a href="index-19.html">19 - games store</a></li>
-                                    <li><a href="index-20.html">20 - book store</a></li>
-                                    <li><a href="index-21.html">21 - sport store</a></li>
-                                    <li><a href="index-22.html">22 - tools store</a></li>
-                                    <li><a href="index-23.html">23 - fashion left navigation store</a></li>
-                                    <li><a href="index-24.html">24 - extreme sport store</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="category.html">Shop</a>
-                                <ul>
-                                    <li><a href="category-list.html">Shop List</a></li>
-                                    <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
-                                    <li><a href="category.html">Shop Grid 3 Columns</a></li>
-                                    <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
-                                    <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
-                                    <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
-                                    <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
-                                    <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="#">Lookbook</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="product.html" class="sf-with-ul">Product</a>
-                                <ul>
-                                    <li><a href="product.html">Default</a></li>
-                                    <li><a href="product-centered.html">Centered</a></li>
-                                    <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
-                                    <li><a href="product-gallery.html">Gallery</a></li>
-                                    <li><a href="product-sticky.html">Sticky Info</a></li>
-                                    <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                                    <li><a href="product-fullwidth.html">Full Width</a></li>
-                                    <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About</a>
-
-                                        <ul>
-                                            <li><a href="about.html">About 01</a></li>
-                                            <li><a href="about-2.html">About 02</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact</a>
-
-                                        <ul>
-                                            <li><a href="contact.html">Contact 01</a></li>
-                                            <li><a href="contact-2.html">Contact 02</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
-                                    <li><a href="404.html">Error 404</a></li>
-                                    <li><a href="coming-soon.html">Coming Soon</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="blog.html">Blog</a>
-
-                                <ul>
-                                    <li><a href="blog.html">Classic</a></li>
-                                    <li><a href="blog-listing.html">Listing</a></li>
-                                    <li>
-                                        <a href="#">Grid</a>
-                                        <ul>
-                                            <li><a href="blog-grid-2cols.html">Grid 2 columns</a></li>
-                                            <li><a href="blog-grid-3cols.html">Grid 3 columns</a></li>
-                                            <li><a href="blog-grid-4cols.html">Grid 4 columns</a></li>
-                                            <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Masonry</a>
-                                        <ul>
-                                            <li><a href="blog-masonry-2cols.html">Masonry 2 columns</a></li>
-                                            <li><a href="blog-masonry-3cols.html">Masonry 3 columns</a></li>
-                                            <li><a href="blog-masonry-4cols.html">Masonry 4 columns</a></li>
-                                            <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Mask</a>
-                                        <ul>
-                                            <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
-                                            <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Single Post</a>
-                                        <ul>
-                                            <li><a href="single.html">Default with sidebar</a></li>
-                                            <li><a href="single-fullwidth.html">Fullwidth no sidebar</a></li>
-                                            <li><a href="single-fullwidth-sidebar.html">Fullwidth with sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="elements-list.html">Elements</a>
-                                <ul>
-                                    <li><a href="elements-products.html">Products</a></li>
-                                    <li><a href="elements-typography.html">Typography</a></li>
-                                    <li><a href="elements-titles.html">Titles</a></li>
-                                    <li><a href="elements-banners.html">Banners</a></li>
-                                    <li><a href="elements-product-category.html">Product Category</a></li>
-                                    <li><a href="elements-video-banners.html">Video Banners</a></li>
-                                    <li><a href="elements-buttons.html">Buttons</a></li>
-                                    <li><a href="elements-accordions.html">Accordions</a></li>
-                                    <li><a href="elements-tabs.html">Tabs</a></li>
-                                    <li><a href="elements-testimonials.html">Testimonials</a></li>
-                                    <li><a href="elements-blog-posts.html">Blog Posts</a></li>
-                                    <li><a href="elements-portfolio.html">Portfolio</a></li>
-                                    <li><a href="elements-cta.html">Call to Action</a></li>
-                                    <li><a href="elements-icon-boxes.html">Icon Boxes</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav><!-- End .mobile-nav -->
-                </div><!-- .End .tab-pane -->
-                <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
-                    <nav class="mobile-cats-nav">
-                        <ul class="mobile-cats-menu">
-                            <li><a class="mobile-cats-lead" href="#">Daily offers</a></li>
-                            <li><a class="mobile-cats-lead" href="#">Gift Ideas</a></li>
-                            <li><a href="#">Beds</a></li>
-                            <li><a href="#">Lighting</a></li>
-                            <li><a href="#">Sofas & Sleeper sofas</a></li>
-                            <li><a href="#">Storage</a></li>
-                            <li><a href="#">Armchairs & Chaises</a></li>
-                            <li><a href="#">Decoration </a></li>
-                            <li><a href="#">Kitchen Cabinets</a></li>
-                            <li><a href="#">Coffee & Tables</a></li>
-                            <li><a href="#">Outdoor Furniture </a></li>
-                        </ul><!-- End .mobile-cats-menu -->
-                    </nav><!-- End .mobile-cats-nav -->
-                </div><!-- .End .tab-pane -->
-            </div><!-- End .tab-content -->
 
             <div class="social-icons">
                 <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
@@ -674,33 +454,36 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+
                                     <!-- LOGIN FORM-->
-                                    <form action="/Consumer/Login" method="post">
-                                        @Html.AntiForgeryToken()
+                                    <form>
+                                        <!--Html.AntiForgeryToken()-->
                                         <div class="form-group">
-                                            <label for="singin-email">Số điện thoại hoặc email *</label>
+                                            <label for="singin-email" id="labelUsername">Số điện thoại hoặc email * </label>
                                             <input type="text" class="form-control" id="singin-email" name="username" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="singin-password">Mật khẩu *</label>
+                                            <label for="singin-password" id="labelPassword">Mật khẩu *</label>
                                             <input type="password" class="form-control" id="singin-password" name="password" required>
                                         </div><!-- End .form-group -->
-
-                                        <div class="form-footer">
-                                            <button type="submit" id="btnlogin" onclick="" class="btn btn-outline-primary-2">
-                                                <span>Đăng nhập</span>
-                                                <i class="icon-long-arrow-right"></i>
-                                            </button>
-
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Nhớ mật khẩu</label>
-                                            </div><!-- End .custom-checkbox -->
-
-                                            <a href="#" class="forgot-link">Quên mật khẩu?</a>
-                                        </div><!-- End .form-footer -->
+                                        <label for="singin-password" id="responseMessage" style="color:red"></label>
                                     </form>
+
+                                    <div class="form-footer">
+                                        <button type="submit" id="btnlogin" onclick="Validation()" class="btn btn-outline-primary-2">
+                                            <span>Đăng nhập</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                            <label class="custom-control-label" for="signin-remember">Nhớ mật khẩu</label>
+                                        </div><!-- End .custom-checkbox -->
+
+                                        <a href="#" class="forgot-link">Quên mật khẩu?</a>
+                                    </div><!-- End .form-footer -->
+
                                     <div class="form-choice">
                                         <p class="text-center">Hoặc đăng nhập bằng</p>
                                         <div class="row">
@@ -724,6 +507,7 @@
                                         <div class="form-group">
                                             <label for="register-email">Số điện thoại hoặc email *</label>
                                             <input type="email" class="form-control" id="register-email" name="register-email" required>
+
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
@@ -732,7 +516,7 @@
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" onclick="" class="btn btn-outline-primary-2">
+                                            <button class="btn-outline-primary-2">
                                                 <span>Đăng ký</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
@@ -777,17 +561,15 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="/assets/js/AuthenticationJS/GoogleAuthentication.js"></script>
+    <script src="/assets/js/AuthenticationJS/Authentication.js"></script>
+    <script>
 
+    </script>
     @RenderSection("Js", required: false)
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
 
     <!-- AUTHENTICATION - WITH USERNAME PASSWORD -->
-    <script language="javascript">
-        //accountDropdow
-
-    </script>
 
 </body>
 

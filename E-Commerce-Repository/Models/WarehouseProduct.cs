@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_Repository.Models
 {
-    public class WarehouseProduct
-    {
+    public class WarehouseProduct {
+        // Khóa ngoại đến product và warehouse
         public int ID { get; set; }
-        public int Number { get; set; }
-
-        public virtual Product Product { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        public int numerItems { get; set; }
+        public string status { get; set; }
+        public int? productId { get; set; }
+        public virtual Product Products { get; set; }
+        public int? WarehousesID { get; set; }
+        public virtual Warehouse Warehouses { get; set; }
     }
 }
-

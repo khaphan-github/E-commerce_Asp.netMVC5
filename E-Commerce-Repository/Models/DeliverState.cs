@@ -13,8 +13,6 @@ namespace E_Commerce_Repository.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int OrderNumber { get; set; }
-
-        // QUan hệ 1 nhiều với order
         public virtual ICollection<Order> Orders { get; set; }
     }
 }
