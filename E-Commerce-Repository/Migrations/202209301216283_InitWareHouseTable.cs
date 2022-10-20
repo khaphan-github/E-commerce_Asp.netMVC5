@@ -5,8 +5,10 @@ namespace E_Commerce_Repository.Migrations
     
     public partial class InitWareHouseTable : DbMigration
     {
+        
         public override void Up()
         {
+            /*
             CreateTable(
                 "dbo.AccountRoles",
                 c => new
@@ -419,11 +421,12 @@ namespace E_Commerce_Repository.Migrations
                 .ForeignKey("dbo.Accounts", t => t.AccountConsumer_Id, cascadeDelete: true)
                 .Index(t => t.Address_Id)
                 .Index(t => t.AccountConsumer_Id);
-            
+                */
         }
-        
+
         public override void Down()
         {
+            /*
             DropForeignKey("dbo.Products", "TypeProductID", "dbo.TypeProducts");
             DropForeignKey("dbo.TypeProducts", "CategoryID", "dbo.Categories");
             DropForeignKey("dbo.Products", "SupplierID", "dbo.Suppliers");
@@ -522,6 +525,7 @@ namespace E_Commerce_Repository.Migrations
             DropTable("dbo.AccountStates");
             DropTable("dbo.Accounts");
             DropTable("dbo.AccountRoles");
+            */
         }
     }
 }

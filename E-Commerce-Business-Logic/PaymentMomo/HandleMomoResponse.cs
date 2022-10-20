@@ -1,4 +1,5 @@
 ﻿using E_Commerce_Business_Logic.CartHandler;
+using E_Commerce_Business_Logic.Payment;
 using E_Commerce_Business_Logic.Session;
 using E_Commerce_Repository.Models;
 
@@ -12,43 +13,24 @@ using System.Web;
 
 namespace E_Commerce_Business_Logic.PaymentMomo {
     public class HandleMomoResponse {
-        public static string saveOrder() {
 
-            OrderRepository orderRepository = new OrderRepository();
-            ProductRepository productRepository = new ProductRepository();
-            
-            var currentUser = HttpContext.Current.Session[SessionConstaint.USERSESION] as AccountConsumer;
-         
-            List<ShoppingCardDetail> Details = productRepository.getProductInShoppingCard(currentUser);
+        /* LƯU ĐƠN HÀNG KHI THANH TOÁN THÀNH CÔNG
+         * 1. Lấy tất cả sản phẩm trong giỏ hàng
+         * 2. Tạo mới Order -> thêm order vào db
+         * 3. Lấy Order từ DB -> Chuyễn nhưng sản phẩm trong giỏ hàng qua Order
+         * 4. Xóa chi tiết giỏ hàng
+         * 5. Lưu tất cả nhưng thay đỗi
+         * 
+         * Gửi mail về người dùng khi đặt hàng thành côngi
+         */
+       
+        public static string saveOrderByMomoPayment(string amount, string orderID) {
 
-            var createdDate = DateTime.Now;
-            var totalPrice = Details.Sum(prop => prop.price);
-            // THÊM ORDER 
-            Order order = new Order() {
-                Date = createdDate,
-                AccountConsumerID = currentUser.Id, 
-                PaymentMethodId = 1,
-                TotalPrice = totalPrice,
-                Address = currentUser.Addresses.FirstOrDefault(),
-            };
+            int paymentMethodID = 1;
 
-            orderRepository.CreateOrder(order);
+            ShippingMethod shipingMethod = PaymentRequest.getShippingMethodAfterPayment(orderID);
 
-            var orderNew = orderRepository.getOrderByDateAndConsumerID(createdDate, currentUser.Id);
-
-            foreach(ShoppingCardDetail shoppingCardDetail in Details) {
-
-                OrderDetail orderDetail = new OrderDetail() {
-                    OrderID = orderNew.Id,
-                    ProductID = shoppingCardDetail.ProductID,
-                    NumberofItems = shoppingCardDetail.Number,
-                    Price = shoppingCardDetail.price,
-                };
-
-                orderRepository.SaveOrderDetail(orderDetail);
-            }
-
-            productRepository.DeleteCartDetailById(currentUser.Id);
+            PaymentHandler.SaveOrder(amount, paymentMethodID, shipingMethod.Desc);
 
             return "success";
         }

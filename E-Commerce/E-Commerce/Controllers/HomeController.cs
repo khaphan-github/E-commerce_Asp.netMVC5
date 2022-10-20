@@ -11,6 +11,7 @@ namespace E_Commerce.Controllers
    
     public class HomeController : Controller {
         // GET: Home Hiển thị trang chủ
+        
         private ProductRepository productRepository = new ProductRepository();
         private ProductComponentRepository productComponent = new ProductComponentRepository();
         public ActionResult Index(string searchString)
@@ -23,7 +24,7 @@ namespace E_Commerce.Controllers
 
             // Hiển thị sản phẩm nổi bậc
             ViewBag.TopProduct = productRepository.GetProducts();
-            ViewData["TopProduct"] = productRepository.GetProducts();
+            //ViewData["TopProduct"] = productRepository.GetProducts();
 
             // Hiển thị sản phẩm bán chạy
             ViewData["BestSellerPeoduct"] = productRepository.GetProducts();

@@ -14,7 +14,7 @@ namespace E_Commerce_Business_Logic.CartHandler {
             if (productView == null) {
                 Products.Add(product);
             }
-            totalprice = Products.Sum(prop => prop.TotalPrice);
+            totalprice = Products.Sum(prop => prop.TotalPrice*prop.numberItems);
         }
     }
 }

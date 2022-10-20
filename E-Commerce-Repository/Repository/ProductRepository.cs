@@ -22,15 +22,15 @@ namespace E_Commerce_Repository.Repository
 
             var cart = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == cardId);
 
-            var productInDetail = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ProductID == productId);
+            var productInShoppingCartDetail = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ProductID == productId);
 
-            bool isExistProduct = productInDetail != null; 
+            bool isExistProduct = productInShoppingCartDetail != null; 
             // nếu giỏ đã có sản phẩm thì thêm 1
             // nếu giỏ chưa có mới tạo
             if (isExistProduct) {
-                productInDetail.price = (productInDetail.Number + 1) * product.Price;
-                productInDetail.Number += 1;
+                productInShoppingCartDetail.Number += 1;
             }
+
             else {
                 System.Diagnostics.Debug.WriteLine("Found Product and cart -> Add Product to cart");
                 repository.ShoppingCardDetails.Add(new ShoppingCardDetail {
@@ -41,25 +41,41 @@ namespace E_Commerce_Repository.Repository
                     Number = 1,
                     price = product.Price
                 });
+                repository.SaveChanges();
             }
+
+            // Cập nhật tổng tiền
+            var CartDetail = repository.ShoppingCardDetails.Where(prop => prop.ShoppingCardID == cardId).ToList();
+            float totalPriceUpdateShopingCart = 0;
+
+            // Chổ này chưa cập nhật tiền
+            foreach (var item in CartDetail) {
+                totalPriceUpdateShopingCart += item.Number * item.price;
+            }
+
+            cart.totalPrice = totalPriceUpdateShopingCart;
             System.Diagnostics.Debug.WriteLine("Add product to cart success");
             repository.SaveChanges();
         }
 
         // Xóa sản phẩm khỏi giỏ hàng
         public void RemoveProductFromCard(int productId, int cardId) {
+            // 1 sản phẩm trong chi tiết sản phẩm
             var Detail = repository.ShoppingCardDetails
                                                .FirstOrDefault(prop => prop.ShoppingCardID == cardId && prop.ProductID == productId);
+
             var product = repository.Products.FirstOrDefault(prop => prop.Id == productId);
+
+            var cart = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == cardId);
+
+            // chổ này xóa 1 lần hết sản phẩm đó luôn;
             if (Detail != null) {
-                if (Detail.Number > 1) {
-                    Detail.Number -= 1;
-                    Detail.price = product.Price + Detail.Number;
+                if(cart.totalPrice > 0) {
+                    cart.totalPrice -= product.Price * Detail.Number;
                 }
-                else {
-                    repository.ShoppingCardDetails.Remove(Detail);
-                }
+                repository.ShoppingCardDetails.Remove(Detail);
             }
+
             repository.SaveChanges();
             System.Diagnostics.Debug.WriteLine("REMOVE PRODUCT SUCCESSFULL");
         }
@@ -110,9 +126,6 @@ namespace E_Commerce_Repository.Repository
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
         {
-            /*var result = from product in repository.Products
-                         where product.Id==id
-                         select product;*/
             return (from product in repository.Products
                     where product.Id == id
                     select product).FirstOrDefault();
@@ -158,21 +171,72 @@ namespace E_Commerce_Repository.Repository
         {
             repository.Products.Attach(product);
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
-
             repository.SaveChanges();
 
         }
 
         // delete by Shopping cart id
         public void DeleteCartDetailById(int id) {
-            var ShoppingCartDetails = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ShoppingCardID == id);
-
-            if (ShoppingCartDetails != null) {
-                repository.ShoppingCardDetails.Remove(ShoppingCartDetails);
+            try {
+                var ShoppingCartDetails = repository.ShoppingCardDetails.Where(prop => prop.ShoppingCardID == id);
+                if (ShoppingCartDetails != null) {
+                    foreach (var item in ShoppingCartDetails) {
+                        repository.ShoppingCardDetails.Remove(item);
+                      
+                    }
+                }
                 repository.SaveChanges();
                 System.Diagnostics.Debug.WriteLine("XÓA CHI TIẾT THÀNH CÔNG");
 
+            } catch (Exception) {
+
+                throw;
+            } 
+        }
+
+        public ShoppingCard getAccountShoppingCart(AccountConsumer accountConsumer) {
+            ShoppingCard shoppingCard = repository.ShoppingCards.FirstOrDefault(prop => prop.AccountConsumerID == accountConsumer.Id);
+            return shoppingCard;
+        }
+
+        public bool updateProductQuantityById(int id, int quantity, string type) {
+            var productNeedToUpdate = repository.Products.FirstOrDefault(prop => prop.Id == id);
+            try {
+                if (productNeedToUpdate != null) {
+                    switch (type) {
+                        case "Add":
+                            productNeedToUpdate.Quantity += quantity;
+                            break;
+                        case "Sub":
+                            if (productNeedToUpdate.Quantity < quantity) {
+                                return false;
+                            }
+                            productNeedToUpdate.Quantity -= quantity;
+                            break;
+                    }
+                }
+
+                repository.SaveChanges();
+            } catch (Exception) {
+
+                throw;
             }
+            
+            return true;
+        }
+
+        public void resetShoppingCart(int shoppingCardId) {
+            try {
+                var shoppingCartStoreInDB = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == shoppingCardId);
+                if (shoppingCartStoreInDB != null) {
+                    shoppingCartStoreInDB.totalPrice = 0;
+                    repository.SaveChanges();
+                }
+            } catch (Exception) {
+
+                throw;
+            }
+            
         }
     }
 }

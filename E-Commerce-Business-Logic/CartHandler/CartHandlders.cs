@@ -33,6 +33,7 @@ namespace E_Commerce_Business_Logic.CartHandler {
          * 1. Lấy session giỏ hàng hiện tại -> Lấy thông tín sản phẩm muốn thêm vào giỏ hàng
          * 2. Thêm sản phẩm vào giỏ hàng hiển thị trên web -> lưu sản phẩm vào giỏ hàng trong db
          * 3. return message;
+         *
          */
         public static string addProductToCart(int productId) {
 

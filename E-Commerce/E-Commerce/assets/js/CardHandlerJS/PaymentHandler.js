@@ -1,35 +1,59 @@
 ﻿function getPaymentMethod() {
     var paymentmomo = document.getElementById("paymentmomo").checked;
+   
+    var amout = document.getElementById('totalPrice').innerText;
+    amout = amout.replaceAll(",", "");
 
+    var paymentMethodPagram = "&paymentMethod=";
+    var shippingMethodParam = "&shippingMethod=" + getShippingmethod();
     if (paymentmomo) {
-        var amout = document.getElementById('totalPrice').innerText;
-        amout = amout.replaceAll(",", "");
         if (amout > 50000000) {
             alert("Chỉ có thể thanh toán Momo đơn hàng nhỏ hơn 50 triệu");
         }
+        else if (amout == 0) {
+            alert("Chưa có sản phẩm để thanh toán");
+        }
         else {
-            var urlPayment = "/Consumer/PaymentMomo?amout=" + amout;
-            alert(urlPayment);
-            if (CheckOrder()) {
-                window.location.replace(urlPayment);
-            }
+            paymentMethodPagram += "1";
+            var urlPayment = "/Consumer/PaymentMomo?amout=" + amout + paymentMethodPagram + shippingMethodParam;
+          
+            window.location.replace(urlPayment); 
         }
     }
-
     else {
-        window.location.replace("/Consumer/Payment/");
+        paymentMethodPagram += "2";
+        var urlPayment = "/Consumer/Payment?amout=" + amout + paymentMethodPagram + shippingMethodParam;
+        window.location.replace(urlPayment);
     }
 }
-var checkboxShippingMethod = document.querySelector('input[name="shipping"]:checked');
-var TotakPrice = document.getElementById('totalPrice');
+function formatCash(str) {
+    return str.split('').reverse().reduce((prev, next, index) => {
+        return ((index % 3) ? next : (next + ',')) + prev
+    })
+}
+var TotalPrice = document.getElementById('totalPrice');
 
-checkboxShippingMethod.addEventListener('change', CheckOrder);
+var tempPrice = 0;
+function CheckOrder(shippingRadio) {
+    var amout = parseInt(document.getElementById('totalPrice').innerText.replaceAll(',',''));
+    // Xóa bỏ giấu phẩy,
+    amout += (parseInt(shippingRadio.value) - tempPrice);
 
-function CheckOrder() {
-    var flag = true;
-    alert(checkboxShippingMethod);
-    TotakPrice.innerText = parseInt(checkboxShippingMethod.value) + parseInt(TotakPrice.innerText);
-    return flag;
+    tempPrice = parseInt(shippingRadio.value);
+
+    TotalPrice.innerText = formatCash(amout.toString());
+
+    return parseInt(shippingRadio.value);
 }
 
-
+function getShippingmethod() {
+    var result = "FREE";
+    var amount = document.querySelector('input[name="shipping"]:checked').value;
+    if (amount == 28000) {
+        result = "SAVE";
+    }
+    else if (amount == 43000) {
+        result = "FAST";
+    }
+    return result;
+}
