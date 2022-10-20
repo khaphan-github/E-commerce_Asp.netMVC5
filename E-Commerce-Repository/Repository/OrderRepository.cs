@@ -71,6 +71,23 @@ namespace E_Commerce_Repository.Repository
             return repository.Orders.Where(prop => prop.AccountConsumerID == accountConsumer.Id).OrderBy(p => p.Date).ToList();
         }
 
+        public PaymentMethod getPaymentMethodById(int id) {
+            return repository.PaymentMethods.FirstOrDefault(prop => prop.Id == id);
+        }
+
+        public ShippingMethod getShippingMethodByDesc(string desc) {
+            return repository.ShippingMethods.FirstOrDefault(prop => prop.Desc.Equals(desc));
+        }
+
+        public ShippingMethod getShippingMethodById(int id) {
+            return repository.ShippingMethods.FirstOrDefault(prop => prop.Id == id);
+        }
+
+        public List<ShippingMethod> GetShippingMethods() {
+            return repository.ShippingMethods.ToList();
+
+        }
+
         public void SaveOrderDetail(OrderDetail orderDetail) {
             repository.OrderDetails.Add(orderDetail);
             repository.SaveChanges();

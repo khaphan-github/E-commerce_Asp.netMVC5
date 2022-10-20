@@ -16,13 +16,10 @@ namespace E_Commerce.Controllers {
     public class CardController : Controller {
         // GET: Card
         private ProductRepository productRepository = new ProductRepository();
-        public ActionResult Index() {
+        public ActionResult Index(string ErrorMessage) {
             // Nếu chư login thì không cho vào trang card
-            bool NoUserSession = Session[SessionConstaint.USERSESION].Equals("");
-            if (NoUserSession) {
-                ViewBag.dataToggle = "modal";
-                ViewBag.hreLink = "#signin-modal";
-                Response.Redirect("/Home/Index/", false);
+           if(ErrorMessage != null) {
+                ViewBag.ErrorMessage = ErrorMessage;
             }
             return View();
         }

@@ -4136,10 +4136,10 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\UserContact\Index.cshtml" />
     <Content Include="Views\Consumer\AccountDetail.cshtml" />
-    <Content Include="Views\Consumer\Payment.cshtml" />
     <Content Include="Views\Consumer\ConsumerOrder.cshtml" />
     <Content Include="Views\Consumer\ShowSuccessPayment.cshtml" />
     <Content Include="Views\Consumer\Register.cshtml" />
+    <Content Include="Views\Consumer\CashPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

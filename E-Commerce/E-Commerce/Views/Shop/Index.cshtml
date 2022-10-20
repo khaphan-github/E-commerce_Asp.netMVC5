@@ -44,23 +44,31 @@
                                     <div class="col-9 col-md-2 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-
+                                                @if (product.Quantity == 0) {
+                                                    <span class="product-label label-top">Hết hàng</span>
+                                                }
                                                 <a href="@Url.Action("Index", "Product", new { id = product.Id })">
                                                     <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image">
                                                 </a>
-
                                                 <div class="product-action-vertical">
                                                     <a href="@Url.Action("Index", "Product", new { id = product.Id.ToString() })" class="btn-product-icon btn-wishlist btn-expandable"><span>Xem</span></a>
                                                 </div><!-- End .product-action-vertical -->
                                                 <!-- CHECK IS LOGIN-->
                                                 @if (accountConsumer != null) {
-                                                    <div class="product-action" id="addToCard" onclick="AddProductToCard(@product.Id.ToString())">
-                                                        <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
-                                                    </div><!-- End .product-action -->
+                                                    if (product.Quantity != 0) {
+                                                        <div class="product-action" id="addToCard" onclick="AddProductToCard(@product.Id.ToString())">
+                                                            <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
+                                                        </div><!-- End .product-action -->
+                                                    }
+                                                    else {
+                                                        <div class="product-action" id="addToCard" onclick="alert('Xin lỗi quý khách, sản phẩm đã hết hàng')">
+                                                            <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
+                                                        </div><!-- End .product-action -->
+                                                    }
                                                 }
                                                 else {
                                                     <div class="product-action" id="addToCard">
-                                                        <a href="" onclick="alert('Đăng nhập trước khi thêm sản phẩm vào giỏ hàng')" class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
+                                                        <a onclick="alert('Đăng nhập trước khi thêm sản phẩm vào giỏ hàng')" class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
                                                     </div><!-- End .product-action -->
                                                 }
 

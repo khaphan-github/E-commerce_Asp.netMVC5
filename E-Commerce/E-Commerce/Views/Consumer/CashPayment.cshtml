@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/ECOMMERCE/_LayoutPage1.cshtml";
+}
+
+<main>
+    <div class="container ">
+        <h2 style="text-align:center; margin-top: 10px">Thanh toán hành công</h2>
+
+        <img style="margin: auto" src="https://luatsux.vn/wp-content/uploads/2022/06/Phuong-thuc-thanh-toan-hop-dong-xay-dung...png" />
+        <h3 style="text-align:center">Chúng tôi sẽ giao hàng đến quý khách trong thời gian sớm nhất</h3>
+        <div class="row align-center  col d-flex justify-content-center">
+            <a href="@Url.Action("Index", "Shop")" class="btn btn-secondary" style="margin-right: 10px">Tiếp tục mua sắm</a>
+            <a href="@Url.Action("ConsumerOrder", "Consumer")" class="btn btn-secondary">Xem đơn hàng</a>
+        </div>
+    </div>
+</main>
+
+
