@@ -21,7 +21,7 @@ namespace E_Commerce_Repository.InitializationDB
                  4. Mở PACKAGE MANAGER CONSOLE > gõ "Update-Database -Verbose"
                  5. Run;
             */
-            bool isUpdateDB = false;
+            bool isUpdateDB = true;
             if (isUpdateDB) {
                 var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
                 Database.SetInitializer(initializer);
@@ -65,11 +65,7 @@ namespace E_Commerce_Repository.InitializationDB
            
             modelBuilder.Entity<Product>().HasOptional(product => product.Describe).WithRequired(desc => desc.Product);
            
-            modelBuilder.Entity<Address>().HasOptional(address => address.Province).WithRequired(province => province.Addresss);
             
-            modelBuilder.Entity<Address>().HasOptional(address => address.Wards).WithRequired(ward => ward.Address);
-            
-            modelBuilder.Entity<Address>().HasOptional(address => address.District).WithRequired(dis => dis.Address);
                        
             modelBuilder.Entity<AccountConsumer>().HasOptional(ac => ac.BankingCards).WithRequired(bk => bk.AccountConsumer);
         }

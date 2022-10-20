@@ -1,5 +1,18 @@
 ﻿@model IEnumerable<E_Commerce_Repository.Models.Product>
 
+@helper Truncate(string input, int length)
+{
+    if(input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }    
+
+}
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
@@ -23,6 +36,7 @@
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
+                    <th>Mô tả</th>
                     <th>Khuyến mãi</th>
                     <th>Tên công ty</th>
                     <th>Tên nhà cung cấp</th>
@@ -31,29 +45,31 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td><img src="@Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;"></td>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@String.Format("{0:n0}", item.Price) đ</td>
-                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Promotion.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TypeProduct.Name)</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="/Admin/ListProducts/Edit/1" class="btn btn-success">
-                                    <i class="fas fa-plus-circle"></i>   
-                                </a>
-                                <a href="/Admin/ListProducts/Details/1" class="btn btn-warning">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="/Admin/ListProducts/Delete/1" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                    //Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)
+            <tr>
+                <td><img src="@Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;"></td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@String.Format("{0:n0}", item.Price) đ</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Describe.Description)</td>   <!-- không lấy được? -->
+                <td>@Html.DisplayFor(modelItem => item.Promotion.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.TypeProduct.Name)</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="/Admin/ListProducts/Edit/@item.Id" class="btn btn-success">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
+                        <a href="/Admin/ListProducts/Details/@item.Id" class="btn btn-warning">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="/Admin/ListProducts/Delete/@item.Id" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
                 }
             </thead>
         </table>
