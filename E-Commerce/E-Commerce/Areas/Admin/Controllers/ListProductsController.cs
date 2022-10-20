@@ -219,9 +219,6 @@ namespace E_Commerce.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             // Phải có try catch
-            /*
-
-             */
             try
             {
                 // Tìm sản phẩm trong db

@@ -22,15 +22,16 @@ namespace E_Commerce.Areas.Admin.Controllers
             // Lọc theo quyền systemadmin
             return View(ViewBag.AccountList);
         }
-        
-        public ActionResult Delete(int ma)
+
+        public ActionResult Delete(int id)
         {
             try
             {
-                Account account = db.Accounts.Find(ma);
-                db.Accounts.Remove(account);
+                var acc = db.Accounts.FirstOrDefault(x => x.Id == id);
+                acc.AccountRoles.Clear();
+                db.Accounts.Remove(acc);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Member");
             }
             catch(Exception)
             {

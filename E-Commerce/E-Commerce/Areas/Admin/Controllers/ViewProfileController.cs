@@ -32,16 +32,22 @@ namespace E_Commerce.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult UpdateAccount(Account account, HttpPostedFileBase fileupload)
         {
-            var accountStoreInDB = db.Accounts.FirstOrDefault(p => p.Id == account.Id);
-            // SỬ LÝ ANAHR 
-            string img = "";
+            // SỬ LÝ ẢNH 
             if (fileupload == null)
             {
-                ViewBag.Thongbao = "Vui lòng chọn ảnh";
-                return View();
+                var accountStoreInDB = db.Accounts.FirstOrDefault(p => p.Id == account.Id);
+                accountStoreInDB.DisplayName = account.DisplayName;
+                accountStoreInDB.DateOfBirth = account.DateOfBirth;
+                accountStoreInDB.Sex = account.Sex;
+                accountStoreInDB.Phone = account.Phone;
+                accountStoreInDB.Email = account.Email;
+                db.SaveChanges();
+                return RedirectToAction("Index", "ViewProfile", new { id = account.Id });
             }
             else
             {
+                var accountStoreInDB = db.Accounts.FirstOrDefault(p => p.Id == account.Id); 
+                string img = "";
                 if (ModelState.IsValid)
                 {
                     var fileName = Path.GetFileName(fileupload.FileName);

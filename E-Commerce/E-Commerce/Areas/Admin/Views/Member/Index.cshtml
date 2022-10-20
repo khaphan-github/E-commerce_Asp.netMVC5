@@ -1,11 +1,13 @@
-﻿@model IEnumerable < E_Commerce_Repository.Models.Account>
+﻿@using E_Commerce_Repository.Models;
+
+@model IEnumerable<E_Commerce_Repository.Models.Account>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
 }
 <section class="content">
     <!-- Default box -->
-   
+
     <div class="card card-solid">
         <div class="breadcrumb float-sm-left">
             <a href="@Url.Action("Index", "Member", new { roleName = "User" })" class="btn btn-sm btn-primary" style="margin-right: 10px">Tài khoản User</a>
@@ -14,7 +16,7 @@
 
         </div>
         <div class="card-body pb-0">
-            
+
             <div class="row">
                 @{
                     foreach (var item in Model)
@@ -44,11 +46,9 @@
                                 <div class="card-footer">
                                     <div class="text-right">
                                         @{
-                                            if (Model.ElementAt(0).AccountRoles.ElementAt(0).Descibe.Contains("User") == true /*&&
-                                                Model.ElementAt(0).AccountRoles.ElementAt(0).Name.Contains("Admin") == false &&
-                                                Model.ElementAt(0).AccountRoles.ElementAt(0).Name.Contains("SystemAdmin") == false*/)
+                                            if (Model.ElementAt(0).AccountRoles.ElementAt(0).Descibe.Contains("User") == true)
                                             {
-                                                <a href="@Url.Action("Delete", "Member", new { id=item.Id })" class="btn btn-sm btn-success">
+                                                <a href="@Url.Action("Delete", "Member", new { id=item.Id })" class="btn btn-sm btn-success" >
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             }
@@ -69,8 +69,6 @@
                 <!-- /.card-footer -->
             </div>
             <!-- /.card -->
-
+        </div>
+    </div>
 </section>
-
-
-
