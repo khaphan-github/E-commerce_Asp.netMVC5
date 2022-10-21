@@ -54,11 +54,7 @@ namespace E_Commerce.Controllers
         }
 
 
-        /*      public ActionResult Index(int id)
-     {
 
-         Product product = productRepository.getProductById(id);
-         ViewData["Product"] = product;
 
          ViewData["RelatedProduct"] = product;
          return View();
