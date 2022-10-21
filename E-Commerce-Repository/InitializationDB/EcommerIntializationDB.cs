@@ -21,16 +21,16 @@ namespace E_Commerce_Repository.InitializationDB
                  4. Mở PACKAGE MANAGER CONSOLE > gõ "Update-Database -Verbose"
                  5. Run;
             */
-            bool isUpdateDB = false;
-            if (isUpdateDB) {
+  //          bool isUpdateDB = false;
+  //          if (isUpdateDB) {
                 var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
                 Database.SetInitializer(initializer);
-            }
+   /*         }
             else {
                 var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
                 Database.SetInitializer(intitializer);
             }
-        }
+  */      }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountRole> AccountRoles { get; set; }

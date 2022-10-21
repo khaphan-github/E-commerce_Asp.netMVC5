@@ -240,7 +240,7 @@
                             <div class="product">
                                 <figure class="product-media">
                                     <span class="product-label label-top">Top</span>
-                                    <a href="product.html">
+                                    <a href="@Url.Action("Index", "Product", new { id = product.Id })">
                                         <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image">
                                     </a>
 
@@ -327,7 +327,7 @@
                             <div class="product">
                                 <figure class="product-media">
                                     <span class="product-label label-sale">Best seller</span>
-                                    <a href="product.html">
+                                    <a href="@Url.Action("Index", "Product", new { id = product.Id })">
                                         <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image">
                                     </a>
 

@@ -115,7 +115,6 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
-
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
@@ -3809,8 +3808,10 @@
     <Content Include="lib\jquery.lazyload\jquery.lazyload.min.js" />
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="popup\quickView.html" />
+    <Content Include="Resources\ProductImage\ip13-pro_2.jpg" />
     <Content Include="Resources\ProductImage\iphone14_promax.jpg" />
     <Content Include="Resources\ProductImage\iphone14_promaxblack.png" />
+    <Content Include="Resources\ProductImage\Laptop_Asus_Gaming_Rog.jpg" />
     <Content Include="Resources\UserImage\product-5.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

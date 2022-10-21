@@ -13,16 +13,18 @@ namespace E_Commerce.Controllers
 {
     public class ShopController : Controller
     {
+        
         ProductRepository productRepository = new ProductRepository();
+        ProductComponentRepository productComponentRepository = new ProductComponentRepository();
         public ActionResult Index(string searchString) {
           
             ShopComponent shopComponent = new ShopComponent();
             
             // Hiển thị danh mục sản phẩm
-            ViewData["Category"] = productRepository.GetCategories();
+            ViewData["Category"] = productComponentRepository.GetCategories();
 
             // Hiển thị Hảng sản suất;
-            ViewData["Company"] = productRepository.GetCompanies();
+            ViewData["Company"] = productComponentRepository.GetCompanies();
 
             // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;
