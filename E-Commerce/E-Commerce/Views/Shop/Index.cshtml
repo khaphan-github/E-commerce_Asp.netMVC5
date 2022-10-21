@@ -21,7 +21,7 @@
 
 }
 <main class="main">
-   
+
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
         <div class="container">
             <ol class="breadcrumb">
@@ -49,6 +49,9 @@
                                     <div class="col-9 col-md-2 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
+                                                @if (product.Quantity == 0) {
+                                                    <span class="product-label label-top">Hết hàng</span>
+                                                }
                                                 <a href="@Url.Action("Index", "Product", new { id = product.Id })">
                                                     <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image" >
                                                 </a>
@@ -56,16 +59,22 @@
                                                     <a href="@Url.Action("Index", "Product", new { id = product.Id.ToString() })" class="btn-product-icon btn-wishlist btn-expandable"><span>Xem</span></a>
                                                 </div><!-- End .product-action-vertical -->
                                                 <!-- CHECK IS LOGIN-->
-                                                @if (accountConsumer != null)
-                                                {
-                                                    <div class="product-action" id="addToCard" onclick="AddProductToCard(@product.Id.ToString(),@accountConsumer.ShoppingCards.Id.ToString())">
-                                                        <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
-                                                    </div><!-- End .product-action -->
+                                                @if (accountConsumer != null) {
+                                                    if (product.Quantity != 0) {
+                                                        <div class="product-action" id="addToCard" onclick="AddProductToCard(@product.Id.ToString())">
+                                                            <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
+                                                        </div><!-- End .product-action -->
+                                                    }
+                                                    else {
+                                                        <div class="product-action" id="addToCard" onclick="alert('Xin lỗi quý khách, sản phẩm đã hết hàng')">
+                                                            <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
+                                                        </div><!-- End .product-action -->
+                                                    }
                                                 }
                                                 else
                                                 {
                                                     <div class="product-action" id="addToCard">
-                                                        <a href="" onclick="alert('Hãy đăng nhập trước khi thêm vào giỏ hàng');" class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
+                                                        <a onclick="alert('Đăng nhập trước khi thêm sản phẩm vào giỏ hàng')" class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
                                                     </div><!-- End .product-action -->
                                                 }
 
@@ -216,28 +225,6 @@
     <script src="/assets/js/wNumb.js"></script>
     <script src="/assets/js/nouislider.min.js"></script>
     <script src="/assets/js/bootstrap-input-spinner.js"></script>
-    <script>
-
-
-        function AddProductToCard(productId, cardId ) {
-           
-            fetch('https://localhost:44302/Card/addProductToCard?', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ productId: productId, cardId: cardId })
-            }).then(response => response.text()).then((response) => {
-                console.log(response)
-                if (response == 'success') {
-                    window.location.replace("https://localhost:44302/Shop");
-                }
-                else {
-                    alert("Vui lòng đăng nhập để thêm vào giỏ hàng");
-                }
-            });
-        }
-    </script>
+    <script src="/assets/js/CardHandlerJS/CartHandler.js"></script>
 }
 

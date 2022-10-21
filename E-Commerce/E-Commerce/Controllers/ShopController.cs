@@ -8,14 +8,18 @@ using E_Commerce_Repository.Models;
 using E_Commerce_Business_Logic.Shop;
 using E_Commerce_Repository.Repository;
 using E_Commerce_Repository.InitializationDB;
+using E_Commerce_Business_Logic.RequestFilter;
 
 namespace E_Commerce.Controllers
-{
+{       
     public class ShopController : Controller
     {
         
         ProductRepository productRepository = new ProductRepository();
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
+        ProductComponentRepository productRepository = new ProductComponentRepository();
+
+        ProductRepository product = new ProductRepository();
         public ActionResult Index(string searchString) {
           
             ShopComponent shopComponent = new ShopComponent();
@@ -30,15 +34,13 @@ namespace E_Commerce.Controllers
             ViewData["SalePlance"] = null;
 
             System.Diagnostics.Debug.WriteLine("");
-            ViewBag.Product = productRepository.GetProducts();
+            ViewBag.Product = product.GetProducts();
             if (searchString!=null)
             {
-                ViewBag.Product = productRepository.SearchProducts(searchString);
+                ViewBag.Product = product.SearchProducts(searchString);
                 return View();
             }
             return View( );
         }
-
-
     }
 }

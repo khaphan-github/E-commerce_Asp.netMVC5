@@ -88,14 +88,20 @@
     <Compile Include="CartHandler\CartHandlders.cs" />
     <Compile Include="CartHandler\CartView.cs" />
     <Compile Include="CartHandler\ProductView.cs" />
+    <Compile Include="CashPayment\HandleCashPayment.cs" />
     <Compile Include="Logic\CardLogic.cs" />
     <Compile Include="Logic\Login.cs" />
     <Compile Include="Logic\UploadImage.cs" />
+    <Compile Include="Payment\PaymentHandler.cs" />
     <Compile Include="PaymentMomo\HandleMomoResponse.cs" />
     <Compile Include="PaymentMomo\MomoSecurity.cs" />
     <Compile Include="PaymentMomo\PaymentRequest.cs" />
     <Compile Include="PaymentMomo\PaymentResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestFilter\Actionfilter.cs" />
+    <Compile Include="RequestFilter\AuthenticationFilter.cs" />
+    <Compile Include="RequestFilter\AuthorizationFilter.cs" />
+    <Compile Include="RequestFilter\Role.cs" />
     <Compile Include="Session\SessionConstaint.cs" />
     <Compile Include="Shop\ShopComponent.cs" />
   </ItemGroup>
@@ -116,5 +122,6 @@
   <ItemGroup>
     <Content Include="logo.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

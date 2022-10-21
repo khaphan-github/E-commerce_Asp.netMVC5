@@ -11,15 +11,15 @@ namespace E_Commerce_Repository.Models
     {
         public int Id { get; set; }
         public string Street { get; set; }
-        public int? ProvinceID { get; set; }
-        public virtual Province Province { get; set; }
-        public int? DistrictID { get; set; }
-        public virtual District District { get; set; }
-        public int? WardsID { get; set; }
-        public virtual Wards Wards { get; set; }
-
+        //public int? ProvinceID { get; set; }
+        //public virtual Province Province { get; set; }
+        //public int? DistrictID { get; set; }
+        //public virtual District District { get; set; }
+        //public int? WardsID { get; set; }
+        //public int? WarehouseID { get; set; }
+        //public virtual Wards Wards { get; set; }
+        //public virtual Warehouse Warehouse { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<AccountConsumer> AccountConsumers { get; set; }
-        public virtual Warehouse Warehouses { get; set; }
     }
 }

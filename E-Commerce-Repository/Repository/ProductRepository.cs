@@ -18,16 +18,70 @@ namespace E_Commerce_Repository.Repository
         // Thêm sản phẩm vào giỏ hàng
         public void AddProductToCard(int productId, int cardId) 
         {
-            var pc = from shoppingcards in repository.ShoppingCards
-                     from products in repository.Products
-                         //from shoppingcarddetail in repository.ShoppingCardsDetail
-                     where products.Id == productId && products.ShoppingCardDetails == shoppingcards.ShoppingCardDetails
-                           && shoppingcards.Id == cardId
-                     select new { products, shoppingcards };
-            repository.ShoppingCards.Add((ShoppingCard)pc);
+            var product = repository.Products.FirstOrDefault(prop => prop.Id == productId);
+
+            var cart = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == cardId);
+
+            var productInShoppingCartDetail = repository.ShoppingCardDetails.FirstOrDefault(prop => prop.ProductID == productId);
+
+            bool isExistProduct = productInShoppingCartDetail != null; 
+            // nếu giỏ đã có sản phẩm thì thêm 1
+            // nếu giỏ chưa có mới tạo
+            if (isExistProduct) {
+                productInShoppingCartDetail.Number += 1;
+            }
+
+            else {
+                System.Diagnostics.Debug.WriteLine("Found Product and cart -> Add Product to cart");
+                repository.ShoppingCardDetails.Add(new ShoppingCardDetail {
+                    ShoppingCard = cart,
+                    Product = product,
+                    ProductID = productId,
+                    ShoppingCardID = cardId,
+                    Number = 1,
+                    price = product.Price
+                });
+                repository.SaveChanges();
+            }
+
+            // Cập nhật tổng tiền
+            var CartDetail = repository.ShoppingCardDetails.Where(prop => prop.ShoppingCardID == cardId).ToList();
+            float totalPriceUpdateShopingCart = 0;
+
+            // Chổ này chưa cập nhật tiền
+            foreach (var item in CartDetail) {
+                totalPriceUpdateShopingCart += item.Number * item.price;
+            }
+
+            cart.totalPrice = totalPriceUpdateShopingCart;
+            System.Diagnostics.Debug.WriteLine("Add product to cart success");
             repository.SaveChanges();
         }
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        public void RemoveProductFromCard(int productId, int cardId) {
+            // 1 sản phẩm trong chi tiết sản phẩm
+            var Detail = repository.ShoppingCardDetails
+                                               .FirstOrDefault(prop => prop.ShoppingCardID == cardId && prop.ProductID == productId);
+
+            var product = repository.Products.FirstOrDefault(prop => prop.Id == productId);
+
+            var cart = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == cardId);
+
+            // chổ này xóa 1 lần hết sản phẩm đó luôn;
+            if (Detail != null) {
+                if(cart.totalPrice > 0) {
+                    cart.totalPrice -= product.Price * Detail.Number;
+                }
+                repository.ShoppingCardDetails.Remove(Detail);
+            }
+
+            repository.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("REMOVE PRODUCT SUCCESSFULL");
+        }
+
         // Thêm mới sản phẩm
+
         public void CreateProduct(Product product)
         {
             repository.Products.Add(product);
@@ -73,21 +127,18 @@ namespace E_Commerce_Repository.Repository
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
         {
-            /*var result = from product in repository.Products
-                         where product.Id==id
-                         select product;*/
             return (from product in repository.Products
                     where product.Id == id
                     select product).FirstOrDefault();
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
-        public List<Product> getProductInShoppingCard(AccountConsumer accountConsumer)
+        public List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer)
         {
-            List<Product> result = 
+            List<ShoppingCardDetail> result = 
                         ( from details in repository.ShoppingCardDetails
                           where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
-                          select details.Product).ToList();
+                          select details).ToList();
             return result;
         }
 
@@ -96,17 +147,7 @@ namespace E_Commerce_Repository.Repository
             return repository.Products.ToList();
         }
 
-        // Xóa sản phẩm khỏi giỏ hàng
-        public void RemoveProductFromCard(int productId, int cardId) 
-        {
-            var pc = from shoppingcards in repository.ShoppingCards
-                     from products in repository.Products
-                     where shoppingcards.Id == cardId && shoppingcards.ShoppingCardDetails == products.ShoppingCardDetails
-                           && products.Id == productId
-                     select shoppingcards;
-            repository.ShoppingCards.Remove((ShoppingCard)pc);
-            repository.SaveChanges();
-        }
+
 
         // Lấy sản phẩm có tên hoặc danh mục hoặc mô tả gần giống với searchString
         public List<Product> SearchProducts(string searchString)
@@ -147,11 +188,72 @@ namespace E_Commerce_Repository.Repository
         {
             repository.Products.Attach(product);
             repository.Entry(product).State = System.Data.Entity.EntityState.Modified;
-
             repository.SaveChanges();
 
         }
 
- 
+        // delete by Shopping cart id
+        public void DeleteCartDetailById(int id) {
+            try {
+                var ShoppingCartDetails = repository.ShoppingCardDetails.Where(prop => prop.ShoppingCardID == id);
+                if (ShoppingCartDetails != null) {
+                    foreach (var item in ShoppingCartDetails) {
+                        repository.ShoppingCardDetails.Remove(item);
+                      
+                    }
+                }
+                repository.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("XÓA CHI TIẾT THÀNH CÔNG");
+
+            } catch (Exception) {
+
+                throw;
+            } 
+        }
+
+        public ShoppingCard getAccountShoppingCart(AccountConsumer accountConsumer) {
+            ShoppingCard shoppingCard = repository.ShoppingCards.FirstOrDefault(prop => prop.AccountConsumerID == accountConsumer.Id);
+            return shoppingCard;
+        }
+
+        public bool updateProductQuantityById(int id, int quantity, string type) {
+            var productNeedToUpdate = repository.Products.FirstOrDefault(prop => prop.Id == id);
+            try {
+                if (productNeedToUpdate != null) {
+                    switch (type) {
+                        case "Add":
+                            productNeedToUpdate.Quantity += quantity;
+                            break;
+                        case "Sub":
+                            if (productNeedToUpdate.Quantity < quantity) {
+                                return false;
+                            }
+                            productNeedToUpdate.Quantity -= quantity;
+                            break;
+                    }
+                }
+
+                repository.SaveChanges();
+            } catch (Exception) {
+
+                throw;
+            }
+            
+            return true;
+        }
+
+        public void resetShoppingCart(int shoppingCardId) {
+            try {
+                var shoppingCartStoreInDB = repository.ShoppingCards.FirstOrDefault(prop => prop.Id == shoppingCardId);
+                if (shoppingCartStoreInDB != null) {
+                    shoppingCartStoreInDB.totalPrice = 0;
+                    repository.SaveChanges();
+                }
+            } catch (Exception) {
+
+                throw;
+            }
+            
+        }
     }
 }

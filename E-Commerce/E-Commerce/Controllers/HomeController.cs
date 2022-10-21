@@ -9,20 +9,23 @@ using System.Web.Mvc;
 namespace E_Commerce.Controllers
 {
    
-    public class HomeController : Controller
-    {
+    public class HomeController : Controller {
         // GET: Home Hiển thị trang chủ
+        
         private ProductRepository productRepository = new ProductRepository();
         private ProductComponentRepository productComponent = new ProductComponentRepository();
         public ActionResult Index(string searchString)
         {
             // HIển thị danh mục kèm hình ảnh dưới phần banner
             ViewData["CategoryPicture"] = null;
+
             // Danh mục sản phẩm
             ViewData["Category"] = productComponent.GetCategories();
+
             // Hiển thị sản phẩm nổi bậc
             ViewBag.TopProduct = productRepository.GetProducts();
-            ViewData["TopProduct"] = productRepository.GetProducts();
+            //ViewData["TopProduct"] = productRepository.GetProducts();
+
             // Hiển thị sản phẩm bán chạy
             ViewData["BestSellerPeoduct"] = productRepository.GetProducts();
 
@@ -33,8 +36,8 @@ namespace E_Commerce.Controllers
             if(searchString != null)
             {
                 return RedirectToAction("Index", "Shop", new { searchString = searchString });
-
             }
+            
             return View();
 
         }
@@ -53,5 +56,12 @@ namespace E_Commerce.Controllers
 
 
 
+         ViewData["RelatedProduct"] = product;
+         return View();
+     }
+*/
+        public ActionResult NoAuthLogin() {
+            return View();
+        }
     }
 }

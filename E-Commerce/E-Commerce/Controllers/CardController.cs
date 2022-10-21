@@ -4,37 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using E_Commerce_Business_Logic.Session;
+using E_Commerce_Business_Logic.CartHandler;
+
 using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Repository;
+using E_Commerce_Business_Logic.RequestFilter;
 
 namespace E_Commerce.Controllers {
-       public class CardController : Controller
-       {
+
+    [AuthenticationFilter]
+    public class CardController : Controller {
         // GET: Card
         private ProductRepository productRepository = new ProductRepository();
-        public ActionResult Index() {
+        public ActionResult Index(string ErrorMessage) {
             // Nếu chư login thì không cho vào trang card
-            bool NoUserSession = Session[SessionConstaint.USERSESION].Equals("");
-            if (NoUserSession) {
-                ViewBag.dataToggle = "modal";
-                ViewBag.hreLink = "#signin-modal";
-                Response.Redirect("/Home/Index/", false);
+           if(ErrorMessage != null) {
+                ViewBag.ErrorMessage = ErrorMessage;
             }
             return View();
         }
 
         //  Thêm sản phẩm vào giỏ hàng @Url.Action("addProductToCard", "Card", new {productId = , cardId =})
-       [AllowAnonymous]
-        public string addProductToCard(int productId, int cardId) {
-            return "success";
+        public string addProductToCard(int productId) {
+            return CartHandlders.addProductToCart(productId);
         }
 
         // Xóa sản phẩm khỏi giỏ hàng
-        public string removeProductFromCard(int productId, int cardId) {
-            return "1";
+        public string removeProductFromCard(int productId) {
+            return CartHandlders.RemoveProductFromCart(productId);
         }
-
-       
-
     }
 }

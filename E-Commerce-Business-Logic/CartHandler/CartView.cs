@@ -5,32 +5,16 @@ namespace E_Commerce_Business_Logic.CartHandler {
     public class CartView {
         public int cardId { get; set; }
         public List<ProductView> Products { get; set; }
-
-        public float totalprice { get; set; }
+        public float totalprice { get; set; } 
         public CartView() {
             Products = new List<ProductView>();
         }
         public void AddproductToCard(ProductView product) {
             ProductView productView = Products.Where(prop => prop.productId == product.productId).FirstOrDefault();
-            
-            if (productView != null) {
-                productView.numberItems += product.numberItems;
-            }
-            else {
+            if (productView == null) {
                 Products.Add(product);
             }
-            totalprice += product.Price;
-        }
-
-        public void RemoveProductFromCard(int productId) {
-            ProductView productView = Products.Where(prop => prop.productId == productId).FirstOrDefault();
-            
-            if (productView != null && productView.numberItems > 1) {
-                productView.numberItems -= 1;
-            }
-            else {
-                Products.Remove(productView);
-            }
+            totalprice = Products.Sum(prop => prop.TotalPrice*prop.numberItems);
         }
     }
 }

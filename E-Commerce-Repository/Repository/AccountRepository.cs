@@ -26,6 +26,11 @@ namespace E_Commerce_Repository.Repository {
             throw new System.NotImplementedException();
         }
 
+        public void CreateAccount(Account account) {
+            repository.Accounts.Add(account);
+            repository.SaveChanges();
+        }
+
         public void DeleteAccount(int id) {
             throw new System.NotImplementedException();
         }
@@ -43,7 +48,7 @@ namespace E_Commerce_Repository.Repository {
         }
 
         public Account getAccountById(int id) {
-            throw new System.NotImplementedException();
+            return repository.Accounts.Where(prop => prop.Id == id).FirstOrDefault();
         }
 
         public List<Account> getAccountByStatus(string status) {

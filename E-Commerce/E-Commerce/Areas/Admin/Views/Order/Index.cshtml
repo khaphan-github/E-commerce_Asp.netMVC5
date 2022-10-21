@@ -1,0 +1,52 @@
+﻿@model IEnumerable<E_Commerce_Repository.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<div class="card card-primary">
+    <div class="card-header border-0">
+        <h3 class="card-title">Danh Sách Đơn Hàng</h3>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-striped table-valign-middle">
+            <thead>
+                <tr>
+                    <th>Ngày tạo</th>
+                    <th>Tổng giá</th>
+                    <th>Phương thức vận chuyển</th>
+                    <th>Phương thức thanh toán</th>
+                    <th>Trạng thái giao hàng</th>
+                    <th>Khách hàng</th>
+                    <th>Địa chỉ</th>
+                    <th>Chi tiết</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                        <td>@String.Format("{0:n0}", item.TotalPrice) VNĐ</td>
+                        <td>@Html.DisplayFor(modelItem => item.ShippingMethod.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PaymentMethod.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DeliverState.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AccountConsumer.DisplayName)</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address.Street)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/Admin/Order/Details/@item.Id" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="/Admin/Order/Delete/@item.Id" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+</div>

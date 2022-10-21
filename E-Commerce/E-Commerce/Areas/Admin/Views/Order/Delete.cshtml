@@ -1,0 +1,56 @@
+﻿@model E_Commerce_Repository.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<div class="card card-danger">
+    <div class="card-header">
+        <h4>Bạn muốn "XÓA" đơn hàng này? Are you sure!!!</h4>
+    </div>
+    <div class="dl-horizontal">
+        <div class="col-md-10">
+            <label for="Name">Ngày tạo</label>
+            @Html.DisplayFor(model => model.Date)
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Tổng giá</label>
+            @String.Format("{0:n0}", Model.TotalPrice) VNĐ
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Phương thức vận chuyển</label>
+            @Html.DisplayFor(model => model.ShippingMethod.Name)
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Phương thức thanh toán</label>
+            @Html.DisplayFor(model => model.PaymentMethod.Name)
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Trạng thái giao hàng</label>
+            @Html.DisplayFor(model => model.DeliverState.Name)
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Khách hàng</label>
+            @Html.DisplayFor(model => model.AccountConsumer.DisplayName)
+        </div>
+
+        <div class="col-md-10">
+            <label for="Name">Địa chỉ</label>
+            @Html.DisplayNameFor(model => model.Address.Street)
+        </div>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-actions no-color">
+        <input type="submit" value="Confirm Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("Về danh sách", "Index")
+    </div>
+}
+</div>

@@ -6,9 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using E_Commerce_Business_Logic.Session;
+using E_Commerce_Business_Logic.RequestFilter;
 
-namespace E_Commerce.Areas.Admin.Controllers
-{
+namespace E_Commerce.Areas.Admin.Controllers {
+
+    [AuthorizationFilter(allowedRoles: new string[2] { Role.SystemAdmin, Role.Admin })]
+
     public class HomeController : Controller
     {
         // GET: Admin/Home
@@ -16,28 +19,6 @@ namespace E_Commerce.Areas.Admin.Controllers
         {
             // Hiển thị được tài dăng nhập vô 
             return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(string username, string password) {
-
-            Login login = new Login();
-
-            Account account = new AccountConsumer();
-
-            account = login.ValidationAccount(username, password);
-
-            if (account != null) {
-
-                Session[SessionConstaint.USERSESION] = account;
-
-                return RedirectToAction("Index", "Home");
-
-            }
-
-            return RedirectToAction("Index", "Login");
         }
     }
 }
