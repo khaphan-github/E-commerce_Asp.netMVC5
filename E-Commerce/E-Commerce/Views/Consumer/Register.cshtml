@@ -16,7 +16,7 @@
     </nav><!-- End .breadcrumb-nav -->
 
     <div class="container" style="font-family:Arial">
-        <form class="custom-control-input-teal">
+        <form class="custom-control-input-teal" action="@Url.Action("UserRegister", "Consumer")">
             <div class="row">
                 <div class="col-md-7">
                     <iframe width="650" height="455" style="margin-top:10px; border-radius:10px; border:none"
@@ -28,6 +28,7 @@
                         <label for="singin-email">Họ và tên * </label>
                         <input type="text" class="form-control" id="singin-name" name="fullname" required>
                     </div><!-- End .form-group -->
+                   
                     <div class="form-group">
                         <label for="singin-email">Số điện thoại hoặc email * </label>
                         <input type="text" class="form-control" id="singin-username" name="username" required>

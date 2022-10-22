@@ -1,6 +1,7 @@
 ﻿using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Service;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -133,11 +134,11 @@ namespace E_Commerce_Repository.Repository
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
-        public List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer)
+        public List<ShoppingCardDetail> getProductInShoppingCard(int shoppingCartId)
         {
             List<ShoppingCardDetail> result = 
                         ( from details in repository.ShoppingCardDetails
-                          where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
+                          where details.ShoppingCard.Id == shoppingCartId
                           select details).ToList();
             return result;
         }
@@ -254,6 +255,24 @@ namespace E_Commerce_Repository.Repository
                 throw;
             }
             
+        }
+
+        public IEnumerable<Product> listProductInPage(int? page, int pageSize) {
+            try {
+              
+                if (page == null) {
+                    return repository.Products.OrderBy(p => p.Id).ToPagedList(1, pageSize);
+                }
+                int pg = page.Value;
+                return repository.Products.OrderBy(p => p.Id).ToPagedList(pg, pageSize);
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
+        public int numberOfProductStoreIndb() {
+            return repository.Products.Count();
         }
     }
 }

@@ -15,8 +15,13 @@ namespace E_Commerce_Repository.Repository
         //Add order 
         public void CreateOrder(Order order)
         {
-            repository.Orders.Add(order);
-            repository.SaveChanges();
+            try {
+                repository.Orders.Add(order);
+                repository.SaveChanges();
+            } catch (Exception) {
+                throw;
+            }
+           
         }
         //Delete order theo id
         public void DeteteOrderById(int Id)
