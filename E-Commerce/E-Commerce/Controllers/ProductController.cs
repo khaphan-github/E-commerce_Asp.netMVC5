@@ -12,11 +12,14 @@ namespace E_Commerce.Controllers
     {
         // GET: Product/Id
         private ProductRepository productRepository = new ProductRepository();
+        private ProductComponentRepository productComponent = new ProductComponentRepository();
         public ActionResult Index(int id)
         {
             Product product = productRepository.getProductById(id);
             ViewData["Product"] = product;
             ViewData["RelatedProduct"] = product;
+            ViewData["ProductList"] = productRepository.SearchProducts(product.TypeProduct.Name);
+            ViewData["Describes"] = productComponent.GetDescribes(product.Id);
             return View();
         }
 

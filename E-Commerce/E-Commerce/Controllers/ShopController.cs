@@ -15,6 +15,9 @@ namespace E_Commerce.Controllers
 {       
     public class ShopController : Controller
     {
+        
+        ProductRepository productRepository = new ProductRepository();
+        ProductComponentRepository productComponentRepository = new ProductComponentRepository();
         ProductComponentRepository productRepository = new ProductComponentRepository();
     
         ProductRepository product = new ProductRepository();
@@ -22,6 +25,7 @@ namespace E_Commerce.Controllers
 
             ViewData["Category"] = productRepository.GetCategories();
             ViewData["Company"] = productRepository.GetCompanies();
+
             ViewData["SalePlance"] = null;
 
             ViewBag.NumberOfPage = product.numberOfProductStoreIndb() / 40;

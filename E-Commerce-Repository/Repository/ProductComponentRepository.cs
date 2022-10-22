@@ -119,6 +119,12 @@ namespace E_Commerce_Repository.Repository
                     where company.Id == Id
                     select company).FirstOrDefault();
         }
+
+        public List<Describe> GetDescribes(int Id)
+        {
+            return repository.Describes.ToList();
+        }
+
         //Lấy feedback từ accountconsumerId
         public List<Feedback> GetFeedbackOfAccountConsumer(int AccountConsumerId)
         {

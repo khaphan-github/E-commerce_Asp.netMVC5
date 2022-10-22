@@ -68,6 +68,6 @@ namespace E_Commerce_Repository.Service {
         void UpdateFeedBack(Feedback feedback);
         void DeteteFeedback(int Id);
 
-
+        List<Describe> GetDescribes(int Id);
     }
 }
