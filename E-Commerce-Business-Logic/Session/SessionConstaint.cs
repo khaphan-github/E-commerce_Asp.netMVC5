@@ -7,6 +7,5 @@ using System.Threading.Tasks;
 namespace E_Commerce_Business_Logic.Session {
     public class SessionConstaint {
         public static string USERSESION = "USERSESION";
-        public static string ADMINSESSION = "ADMINSESSION";
     }
 }

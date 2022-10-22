@@ -11,24 +11,62 @@ namespace E_Commerce_Repository.Repository {
 
         private EcommerIntializationDB repository = new EcommerIntializationDB();
         public void addRoleToAccount(int accountId, int roleId) {
-            throw new System.NotImplementedException();
+            var Role = repository.AccountRoles.FirstOrDefault(prop => prop.Id == roleId);
+            var Account = repository.Accounts.FirstOrDefault(prop => prop.Id == accountId);
+            if(Role != null && Account != null) {
+                Role.Account.Add(Account);
+                repository.SaveChanges();
+            }
         }
 
+        public ShoppingCard getShoppingCartById(int id) {
+            return repository.ShoppingCards.FirstOrDefault(prop => prop.AccountConsumerID == id);
+        }
         public void changeAccountState(int accountId, int StateId) {
             throw new System.NotImplementedException();
         }
 
         public void CreateAccount(AccountAdmin account) {
-            throw new System.NotImplementedException();
+            
         }
-
+        
         public void CreateAccount(AccountConsumer account) {
-            throw new System.NotImplementedException();
+            try {
+                repository.Accounts.Add(account);
+                repository.SaveChanges();
+            } catch (Exception) {
+
+                throw;
+            }
         }
 
         public void CreateAccount(Account account) {
-            repository.Accounts.Add(account);
-            repository.SaveChanges();
+            try {
+                repository.Accounts.Add(account);
+                repository.SaveChanges();
+            } catch (Exception) {
+            }
+        }
+
+        public void createAddress(Address address) {
+            
+            try {
+                repository.Addresses.Add(address);
+                repository.SaveChanges();
+            } catch (Exception) {
+                
+                throw;
+            }
+        }
+
+        public void createCartForAccount(ShoppingCard shoppingCard) {
+            try {
+                repository.ShoppingCards.Add(shoppingCard);
+                repository.SaveChanges();
+            } catch (Exception) {
+
+                throw;
+            }
         }
 
         public void DeleteAccount(int id) {
@@ -37,6 +75,10 @@ namespace E_Commerce_Repository.Repository {
 
         public void DeleteAccount(List<int> id) {
             throw new System.NotImplementedException();
+        }
+
+        public AccountRole findRoleByName(string roleName) {
+            return repository.AccountRoles.FirstOrDefault(prop => prop.Name == roleName);
         }
 
         public List<Account> getAccount() {
@@ -53,6 +95,10 @@ namespace E_Commerce_Repository.Repository {
 
         public List<Account> getAccountByStatus(string status) {
             throw new System.NotImplementedException();
+        }
+
+        public bool isExistedAccount(string username) {
+            return repository.Accounts.Any(prop => prop.Username.Equals(username));
         }
 
         public void removeRoleFromAccount(int accountId, int roleId) {

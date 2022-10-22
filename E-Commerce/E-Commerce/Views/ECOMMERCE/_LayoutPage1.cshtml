@@ -10,15 +10,9 @@
     if (isLogin) {
         ShoppingcardProduct = CartHandlders.getCardView(accountConsumer);
     }
-
-    if (ShoppingcardProduct != null) {
-        System.Diagnostics.Debug.WriteLine("Get Cart successFully");
-    }
-
     // Hiển thị danh mục sản phẩm
     var category = ViewData["Category"] as List<Category>;
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +97,7 @@
                                             </div>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" style="font-family: Arial; font-size: 16px" href="@Url.Action("AccountDetail","Consumer")">Tài khoản của tôi</a>
+                                            <a class="dropdown-item" style="font-family: Arial; font-size: 16px" href="@Url.Action("AccountDetail", "Consumer")">Tài khoản của tôi</a>
                                             <a class="dropdown-item" style="font-family: Arial; font-size: 16px" href="@Url.Action("ConsumerOrder", "Consumer")">Đơn hàng của tôi</a>
                                             <a class="dropdown-item" style="font-family: Arial; font-size: 16px" onclick="Logout()">Đăng xuất</a>
                                         </div>
@@ -225,7 +219,7 @@
                                     </li>
                                     <li>
 
-                                        <a href="@Url.Action("Index","Shop")" class="sf-with-ul">Shop</a>
+                                        <a href="@Url.Action("Index", "Shop", new { page = 1 })" class="sf-with-ul">Shop</a>
 
                                         <div class="megamenu megamenu-md">
                                             <div class="row no-gutters">
@@ -272,7 +266,7 @@
                                                 <div class="col-md-4">
                                                     <div class="banner banner-overlay">
                                                         <a href="category.html" class="banner banner-menu">
-                                                            <img src="/assets/images/menu/banner-1.jpg" alt="Banner">
+                                                            <img src="https://cdn.24h.com.vn/upload/3-2021/images/2021-08-25/7dddeba4-553e-4dc3-be90-205779b33f5b-1629856734-80-width650height975.jpeg" alt="Banner">
 
                                                             <div class="banner-content banner-content-top">
                                                                 <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->

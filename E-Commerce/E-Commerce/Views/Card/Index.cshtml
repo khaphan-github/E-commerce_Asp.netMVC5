@@ -149,7 +149,7 @@
                                             <tr class="summary-shipping-estimate">
                                                 <td>
                                                     Thay đổi địa chỉ giao hàng<br>
-                                                    @accountConsumer.Addresses.ElementAt(0).Street<br>
+                                                    @accountConsumer.Addresses.ElementAtOrDefault(0).Street<br>
                                                     <a href="/Consumer/AccountDetail">Thay đổi</a>
                                                 </td>
                                                 <td>&nbsp;</td>

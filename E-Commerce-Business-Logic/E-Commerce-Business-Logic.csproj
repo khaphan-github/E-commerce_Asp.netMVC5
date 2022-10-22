@@ -115,10 +115,6 @@
       <Project>{f3cbd0de-1dde-4436-ac33-8f6f658d9d37}</Project>
       <Name>E-Commerce-Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\E-Commerce-UnitTest\E-Commerce-UnitTest.csproj">
-      <Project>{502dbe3a-76af-43f1-832d-6a1600480721}</Project>
-      <Name>E-Commerce-UnitTest</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
