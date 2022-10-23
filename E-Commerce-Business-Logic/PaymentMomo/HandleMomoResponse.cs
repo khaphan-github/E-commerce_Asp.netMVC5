@@ -25,14 +25,18 @@ namespace E_Commerce_Business_Logic.PaymentMomo {
          */
        
         public static string saveOrderByMomoPayment(string amount, string orderID) {
+            try {
+                int paymentMethodID = 1;
 
-            int paymentMethodID = 1;
+                ShippingMethod shipingMethod = PaymentRequest.getShippingMethodAfterPayment(orderID);
 
-            ShippingMethod shipingMethod = PaymentRequest.getShippingMethodAfterPayment(orderID);
+                PaymentHandler.SaveOrder(amount, paymentMethodID, shipingMethod.Desc);
 
-            PaymentHandler.SaveOrder(amount, paymentMethodID, shipingMethod.Desc);
+                return "success";
+            } catch (Exception) {
 
-            return "success";
+                throw;
+            }
         }
      }
 }

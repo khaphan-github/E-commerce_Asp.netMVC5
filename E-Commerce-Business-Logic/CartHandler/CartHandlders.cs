@@ -16,7 +16,7 @@ namespace E_Commerce_Business_Logic.CartHandler {
                 CartView cartView = new CartView();
                 cartView.cardId = account.Id;
 
-                List<ShoppingCardDetail> dbProduct = repository.getProductInShoppingCard(account);
+                List<ShoppingCardDetail> dbProduct = repository.getProductInShoppingCard(account.Id);
 
                 foreach (ShoppingCardDetail detail in dbProduct) {
                     

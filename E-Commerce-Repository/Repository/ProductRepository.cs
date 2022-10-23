@@ -1,6 +1,7 @@
 ﻿using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
 using E_Commerce_Repository.Service;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -123,6 +124,7 @@ namespace E_Commerce_Repository.Repository
                 Console.WriteLine(product.ToString());*/
             return result.ToList();
         }
+        
         // Lấy sản phẩm theo Id
         public Product getProductById(int id)
         {
@@ -132,11 +134,11 @@ namespace E_Commerce_Repository.Repository
         }
         /*  Lấy danh sách sản phẩm của giõ hàng khách hàng
          *  Trả về sản phẩm (Product) và số lượng (int) */
-        public List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer)
+        public List<ShoppingCardDetail> getProductInShoppingCard(int shoppingCartId)
         {
             List<ShoppingCardDetail> result = 
                         ( from details in repository.ShoppingCardDetails
-                          where details.ShoppingCard.Id == accountConsumer.ShoppingCards.Id
+                          where details.ShoppingCard.Id == shoppingCartId
                           select details).ToList();
             return result;
         }
@@ -152,12 +154,16 @@ namespace E_Commerce_Repository.Repository
         public List<Product> SearchProducts(string searchString)
         {
             var result = from product in repository.Products
-                      //   from categoty in repository.Categorys
-                         from typeproduct in repository.TypeProducts
+                         join typeproduct in repository.TypeProducts on product.TypeProductID equals typeproduct.Id
+                         join categoty in repository.Categorys on typeproduct.CategoryID equals categoty.Id
                     //     from describe in repository.Describes
                          where 
-                            (product.Name.Contains(searchString) || typeproduct.Name.Contains(searchString)) 
-                            && typeproduct.Id==product.Id
+                        //    typeproduct.Name.Contains(searchString)
+                            (  product.Name.Contains(searchString) 
+                            || typeproduct.Name.Contains(searchString) 
+                            || categoty.Name.Contains(searchString)  )
+                         
+
                          //     || (categoty.Name.Contains(searchString) )
                          //     && categoty.TypeProducts==typeproduct.Category 
                          //      && typeproduct.Products==product.TypeProduct)
@@ -166,6 +172,18 @@ namespace E_Commerce_Repository.Repository
                          select product;
             return result.ToList();
         }
+        /*
+         from d in Duty
+         join c in Company on d.CompanyId equals c.id
+         join s in SewagePlant on c.SewagePlantId equals s.id
+         select new
+         {
+              duty = s.Duty.Duty, 
+              CatId = s.Company.CompanyName,
+              SewagePlantName=s.SewagePlant.SewagePlantName
+         };
+         
+         */
 
         public void UpdateProduct(Product product)
         {
@@ -237,6 +255,24 @@ namespace E_Commerce_Repository.Repository
                 throw;
             }
             
+        }
+
+        public IEnumerable<Product> listProductInPage(int? page, int pageSize) {
+            try {
+              
+                if (page == null) {
+                    return repository.Products.OrderBy(p => p.Id).ToPagedList(1, pageSize);
+                }
+                int pg = page.Value;
+                return repository.Products.OrderBy(p => p.Id).ToPagedList(pg, pageSize);
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
+        public int numberOfProductStoreIndb() {
+            return repository.Products.Count();
         }
     }
 }

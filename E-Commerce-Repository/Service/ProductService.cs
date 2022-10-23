@@ -30,7 +30,7 @@ namespace E_Commerce_Repository.Service
          *  Trả về sản phẩm (Product) và số lượng (int)
          */
         ShoppingCard getAccountShoppingCart(AccountConsumer accountConsumer);
-        List<ShoppingCardDetail> getProductInShoppingCard(AccountConsumer accountConsumer);
+        List<ShoppingCardDetail> getProductInShoppingCard(int shoppingCartId);
 
         void resetShoppingCart(int shoppingCardId);
 
@@ -54,5 +54,9 @@ namespace E_Commerce_Repository.Service
         void DeleteCartDetailById(int id);
 
         bool updateProductQuantityById(int id, int quantity, string type);
+
+        IEnumerable<Product> listProductInPage(int? page, int pageSize);
+
+        int numberOfProductStoreIndb();
     }
 }
