@@ -33,6 +33,7 @@ namespace E_Commerce.Areas.Admin.Controllers
         }
         public ActionResult Details(int? id)
         {
+            ViewBag.DeliverStateID = new SelectList(db.DeliverStates.ToList().OrderBy(x => x.Name), "Id", "Name");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,7 +47,16 @@ namespace E_Commerce.Areas.Admin.Controllers
             return View(order);
         }
 
-        [HttpGet]
+        public ActionResult Update(Order order)
+        {
+            ViewBag.DeliverStateID = new SelectList(db.DeliverStates.ToList().OrderBy(x => x.Name), "Id", "Name");
+            var ord = db.Orders.FirstOrDefault(x => x.Id == order.Id);
+            ord.DeliverStateID = order.DeliverStateID;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Order", new { id = order.Id });
+        }
+
+        /*[HttpGet]
         public ActionResult Delete(int id)
         {
             Order order = db.Orders.Find(id);
@@ -80,7 +90,7 @@ namespace E_Commerce.Areas.Admin.Controllers
                 throw;
             }
 
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {
