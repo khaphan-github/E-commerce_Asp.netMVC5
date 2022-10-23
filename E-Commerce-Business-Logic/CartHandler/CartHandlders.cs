@@ -14,7 +14,7 @@ namespace E_Commerce_Business_Logic.CartHandler {
                 ProductRepository repository = new ProductRepository();
                 
                 CartView cartView = new CartView();
-                cartView.cardId = (int) account.ShoppingCardsId.Value;
+                cartView.cardId = account.Id;
 
                 List<ShoppingCardDetail> dbProduct = repository.getProductInShoppingCard(account);
 

@@ -6,14 +6,21 @@
 }
 @using E_Commerce_Repository.Models
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Update", "Order", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="card card-primary">
         <div class="card-header">
             <h4 class="card-title">Chi Tiết Đơn Hàng</h4>
         </div>
-        <div class="dl-horizontal">
+        <form class="form-horizontal" action="@Url.Action("Update", "Order", new { account = Model as Order})">
+            <div class="col-md-10">
+                <label for="Name">Mã đơn hàng</label>
+                <dd>
+                    @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "readonly", @placeholder = "id" })
+                </dd>
+            </div>
+
             <div class="col-md-10">
                 <label for="Name">Ngày tạo</label>
                 <dd>
@@ -39,9 +46,9 @@
                                 i += 1;
                                 <tr>
                                     <td>@i</td>
-                                    <td><img src="@Html.DisplayFor(modelItem => item.Product.ProductImages.ElementAt(0).URL)"alt="Product image" class="product-image" style="width:50px;"/></td>
+                                    <td><img src="@Html.DisplayFor(modelItem => item.Product.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product.Quantity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Product.ShoppingCardDetails.ElementAt(0).Number)</td>
                                     <td>@String.Format("{0:n0}", item.Product.Price) VNĐ</td>
                                 </tr>
                             }
@@ -55,14 +62,15 @@
             <div class="col-md-10">
                 <label for="Name">Tổng giá</label>
                 <dd>
-                    @String.Format("{0:n0}", Model.TotalPrice) đ
+                    @Html.DisplayFor(model => model.TotalPrice) VNĐ
                 </dd>
             </div>
 
             <div class="col-md-10">
                 <label for="Name">Phương thức vận chuyển</label>
                 <dd>
-                    @Html.DisplayFor(model => model.ShippingMethod.Name)
+                    <!--Html.DropDownList(new SelectList(Enum.GetValues(typeof(ShippingMethod))), new { class = "form-control", readonly = "readonly", placeholder = "Phương thức vận chuyển" })-->
+                    @Html.DisplayTextFor(model => model.ShippingMethod.Name)
                 </dd>
             </div>
 
@@ -74,9 +82,9 @@
             </div>
 
             <div class="col-md-10">
-                <label for="Name">Trạng thái giao hàng</label>
+                <label for="Name">Trạng thái giao hàng (Sửa nếu cần)</label>
                 <dd>
-                    @Html.DisplayFor(model => model.DeliverState.Name)
+                    @Html.DropDownList("DeliverStateID")
                 </dd>
             </div>
 
@@ -93,10 +101,14 @@
                     @Html.DisplayFor(model => model.Address.Street)
                 </dd>
             </div>
-        </div>
-    </div>
+            <div class="form-group row">
+                <div class="offset-sm col-sm-10">
+                    <button type="submit" class="btn btn-danger">Lưu</button>
+                </div>
+            </div>
+    </form>
+</div>
 }
 <p>
-    @Html.ActionLink("Xóa", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Về danh sách", "Index")
 </p>
