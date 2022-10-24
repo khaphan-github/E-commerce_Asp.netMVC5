@@ -10,6 +10,7 @@
     var bestSellerPeoductList = ViewData["BestSellerPeoduct"] as List<Product>;
     var topProductList = ViewBag.TopProduct;
     var typeProductList = ViewData["TypeProduct"] as List<TypeProduct>;
+    var listCompanies = ViewBag.Brands;
 }
 
 <main class="main">
@@ -17,8 +18,6 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Electronics</li>
             </ol>
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
@@ -124,6 +123,17 @@
                     <div class="cat-blocks-container">
                         <div class="row">
                             <div class="col-6 col-md-4 col-lg-3">
+                                <a href="@Url.Action("Index", "Home", new { searchString = "Điện thoại"})" class="cat-block">
+                                    <figure>
+                                        <span>
+                                            <img src="/assets/images/demos/demo-13/cats/3.jpg" alt="Category image">
+                                        </span>
+                                    </figure>
+
+                                    <h3 class="cat-block-title">Phone</h3><!-- End .cat-block-title -->
+                                </a>
+                            </div><!-- End .col-6 col-md-4 col-lg-3 -->
+                            <div class="col-6 col-md-4 col-lg-3">
                                 <a href="category.html" class="cat-block">
                                     <figure>
                                         <span>
@@ -148,7 +158,7 @@
                             </div><!-- End .col-6 col-md-4 col-lg-3 -->
 
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a href="category.html" class="cat-block">
+                                <a href="@Url.Action("Index", "Home", new { searchString = "Laptop"})" class="cat-block">
                                     <figure>
                                         <span>
                                             <img src="/assets/images/demos/demo-13/cats/cat-page/3.jpg" alt="Category image">
@@ -391,7 +401,6 @@
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-categories">
                             <h3 class="widget-title">Categoris</h3><!-- End .widget-title -->
-
                             <div class="widget-body">
                                 <div class="accordion" id="widget-cat-acc">
                                 <!--vòng foreach-->
@@ -407,47 +416,39 @@
                                             <div class="collapse-wrap">
                                                 <ul>
                                                     @foreach (var item in typeProductList)
-                                                     {
-                                                        <li><a href="#">@item.Name</a></li>
-                                                     }
+                                                    {
+                                                        if (item.CategoryID == category.Id)
+                                                        {
+                                                            <li><a href="@Url.Action("Index", "Home", new { searchString = item.Name})">@item.Name</a></li>
+                                                        }
+                                                    }
                                                 </ul>
                                             </div><!-- End .collapse-wrap -->
                                         </div><!-- End .collapse -->
                                     </div><!-- End .acc-item -->
-
-
-
                                 }
 
                                 </div><!-- End .accordion -->
                             </div><!-- End .widget-body -->
-                        </div><!-- End .widget -->.
+                        </div><!-- End .widget -->
 
 
                         <div class="widget">
                             <h3 class="widget-title">Brands</h3><!-- End .widget-title -->
-                                @if (ViewBag.Brands != null)
-                                {
-                                    foreach (Company companys in ViewBag.Brands)
-                                    {
-                                        <div class="widget-body">
-                                            <div class="filter-items">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brand-@companys.Id">
-                                                        <label class="custom-control-label" for="brand-@companys.Id"> @companys.Name</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-                                            </div><!-- End .filter-items -->
-                                        </div><!-- End .widget-body -->
+                            @if (ViewBag.Brands != null)
+                            {
+                                 foreach (Company companys in ViewBag.Brands)
+                                 {
+                                    <div class="acc-item">
+                                        <a class="collapse-wrap" data-toggle="collapse-wrap" href="@Url.Action("Index", "Home", new { searchString = companys.Name})" >
+                                            @companys.Name
+                                        </a>
 
-                                    }
-                                }
+                                    </div><!-- End .acc-item -->
+                                 }
+                            }
+
                         </div><!-- End .widget -->
-
-
-
-                        
 
                         <div class="widget">
                             <h3 class="widget-title">Customer Rating</h3><!-- End .widget-title -->
@@ -462,7 +463,7 @@
                                                     <span class="ratings">
                                                         <span class="ratings-val" style="width: 100%;"></span><!-- End .ratings-val -->
                                                     </span><!-- End .ratings -->
-                                                    <span class="ratings-text">( 24 )</span>
+                                                  <!--  <span class="ratings-text">( 24 )</span> -->
                                                 </span><!-- End .rating-container -->
                                             </label>
                                         </div><!-- End .custom-checkbox -->
@@ -476,7 +477,7 @@
                                                     <span class="ratings">
                                                         <span class="ratings-val" style="width: 80%;"></span><!-- End .ratings-val -->
                                                     </span><!-- End .ratings -->
-                                                    <span class="ratings-text">( 8 )</span>
+                                                    
                                                 </span><!-- End .rating-container -->
                                             </label>
                                         </div><!-- End .custom-checkbox -->
@@ -490,7 +491,7 @@
                                                     <span class="ratings">
                                                         <span class="ratings-val" style="width: 60%;"></span><!-- End .ratings-val -->
                                                     </span><!-- End .ratings -->
-                                                    <span class="ratings-text">( 5 )</span>
+                                                    
                                                 </span><!-- End .rating-container -->
                                             </label>
                                         </div><!-- End .custom-checkbox -->
@@ -504,7 +505,7 @@
                                                     <span class="ratings">
                                                         <span class="ratings-val" style="width: 40%;"></span><!-- End .ratings-val -->
                                                     </span><!-- End .ratings -->
-                                                    <span class="ratings-text">( 1 )</span>
+                                                    
                                                 </span><!-- End .rating-container -->
                                             </label>
                                         </div><!-- End .custom-checkbox -->
@@ -518,7 +519,7 @@
                                                     <span class="ratings">
                                                         <span class="ratings-val" style="width: 20%;"></span><!-- End .ratings-val -->
                                                     </span><!-- End .ratings -->
-                                                    <span class="ratings-text">( 3 )</span>
+                                                    
                                                 </span><!-- End .rating-container -->
                                             </label>
                                         </div><!-- End .custom-checkbox -->

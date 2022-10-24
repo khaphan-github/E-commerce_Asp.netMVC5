@@ -15,17 +15,21 @@ namespace E_Commerce.Controllers
 {       
     public class ShopController : Controller
     {
-        
-        ProductRepository productRepository = new ProductRepository();
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
     
         ProductRepository product = new ProductRepository();
         public ActionResult Index(int? page, string searchString) {
 
+
             ViewData["Category"] = productComponentRepository.GetCategories();
             ViewData["Company"] = productComponentRepository.GetCompanies();
+            ViewData["TypeProduct"] = productComponentRepository.GetProductTypes();
+            ViewBag.SlideBarCategory = productComponentRepository.GetCategories();
 
             ViewData["SalePlance"] = null;
+
+
+            ViewBag.Brands = productComponentRepository.GetCompanies();
 
             ViewBag.NumberOfPage = product.numberOfProductStoreIndb() / 40;
 

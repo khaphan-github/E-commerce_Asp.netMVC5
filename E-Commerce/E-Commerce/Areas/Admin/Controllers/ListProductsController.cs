@@ -203,8 +203,8 @@ namespace E_Commerce.Areas.Admin.Controllers
                     UpdateModel(image);
                     db.SaveChanges();
 
-                    Describe describe = db.Describes.FirstOrDefault(x => x.ProductID == product.Id);
-                    UpdateModel(describe);
+                    //Describe describe = db.Describes.FirstOrDefault(x => x.ProductID == product.Id);
+                    //UpdateModel(describe);
                     db.SaveChanges();
                     //gọi sản phẩm trong db ra và thêm hình cho nó
                     //productStoreInDb.ProductImages.Add(image);
