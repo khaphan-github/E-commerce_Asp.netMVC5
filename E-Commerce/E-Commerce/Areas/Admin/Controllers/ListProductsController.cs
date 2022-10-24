@@ -192,8 +192,8 @@ namespace E_Commerce.Areas.Admin.Controllers
                     UpdateModel(image);
                     db.SaveChanges();
 
-                    Describe describe = db.Describes.FirstOrDefault(x => x.ProductID == product.Id);
-                    UpdateModel(describe);
+                    //Describe describe = db.Describes.FirstOrDefault(x => x.ProductID == product.Id);
+                    //UpdateModel(describe);
                     db.SaveChanges();
                     //gọi sản phẩm trong db ra và thêm hình cho nó
                     //productStoreInDb.ProductImages.Add(image);
@@ -237,14 +237,14 @@ namespace E_Commerce.Areas.Admin.Controllers
                 }
                 
                 // Lấy bản mô tả trong db
-                Describe describeStoreInDB = db.Describes.FirstOrDefault(prop => prop.ProductID == id);
+             /*   Describe describeStoreInDB = db.Describes.FirstOrDefault(prop => prop.ProductID == id);
                 if (describeStoreInDB != null)
                 {
                     // Xóa nó
                     db.Describes.Remove(describeStoreInDB);
                     db.SaveChanges();
                 }
-               
+            */   
                 // Xóa product
                 db.Products.Remove(product);
                 db.SaveChanges();

@@ -17,7 +17,7 @@ namespace E_Commerce.Controllers
         
         ProductRepository productRepository = new ProductRepository();
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
-        ProductComponentRepository productRepository = new ProductComponentRepository();
+     //   ProductComponentRepository productRepository = new ProductComponentRepository();
 
         ProductRepository product = new ProductRepository();
         public ActionResult Index(string searchString) {
@@ -26,6 +26,9 @@ namespace E_Commerce.Controllers
             
             // Hiển thị danh mục sản phẩm
             ViewData["Category"] = productComponentRepository.GetCategories();
+            ViewBag.SlideBarCategory = productComponentRepository.GetCategories();
+            // Hiển thị danh loại sản phẩm
+            ViewData["TypeProduct"] = productComponentRepository.GetProductTypes();
 
             // Hiển thị Hảng sản suất;
             ViewData["Company"] = productComponentRepository.GetCompanies();
@@ -35,6 +38,7 @@ namespace E_Commerce.Controllers
 
             System.Diagnostics.Debug.WriteLine("");
             ViewBag.Product = product.GetProducts();
+            ViewBag.Brands = productComponentRepository.GetCompanies();
             if (searchString!=null)
             {
                 ViewBag.Product = product.SearchProducts(searchString);

@@ -31,7 +31,7 @@ namespace E_Commerce.Controllers
 
             ViewBag.SlideBarCategory = productComponent.GetCategories();
             ViewData["TypeProduct"] = productComponent.GetProductTypes();
-
+            ViewData["ListCompanies"] = productComponent.GetCompanies();
             ViewBag.Brands = productComponent.GetCompanies();
             if(searchString != null)
             {
@@ -54,7 +54,7 @@ namespace E_Commerce.Controllers
         }
 
 
-
+/*
 
          ViewData["RelatedProduct"] = product;
          return View();

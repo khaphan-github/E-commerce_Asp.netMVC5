@@ -99,5 +99,8 @@ namespace E_Commerce_Repository.Repository
             repository.Entry(order).State = System.Data.Entity.EntityState.Modified;
             repository.SaveChanges();
         }
+
+        //lấy 5 sản phẩm bán nhiều nhất
+        
     }
 }

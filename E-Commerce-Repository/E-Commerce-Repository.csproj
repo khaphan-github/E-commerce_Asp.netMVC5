@@ -150,15 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializationDB\EcommerIntializationDB.cs" />
-    <Compile Include="Migrations\202209301216283_InitWareHouseTable.cs" />
-    <Compile Include="Migrations\202209301216283_InitWareHouseTable.Designer.cs">
-      <DependentUpon>202209301216283_InitWareHouseTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202210201247487_IngonreChange.cs" />
-    <Compile Include="Migrations\202210201247487_IngonreChange.Designer.cs">
-      <DependentUpon>202210201247487_IngonreChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountAdmin.cs" />
     <Compile Include="Models\AccountConsumer.cs" />
@@ -217,14 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209301216283_InitWareHouseTable.resx">
-      <DependentUpon>202209301216283_InitWareHouseTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210201247487_IngonreChange.resx">
-      <DependentUpon>202210201247487_IngonreChange.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\E-Commerce\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\E-Commerce\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />

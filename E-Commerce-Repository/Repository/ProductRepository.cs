@@ -155,12 +155,14 @@ namespace E_Commerce_Repository.Repository
             var result = from product in repository.Products
                          join typeproduct in repository.TypeProducts on product.TypeProductID equals typeproduct.Id
                          join categoty in repository.Categorys on typeproduct.CategoryID equals categoty.Id
-                    //     from describe in repository.Describes
+                         join company in repository.Companys on product.CompanyID equals company.Id
+                         //     from describe in repository.Describes
                          where 
                         //    typeproduct.Name.Contains(searchString)
                             (  product.Name.Contains(searchString) 
                             || typeproduct.Name.Contains(searchString) 
-                            || categoty.Name.Contains(searchString)  )
+                            || categoty.Name.Contains(searchString)
+                            || company.Name.Contains(searchString))
                          
 
                          //     || (categoty.Name.Contains(searchString) )
