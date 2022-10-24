@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,12 +22,12 @@ namespace E_Commerce_Repository.InitializationDB
                  4. Mở PACKAGE MANAGER CONSOLE > gõ "Update-Database -Verbose"
                  5. Run;
             */
-            bool isUpdateDB = true;
-            if (isUpdateDB) {
-                var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
-                Database.SetInitializer(initializer);
-   /*         }
-            else {
+            //bool isUpdateDB = true;
+            //if (isUpdateDB) {
+            //    var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
+            //    Database.SetInitializer(initializer);
+            //}
+   /*         else {
                 var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
                 Database.SetInitializer(intitializer);
             }
@@ -62,12 +63,18 @@ namespace E_Commerce_Repository.InitializationDB
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
-           
-            modelBuilder.Entity<Product>().HasOptional(product => product.Describe).WithRequired(desc => desc.Product);
-           
+            /*
+             modelBuilder.Entity<Product>()
+             .HasOptional(product => product.Describe)
+             .WithRequired(des => des.Product);
             
-                       
-            modelBuilder.Entity<AccountConsumer>().HasOptional(ac => ac.BankingCards).WithRequired(bk => bk.AccountConsumer);
+            modelBuilder.Entity<Describe>()
+             .HasOptional(des => des.Product)
+             .WithRequired(product => product.Describe);
+*/
+            modelBuilder.Entity<AccountConsumer>()
+                .HasOptional(ac => ac.BankingCards)
+                .WithRequired(bk => bk.AccountConsumer);
         }
     }  
 }

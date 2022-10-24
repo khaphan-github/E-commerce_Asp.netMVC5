@@ -7,8 +7,10 @@
 @using E_Commerce_Repository.Models;
 @{ 
     Product product = ViewData["Product"] as Product;
+    List < Describe> listDescribes = new List<Describe>();
     List<Product> relateProduct = ViewData["RelatedProduct"] as List<Product>;
     List<Product> productList = ViewData["ProductList"] as List<Product>;
+    Phone phone = new Phone();
 }
 
 <body>
@@ -160,7 +162,9 @@
                                     </tr>
                                     <tr>
                                         <td>Pin</td>
-                                        <td>@product.DescribeID Cái này mới in ra được ID của mô tả, không thể truy vấn vào bản mô tả để lấy thông tin như Ram, pin, Display, ...!</td>
+                                        
+                                        <td>@product.Name</td>
+
                                     </tr>
                                     <tr>
                                         <td>Hãng</td>

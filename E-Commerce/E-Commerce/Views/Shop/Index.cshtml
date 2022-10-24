@@ -17,8 +17,9 @@
 
     var addressDelivery = ViewData["SalePlance"] = null;
     var productList = ViewData["Product"] as List<Product>;
-
-
+    var typeProductList = ViewData["TypeProduct"] as List<TypeProduct>;
+    var listCompanies = ViewBag.Brands;
+}
 }
 <main class="main">
 
@@ -27,7 +28,6 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Grid 4 Columns</li>
             </ol>
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
@@ -38,34 +38,35 @@
                 <div class="col-lg-9">
                     <div class="products mb-3" , id="products">
                         <div class="row justify-content-center">
-                            @if (ViewBag.Product == null){
-                                <div>
-                                    Không tìm thấy sản phẩm phù hợp
-                                </div><!-- End .toolbox-info -->
-                            }
-                            else{
-                                foreach (Product product in ViewBag.Product){
+                            @if (ViewBag.Product != null)
+                            {
+                                foreach (Product product in ViewBag.Product)
+                                {
                                     <!-- BEGIN PRODUCT -->
                                     <div class="col-9 col-md-2 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                @if (product.Quantity == 0) {
+                                                @if (product.Quantity == 0)
+                                                {
                                                     <span class="product-label label-top">Hết hàng</span>
                                                 }
                                                 <a href="@Url.Action("Index", "Product", new { id = product.Id })">
-                                                    <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image" >
+                                                    <img src="@product.ProductImages.ElementAt(0).URL" alt="Product image" class="product-image">
                                                 </a>
                                                 <div class="product-action-vertical">
                                                     <a href="@Url.Action("Index", "Product", new { id = product.Id.ToString() })" class="btn-product-icon btn-wishlist btn-expandable"><span>Xem</span></a>
                                                 </div><!-- End .product-action-vertical -->
                                                 <!-- CHECK IS LOGIN-->
-                                                @if (accountConsumer != null) {
-                                                    if (product.Quantity != 0) {
+                                                @if (accountConsumer != null)
+                                                {
+                                                    if (product.Quantity != 0)
+                                                    {
                                                         <div class="product-action" id="addToCard" onclick="AddProductToCard(@product.Id.ToString())">
                                                             <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
                                                         </div><!-- End .product-action -->
                                                     }
-                                                    else {
+                                                    else
+                                                    {
                                                         <div class="product-action" id="addToCard" onclick="alert('Xin lỗi quý khách, sản phẩm đã hết hàng')">
                                                             <button class="btn-product btn-cart"><span>Thêm giỏ hàng</span></button>
                                                         </div><!-- End .product-action -->
@@ -106,13 +107,18 @@
                                                         </a>
                                                     }
                                                 </div><!-- End .product-nav -->
-                                                
+
 
                                             </div><!-- End .product-body -->
                                         </div><!-- End .product -->
                                     </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
                                     <!-- END PRODUCT -->
                                 } <!--End Foreach-->
+                                
+                            }
+                            else
+                            {
+
                             }
 
 
@@ -155,73 +161,81 @@
                             <a href="#" class="sidebar-filter-clear">Clean All</a>
                         </div><!-- End .widget widget-clean -->
 
-                        <div class="widget widget-collapsible">
-                            <h3 class="widget-title">
-
-                                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" style="font-family:Tahoma" aria-controls="widget-1">
-                                    Danh mục sản phẩm
-                                </a>
-                            </h3><!-- End .widget-title -->
-                            <!--Category-->
-                            <div class="collapse show" id="widget-1">
-                                <div class="widget-body">
-                                    <!-- DANH MỤC SẢN PHẨM-->
-                                    @foreach (Category category in categoryList) {
-                                        <div class="filter-items filter-items-count">
-                                            <a href="">@category.Name</a>
-                                            <!-- Action to category-->
-                                        </div><!-- End .filter-items -->
+                        <div class="widget widget-categories">
+                            <h3 class="widget-title">Categoris</h3><!-- End .widget-title -->
+                            <div class="widget-body">
+                                <div class="accordion" id="widget-cat-acc">
+                                    <!--vòng foreach-->
+                                    @foreach (Category category in categoryList)
+                                    {
+                                        <div class="acc-item">
+                                            <h5>
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-@category.Id" aria-expanded="false" aria-controls="collapse-@category.Id">
+                                                    @category.Name
+                                                </a>
+                                            </h5>
+                                            <div id="collapse-@category.Id" class="collapse" data-parent="#widget-cat-acc">
+                                                <div class="collapse-wrap">
+                                                    <ul>
+                                                        @foreach (var item in typeProductList)
+                                                        {
+                                                            if (item.CategoryID == category.Id)
+                                                            {
+                                                                <li><a href="@Url.Action("Index", "Home", new { searchString = item.Name})">@item.Name</a></li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div><!-- End .collapse-wrap -->
+                                            </div><!-- End .collapse -->
+                                        </div><!-- End .acc-item -->
                                     }
-                                </div><!-- End .widget-body -->
-                            </div><!-- End .collapse -->
+
+                                </div><!-- End .accordion -->
+                            </div><!-- End .widget-body -->
                         </div><!-- End .widget -->
 
-                        <div class="widget widget-collapsible">
+                        <div class="widget ">
                             <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" style="font-family:Tahoma" aria-controls="widget-2">
                                     Hãng sản suất
-                                </a>
                             </h3><!-- End .widget-title -->
+                            @foreach (Company companys in ViewBag.Brands)
+                            {
+                                <div class="acc-item">
+                                    <a class="collapse-wrap" data-toggle="collapse-wrap" href="@Url.Action("Index", "Home", new { searchString = companys.Name})">
+                                        @companys.Name
+                                    </a>
 
-                            <div class="collapse show" id="widget-2">
-                                <div class="widget-body">
-                                    <div class="filter-items">
-                                        @foreach (Company company in companyList) {
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="@company.Id.ToString()">
-                                                    <label class="custom-control-label" for="size-1">@company.Name</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-                                        }
-                                    </div><!-- End .filter-items -->
-                                </div><!-- End .widget-body -->
-                            </div><!-- End .collapse -->
+                                </div><!-- End .acc-item -->
+                            }
                         </div><!-- End .widget -->
+                    
+                      <!--lọc sp theo giá, bấm nút lọc, xuất các sp có giá dưới <=  sp.giá <= trên
+                        xuất thẳng ra trang shop
+                    
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
+                                <a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true" aria-controls="widget-3">
                                     Lọc theo giá
                                 </a>
-                            </h3><!-- End .widget-title -->
+                            </h3>--><!-- End .widget-title -->
 
-                            <div class="collapse show" id="widget-5">
+                            <!--<div class="collapse show" id="widget-3">
                                 <div class="widget-body">
                                     <div class="filter-price">
                                         <div class="filter-price-text">
                                             <span id="filter-price-range"></span>
-                                        </div><!-- End .filter-price-text -->
-                                        <div id="price-slider"></div><!-- End #price-slider -->
-                                    </div><!-- End .filter-price -->
-                                </div><!-- End .widget-body -->
-                            </div><!-- End .collapse -->
-                        </div><!-- End .widget -->
+                                        </div>--><!-- End .filter-price-text -->
+                                        <!--<div id="price-slider"></div>--><!-- End #price-slider -->
+                                    <!--</div>--><!-- End .filter-price -->
+                                <!--</div>--><!-- End .widget-body -->
+                            <!--</div>--><!-- End .collapse -->
+                        <!--</div>--><!-- End .widget -->
 
-                        <div class="widget widget-collapsible">
-                            <button type="submit" class="btn btn-outline" style="width:100px">Lọc sản phẩm</button>
-                        </div><!-- End .widget -->
-
+                        <!--<div class="widget widget-collapsible">
+                            <button type="submit" class="btn btn-outline" style="width:100px"  >Lọc sản phẩm</button >
+                        </div>--><!-- End .widget -->
+                    
                     </div><!-- End .sidebar sidebar-shop -->
                 </aside><!-- End .col-lg-3 -->
             </div><!-- End .row -->
