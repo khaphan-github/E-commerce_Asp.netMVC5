@@ -46,7 +46,7 @@
                                 <div class="card-footer">
                                     <div class="text-right">
                                         @{
-                                            if (Model.ElementAt(0).AccountRoles.ElementAt(0).Descibe.Contains("User") == true)
+                                            if (Model.ElementAt(0).AccountRoles.ElementAt(0).Name.Contains("User") == true)
                                             {
                                                 <a href="@Url.Action("Delete", "Member", new { id=item.Id })" class="btn btn-sm btn-success" >
                                                     <i class="fas fa-trash-alt"></i>

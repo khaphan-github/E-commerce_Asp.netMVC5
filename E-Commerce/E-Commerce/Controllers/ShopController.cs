@@ -18,13 +18,12 @@ namespace E_Commerce.Controllers
         
         ProductRepository productRepository = new ProductRepository();
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
-        ProductComponentRepository productRepository = new ProductComponentRepository();
     
         ProductRepository product = new ProductRepository();
         public ActionResult Index(int page,string searchString) {
 
-            ViewData["Category"] = productRepository.GetCategories();
-            ViewData["Company"] = productRepository.GetCompanies();
+            ViewData["Category"] = productComponentRepository.GetCategories();
+            ViewData["Company"] = productComponentRepository.GetCompanies();
 
             ViewData["SalePlance"] = null;
 

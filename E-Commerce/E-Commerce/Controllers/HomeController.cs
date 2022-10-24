@@ -53,13 +53,6 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-
-
-
-         ViewData["RelatedProduct"] = product;
-         return View();
-     }
-*/
         public ActionResult NoAuthLogin() {
             return View();
         }

@@ -25,6 +25,7 @@ namespace E_Commerce_Repository.InitializationDB
             if (isUpdateDB) {
                 var initializer = new MigrateDatabaseToLatestVersion<EcommerIntializationDB, Migrations.Configuration>();
                 Database.SetInitializer(initializer);
+            }
    /*         }
             else {
                 var intitializer = new CreateDatabaseIfNotExists<EcommerIntializationDB>();
