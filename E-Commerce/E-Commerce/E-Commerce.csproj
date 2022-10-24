@@ -3922,6 +3922,7 @@
     <Compile Include="Areas\Admin\Controllers\ViewProfileController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
+    <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopBaseController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -4210,6 +4211,7 @@
     <Content Include="Views\Consumer\CashPayment.cshtml" />
     <Content Include="tinymce\CHANGELOG.md" />
     <Content Include="tinymce\js\tinymce\langs\README.md" />
+    <Content Include="Views\ErrorHandler\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4239,10 +4241,6 @@
     <ProjectReference Include="..\..\E-Commerce-Repository\E-Commerce-Repository.csproj">
       <Project>{f3cbd0de-1dde-4436-ac33-8f6f658d9d37}</Project>
       <Name>E-Commerce-Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\E-Commerce-UnitTest\E-Commerce-UnitTest.csproj">
-      <Project>{502dbe3a-76af-43f1-832d-6a1600480721}</Project>
-      <Name>E-Commerce-UnitTest</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

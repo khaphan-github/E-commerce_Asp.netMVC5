@@ -9,6 +9,7 @@ namespace E_Commerce_Repository.Models
 {
     public class AccountConsumer : Account
     {
+        /*Thay address -> string*/
         public virtual ICollection<Address> Addresses { get; set; }
         public int? BankingCardsId { get; set; }
         public virtual BankingCard BankingCards { get; set; }

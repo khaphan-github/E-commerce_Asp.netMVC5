@@ -9,42 +9,44 @@ using E_Commerce_Business_Logic.Shop;
 using E_Commerce_Repository.Repository;
 using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Business_Logic.RequestFilter;
+using PagedList;
 
 namespace E_Commerce.Controllers
 {       
     public class ShopController : Controller
     {
-        
-        ProductRepository productRepository = new ProductRepository();
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
-     //   ProductComponentRepository productRepository = new ProductComponentRepository();
-
+    
         ProductRepository product = new ProductRepository();
-        public ActionResult Index(string searchString) {
-          
-            ShopComponent shopComponent = new ShopComponent();
-            
-            // Hiển thị danh mục sản phẩm
+        public ActionResult Index(int page,string searchString) {
+
+
             ViewData["Category"] = productComponentRepository.GetCategories();
-            ViewBag.SlideBarCategory = productComponentRepository.GetCategories();
-            // Hiển thị danh loại sản phẩm
-            ViewData["TypeProduct"] = productComponentRepository.GetProductTypes();
-
-            // Hiển thị Hảng sản suất;
             ViewData["Company"] = productComponentRepository.GetCompanies();
+            ViewData["TypeProduct"] = productComponentRepository.GetProductTypes();
+            ViewBag.SlideBarCategory = productComponentRepository.GetCategories();
 
-            // Địa chỉ giao hàng 
             ViewData["SalePlance"] = null;
 
-            System.Diagnostics.Debug.WriteLine("");
-            ViewBag.Product = product.GetProducts();
+
             ViewBag.Brands = productComponentRepository.GetCompanies();
+
+            ViewBag.NumberOfPage = product.numberOfProductStoreIndb() / 40;
+
+            if (page < 1 || page > ViewBag.NumberOfPage) page = 1;
+
+            ViewBag.CurrentPage = page;
+            
+            ViewBag.Product = product.listProductInPage(page, 40);
+
+
             if (searchString!=null)
             {
                 ViewBag.Product = product.SearchProducts(searchString);
                 return View();
             }
-            return View( );
+
+            return View();
         }
     }
 }

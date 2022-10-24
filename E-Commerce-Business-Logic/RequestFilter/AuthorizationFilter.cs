@@ -17,8 +17,7 @@ namespace E_Commerce_Business_Logic.RequestFilter {
             this.allowedRoles = allowedRoles;
         }
         protected override bool AuthorizeCore(HttpContextBase httpContext) {
-            // Phân quyền
-            bool authorize = false;
+
             var user = httpContext.Session[SessionConstaint.USERSESION] as Account;
 
             if (user != null) {
@@ -32,7 +31,7 @@ namespace E_Commerce_Business_Logic.RequestFilter {
                     if (role == roleName) return true;
                 }
             }
-            return authorize;
+            return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {

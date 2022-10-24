@@ -9,7 +9,7 @@ namespace E_Commerce_Repository.Service {
     interface AccountService {
 
         // CHỨC NĂNG QUẢN LÝ TÀI KHOẢN
-
+        ShoppingCard getShoppingCartById(int id);
         Account getAccountById(int id);
 
         // Lấy toàn bộ account cả account admin và account user
@@ -48,6 +48,14 @@ namespace E_Commerce_Repository.Service {
         void removeRoleFromAccount(int accountId, int roleId);
 
         // Quản lý trạng thái tài khoản
-       
+
+        bool isExistedAccount(string username);
+
+        AccountRole findRoleByName(string roleName);
+
+
+        void createCartForAccount(ShoppingCard shoppingCard);
+
+        void createAddress(Address address);
     }
 }

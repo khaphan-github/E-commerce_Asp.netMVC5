@@ -39,6 +39,13 @@ namespace E_Commerce.Controllers {
         public ActionResult Register() {
             return View();
         }
+
+        public ActionResult UserRegister(string fullname, string username, string password, string Address) {
+           //  Login BussinessLogin = new Login();
+           // BussinessLogin.CreateAccount( fullname, username, password, Address);
+            return RedirectToAction("Index", "Home");
+        }
+
         // Thanh toán tiền mặt
         [AuthenticationFilter]
         public ActionResult Payment(string amout, int paymentMethod, string shippingMethod) {
@@ -62,7 +69,7 @@ namespace E_Commerce.Controllers {
             return View();
         }
 
-        // THANH TOÁN QUAMOMO
+        // THANH TOÁN QUA MOMO
         [AuthenticationFilter]
         public ActionResult PaymentMomo(string amout, int paymentMethod, string shippingMethod) {
             string errorMessage = "";
@@ -98,12 +105,13 @@ namespace E_Commerce.Controllers {
         public ActionResult ConfirmPaymentMomo(PaymentResponse response) {
 
             if (response.errorCode.Equals("0")) {
-
-                HandleMomoResponse.saveOrderByMomoPayment(response.amount, response.orderId);
-
-                System.Diagnostics.Debug.WriteLine("THÊM ORDER THANH CÔNG");
-
-                return RedirectToAction("ShowSuccessPayment", "Consumer", new { status = "success" });
+                try {
+                    HandleMomoResponse.saveOrderByMomoPayment(response.amount, response.orderId);
+                    System.Diagnostics.Debug.WriteLine("THÊM ORDER THANH CÔNG");
+                    return RedirectToAction("ShowSuccessPayment", "Consumer", new { status = "success" });
+                } catch (Exception) {
+                    
+                }
             }
             return RedirectToAction("ShowSuccessPayment", "Consumer", new { status = "fail" });
         }

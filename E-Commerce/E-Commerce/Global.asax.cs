@@ -19,5 +19,9 @@ namespace E_Commerce
             // Khởi tạo session user khi web khởi động
             Session[SessionConstaint.USERSESION] = "";
         }
+
+       
+        
+        
     }
 }

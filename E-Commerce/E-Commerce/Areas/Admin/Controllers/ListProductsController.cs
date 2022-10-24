@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 using E_Commerce_Business_Logic.RequestFilter;
 using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
@@ -227,29 +228,40 @@ namespace E_Commerce.Areas.Admin.Controllers
                 // Tìm sản phẩm trong db
                 Product product = db.Products.Find(id);
                 ViewBag.IDProduct = product.Id;
-
-                // Lấy danh sách hình ảnh có id bằng product.id
-                // Foreach() -> xóa hình trong db
-                List<ProductImage> imageNeedToDelete = db.ProductImages.Where(x => x.ProductID == product.Id).ToList();
-                foreach (ProductImage img in imageNeedToDelete) {
-                    db.ProductImages.Remove(img);
-                    db.SaveChanges();
-                }
-                
-                // Lấy bản mô tả trong db
-             /*   Describe describeStoreInDB = db.Describes.FirstOrDefault(prop => prop.ProductID == id);
-                if (describeStoreInDB != null)
+                ShoppingCardDetail shoppingCardDetail = db.ShoppingCardDetails.FirstOrDefault(x => x.ProductID == product.Id);
+                OrderDetail orderDetail = db.OrderDetails.FirstOrDefault(x => x.ProductID == product.Id);
+                if (shoppingCardDetail != null || orderDetail != null)
                 {
-                    // Xóa nó
-                    db.Describes.Remove(describeStoreInDB);
-                    db.SaveChanges();
+                    MessageBox.Show("Sản phẩm này không xóa được vì tồn tại trong giỏ hàng và đơn hàng!!!");
+                    return RedirectToAction("Delete");
                 }
-            */   
-                // Xóa product
-                db.Products.Remove(product);
-                db.SaveChanges();
+                else
+                {
 
-                return RedirectToAction("Index");
+                    // Lấy danh sách hình ảnh có id bằng product.id
+                    // Foreach() -> xóa hình trong db
+                    List<ProductImage> imageNeedToDelete = db.ProductImages.Where(x => x.ProductID == product.Id).ToList();
+                    foreach (ProductImage img in imageNeedToDelete)
+                    {
+                        db.ProductImages.Remove(img);
+                        db.SaveChanges();
+                    }
+
+                    // Lấy bản mô tả trong db
+                    Describe describeStoreInDB = db.Describes.FirstOrDefault(prop => prop.ProductID == id);
+                    if (describeStoreInDB != null)
+                    {
+                        // Xóa nó
+                        db.Describes.Remove(describeStoreInDB);
+                        db.SaveChanges();
+                    }
+
+                    // Xóa product
+                    db.Products.Remove(product);
+                    db.SaveChanges();
+
+                }
+                    return RedirectToAction("Index");
             }
             catch (Exception)
             {

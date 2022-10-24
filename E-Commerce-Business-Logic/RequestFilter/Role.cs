@@ -9,6 +9,5 @@ namespace E_Commerce_Business_Logic.RequestFilter {
         public const string User = "User";
         public const string Admin = "Admin";
         public const string SystemAdmin = "SystemAdmin";
-
     }
 }
