@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using E_Commerce_Business_Logic.RequestFilter;
 using E_Commerce_Repository.InitializationDB;
 using E_Commerce_Repository.Models;
+using PagedList;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
@@ -20,11 +21,20 @@ namespace E_Commerce.Areas.Admin.Controllers
         private EcommerIntializationDB db = new EcommerIntializationDB();
 
         // GET: Admin/ListProducts
-        public ActionResult Index()
-        {
-            //var products = db.Products.Include(p => p.Describe);
-            //return View(products.ToList());
-            return View(db.Products.ToList());
+        public ActionResult Index(int? page) {
+
+            int pageSize = 10;
+            int maxPage = db.Products.Count() / pageSize;
+            if (page == null || page <= 0 || page > maxPage) {
+                page = 1;
+            }
+
+            int pageNumber = (page ?? 1);
+            ViewBag.MaxPage = maxPage;
+            ViewBag.CurrentPage = page;
+
+           
+            return View(db.Products.ToList().OrderBy(prop => prop.Id).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/ListProducts/Details/5

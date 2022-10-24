@@ -10,6 +10,7 @@
 
     <div class="card card-solid">
         <div class="breadcrumb float-sm-left">
+            @ViewBag.ErrorMessage
             <a href="@Url.Action("Index", "Member", new { roleName = "User" })" class="btn btn-sm btn-primary" style="margin-right: 10px">Tài khoản User</a>
             <a href="@Url.Action("Index", "Member", new { roleName = "Admin" })" class="btn btn-sm btn-primary" style="margin-right: 10px">Tài khoản Admin</a>
             <a href="@Url.Action("Index", "Member", new { roleName = "SystemAdmin" })" class="btn btn-sm btn-primary" style="margin-right: 10px">Tài khoản System Admin</a>
@@ -19,8 +20,7 @@
 
             <div class="row">
                 @{
-                    foreach (var item in Model)
-                    {
+                    foreach (var item in Model) {
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
 
                             <div class="card bg-light d-flex flex-fill">
@@ -46,9 +46,10 @@
                                 <div class="card-footer">
                                     <div class="text-right">
                                         @{
-                                            if (Model.ElementAt(0).AccountRoles.ElementAt(0).Name.Contains("User") == true)
-                                            {
-                                                <a href="@Url.Action("Delete", "Member", new { id=item.Id })" class="btn btn-sm btn-success" >
+                                                    // Kioeẻm tra quyền - nếu có quyền systemadmin hoặc amdin thì không hiện
+                                                    
+                                            if (item.AccountRoles.FirstOrDefault(prop => prop.Name.Equals("SystemAdmin") || prop.Name.Equals("Admin")) == null) {
+                                                <a href = "@Url.Action("Delete", "Member", new { id=item.Id })" class="btn btn-sm btn-success">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             }

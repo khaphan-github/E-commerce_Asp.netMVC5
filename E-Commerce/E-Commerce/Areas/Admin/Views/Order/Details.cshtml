@@ -14,7 +14,7 @@
             <h4 class="card-title">Chi Tiết Đơn Hàng</h4>
         </div>
         <form class="form-horizontal" action="@Url.Action("Update", "Order", new { account = Model as Order})">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <label for="Name">Mã đơn hàng</label>
                 <dd>
                     @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "readonly", @placeholder = "id" })
@@ -28,7 +28,7 @@
                 </dd>
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <label for="Name">Danh sách sản phẩm</label>
                 <table class="table table-striped table-valign-middle">
                     <thread>
@@ -48,44 +48,42 @@
                                     <td>@i</td>
                                     <td><img src="@Html.DisplayFor(modelItem => item.Product.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product.ShoppingCardDetails.ElementAt(0).Number)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NumberofItems)</td>
                                     <td>@String.Format("{0:n0}", item.Product.Price) VNĐ</td>
                                 </tr>
                             }
                         }
-
-
                     </thread>
                 </table>
             </div>
 
             <div class="col-md-10">
                 <label for="Name">Tổng giá</label>
-                <dd>
+                <div>
                     @Html.DisplayFor(model => model.TotalPrice) VNĐ
-                </dd>
+                </div>
             </div>
 
             <div class="col-md-10">
                 <label for="Name">Phương thức vận chuyển</label>
-                <dd>
+                <div>
                     <!--Html.DropDownList(new SelectList(Enum.GetValues(typeof(ShippingMethod))), new { class = "form-control", readonly = "readonly", placeholder = "Phương thức vận chuyển" })-->
                     @Html.DisplayTextFor(model => model.ShippingMethod.Name)
-                </dd>
+                </div>
             </div>
 
             <div class="col-md-10">
                 <label for="Name">Phương thức thanh toán</label>
-                <dd>
+                <div>
                     @Html.DisplayFor(model => model.PaymentMethod.Name)
-                </dd>
+                </div>
             </div>
 
             <div class="col-md-10">
                 <label for="Name">Trạng thái giao hàng (Sửa nếu cần)</label>
-                <dd>
+                <div>
                     @Html.DropDownList("DeliverStateID")
-                </dd>
+                </div>
             </div>
 
             <div class="col-md-10">
@@ -102,8 +100,8 @@
                 </dd>
             </div>
             <div class="form-group row">
-                <div class="offset-sm col-sm-10">
-                    <button type="submit" class="btn btn-danger">Lưu</button>
+                <div class="offset-sm col-sm-2" style="margin-left: 10px;">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                 </div>
             </div>
     </form>

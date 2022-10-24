@@ -43,35 +43,50 @@
                     <th>Tên loại sản phẩm</th>
                     <th>Chi tiết</th>
                 </tr>
-                @foreach (var item in Model)
-                {
+                @foreach (var item in Model) {
                     //Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)
-            <tr>
-                <td><img src="@Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;"></td>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@String.Format("{0:n0}", item.Price) đ</td>
-                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                <td>@Html.DisplayFor(modelItem => item.Describe.Description)</td>   <!-- không lấy được? -->
-                <td>@Html.DisplayFor(modelItem => item.Promotion.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.TypeProduct.Name)</td>
-                <td>
-                    <div class="btn-group">
-                        <a href="/Admin/ListProducts/Edit/@item.Id" class="btn btn-success">
-                            <i class="fas fa-plus-circle"></i>
-                        </a>
-                        <a href="/Admin/ListProducts/Details/@item.Id" class="btn btn-warning">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="/Admin/ListProducts/Delete/@item.Id" class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
-                </td>
-            </tr>
+                    <tr>
+                        <td><img src="@Html.DisplayFor(modelItem => item.ProductImages.ElementAt(0).URL)" alt="Product image" class="product-image" style="width:50px;"></td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@String.Format("{0:n0}", item.Price) đ</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Describe.Description)</td>   <!-- không lấy được? -->
+                        <td>@Html.DisplayFor(modelItem => item.Promotion.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Supplier.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TypeProduct.Name)</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/Admin/ListProducts/Edit/@item.Id" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>
+                                </a>
+                                <a href="/Admin/ListProducts/Details/@item.Id" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="/Admin/ListProducts/Delete/@item.Id" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
                 }
             </thead>
         </table>
+        <div style="margin-left: 10px; margin-bottom: 10px; text-align:center">
+
+
+            @for (int i = ViewBag.CurrentPage - 8; i < ViewBag.CurrentPage + 8; i++) {
+                if (i > 0 && i <= ViewBag.MaxPage) {
+
+                    if (i == ViewBag.CurrentPage) {
+                        <a class="btn btn-primary" href="@Url.Action("Index", "ListProducts", new { page = i })">@i</a>
+                    }
+                    else {
+                        <a class="btn btn-default" href="@Url.Action("Index", "ListProducts", new { page = i })">@i</a>
+                    }
+                }
+            }
+
+        </div>
     </div>
 </div>

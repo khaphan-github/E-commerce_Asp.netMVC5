@@ -20,7 +20,7 @@ namespace E_Commerce.Controllers
         ProductComponentRepository productComponentRepository = new ProductComponentRepository();
     
         ProductRepository product = new ProductRepository();
-        public ActionResult Index(int page,string searchString) {
+        public ActionResult Index(int? page, string searchString) {
 
             ViewData["Category"] = productComponentRepository.GetCategories();
             ViewData["Company"] = productComponentRepository.GetCompanies();
@@ -35,7 +35,7 @@ namespace E_Commerce.Controllers
             
             ViewBag.Product = product.listProductInPage(page, 40);
 
-            if (searchString!=null)
+            if (searchString != null)
             {
                 ViewBag.Product = product.SearchProducts(searchString);
                 return View();

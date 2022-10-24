@@ -58,5 +58,7 @@ namespace E_Commerce_Repository.Service
         IEnumerable<Product> listProductInPage(int? page, int pageSize);
 
         int numberOfProductStoreIndb();
+        IEnumerable<Product> getTopProducts(int top);
+        IEnumerable<Product> getBestSellerProducts(int top);
     }
 }

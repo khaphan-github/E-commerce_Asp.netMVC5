@@ -7,8 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-/*using PagedList;
-using PagedList.Mcv;*/
+using PagedList;
+using PagedList.Mvc;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
@@ -19,17 +19,18 @@ namespace E_Commerce.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Index(int? page)
         {
-            /*var items = db.Orders.OrderByDescending(x => x.Date).ToList();
-            if(page == null)
+            int pageSize = 10;
+            int maxPage = db.Orders.Count() / pageSize;
+            if (page == null || page <= 0 || page > maxPage)
             {
                 page = 1;
             }
-            var pageSize = 15;
-            return View();//View(items.ToPagedList(page,pageSize));
+           
             int pageNumber = (page ?? 1);
-            int pagesize = 7;
-            return View(db.Orders.ToList().OrderBy(x => x.Id).ToPagedList(pageNumber, pagesize));*/
-            return View(db.Orders.ToList());
+            ViewBag.MaxPage = maxPage;
+            ViewBag.CurrentPage = page;
+            return View(db.Orders.ToList().OrderByDescending(prop => prop.Date).ToPagedList(pageNumber, pageSize));
+
         }
         public ActionResult Details(int? id)
         {
@@ -56,41 +57,7 @@ namespace E_Commerce.Areas.Admin.Controllers
             return RedirectToAction("Index", "Order", new { id = order.Id });
         }
 
-        /*[HttpGet]
-        public ActionResult Delete(int id)
-        {
-            Order order = db.Orders.Find(id);
-            ViewBag.OrderID = order.Id;
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        
-        [HttpPost, ActionName("Delete")]
-        
-        public ActionResult DeleteConfirmed(int id)
-        {
-            try
-            {
-                // Tìm đơn hàng trong db
-                Order order = db.Orders.Find(id);
-                ViewBag.OrderID = order.Id;
-
-                // Xóa order
-                db.Orders.Remove(order);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }*/
+ 
 
         protected override void Dispose(bool disposing)
         {

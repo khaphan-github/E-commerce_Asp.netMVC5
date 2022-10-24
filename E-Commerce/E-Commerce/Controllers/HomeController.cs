@@ -23,11 +23,11 @@ namespace E_Commerce.Controllers
             ViewData["Category"] = productComponent.GetCategories();
 
             // Hiển thị sản phẩm nổi bậc
-            ViewBag.TopProduct = productRepository.GetProducts();
+            ViewBag.TopProduct = productRepository.getTopProducts(7).ToList();
             //ViewData["TopProduct"] = productRepository.GetProducts();
 
             // Hiển thị sản phẩm bán chạy
-            ViewData["BestSellerPeoduct"] = productRepository.GetProducts();
+            ViewData["BestSellerPeoduct"] = productRepository.getBestSellerProducts(7).ToList();
 
             ViewBag.SlideBarCategory = productComponent.GetCategories();
             ViewData["TypeProduct"] = productComponent.GetProductTypes();

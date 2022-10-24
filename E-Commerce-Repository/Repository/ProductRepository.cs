@@ -274,5 +274,13 @@ namespace E_Commerce_Repository.Repository
         public int numberOfProductStoreIndb() {
             return repository.Products.Count();
         }
+
+        public IEnumerable<Product> getTopProducts(int top) {
+            return repository.Products.OrderBy(prop => prop.Id).Take(top);
+        }
+
+        public IEnumerable<Product> getBestSellerProducts(int top) {
+            return repository.Products.OrderBy(prop => prop.Price).Take(top);
+        }
     }
 }

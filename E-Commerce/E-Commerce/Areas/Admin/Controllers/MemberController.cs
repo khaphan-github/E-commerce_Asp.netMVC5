@@ -30,6 +30,20 @@ namespace E_Commerce.Areas.Admin.Controllers
             try
             {
                 var acc = db.Accounts.FirstOrDefault(x => x.Id == id);
+                ShoppingCard shoppingCard = db.ShoppingCards.FirstOrDefault(x => x.AccountConsumerID == acc.Id);
+                ShoppingCardDetail shoppingCardDetail = db.ShoppingCardDetails.FirstOrDefault(x => x.ShoppingCardID == shoppingCard.Id);
+                if (shoppingCard != null)
+                {
+                    db.ShoppingCards.Remove(shoppingCard);
+                    if (shoppingCardDetail != null) {
+                        db.ShoppingCardDetails.Remove(shoppingCardDetail);
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Không thể xóa tài khoản!";
+                    return RedirectToAction("Index", "Member");
+                }
                 acc.AccountRoles.Clear();
                 db.Accounts.Remove(acc);
                 db.SaveChanges();
