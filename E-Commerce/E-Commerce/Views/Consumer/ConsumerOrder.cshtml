@@ -75,7 +75,7 @@
                                         <td>@order.ShippingMethod.Name</td>
 
                                         <td>@order.Address.Street</td>
-                                        <td>@order.TotalPrice</td>
+                                        <td>@String.Format("{0:n0}", order.TotalPrice) đ</td>
                                         <td>
                                             <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
