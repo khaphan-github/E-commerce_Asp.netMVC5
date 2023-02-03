@@ -8,5 +8,10 @@
 
 ## Features:
 1. Shop page to show all products.
-2. Payment with Momo.
-3. Admin page to manage product and user.
+![image](https://user-images.githubusercontent.com/76431966/216603772-418c81c3-4178-43ff-9170-9f44381ef4cb.png)
+
+2. Payment with Momo:
+![image](https://user-images.githubusercontent.com/76431966/216603899-d9503b94-f3b7-4bf9-a573-0f11d11f2f48.png)
+
+3. Admin page to manage product and user:
+![image](https://user-images.githubusercontent.com/76431966/216604007-58fbfce8-981f-4fc9-af13-17110ff4330f.png)
